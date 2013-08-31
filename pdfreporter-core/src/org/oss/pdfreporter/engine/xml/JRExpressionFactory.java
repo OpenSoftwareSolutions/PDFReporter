@@ -29,6 +29,7 @@ import java.util.Map;
 
 import org.oss.pdfreporter.engine.JRDataSource;
 import org.oss.pdfreporter.engine.design.JRDesignExpression;
+import org.oss.pdfreporter.sql.IConnection;
 import org.oss.pdfreporter.xml.parsers.IAttributes;
 
 
@@ -56,6 +57,16 @@ public class JRExpressionFactory extends JRBaseFactory
 		}
 	}
 	
+	/**
+	 * @deprecated To be removed.
+	 */
+	public static class ConnectionExpressionFactory extends JRBaseFactory {
+		public Object createObject( IAttributes attrs ){
+			JRDesignExpression expression = new JRDesignExpression();
+			expression.setValueClassName( IConnection.class.getName() );
+			return expression;
+		}
+	}
 	
 	/**
 	 * @deprecated To be removed.

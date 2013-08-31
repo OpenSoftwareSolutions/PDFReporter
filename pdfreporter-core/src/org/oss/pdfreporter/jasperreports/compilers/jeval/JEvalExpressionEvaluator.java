@@ -109,7 +109,8 @@ public class JEvalExpressionEvaluator extends JREvaluator implements IDataHolder
 			boolean singleChunk = (designExpressionChunks.length == 1);
 			if (designExpressionChunks != null && designExpressionChunks.length > 0) {
 				if (singleChunk) {
-					return SingleChunkExpressionFactory.buildExpression(this, designExpressionChunks[0]);
+					IExpressionElement result = SingleChunkExpressionFactory.buildExpression(this, designExpressionChunks[0]);
+					return result==null ? JevalExpressionFactory.buildExpression(this, designExpressionChunks, expressionId) : result;
 				} else {
 					return JevalExpressionFactory.buildExpression(this, designExpressionChunks, expressionId);
 				}			

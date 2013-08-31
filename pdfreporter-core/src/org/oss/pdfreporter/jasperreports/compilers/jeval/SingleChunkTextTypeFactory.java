@@ -11,6 +11,7 @@ public class SingleChunkTextTypeFactory {
 		if (TextConstant.isText(text)) {
 			return TextConstant.parseText(text);
 		}
-		throw new ExpressionParseException("Not supported expression: " + text);
+		return null;
+//		throw new ExpressionParseException("Not supported expression: " + text);
 	}
 }

@@ -66,8 +66,8 @@ import org.oss.pdfreporter.engine.util.JRLoader;
 import org.oss.pdfreporter.engine.util.JRSingletonCache;
 import org.oss.pdfreporter.engine.util.JRStyleResolver;
 import org.oss.pdfreporter.net.IURL;
-import org.oss.pdfreporter.repo.RepositoryUtil;
 import org.oss.pdfreporter.repo.SubreportUtil;
+import org.oss.pdfreporter.sql.IConnection;
 
 
 
@@ -88,6 +88,7 @@ public class JRFillSubreport extends JRFillElement implements JRSubreport
 	private JRSubreportParameter[] parameters;
 	private FillDatasetPosition datasetPosition;
 	private boolean cacheIncluded;
+	private IConnection connection;
 	private JRDataSource dataSource;
 	private JasperReport jasperReport;
 	private Object source;
@@ -364,6 +365,9 @@ public class JRFillSubreport extends JRFillElement implements JRSubreport
 			parentDataset.setCacheRecordIndex(datasetPosition, evaluation);
 			
 			/*   */
+			connection = (IConnection) evaluateExpression(
+					getConnectionExpression(), evaluation);
+	
 			String cacheIncludedProp = JRPropertiesUtil.getOwnProperty(this, DataCacheHandler.PROPERTY_INCLUDED); 
 			cacheIncluded = JRPropertiesUtil.asBoolean(cacheIncludedProp, true);// default to true
 
@@ -556,6 +560,7 @@ public class JRFillSubreport extends JRFillElement implements JRSubreport
 			}
 			//parameterValues.remove(JRParameter.REPORT_TIME_ZONE);
 			parameterValues.remove(JRParameter.JASPER_REPORT);
+			parameterValues.remove(JRParameter.REPORT_CONNECTION);
 			parameterValues.remove(JRParameter.REPORT_MAX_COUNT);
 			parameterValues.remove(JRParameter.REPORT_DATA_SOURCE);
 			parameterValues.remove(JRParameter.REPORT_SCRIPTLET);
@@ -638,7 +643,11 @@ public class JRFillSubreport extends JRFillElement implements JRSubreport
 
 	protected void fillSubreport() throws JRException
 	{
-		if (getDataSourceExpression() != null)
+		if (getConnectionExpression() != null)
+		{
+			subreportFiller.fill(parameterValues, connection);
+		}
+		else if (getDataSourceExpression() != null)
 		{
 			subreportFiller.fill(parameterValues, dataSource);
 		}

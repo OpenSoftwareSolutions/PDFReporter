@@ -11,6 +11,7 @@ import org.oss.pdfreporter.jasperreports.compilers.ExpressionEvaluationException
 import org.oss.pdfreporter.jasperreports.compilers.jeval.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.BooleanConverter;
 import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.Conditional;
+import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.CurrentDate;
 import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.DateStringConverter;
 import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.DoubleStringConverter;
 import org.oss.pdfreporter.jasperreports.compilers.jeval.functions.IntegerStringConverter;
@@ -46,6 +47,7 @@ public class JEvalExpression  {
 		putFunction(new DateStringConverter());
 		putFunction(new TruncateDateTo());
 		putFunction(new Conditional());
+		putFunction(new CurrentDate());
 		putFunction(new NullValue());
 		putFunction(new IsNull());
 		putFunction(new Message());

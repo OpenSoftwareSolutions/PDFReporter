@@ -373,9 +373,9 @@ public final class JRXmlDigesterFactory
 
 		/*   */
 		// TODO (29.04.2013, Donat, Digireport): Notice java.sql.Connection support removed		
-//		digester.addFactoryCreate("*/connectionExpression", JRExpressionFactory.ConnectionExpressionFactory.class.getName());
-//		digester.addSetNext("*/connectionExpression", "setConnectionExpression", JRExpression.class.getName());
-//		digester.addCallMethod("*/connectionExpression", "setText", 0);
+		digester.addFactoryCreate("*/connectionExpression", JRExpressionFactory.ConnectionExpressionFactory.class.getName());
+		digester.addSetNext("*/connectionExpression", "setConnectionExpression", JRExpression.class.getName());
+		digester.addCallMethod("*/connectionExpression", "setText", 0);
 
 		/*   */
 		digester.addFactoryCreate("*/dataSourceExpression", JRExpressionFactory.DataSourceExpressionFactory.class.getName());
