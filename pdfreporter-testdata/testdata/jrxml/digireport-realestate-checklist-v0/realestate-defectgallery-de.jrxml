@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="maengelliste" language="jeval" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="268" columnSpacing="18" leftMargin="20" rightMargin="20" topMargin="28" bottomMargin="20" isTitleNewPage="true" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="816"/>
+	<queryString language="xPath">
+		<![CDATA[/protocolKind/*/column/images]]>
+	</queryString>
+	<field name="categoryname" class="java.lang.String">
+		<fieldDescription><![CDATA[../../categoryname]]></fieldDescription>
+	</field>
+	<field name="columnname" class="java.lang.String">
+		<fieldDescription><![CDATA[../rowname]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.String">
+		<fieldDescription><![CDATA[../state]]></fieldDescription>
+	</field>
+	<field name="costValue" class="java.lang.String">
+		<fieldDescription><![CDATA[../costValue]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[../description]]></fieldDescription>
+	</field>
+	<field name="agentname" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/companyname]]></fieldDescription>
+	</field>
+	<field name="street" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/street]]></fieldDescription>
+	</field>
+	<field name="number" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/number]]></fieldDescription>
+	</field>
+	<field name="city" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/city]]></fieldDescription>
+	</field>
+	<field name="zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/zip]]></fieldDescription>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/phone]]></fieldDescription>
+	</field>
+	<field name="image" class="java.lang.String">
+		<fieldDescription><![CDATA[image]]></fieldDescription>
+	</field>
+	<field name="realestatecountry" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/realestate/country]]></fieldDescription>
+	</field>
+	<field name="realestatecity" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/realestate/city]]></fieldDescription>
+	</field>
+	<field name="realestatestreet" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/realestate/street]]></fieldDescription>
+	</field>
+	<field name="realestatezip" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/realestate/zip]]></fieldDescription>
+	</field>
+	<field name="realestatestreetnumber" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/realestate/number]]></fieldDescription>
+	</field>
+	<field name="rooms" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/appartment/rooms]]></fieldDescription>
+	</field>
+	<field name="appartmentnumber" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/appartment/number]]></fieldDescription>
+	</field>
+	<field name="floor" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/appartment/floor]]></fieldDescription>
+	</field>
+	<field name="country" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/country]]></fieldDescription>
+	</field>
+	<field name="logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/protocolKind/agent/logo]]></fieldDescription>
+	</field>
+	<group name="Columndetail" isStartNewColumn="true">
+		<groupExpression><![CDATA[$F{state}]]></groupExpression>
+	</group>
+	<group name="Category" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{categoryname}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<printWhenExpression><![CDATA[$F{image}!=null]]></printWhenExpression>
+				<textField>
+					<reportElement uuid="1da3c0cb-9aed-4a15-aa76-cbdbce0e7ebe" isPrintRepeatedValues="false" x="13" y="2" width="135" height="20" isPrintInFirstWholeBand="true" forecolor="#FF6633"/>
+					<textElement>
+						<font fontName="Helvetica" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{categoryname}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Column" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{columnname}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<printWhenExpression><![CDATA[$F{image}!=null]]></printWhenExpression>
+				<textField>
+					<reportElement uuid="a39b5933-45b4-40ed-a211-c0b06f12e10f" x="13" y="1" width="100" height="20"/>
+					<textElement>
+						<font fontName="Helvetica" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{columnname}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="State">
+		<groupExpression><![CDATA[$F{state}]]></groupExpression>
+		<groupHeader>
+			<band height="89">
+				<printWhenExpression><![CDATA[$F{image}!=null]]></printWhenExpression>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="2886f29c-43a9-433b-adf8-8331319cadd5" isPrintRepeatedValues="false" x="84" y="21" width="286" height="15"/>
+					<textElement>
+						<font fontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="7ad0ec37-862b-4538-86da-d7b3cbbdb71e" isPrintRepeatedValues="false" x="84" y="4" width="286" height="15"/>
+					<textElement>
+						<font fontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{costValue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f31456dd-bbf5-4920-ae7f-e725ff1f91e2" isPrintRepeatedValues="false" x="14" y="5" width="46" height="10" isPrintInFirstWholeBand="true"/>
+					<textElement>
+						<font fontName="Helvetica" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Kosten]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="ba0476a8-fda0-4f68-b9a0-d0d39c0d8e83" isPrintRepeatedValues="false" x="84" y="38" width="410" height="40"/>
+					<textElement>
+						<font fontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f5514e53-4fe1-4339-aa87-d7404de3d6b8" x="14" y="39" width="56" height="10"/>
+					<textElement>
+						<font fontName="Helvetica" size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Beschreibung]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="89a98b62-2854-4ebc-8190-c6a61d1e60d0" x="14" y="23" width="46" height="10"/>
+					<textElement>
+						<font fontName="Helvetica" size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Zustand]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="49f6debd-16bf-4e87-8a15-a2f2fd720596" x="14" y="3" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="4aa161e6-65ba-48b2-ae1c-04b2912e3028" x="14" y="19" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="c01db064-d0aa-4b88-bea4-4612cffe496a" x="14" y="35" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="656" splitType="Stretch">
+			<break type="Column">
+				<reportElement uuid="68b52875-a736-4121-9678-ad0af7ca0283" x="0" y="655" width="100" height="1"/>
+			</break>
+			<textField>
+				<reportElement uuid="89b44c19-b7eb-4961-afda-7520a105d247" x="435" y="2" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="ea396cdf-0e78-44d5-844a-43a26f34fc91" x="515" y="2" width="40" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/ " + '$V{PAGE_NUMBER}']]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="1515749f-3306-4d1f-af81-9b245866f226" x="13" y="466" width="515" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9995998c-20ae-4eaf-8df7-ec4e44b98de6" x="106" y="324" width="123" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatestreet}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f1b852e6-9f8b-4daf-99f9-b6511de659f5" x="12" y="289" width="488" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liegenschaft]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67d8a4f9-37bb-4335-9e53-42fd1e3529ce" x="13" y="441" width="488" height="26"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Wohnung]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="44f815dd-2533-4608-9045-652627f76337" x="12" y="116" width="488" height="35"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liegenschaftsverwaltung]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0f8f7473-59f3-43dd-83f9-dff2cd477d00" x="106" y="473" width="155" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{appartmentnumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b73f5304-57b6-49ea-8e0a-a52044a4d686" x="106" y="493" width="155" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{floor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bf206153-0126-4498-b06d-207613aea641" x="106" y="513" width="155" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rooms}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6409e2e5-155f-4b70-b465-1ad0a7ba2538" x="12" y="325" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Strasse]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa907167-8bfa-4c03-9abb-e9fee4a6575a" x="12" y="495" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Etage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="33b60cd1-f202-4a5a-a437-dde9c946dcc1" x="12" y="473" width="89" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Wohnungsnummer]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="32ba9c9a-5834-4dc8-b3d4-b79a93cd426e" x="106" y="344" width="115" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatestreetnumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a02333ce-cae6-4489-9cc9-4c55bb36573a" x="12" y="515" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Anzahl Zimmer]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5baf6c03-457d-4eef-bcc5-f55bcb86b2bd" x="12" y="311" width="516" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="aeb2c567-cea9-4536-b454-5c60f623d975" x="-19" y="56" width="593" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Helvetica" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mängelliste]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="a02f1cee-af3e-4b6e-83b8-809ccf3d54de" x="13" y="144" width="516" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="170736f9-66e7-47ec-917e-da8d48219e71" x="106" y="404" width="123" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatecountry}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d29c4ead-eafd-4d7b-a13b-6cdef61ebc8b" x="106" y="384" width="123" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatecity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5bad7df9-ee24-464a-892c-edf40f71a078" x="106" y="364" width="123" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatezip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a33f032-ab44-477a-b404-ba79d81bb7c5" x="12" y="405" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Land]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0eafdf3a-d12e-4313-aa77-56c0e9b9dbd5" x="12" y="385" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Stadt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0d7f1143-59f6-4b9b-a852-bbaea74f245b" x="12" y="365" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Postleitzahl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dba90e85-6897-499c-a22b-7a936e387a03" x="12" y="345" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nummer]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93229428-6f86-485c-82f6-20c4bb897f21" isPrintRepeatedValues="false" x="107" y="174" width="88" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{street}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3d974247-152c-491a-ae07-bf74630c17d9" x="107" y="153" width="136" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agentname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="16fdfd51-1348-48af-8cac-cd2fb5d004e7" x="107" y="195" width="45" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f739c71e-613f-465c-8a1c-56486e9c49dc" x="107" y="235" width="139" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6e29b6a1-4c7b-4e14-8946-f96f173d351a" x="107" y="215" width="139" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{zip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="99240d62-c589-47e0-bb9d-cfbd446dbae3" x="12" y="155" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7934ccf2-f728-4b63-a9fb-1af9b246ebbd" x="12" y="175" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Strasse]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="78114a21-78d8-4802-91d6-a74b5d419bf8" x="12" y="195" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nummer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="212055e3-b9d5-4424-a0c1-bd42f4a0990d" x="12" y="215" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Postleitzahl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="613a8552-c521-45a4-aac8-bcc46d3fca43" x="12" y="235" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Stadt]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="b74d6d40-1dd8-4787-8f3c-7bb3402524c1" x="401" y="2" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[now()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="40388bc5-6412-4ae0-9e3a-a42975bebab8" x="12" y="255" width="68" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Land]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="84b28371-cdcf-459d-9436-e79e1d3264e7" x="107" y="255" width="139" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{country}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="062304e2-0801-40e8-a493-a7a8c3f467d4" x="14" y="4" width="100" height="22"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59">
+			<textField>
+				<reportElement uuid="93968cad-ecd7-44e8-bc25-219d4c07b539" x="165" y="7" width="80" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Helvetica" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{realestatestreet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4087a2ab-d1a4-4dfc-9669-3b9aa3215f0a" x="165" y="17" width="80" height="10"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Helvetica" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ec38e080-e555-4479-b55a-50179e1c85de" x="257" y="7" width="68" height="9"/>
+				<textElement>
+					<font fontName="Helvetica" size="7" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Anzahl Zimmer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80026a1d-509f-4727-b7c1-097566e036c9" x="257" y="26" width="68" height="9"/>
+				<textElement>
+					<font fontName="Helvetica" size="7" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Wohnungsnummer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="61e539a5-7352-4876-8689-ef669609934b" x="257" y="17" width="68" height="9"/>
+				<textElement>
+					<font fontName="Helvetica" size="7" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Etage]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9a9975eb-baae-421d-bc1b-cb1dbaf46f9a" x="329" y="7" width="64" height="10"/>
+				<textElement>
+					<font fontName="Helvetica" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rooms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="943ce8b8-b525-4840-9c7f-579d0acb8e6c" x="329" y="17" width="64" height="10"/>
+				<textElement>
+					<font fontName="Helvetica" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{floor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3548536c-2c44-4de4-9aae-8768c6853da4" x="329" y="27" width="64" height="10"/>
+				<textElement>
+					<font fontName="Helvetica" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{appartmentnumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a726bab0-1a3e-4a4d-bdfa-8e16e4a3345f" x="479" y="2" width="37" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="fdc70d6c-7b20-4011-b1a6-90c4be111903" x="516" y="2" width="39" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[' / ' + '$V{PAGE_NUMBER}']]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2b9838c3-b012-4094-b586-c37c4e99836b" x="133" y="7" width="30" height="9"/>
+				<textElement>
+					<font fontName="Helvetica" size="7" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Strasse]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d975093b-ca52-4383-b981-dff6b21c1680" x="133" y="17" width="32" height="9"/>
+				<textElement>
+					<font fontName="Helvetica" size="7" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nummer]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="302c76c6-1a11-422d-b7bd-14ce9c6bdac2" x="412" y="2" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Helvetica" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[now()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="78a8323f-a991-4ee0-8bfc-f613b18b11e2" x="15" y="4" width="100" height="22"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="208" splitType="Stretch">
+			<image>
+				<reportElement uuid="fea21c4c-ea08-4f1e-9f60-9dac95992e1e" x="14" y="9" width="247" height="188"/>
+				<imageExpression><![CDATA[$F{image}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

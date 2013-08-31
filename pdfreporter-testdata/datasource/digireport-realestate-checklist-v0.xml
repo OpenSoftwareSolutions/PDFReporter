@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocolKind xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/print-model.xsd">
+  <protocolname>realestate-checklist</protocolname>
+  <realestate>
+      <country>schweiz</country>
+      <city>zurich</city>
+      <street>goolstreet</street>
+      <zip>568</zip>
+      <images>
+          <image>picture-2013-07-04-07-25-27-00005.jpg</image>
+      </images>
+      <number>67</number>
+  </realestate>
+   <appartment>
+      <floor>third</floor>
+       <images>
+           <image>picture-2013-06-28-12-39-16-00005.jpg</image>
+       </images>
+      <number>56</number>
+      <rooms>6</rooms>
+       <formerLessee>
+           <firstname>mara</firstname>
+           <lastname>kluz</lastname>
+           <street>nasarstrasse</street>
+           <number>34</number>
+           <city>Zurich</city>
+           <email>kluz@baar.ch</email>
+           <iban>ch56795367908</iban>
+           <zip>6754</zip>
+           <phone>0416758899</phone>
+           <moveInDate>04.08.2013</moveInDate>
+           <moveOutDate>04.08.2017</moveOutDate>
+       </formerLessee>
+    <newLessee>
+        <lastname>kluz</lastname>
+      <email>kluz@martin.ch</email>
+      <firstname>antonella</firstname>
+      <iban>ch567098432</iban>
+      <phone>0416758899</phone>
+      <moveInDate>04.08.2013</moveInDate>
+        <iban>ch567777767908</iban>
+  </newLessee>
+  </appartment>
+   <kitchen>
+       <categoryname>kitchen</categoryname>
+   		<column>
+   			<rowname>comments</rowname>
+            <state>Damaged</state>
+            <costValue>300</costValue>
+            <description>new door</description>
+            <images>
+                <image>1.jpg</image>
+            </images>
+            <images>
+                <image>2.jpg</image>
+            </images>
+            <images>
+				<image>3.jpg</image>
+            </images>
+   		</column>
+       <column>
+           <rowname>Cupboards</rowname>
+           <state>Damaged</state>
+           <costValue>350</costValue>
+           <description>new door</description>
+           <images>
+               <image>1.jpg</image>
+           </images>
+           <images>
+               <image>2.jpg</image>
+           </images>
+       </column>
+   </kitchen>
+    <keys>
+        <categoryname>room</categoryname>
+    		<column>
+    			<rowname>Floor</rowname>
+    			<state>Damaged</state>
+    			<costValue>125</costValue>
+    			<description>removed</description>
+                <images>
+                    <image>1.jpg</image>
+                </images>
+                <images>
+                    <image>2.jpg</image>
+                </images>
+                <images>
+                    <image>3.jpg</image>
+                </images>
+    		</column>
+    		<column>
+    			<rowname>Walls</rowname>
+    			<state>Okey</state>
+    			<costValue>250</costValue>
+    			<description>okey</description>
+                <images>
+                    <image>3.jpg</image>
+                </images>
+                <images>
+                    <image>4.jpg</image>
+                </images>
+    		</column>
+    		<column>
+    			<rowname>Ceiling</rowname>
+    			<state>Damaged</state>
+    			<costValue>125</costValue>
+    			<description>fehlt 2, fehlt 2, fehlt 2, fehlt 2, fehlt 2, fehlt 2, fehlt 2</description>
+                <images>
+                    <image>4.jpg</image>
+                </images>
+    		</column>
+   </keys>
+      
+      <realestate-checklist-movein>
+          
+          <signer>
+              <signerrole>newLessee</signerrole>
+              <signername>antonella martin</signername>
+              <signatureimage>signature-2.jpg</signatureimage>
+          </signer>
+          
+          <signer>
+              <signerrole>Verwaltung</signerrole>
+              <signername>Max Muster</signername>
+              <signatureimage>signature-1.jpg</signatureimage>
+          </signer>
+          
+      </realestate-checklist-movein>
+      
+      <realestate-checklist-moveout>
+          
+          <signer>
+              <signerrole>formerLessee</signerrole>
+              <signername>Orkus Markus</signername>
+              <signatureimage>signature-3.jpg</signatureimage>
+          </signer>
+          
+          <signer>
+              <signerrole>Verwaltung</signerrole>
+              <signername>Max Muster</signername>
+              <signatureimage>signature-1.jpg</signatureimage>
+          </signer>
+          
+      </realestate-checklist-moveout>
+      
+     <signoff>
+         <Cleaning>
+             in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand
+        </Cleaning>
+         <Theoldtenantisleaving>leaving table and chairs</Theoldtenantisleaving>
+     </signoff>
+    <agent>
+        <logo>logo-digireport.jpg</logo>
+        <companyname>Makler Agency Inc.</companyname>
+        <firstname>Max</firstname>
+        <lastname>Muster</lastname>
+        <street>Froburgstrasse</street>
+        <number>20</number>
+        <city>Zurich</city>
+        <zip>6754</zip>
+        <phone>0442878282</phone>
+        <email>max.muster@makler.ch</email>
+        <country>Switzerland</country>
+    </agent>
+</protocolKind>
