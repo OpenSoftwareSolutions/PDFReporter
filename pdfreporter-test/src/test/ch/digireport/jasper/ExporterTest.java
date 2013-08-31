@@ -7,12 +7,13 @@ import java.util.Map;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
 
-
 import org.junit.Test;
+import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.image.IImage;
 import org.oss.pdfreporter.image.ImageFactory;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.DigireportRepositoryManager;
+import org.oss.pdfreporter.repo.SubreportUtil;
 import org.oss.pdfreporter.sql.IDate;
 
 
@@ -52,11 +53,21 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_JASPER = "FirstJasper.jrxml";
 	private static final String DESIGN_REPORT_ROTATION = "RotationReport.jrxml";
 	private static final String DESIGN_REPORT_PDFCRYPT = "PdfEncryptReport.jrxml";
+	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
+	
+	
 	private static final String DESIGN_REPORT_REALESTATE_JEVAL = "firstrealestateReport.jrxml";
 	private static final String DESIGN_REPORT_REALESTATE_DEFECTGALLERY_JEVAL = "realestate-defectgallery.jrxml";
 	private static final String DESIGN_REPORT_REALESTATE_PROTOCOL_JEVAL = "realestate-protocol.jrxml";
 	private static final String DESIGN_REPORT_REALESTATE_SIGNING_JEVAL = "realestate-signing.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_DEFECT_JEVAL = "realestate-defect-de.jrxml";
+
+	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE = "realestate-checklist-movein-de.jrxml";
+	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE = "realestate-checklist-moveout-de.jrxml";
+	private static final String DESIGN_REPORT_REALESTATE_DEFECT_DE = "realestate-defectgallery-de.jrxml";
+
+	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN = "realestate-checklist-movein-en.jrxml";
+	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN = "realestate-checklist-moveout-en.jrxml";
+	private static final String DESIGN_REPORT_REALESTATE_DEFECT_EN = "realestate-defectgallery-en.jrxml";
 	
 	private static final String DESIGN_REPORT_REALESTATE_PROTOCOL_SUBREPORT_JEVAL = "realestate-protocol-subreport.jrxml";
 //	private static final String DESIGN_REPORT_CROSSTAB[] = new String[] {"data/LateOrdersReport.jrxml","data/ShipmentsReport.jrxml","data/OrdersReport.jrxml","data/ProductsReport.jrxml"};
@@ -72,6 +83,11 @@ public class ExporterTest {
 	private static final String XPATH_DATA_REALESTATE_PROTOCOL = "/protocolInstance/protocolKind/*/column";
 	private static final String XPATH_DATA_REALESTATE_SIGNING = "/protocolInstance/protocolKind/*/sign";
 	private static final String XPATH_DATA_REALESTATE_DEFECTGALLERY = "/protocolInstance/protocolKind/*/column/images";
+	
+	private static final String XML_DATA_REALESTATE_CHECKLIST = "digireport-realestate-checklist-v0.xml";
+	private static final String XPATH_DATA_REALESTATE_CHECKLIST = "/protocolKind/*/column";
+	private static final String XPATH_DATA_REALESTATE_DEFECT = "/protocolKind/*/column/images";
+	
 	
 	private static final String XML_DATA_NORTHWIND = "northwind.xml";
 	private static final String XPATH_DATA_NORTHWIND_ORDERS = "/Northwind/Orders";
@@ -113,6 +129,7 @@ public class ExporterTest {
 		}
 	}
 	
+	
 	@Test
 	public void exportFonts() throws Exception {
 		getExporter("fonts","extra-fonts").exportReport(DESIGN_REPORT_FONTS);
@@ -150,6 +167,15 @@ public class ExporterTest {
 		parameters.put("MaxOrderID", new Integer(10500));
 		parameters.put("SummaryImage", image);
 		getExporter("firstjasper","extra-fonts").exportSqlReport(DESIGN_REPORT_JASPER,parameters);
+	}
+	
+	@Test
+	public void runMasterReport() throws Exception {
+		ReportExporter exporter = getExporter("subreports","extra-fonts"); // initialize Repository
+		JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
+		Map<String,Object> parameters = new HashMap<String,Object>();
+		parameters.put("ProductsSubreport", subreport);		
+		exporter.exportSqlReport(DESIGN_REPORT_MASTER, parameters);
 	}
 	
 	@Test
@@ -265,6 +291,32 @@ public class ExporterTest {
 	@Test
 	public void exportRealEstateProtocolSubreportJEval() throws Exception {
 		getExporter("realestate-protocol-subreport","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_PROTOCOL_SUBREPORT_JEVAL, XML_DATA_REALESTATE_PROTOCOL, XPATH_DATA_REALESTATE_SIGNING);
+	}
+	
+	
+	@Test
+	public void exportRealEstateChecklistMoveInDe() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
+	}
+	@Test
+	public void exportRealEstateChecklistMoveOutDe() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
+	}
+	@Test
+	public void exportRealEstateDefectDe() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_DEFECT_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_DEFECT);
+	}
+	@Test
+	public void exportRealEstateChecklistMoveInEn() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
+	}
+	@Test
+	public void exportRealEstateChecklistMoveOutEn() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
+	}
+	@Test
+	public void exportRealEstateDefectEn() throws Exception {
+		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_DEFECT_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_DEFECT);
 	}
 	
 	private static ReportExporter getExporter(String reportFolder) {
