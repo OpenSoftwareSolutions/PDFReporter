@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.JRDataSource;
 import org.oss.pdfreporter.engine.JREmptyDataSource;
+import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JasperCompileManager;
 import org.oss.pdfreporter.engine.JasperExportManager;
 import org.oss.pdfreporter.engine.JasperFillManager;
@@ -33,26 +34,39 @@ public class ReportExporter {
 		ApiRegistry.initSession();
 	}
 	
-	public void exportReport(String reportFileName, String xmlDataFile, String xmlXpath) throws Exception{
+	public void exportReport(String reportFileName, String xmlDataFile, String xmlXpath, Map<JRExporterParameter, Object> exporterParameters) throws Exception{
 		JasperDesign design = loadReport(reportFileName);
 		JasperReport report = compileReport(design);
-		exportReport(report, xmlDataFile, xmlXpath);
+		exportReport(report, xmlDataFile, xmlXpath,exporterParameters);
+		ApiRegistry.dispose();
+	}
+
+	public void exportReport(String reportFileName, String xmlDataFile, String xmlXpath) throws Exception{
+		exportReport(reportFileName, xmlDataFile, xmlXpath, null);
+	}
+	
+	
+	public void exportSqlReport(String reportFileName) throws Exception{
+		exportSqlReport(reportFileName,null,null);
+	}
+
+	public void exportSqlReport(String reportFileName, Map<String,Object> fillParameters) throws Exception{
+		exportSqlReport(reportFileName,fillParameters,null);
+	}
+	
+	public void exportSqlReport(String reportFileName, Map<String,Object> fillParameters, Map<JRExporterParameter, Object> exporterParameters) throws Exception{
+		JasperDesign design = loadReport(reportFileName);
+		JasperReport report = compileReport(design);
+		exportSqlReport(report,fillParameters,exporterParameters);
 		ApiRegistry.dispose();
 	}
 	
-	public void exportSqlReport(String reportFileName) throws Exception{
-		exportSqlReport(reportFileName,null);
-	}
-
-	public void exportSqlReport(String reportFileName, Map<String,Object> params) throws Exception{
-		JasperDesign design = loadReport(reportFileName);
-		JasperReport report = compileReport(design);
-		exportSqlReport(report,params);
-		ApiRegistry.dispose();
+	public void exportReport(String reportFileName, Map<JRExporterParameter, Object> exporterParameters) throws Exception{
+		exportReport(reportFileName,null,null, exporterParameters);
 	}
 	
 	public void exportReport(String reportFileName) throws Exception{
-		exportReport(reportFileName,null,null);
+		exportReport(reportFileName,null,null, null);
 	}
 	
 	public JasperDesign loadReport(String reportFileName) throws Exception {
@@ -69,7 +83,7 @@ public class ReportExporter {
 		return JasperCompileManager.compileReport(design);
 	}
 	
-	public void exportReport(JasperReport compiledReport, String xmlDataFile, String xmlXpath) throws Exception {
+	public void exportReport(JasperReport compiledReport, String xmlDataFile, String xmlXpath, Map<JRExporterParameter, Object> exporterParameters) throws Exception {
 		JRDataSource dataSource = null;
 		InputStream isXmlData = null;
 		try {
@@ -83,20 +97,20 @@ public class ReportExporter {
 			}
 			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, null, dataSource);
 			String pathToPdfFile = pdfOutputFolder + "/" + printReport.getName() + ".pdf";
-            JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile);
+            JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile,exporterParameters);
 		} finally {
 			close(isXmlData);
 		}
 	}
 	
-	public void exportSqlReport(JasperReport compiledReport, Map<String,Object> params) throws Exception {
+	public void exportSqlReport(JasperReport compiledReport, Map<String,Object> fillParameters, Map<JRExporterParameter, Object> exporterParameters) throws Exception {
 		IConnection sqlDataSource = null;
 		ISqlFactory sqlFactory = ApiRegistry.getSqlFactory();
 		try {
 			sqlDataSource = sqlFactory.newConnection("localhost", "sa", "");
-			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, params, sqlDataSource);
+			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, fillParameters, sqlDataSource);
 			String pathToPdfFile = pdfOutputFolder + "/" + printReport.getName() + ".pdf";
-            JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile);
+            JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile,exporterParameters);
 		} finally {
 			close(sqlDataSource);
 		}

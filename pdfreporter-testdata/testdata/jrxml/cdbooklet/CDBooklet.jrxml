@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CDBooklet" pageWidth="396" pageHeight="396" columnWidth="396" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CDBooklet" language="jeval" pageWidth="396" pageHeight="396" columnWidth="396" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="362"/>
@@ -266,7 +266,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="27" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track1ID}]]></textFieldExpression>
 			</textField>
@@ -285,7 +285,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="47" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track2ID}]]></textFieldExpression>
 			</textField>
@@ -304,7 +304,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="67" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track3ID}]]></textFieldExpression>
 			</textField>
@@ -323,7 +323,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="87" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track4ID}]]></textFieldExpression>
 			</textField>
@@ -342,7 +342,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="107" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track5ID}]]></textFieldExpression>
 			</textField>
@@ -361,7 +361,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="127" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track6ID}]]></textFieldExpression>
 			</textField>
@@ -380,7 +380,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="147" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track7ID}]]></textFieldExpression>
 			</textField>
@@ -399,7 +399,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="167" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track8ID}]]></textFieldExpression>
 			</textField>
@@ -418,7 +418,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="187" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track9ID}]]></textFieldExpression>
 			</textField>
@@ -437,7 +437,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="207" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track10ID}]]></textFieldExpression>
 			</textField>
@@ -456,7 +456,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="227" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track11ID}]]></textFieldExpression>
 			</textField>
@@ -475,7 +475,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="247" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track12ID}]]></textFieldExpression>
 			</textField>
@@ -494,7 +494,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="267" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track13ID}]]></textFieldExpression>
 			</textField>
@@ -513,7 +513,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="287" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track14ID}]]></textFieldExpression>
 			</textField>
@@ -532,7 +532,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="307" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track15ID}]]></textFieldExpression>
 			</textField>
@@ -551,7 +551,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="327" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track16ID}]]></textFieldExpression>
 			</textField>
@@ -570,7 +570,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="347" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track17ID}]]></textFieldExpression>
 			</textField>
@@ -589,7 +589,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="27" y="367" width="41" height="20"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Helvetica" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Track17ID}]]></textFieldExpression>
 			</textField>
@@ -607,7 +607,7 @@
 			</textField>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track1Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track1Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -627,7 +627,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track2Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track2Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -647,7 +647,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track3Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track3Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -667,7 +667,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track4Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track4Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -687,7 +687,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track5Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track5Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -707,7 +707,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track6Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track6Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -727,7 +727,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track7Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track7Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -747,7 +747,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track8Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track8Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -767,7 +767,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track9Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track9Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -787,7 +787,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track10Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track10Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -807,7 +807,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track11Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track11Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -827,7 +827,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track12Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track12Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -847,7 +847,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track13Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track13Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -867,7 +867,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track14Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track14Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -887,7 +887,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track15Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track15Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -907,7 +907,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track16Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track16Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">
@@ -927,7 +927,7 @@
 			</break>
 		</band>
 		<band height="66">
-			<printWhenExpression><![CDATA[$F{Track17Title}.equals( "" ) == false]]></printWhenExpression>
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track17Title},'')]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center">

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LateOrdersReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LateOrdersReport" language="jeval" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<style name="Sans_Normal" isDefault="true" fontName="DejaVu Sans" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<style name="Sans_Bold" isDefault="false" fontName="DejaVu Sans" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<style name="Title" isDefault="false" style="Sans_Bold" fontSize="12"/>
 	<style name="ColumnHeader" isDefault="false" style="Sans_Bold" forecolor="#FFFFFF"/>
 	<style name="CellStyle" isDefault="false" mode="Opaque">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[new Boolean($V{ROW_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<conditionExpression><![CDATA[(boolean)$V{ROW_COUNT} % 2 == 0]]></conditionExpression>
 			<style backcolor="#E0E0E0"/>
 		</conditionalStyle>
 	</style>
 	<style name="Detail" isDefault="false">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT}.intValue() % 2 == 0 ? Boolean.TRUE : Boolean.FALSE]]></conditionExpression>
+			<conditionExpression><![CDATA[(boolean)$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
 			<style mode="Opaque" backcolor="#E0E0E0"/>
 		</conditionalStyle>
 		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{DeliveryDelay} != null ? Boolean.TRUE : Boolean.FALSE]]></conditionExpression>
+			<conditionExpression><![CDATA[(boolean)!isNull($V{DeliveryDelay})]]></conditionExpression>
 			<style>
 				<pen lineWidth="0.5" lineColor="#FF0000"/>
 			</style>
@@ -48,9 +48,7 @@
 		<fieldDescription><![CDATA[ShippedDate]]></fieldDescription>
 	</field>
 	<variable name="DeliveryDelay" class="java.lang.Integer">
-		<variableExpression><![CDATA[$F{ShippedDate}.after($F{RequiredDate}) ?
-					Integer.valueOf(1 + (int) (($F{ShippedDate}.getTime() - $F{RequiredDate}.getTime() - 1) / 3600000)) :
-					null]]></variableExpression>
+		<variableExpression><![CDATA[(int)ifelse($F{ShippedDate} > $F{RequiredDate},1 + (($F{ShippedDate} - $F{RequiredDate} - 1) / 3600000),null())]]></variableExpression>
 	</variable>
 	<title>
 		<band height="40">
@@ -110,7 +108,7 @@
 				<textField>
 					<reportElement x="5" y="0" width="55" height="15"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle"/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{OrderId}.toString()]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{OrderId}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="65" y="0" width="100" height="15"/>
@@ -140,7 +138,7 @@
 				<textField isBlankWhenNull="true">
 					<reportElement x="490" y="0" width="60" height="15"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle"/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$V{DeliveryDelay}.toString()]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$V{DeliveryDelay}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -156,7 +154,7 @@
 				<reportElement x="0" y="40" width="555" height="60"/>
 				<crosstabDataset>
 					<dataset>
-						<incrementWhenExpression><![CDATA[$V{DeliveryDelay} == null ? Boolean.FALSE : Boolean.TRUE]]></incrementWhenExpression>
+						<incrementWhenExpression><![CDATA[(boolean)!isNull($V{DeliveryDelay})]]></incrementWhenExpression>
 					</dataset>
 				</crosstabDataset>
 				<rowGroup name="CountryRow" width="80" totalPosition="End">
@@ -192,7 +190,7 @@
 				</rowGroup>
 				<columnGroup name="FreightColumn" height="20" totalPosition="End">
 					<bucket>
-						<bucketExpression class="java.lang.Integer"><![CDATA[Integer.valueOf($F{Freight}.intValue()/100)]]></bucketExpression>
+						<bucketExpression class="java.lang.Integer"><![CDATA[(int)floor($F{Freight}) / 100]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
 						<cellContents>
@@ -202,7 +200,7 @@
 							<textField>
 								<reportElement style="Sans_Bold" x="0" y="0" width="60" height="20"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression class="java.lang.String"><![CDATA[String.valueOf($V{FreightColumn}.intValue() * 100) + "-" + String.valueOf(($V{FreightColumn}.intValue() + 1) * 100)]]></textFieldExpression>
+								<textFieldExpression class="java.lang.String"><![CDATA[intString($V{FreightColumn} * 100) + '-' + intString(($V{FreightColumn} + 1) * 100)]]></textFieldExpression>
 							</textField>
 						</cellContents>
 					</crosstabColumnHeader>
@@ -252,12 +250,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -269,12 +267,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -286,12 +284,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>

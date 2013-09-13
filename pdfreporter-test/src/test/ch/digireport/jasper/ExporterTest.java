@@ -1,20 +1,17 @@
 package test.ch.digireport.jasper;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 import org.junit.Test;
+import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JasperReport;
-import org.oss.pdfreporter.image.IImage;
-import org.oss.pdfreporter.image.ImageFactory;
-import org.oss.pdfreporter.registry.ApiRegistry;
+import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
+import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.DigireportRepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
-import org.oss.pdfreporter.sql.IDate;
 
 
 public class ExporterTest {
@@ -30,69 +27,31 @@ public class ExporterTest {
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_FONTS = "FontsReport.jrxml";
-	private static final String DESIGN_REPORT_SHIPMENTS_XML_JEVAL = "ShipmentsReportXmlJeval.jrxml";
-	private static final String DESIGN_REPORT_SHIPMENTS_SQL_JEVAL = "ShipmentsReportSqlJeval.jrxml";
-	private static final String DESIGN_REPORT_SHIPMENTS_SQL_WITH_PARAM = "ShipmentsReportSqlJevalWithDateParam.jrxml";
+	private static final String DESIGN_REPORT_SHIPMENTS = "ShipmentsReportSqlJeval.jrxml";
 	private static final String DESIGN_REPORT_PRODUCTS = "ProductsReport.jrxml";
 	private static final String DESIGN_REPORT_ORDERS = "OrdersReport.jrxml";
-	private static final String DESIGN_REPORT_LATE_ORDERS_JEVAL = "LateOrdersReportJeval.jrxml";
-	private static final String DESIGN_REPORT_LATE_ORDERS_JEVAL_NO_SUMMARY = "LateOrdersReportJevalNoSummary.jrxml";
+	private static final String DESIGN_REPORT_LATE_ORDERS = "LateOrdersReport.jrxml";
 	
 	private static final String DESIGN_REPORT_IMAGE = "ImagesReport.jrxml";
-	private static final String DESIGN_REPORT_URLIMAGE = "ImagesWithUrlReport.jrxml";
 	private static final String DESIGN_REPORT_SHAPES = "ShapesReport.jrxml";
-	private static final String DESIGN_REPORT_IMAGE_JEVAL = "ImagesReport-JEval.jrxml";
-	private static final String DESIGN_REPORT_URLIMAGE_JEVAL = "ImagesWithUrlReport-JEval.jrxml";
-	private static final String DESIGN_REPORT_SHAPES_JEVAL = "ShapesReport-JEval.jrxml";
 	private static final String DESIGN_REPORT_PARAGRAPH = "ParagraphsReport.jrxml";
 	private static final String DESIGN_REPORT_STYLEDTEXT = "StyledTextReport.jrxml";
-	private static final String DESIGN_REPORT_PARAGRAPH_JEVAL = "ParagraphsReport-JEval.jrxml";
-	private static final String DESIGN_REPORT_STYLEDTEXT_JEVAL = "StyledTextReport-JEval.jrxml";
 	private static final String DESIGN_REPORT_CDBOOCKLET = "CDBooklet.jrxml";
-	private static final String DESIGN_REPORT_CDBOOCKLET_JEVAL = "CDBooklet-JEval.jrxml";
-	private static final String DESIGN_REPORT_JASPER = "FirstJasper.jrxml";
+//	private static final String DESIGN_REPORT_JASPER = "FirstJasper.jrxml";
 	private static final String DESIGN_REPORT_ROTATION = "RotationReport.jrxml";
 	private static final String DESIGN_REPORT_PDFCRYPT = "PdfEncryptReport.jrxml";
 	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
-	
-	
-	private static final String DESIGN_REPORT_REALESTATE_JEVAL = "firstrealestateReport.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_DEFECTGALLERY_JEVAL = "realestate-defectgallery.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_PROTOCOL_JEVAL = "realestate-protocol.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_SIGNING_JEVAL = "realestate-signing.jrxml";
-
-	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE = "realestate-checklist-movein-de.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE = "realestate-checklist-moveout-de.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_DEFECT_DE = "realestate-defectgallery-de.jrxml";
-
-	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN = "realestate-checklist-movein-en.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN = "realestate-checklist-moveout-en.jrxml";
-	private static final String DESIGN_REPORT_REALESTATE_DEFECT_EN = "realestate-defectgallery-en.jrxml";
-	
-	private static final String DESIGN_REPORT_REALESTATE_PROTOCOL_SUBREPORT_JEVAL = "realestate-protocol-subreport.jrxml";
-//	private static final String DESIGN_REPORT_CROSSTAB[] = new String[] {"data/LateOrdersReport.jrxml","data/ShipmentsReport.jrxml","data/OrdersReport.jrxml","data/ProductsReport.jrxml"};
-//	private static final String DESIGN_REPORT_CUSTOMERS = "data/CustomersReport.jrxml";
 
 	// XML DATA
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
 	private static final String XPATH_DATA_CDBOOKLET = "/CDBooklets";
 	
-	private static final String XML_DATA_REALESTATE = "realestate.xml";
-	private static final String XPATH_DATA_REALESTATE = "/protocolInstance/protocolKind/category/column";
-	private static final String XML_DATA_REALESTATE_PROTOCOL = "realestate-protocol.xml";
-	private static final String XPATH_DATA_REALESTATE_PROTOCOL = "/protocolInstance/protocolKind/*/column";
-	private static final String XPATH_DATA_REALESTATE_SIGNING = "/protocolInstance/protocolKind/*/sign";
-	private static final String XPATH_DATA_REALESTATE_DEFECTGALLERY = "/protocolInstance/protocolKind/*/column/images";
 	
-	private static final String XML_DATA_REALESTATE_CHECKLIST = "digireport-realestate-checklist-v0.xml";
-	private static final String XPATH_DATA_REALESTATE_CHECKLIST = "/protocolKind/*/column";
-	private static final String XPATH_DATA_REALESTATE_DEFECT = "/protocolKind/*/column/images";
 	
 	
 	private static final String XML_DATA_NORTHWIND = "northwind.xml";
 	private static final String XPATH_DATA_NORTHWIND_ORDERS = "/Northwind/Orders";
 	private static final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = "/Northwind/Orders[ShippedDate]";
-	private static final String XPATH_DATA_NORTHWIND_ORDERS_DISTINCT_COUNTRY = "/Northwind/Orders[not(ShipCountry=preceding-sibling::*/ShipCountry)]";
 	
 
 	public ExporterTest() {
@@ -135,39 +94,23 @@ public class ExporterTest {
 		getExporter("fonts","extra-fonts").exportReport(DESIGN_REPORT_FONTS);
 	}
 
-	@Test
-	public void exportShippmentXml() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_SHIPMENTS_XML_JEVAL,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_DISTINCT_COUNTRY);
-	}
 
 	@Test
-	public void exportShippmentSql() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_SHIPMENTS_SQL_JEVAL);
+	public void exportShippment() throws Exception {
+		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_SHIPMENTS);
 	}
 
-	@Test
-	public void exportShippmentSqlWithParam() throws Exception {
-		Calendar calendar = Calendar.getInstance();
-		calendar.clear();
-		calendar.set(Calendar.YEAR, 1998);
-		calendar.set(Calendar.MONTH, 4);
-		calendar.set(Calendar.DATE, 1);		
-		IDate startDate = ApiRegistry.getSqlFactory().newDate(new Date(calendar.getTimeInMillis()));
-		Map<String,Object> parameters = new HashMap<String,Object>();
-		parameters.put("StartDate", startDate);
-		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_SHIPMENTS_SQL_WITH_PARAM, parameters);
-	}
 	
-	@Test
-	public void exportFirstJasper() throws Exception {
-		ImageFactory.registerFactory();
-		IImage image = ApiRegistry.getImageFactory().getImageManager().loadImage("src/dukesign.jpg");
-		Map<String,Object> parameters = new HashMap<String,Object>();
-		parameters.put("ReportTitle", "The First Jasper Report Ever");
-		parameters.put("MaxOrderID", new Integer(10500));
-		parameters.put("SummaryImage", image);
-		getExporter("firstjasper","extra-fonts").exportSqlReport(DESIGN_REPORT_JASPER,parameters);
-	}
+//	@Test
+//	public void exportFirstJasper() throws Exception {
+//		ImageFactory.registerFactory();
+//		IImage image = ApiRegistry.getImageFactory().getImageManager().loadImage("src/dukesign.jpg");
+//		Map<String,Object> parameters = new HashMap<String,Object>();
+//		parameters.put("ReportTitle", "The First Jasper Report Ever");
+//		parameters.put("MaxOrderID", new Integer(10500));
+//		parameters.put("SummaryImage", image);
+//		getExporter("firstjasper","extra-fonts").exportSqlReport(DESIGN_REPORT_JASPER,parameters);
+//	}
 	
 	@Test
 	public void runMasterReport() throws Exception {
@@ -189,40 +132,15 @@ public class ExporterTest {
 	}
 
 	@Test
-	public void exportLateOrderJEval() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS_JEVAL,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
+	public void exportLateOrder() throws Exception {
+		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
 	}
-	
-	@Test
-	public void exportLateOrderJEvalNoSummary() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_LATE_ORDERS_JEVAL_NO_SUMMARY);
-	}
-	
+		
 	@Test
 	public void exportImages() throws Exception {
 		getExporter("images").exportReport(DESIGN_REPORT_IMAGE);
 	}
-	
-	@Test
-	public void exportUrlImages() throws Exception {
-		getExporter("images").exportReport(DESIGN_REPORT_URLIMAGE);
-	}
-	
-	@Test
-	public void exportShapesJEval() throws Exception {
-		getExporter("shapes").exportReport(DESIGN_REPORT_SHAPES_JEVAL);
-	}
-	
-	@Test
-	public void exportImagesJEval() throws Exception {
-		getExporter("images").exportReport(DESIGN_REPORT_IMAGE_JEVAL);
-	}
-	
-	@Test
-	public void exportUrlImagesJEval() throws Exception {
-		getExporter("images").exportReport(DESIGN_REPORT_URLIMAGE_JEVAL);
-	}
-	
+			
 	@Test
 	public void exportShapes() throws Exception {
 		getExporter("shapes").exportReport(DESIGN_REPORT_SHAPES);
@@ -235,7 +153,13 @@ public class ExporterTest {
 	
 	@Test
 	public void exportEncrypt() throws Exception {
-		getExporter("misc").exportReport(DESIGN_REPORT_PDFCRYPT);
+		Map<JRExporterParameter,Object> parameters = new HashMap<JRExporterParameter,Object>();
+		parameters.put(JRPdfExporterParameter.IS_ENCRYPTED, Boolean.TRUE);		
+		parameters.put(JRPdfExporterParameter.IS_128_BIT_KEY, Boolean.TRUE);		
+		parameters.put(JRPdfExporterParameter.USER_PASSWORD, "jasper");		
+		parameters.put(JRPdfExporterParameter.OWNER_PASSWORD, "reports");		
+		parameters.put(JRPdfExporterParameter.PERMISSIONS, IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT );				
+		getExporter("misc").exportReport(DESIGN_REPORT_PDFCRYPT, parameters);
 	}
 	
 	@Test
@@ -247,77 +171,12 @@ public class ExporterTest {
 	public void exportStyledText() throws Exception {
 		getExporter("text","extra-fonts").exportReport(DESIGN_REPORT_STYLEDTEXT);
 	}
-	
-	@Test
-	public void exportParagrahJEval() throws Exception {
-		getExporter("text","extra-fonts").exportReport(DESIGN_REPORT_PARAGRAPH_JEVAL);
-	}
-	
-	@Test
-	public void exportStyledTextJEval() throws Exception {
-		getExporter("text","extra-fonts").exportReport(DESIGN_REPORT_STYLEDTEXT_JEVAL);
-	}
-	
+		
 	@Test
 	public void exportCDBooklet() throws Exception {
-		getExporter("cdbooklet").exportReport(DESIGN_REPORT_CDBOOCKLET, XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
+		getExporter("cdbooklet","extra-fonts").exportReport(DESIGN_REPORT_CDBOOCKLET, XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
 	}
 	
-	@Test
-	public void exportJevalCDBooklet() throws Exception {
-		getExporter("cdbooklet").exportReport(DESIGN_REPORT_CDBOOCKLET_JEVAL, XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
-	}
-
-	@Test
-	public void exportRealEstateJEval() throws Exception {
-		getExporter("realestate","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_JEVAL, XML_DATA_REALESTATE, XPATH_DATA_REALESTATE);
-	}
-	
-	@Test
-	public void exportRealEstateDefectGalleryJEval() throws Exception {
-		getExporter("realestate-defectgallery","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_DEFECTGALLERY_JEVAL, XML_DATA_REALESTATE_PROTOCOL, XPATH_DATA_REALESTATE_DEFECTGALLERY);
-	}
-	
-	@Test
-	public void exportRealEstateSigningJEval() throws Exception {
-		getExporter("realestate-signing","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_SIGNING_JEVAL, XML_DATA_REALESTATE_PROTOCOL, XPATH_DATA_REALESTATE_SIGNING);
-	}
-	
-	@Test
-	public void exportRealEstateProtocolJEval() throws Exception {
-		getExporter("realestate-protocol","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_PROTOCOL_JEVAL, XML_DATA_REALESTATE_PROTOCOL, XPATH_DATA_REALESTATE_PROTOCOL);
-	}
-	
-	@Test
-	public void exportRealEstateProtocolSubreportJEval() throws Exception {
-		getExporter("realestate-protocol-subreport","extra-fonts").exportReport(DESIGN_REPORT_REALESTATE_PROTOCOL_SUBREPORT_JEVAL, XML_DATA_REALESTATE_PROTOCOL, XPATH_DATA_REALESTATE_SIGNING);
-	}
-	
-	
-	@Test
-	public void exportRealEstateChecklistMoveInDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
-	}
-	@Test
-	public void exportRealEstateChecklistMoveOutDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
-	}
-	@Test
-	public void exportRealEstateDefectDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_DEFECT_DE, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_DEFECT);
-	}
-	@Test
-	public void exportRealEstateChecklistMoveInEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
-	}
-	@Test
-	public void exportRealEstateChecklistMoveOutEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_CHECKLIST);
-	}
-	@Test
-	public void exportRealEstateDefectEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportReport(DESIGN_REPORT_REALESTATE_DEFECT_EN, XML_DATA_REALESTATE_CHECKLIST, XPATH_DATA_REALESTATE_DEFECT);
-	}
 	
 	private static ReportExporter getExporter(String reportFolder) {
 		return getExporter(reportFolder,null);

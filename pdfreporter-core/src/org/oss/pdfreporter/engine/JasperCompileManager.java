@@ -29,6 +29,7 @@ import java.io.OutputStream;
 import java.util.Collection;
 import java.util.logging.Logger;
 
+import org.oss.pdfreporter.compilers.jeval.JEvalCompiler;
 import org.oss.pdfreporter.crosstabs.JRCrosstab;
 import org.oss.pdfreporter.engine.design.JRCompiler;
 import org.oss.pdfreporter.engine.design.JRValidationFault;
@@ -37,10 +38,8 @@ import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.fill.JREvaluator;
 import org.oss.pdfreporter.engine.util.JRSaver;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
-import org.oss.pdfreporter.jasperreports.compilers.DigireportCompiler;
-import org.oss.pdfreporter.jasperreports.compilers.jeval.JEvalCompiler;
-import org.oss.pdfreporter.jasperreports.progress.ProgressManager;
 import org.oss.pdfreporter.jasperreports.progress.IProgressHandler.ProgressState;
+import org.oss.pdfreporter.jasperreports.progress.ProgressManager;
 
 
 
@@ -63,7 +62,6 @@ import org.oss.pdfreporter.jasperreports.progress.IProgressHandler.ProgressState
 public final class JasperCompileManager
 {
 	private final static Logger logger = Logger.getLogger(JasperCompileManager.class.getName());
-	private final static String DIGIREPORT_COMPILER = DigireportCompiler.class.getName();
 	private final static String JEVAL_COMPILER = JEvalCompiler.class.getName();
 	private JasperReportsContext jasperReportsContext;
 
@@ -421,9 +419,7 @@ public final class JasperCompileManager
 	{
 		String compilerClassName = jasperReport.getCompilerClass();
 
-		if (DIGIREPORT_COMPILER.equals(compilerClassName)) {
-			return new DigireportCompiler(jasperReportsContext);
-		} else if(JEVAL_COMPILER.equals(compilerClassName)) {
+		if(JEVAL_COMPILER.equals(compilerClassName)) {
 			return new JEvalCompiler(jasperReportsContext);
 		}
 		throw new JRException("Report compiler '" + compilerClassName + "' not supported.");
@@ -438,11 +434,7 @@ public final class JasperCompileManager
 	private JRCompiler getCompiler(JasperDesign jasperDesign) throws JRException
 	{
 		String language = jasperDesign.getLanguage();
-		if (JRReport.LANGUAGE_JAVA.equals(language)) {
-			// The DigireportCompiler compiles the java expression language 
-			return new DigireportCompiler(jasperReportsContext,false);					
-		} else if (JRReport.LANGUAGE_JEVAL.equals(language)) {
-			// TODO (12.04.2013, Donat, Digireport): Add JEval language
+		if (JRReport.LANGUAGE_JEVAL.equals(language)) {
 			return new JEvalCompiler(jasperReportsContext,false);								
 		}
 		else

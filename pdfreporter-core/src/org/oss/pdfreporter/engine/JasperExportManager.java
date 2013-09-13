@@ -28,6 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.export.JRPdfExporter;
@@ -88,48 +89,48 @@ public final class JasperExportManager
 	}
 	
 	
-	/**
-	 * Exports the generated report file specified by the parameter into PDF format.
-	 * The resulting PDF file has the same name as the report object inside the source file,
-	 * plus the <code>*.pdf</code> extension and it is located in the same directory as the source file.
-	 *  
-	 * @param sourceFileName source file containing the generated report
-	 * @return resulting PDF file name
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 */
-	public String exportToPdfFile(String sourceFileName) throws JRException
-	{
-		File sourceFile = new File(sourceFileName);
+//	/**
+//	 * Exports the generated report file specified by the parameter into PDF format.
+//	 * The resulting PDF file has the same name as the report object inside the source file,
+//	 * plus the <code>*.pdf</code> extension and it is located in the same directory as the source file.
+//	 *  
+//	 * @param sourceFileName source file containing the generated report
+//	 * @return resulting PDF file name
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 */
+//	public String exportToPdfFile(String sourceFileName) throws JRException
+//	{
+//		File sourceFile = new File(sourceFileName);
+//
+//		/* We need the report name. */
+//		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObject(sourceFile);
+//
+//		File destFile = new File(sourceFile.getParent(), jasperPrint.getName() + ".pdf");
+//		String destFileName = destFile.toString();
+//		
+//		exportReportToPdfFile(jasperPrint, destFileName);
+//		
+//		return destFileName;
+//	}
 
-		/* We need the report name. */
-		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObject(sourceFile);
 
-		File destFile = new File(sourceFile.getParent(), jasperPrint.getName() + ".pdf");
-		String destFileName = destFile.toString();
-		
-		exportReportToPdfFile(jasperPrint, destFileName);
-		
-		return destFileName;
-	}
-
-
-	/**
-	 * Exports the generated report file specified by the first parameter into PDF format,
-	 * the result being placed in the second file parameter.
-	 *  
-	 * @param sourceFileName source file containing the generated report
-	 * @param destFileName   file name to place the PDF content into
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 */
-	public void exportToPdfFile(
-		String sourceFileName, 
-		String destFileName
-		) throws JRException
-	{
-		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObjectFromFile(sourceFileName);
-
-		exportReportToPdfFile(jasperPrint, destFileName);
-	}
+//	/**
+//	 * Exports the generated report file specified by the first parameter into PDF format,
+//	 * the result being placed in the second file parameter.
+//	 *  
+//	 * @param sourceFileName source file containing the generated report
+//	 * @param destFileName   file name to place the PDF content into
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 */
+//	public void exportToPdfFile(
+//		String sourceFileName, 
+//		String destFileName
+//		) throws JRException
+//	{
+//		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObjectFromFile(sourceFileName);
+//
+//		exportReportToPdfFile(jasperPrint, destFileName);
+//	}
 
 	
 	/**
@@ -145,9 +146,29 @@ public final class JasperExportManager
 		String destFileName
 		) throws JRException
 	{
+		exportToPdfFile(jasperPrint,destFileName,null);
+	}
+	
+	/**
+	 * Exports the generated report file specified by the first parameter into PDF format,
+	 * the result being placed in the second file parameter, third parameter takes the export properties
+	 *
+	 * @param jasperPrint  report object to export 
+	 * @param destFileName file name to place the PDF content into
+	 * @param exportParameters
+	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+	 */
+	public void exportToPdfFile(
+		JasperPrint jasperPrint, 
+		String destFileName,
+		Map<JRExporterParameter,Object> exportParameters
+		) throws JRException
+	{
 		/*   */
 		JRPdfExporter exporter = new JRPdfExporter(jasperReportsContext);
-		
+		if (exportParameters!=null) {			
+			exporter.getParameters().putAll(exportParameters);
+		}
 		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 		exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, destFileName);
 		
@@ -155,68 +176,68 @@ public final class JasperExportManager
 	}
 
 
-	/**
-	 * Exports the generated report read from the supplied input stream into PDF format and
-	 * writes the results to the output stream specified by the second parameter.
-	 *
-	 * @param inputStream  input stream to read the generated report object from
-	 * @param outputStream output stream to write the resulting PDF content to
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 */
-	public void exportToPdfStream(
-		InputStream inputStream, 
-		OutputStream outputStream
-		) throws JRException
-	{
-		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObject(inputStream);
-
-		exportReportToPdfStream(jasperPrint, outputStream);
-	}
+//	/**
+//	 * Exports the generated report read from the supplied input stream into PDF format and
+//	 * writes the results to the output stream specified by the second parameter.
+//	 *
+//	 * @param inputStream  input stream to read the generated report object from
+//	 * @param outputStream output stream to write the resulting PDF content to
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 */
+//	public void exportToPdfStream(
+//		InputStream inputStream, 
+//		OutputStream outputStream
+//		) throws JRException
+//	{
+//		JasperPrint jasperPrint = (JasperPrint)JRLoader.loadObject(inputStream);
+//
+//		exportReportToPdfStream(jasperPrint, outputStream);
+//	}
 
 	
-	/**
-	 * Exports the generated report object received as first parameter into PDF format and
-	 * writes the results to the output stream specified by the second parameter.
-	 * 
-	 * @param jasperPrint  report object to export 
-	 * @param outputStream output stream to write the resulting PDF content to
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 */
-	public void exportToPdfStream(
-		JasperPrint jasperPrint, 
-		OutputStream outputStream
-		) throws JRException
-	{
-		JRPdfExporter exporter = new JRPdfExporter(jasperReportsContext);
-		
-		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputStream);
-		
-		exporter.exportReport();
-	}
+//	/**
+//	 * Exports the generated report object received as first parameter into PDF format and
+//	 * writes the results to the output stream specified by the second parameter.
+//	 * 
+//	 * @param jasperPrint  report object to export 
+//	 * @param outputStream output stream to write the resulting PDF content to
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 */
+//	public void exportToPdfStream(
+//		JasperPrint jasperPrint, 
+//		OutputStream outputStream
+//		) throws JRException
+//	{
+//		JRPdfExporter exporter = new JRPdfExporter(jasperReportsContext);
+//		
+//		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+//		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputStream);
+//		
+//		exporter.exportReport();
+//	}
 
 
-	/**
-	 * Exports the generated report object received as parameter into PDF format and
-	 * returns the binary content as a byte array.
-	 * 
-	 * @param jasperPrint report object to export 
-	 * @return byte array representing the resulting PDF content 
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 */
-	public byte[] exportToPdf(JasperPrint jasperPrint) throws JRException
-	{
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-		JRPdfExporter exporter = new JRPdfExporter(jasperReportsContext);
-		
-		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, baos);
-		
-		exporter.exportReport();
-		
-		return baos.toByteArray();
-	}
+//	/**
+//	 * Exports the generated report object received as parameter into PDF format and
+//	 * returns the binary content as a byte array.
+//	 * 
+//	 * @param jasperPrint report object to export 
+//	 * @return byte array representing the resulting PDF content 
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 */
+//	public byte[] exportToPdf(JasperPrint jasperPrint) throws JRException
+//	{
+//		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//
+//		JRPdfExporter exporter = new JRPdfExporter(jasperReportsContext);
+//		
+//		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+//		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, baos);
+//		
+//		exporter.exportReport();
+//		
+//		return baos.toByteArray();
+//	}
 
 	
 //	/**
@@ -469,25 +490,25 @@ public final class JasperExportManager
 //	}
 	
 	
-	/**
-	 * @see #exportToPdfFile(String)
-	 */
-	public static String exportReportToPdfFile(String sourceFileName) throws JRException
-	{
-		return getDefaultInstance().exportToPdfFile(sourceFileName);
-	}
+//	/**
+//	 * @see #exportToPdfFile(String)
+//	 */
+//	public static String exportReportToPdfFile(String sourceFileName) throws JRException
+//	{
+//		return getDefaultInstance().exportToPdfFile(sourceFileName);
+//	}
 
 
-	/**
-	 * @see #exportToPdfFile(String, String)
-	 */
-	public static void exportReportToPdfFile(
-		String sourceFileName, 
-		String destFileName
-		) throws JRException
-	{
-		getDefaultInstance().exportToPdfFile(sourceFileName, destFileName);
-	}
+//	/**
+//	 * @see #exportToPdfFile(String, String)
+//	 */
+//	public static void exportReportToPdfFile(
+//		String sourceFileName, 
+//		String destFileName
+//		) throws JRException
+//	{
+//		getDefaultInstance().exportToPdfFile(sourceFileName, destFileName);
+//	}
 
 	
 	/**
@@ -498,52 +519,64 @@ public final class JasperExportManager
 		String destFileName
 		) throws JRException
 	{
+		exportReportToPdfFile(jasperPrint, destFileName,null);			
+	}
+	
+	/**
+	 * @see #exportToPdfFile(JasperPrint, String, Map)
+	 */
+	public static void exportReportToPdfFile(
+		JasperPrint jasperPrint, 
+		String destFileName,
+		Map<JRExporterParameter,Object> exportParameters
+		) throws JRException
+	{
 		ProgressManager pm = new ProgressManager(ProgressState.EXPORTING);
 		try {
-			getDefaultInstance().exportToPdfFile(jasperPrint, destFileName);			
+			getDefaultInstance().exportToPdfFile(jasperPrint, destFileName, exportParameters);			
 		} finally {
 			pm.done();
 		}
 	}
 
 
-	/**
-	 * @see #exportToPdfStream(InputStream, OutputStream)
-	 */
-	public static void exportReportToPdfStream(
-		InputStream inputStream, 
-		OutputStream outputStream
-		) throws JRException
-	{
-		getDefaultInstance().exportToPdfStream(inputStream, outputStream);
-	}
+//	/**
+//	 * @see #exportToPdfStream(InputStream, OutputStream)
+//	 */
+//	public static void exportReportToPdfStream(
+//		InputStream inputStream, 
+//		OutputStream outputStream
+//		) throws JRException
+//	{
+//		getDefaultInstance().exportToPdfStream(inputStream, outputStream);
+//	}
 
 	
-	/**
-	 * Exports the generated report object received as first parameter into PDF format and
-	 * writes the results to the output stream specified by the second parameter.
-	 * 
-	 * @param jasperPrint  report object to export 
-	 * @param outputStream output stream to write the resulting PDF content to
-	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
-	 * @see #exportToPdfStream(JasperPrint, OutputStream)
-	 */
-	public static void exportReportToPdfStream(
-		JasperPrint jasperPrint, 
-		OutputStream outputStream
-		) throws JRException
-	{
-		getDefaultInstance().exportToPdfStream(jasperPrint, outputStream);
-	}
+//	/**
+//	 * Exports the generated report object received as first parameter into PDF format and
+//	 * writes the results to the output stream specified by the second parameter.
+//	 * 
+//	 * @param jasperPrint  report object to export 
+//	 * @param outputStream output stream to write the resulting PDF content to
+//	 * @see org.oss.pdfreporter.engine.export.JRPdfExporter
+//	 * @see #exportToPdfStream(JasperPrint, OutputStream)
+//	 */
+//	public static void exportReportToPdfStream(
+//		JasperPrint jasperPrint, 
+//		OutputStream outputStream
+//		) throws JRException
+//	{
+//		getDefaultInstance().exportToPdfStream(jasperPrint, outputStream);
+//	}
 
 
-	/**
-	 * @see #exportToPdf(JasperPrint)
-	 */
-	public static byte[] exportReportToPdf(JasperPrint jasperPrint) throws JRException
-	{
-		return getDefaultInstance().exportToPdf(jasperPrint);
-	}
+//	/**
+//	 * @see #exportToPdf(JasperPrint)
+//	 */
+//	public static byte[] exportReportToPdf(JasperPrint jasperPrint) throws JRException
+//	{
+//		return getDefaultInstance().exportToPdf(jasperPrint);
+//	}
 
 	
 //	/**

@@ -17,6 +17,9 @@ public class SubreportUtil {
 		InputStream isReport = null;
 		try {
 			isReport = DigireportFileResourceLoader.getInputStream(location.replace(".jasper", ".jrxml"));
+			if (isReport==null) {
+				throw new JRException("Subreport file not found: " + location);
+			}
 			JasperDesign design = JRXmlLoader.load(isReport);
 			return JasperCompileManager.compileReport(design);
 		} finally {

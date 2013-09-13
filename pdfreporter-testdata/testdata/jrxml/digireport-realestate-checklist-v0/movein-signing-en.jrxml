@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate-signing" language="jeval" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="287" leftMargin="10" rightMargin="10" topMargin="28" bottomMargin="20" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate-signing" language="jeval" columnCount="2" printOrder="Horizontal" pageWidth="500" pageHeight="842" columnWidth="250" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="xPath">
-		<![CDATA[/protocolKind/realestate-checklist-movein/signer]]>
+	<queryString>
+		<![CDATA[select a.A_FIRSTNAME || ' ' || a.A_LASTNAME as signature_text, a.pk_name, b.media from agent a, signatures b where b.PK_ROLE_NAME = a.PK_NAME and b.SIGNATURE_ID = 1
+union all
+select a.NEWLESSEE_FIRSTNAME || ' ' || a.NEWLESSEE_LASTNAME as signature_text, a.pk_name, b.media from ROLE_NEWLESSEE a, signatures b where b.PK_ROLE_NAME = a.PK_NAME and b.SIGNATURE_ID = 1]]>
 	</queryString>
-	<field name="signname" class="java.lang.String">
-		<fieldDescription><![CDATA[signername]]></fieldDescription>
-	</field>
-	<field name="signimage" class="java.lang.String">
-		<fieldDescription><![CDATA[signatureimage]]></fieldDescription>
-	</field>
-	<field name="signrole" class="java.lang.String">
-		<fieldDescription><![CDATA[signerrole]]></fieldDescription>
-	</field>
+	<field name="SIGNATURE_TEXT" class="java.lang.String"/>
+	<field name="PK_NAME" class="java.lang.String"/>
+	<field name="MEDIA" class="java.lang.String"/>
 	<detail>
 		<band height="210" splitType="Stretch">
 			<textField>
-				<reportElement uuid="2a41de95-8561-4a7d-91c7-34d232168f74" x="22" y="5" width="178" height="10"/>
+				<reportElement uuid="2a41de95-8561-4a7d-91c7-34d232168f74" x="12" y="5" width="215" height="10"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Helvetica" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{signrole}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{PK_NAME}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="7d391a28-63a3-4759-b0e4-eadae8212891" x="21" y="18" width="216" height="20"/>
+				<reportElement uuid="7d391a28-63a3-4759-b0e4-eadae8212891" x="11" y="18" width="216" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Helvetica" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{signname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{SIGNATURE_TEXT}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center" vAlign="Middle" isUsingCache="false">
-				<reportElement uuid="5024f167-b79b-4035-9deb-976f9a11fed8" x="2" y="44" width="270" height="156"/>
-				<imageExpression><![CDATA[$F{signimage}]]></imageExpression>
+				<reportElement uuid="5024f167-b79b-4035-9deb-976f9a11fed8" x="2" y="44" width="247" height="156"/>
+				<imageExpression><![CDATA[$F{MEDIA}]]></imageExpression>
 			</image>
 		</band>
 	</detail>
