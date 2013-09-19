@@ -24,6 +24,8 @@
 package org.oss.pdfreporter.engine.fill;
 
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpression;
@@ -45,6 +47,7 @@ import org.oss.pdfreporter.engine.type.RunDirectionEnum;
  */
 public class JRVerticalFiller extends JRBaseFiller
 {
+	private final static Logger logger = Logger.getLogger(JRVerticalFiller.class.getName());
 
 	/**
 	 *
@@ -1769,7 +1772,13 @@ public class JRVerticalFiller extends JRBaseFiller
 				printPageStretchHeight = offsetY + bottomMargin;
 			//}
 
+				if (logger.isLoggable(Level.FINEST)) {			
+					logger.finest("Filler: " + getFillerId() + " (Report: " + getJasperReport().getName() + "), Page: " + getCurrentPageCount() + " is waiting for parent Filler: " + parentFiller.getFillerId() + " (Report: " + parentFiller.getJasperReport().getName() + ") to finish Page: " + parentFiller.getCurrentPageCount());
+				}
 			suspendSubreportRunner();
+			if (logger.isLoggable(Level.FINEST)) {			
+				logger.finest("Filler: " + getFillerId() + " (Report: " + getJasperReport().getName() + "), Page: " + getCurrentPageCount() + " continues for parent Filler: " + parentFiller.getFillerId() + " (Report: " + parentFiller.getJasperReport().getName() + ") on Page: " + parentFiller.getCurrentPageCount());
+			}
 		}
 
 		printPage = newPage();

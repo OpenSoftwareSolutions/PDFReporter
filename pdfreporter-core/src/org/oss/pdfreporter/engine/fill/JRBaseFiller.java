@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.JRAbstractScriptlet;
@@ -1482,10 +1483,12 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 */
 	protected boolean next() throws JRException
 	{
-		long now = System.currentTimeMillis();
-		if (now - time > 100) {			
-			logger.info("Time fill Progress: " + String.format("%1$TM:%1$TS.%1$TL", now - time));
-			time = now;
+		if (logger.isLoggable(Level.FINEST)) {			
+			long now = System.currentTimeMillis();
+			if (now - time > 100) {			
+				logger.finest("Time fill Progress: " + String.format("%1$TM:%1$TS.%1$TL", now - time));
+				time = now;
+			}
 		}
 		return mainDataset.next();
 	}

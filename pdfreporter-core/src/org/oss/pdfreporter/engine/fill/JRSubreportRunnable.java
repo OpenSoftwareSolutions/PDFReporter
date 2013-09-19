@@ -24,6 +24,7 @@
 package org.oss.pdfreporter.engine.fill;
 
 
+
 /**
  * Abstract base for {@link java.lang.Runnable Runnable}-based
  * {@link net.sf.jasperreports.engine.fill.JRSubreportRunner JRSubreportRunner}
@@ -36,8 +37,9 @@ public abstract class JRSubreportRunnable implements Runnable
 {
 	private final JRFillSubreport fillSubreport;
 	
-	private Throwable error;
-	private boolean running;
+	private Throwable error = null;
+	private boolean running = false;
+	private boolean started = false;
 	
 	protected JRSubreportRunnable(JRFillSubreport fillSubreport)
 	{
@@ -52,6 +54,7 @@ public abstract class JRSubreportRunnable implements Runnable
 	public void run()
 	{
 		running = true;		
+		started = true;
 		error = null;
 		
 		try
@@ -72,8 +75,14 @@ public abstract class JRSubreportRunnable implements Runnable
 		running = false;
 	}
 	
+	protected boolean isStarted() {
+		return started;
+	}
+
 	protected boolean isRunning()
 	{
 		return running;
 	}
+	
+	
 }
