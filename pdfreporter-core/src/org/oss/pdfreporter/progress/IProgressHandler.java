@@ -1,4 +1,4 @@
-package org.oss.pdfreporter.jasperreports.progress;
+package org.oss.pdfreporter.progress;
 
 public interface IProgressHandler {
 	public enum ProgressState {

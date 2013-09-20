@@ -40,6 +40,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.DefaultJasperReportsContext;
@@ -1529,12 +1530,14 @@ public class JRPdfExporter extends JRAbstractExporter
 
 
 
-
 	/**
 	 *
 	 */
 	public void exportText(JRPrintText text) throws DocumentException
 	{
+		if (logger.isLoggable(Level.FINEST)) {
+			logger.finest("X: " + text.getX() + ", Y: " + text.getY() + ", Width: " + text.getWidth() + ", Height: " + text.getTextHeight() + ", Text: ['" + text.getFullText() + "']");
+		}
 		// NOTICE (04.07.2013, Donat, Digireport): SimpleTextLineWrapper lead to SimplePdfTextRenderer and ComplexTExtLineWrapper lead to PdfTextRenderer
 		AbstractPdfTextRenderer textRenderer = 
 			text.getLeadingOffset() == 0 

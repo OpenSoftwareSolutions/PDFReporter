@@ -33,8 +33,8 @@ import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.export.JRPdfExporter;
 import org.oss.pdfreporter.engine.util.JRLoader;
-import org.oss.pdfreporter.jasperreports.progress.ProgressManager;
-import org.oss.pdfreporter.jasperreports.progress.IProgressHandler.ProgressState;
+import org.oss.pdfreporter.progress.ProgressManager;
+import org.oss.pdfreporter.progress.IProgressHandler.ProgressState;
 
 
 

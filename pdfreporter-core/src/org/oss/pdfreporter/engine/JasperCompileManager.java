@@ -38,8 +38,8 @@ import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.fill.JREvaluator;
 import org.oss.pdfreporter.engine.util.JRSaver;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
-import org.oss.pdfreporter.jasperreports.progress.IProgressHandler.ProgressState;
-import org.oss.pdfreporter.jasperreports.progress.ProgressManager;
+import org.oss.pdfreporter.progress.ProgressManager;
+import org.oss.pdfreporter.progress.IProgressHandler.ProgressState;
 
 
 

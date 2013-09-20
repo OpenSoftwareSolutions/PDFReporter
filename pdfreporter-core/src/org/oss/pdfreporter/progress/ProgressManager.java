@@ -1,11 +1,11 @@
-package org.oss.pdfreporter.jasperreports.progress;
+package org.oss.pdfreporter.progress;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.extensions.ExtensionsEnvironment;
-import org.oss.pdfreporter.jasperreports.progress.IProgressHandler.ProgressState;
+import org.oss.pdfreporter.progress.IProgressHandler.ProgressState;
 
 
 /**
