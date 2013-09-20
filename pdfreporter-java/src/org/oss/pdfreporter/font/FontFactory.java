@@ -1,8 +1,7 @@
 package org.oss.pdfreporter.font;
 
-import org.oss.pdfreporter.font.AbstractFontFactory;
-import org.oss.pdfreporter.font.IFontManager;
 import org.oss.pdfreporter.registry.ApiRegistry;
+
 
 public class FontFactory extends AbstractFontFactory {
 

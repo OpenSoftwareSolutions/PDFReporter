@@ -1,5 +1,6 @@
 package org.oss.pdfreporter.pdf;
 
+import java.awt.Font;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
 
@@ -8,21 +9,21 @@ import org.oss.pdfreporter.font.IFont;
 import org.oss.pdfreporter.geometry.IAffineTransformMatrix;
 import org.oss.pdfreporter.geometry.IColor;
 import org.oss.pdfreporter.image.IImage;
-import org.oss.pdfreporter.pdf.DocumentException;
-import org.oss.pdfreporter.pdf.IPage;
 
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Image;
-import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.DefaultFontMapper;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 
 public class Page implements IPage {
 	private final PdfContentByte delegate;
+	private final DefaultFontMapper fontmapper;
 	
 	Page(PdfContentByte content) {
 		this.delegate = content;
+		this.fontmapper = new DefaultFontMapper();
 	}
 	@Override
 	public void setLineCap(LineCap lineCap) {
@@ -142,7 +143,7 @@ public class Page implements IPage {
 	}
 	@Override
 	public void setFont(IFont font) {
-		delegate.setFontAndSize((BaseFont) font.getPeer(), font.getSize());
+		delegate.setFontAndSize(fontmapper.awtToPdf((Font) font.getPeer()), font.getSize());
 	}
 	
 	private Image getImage(IImage image) throws BadElementException, IOException {

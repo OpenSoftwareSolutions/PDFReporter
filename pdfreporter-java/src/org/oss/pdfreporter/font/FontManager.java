@@ -1,48 +1,58 @@
 package org.oss.pdfreporter.font;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.oss.pdfreporter.font.AbstractFontManager;
-import org.oss.pdfreporter.font.IFontPeer;
 
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
 
 public class FontManager extends AbstractFontManager  {
 
+	private final static List<String> BASE14_FONTNAMES = Arrays.asList(new String[]{"Courier", "Courier-Bold", "Courier-Oblique", "Courier-BoldOblique",
+			"Helvetica", "Helvetica-Bold", "Helvetica-Oblique", "Helvetica-BoldOblique","Times-Roman", "Times-Bold", "Times-Italic", "Times-BoldItalic",
+			"Symbol","ZapfDingbats"});
 	private int fontId = 1;
-	private Map<String,Alias> loadedFonts = new HashMap<String,Alias>();
+	private Map<String,Font> loadedFonts = new HashMap<String,Font>();
+	private final Graphics graphics;
+	
+	public FontManager() {
+		this.fontId = 1;
+		BufferedImage bi = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB);
+		this.graphics = bi.createGraphics();
+	}
 	
 	@Override
 	String loadFontInternal(String filePath, String encoding, boolean embed) throws IOException {
-		Alias alias = new Alias(fontId++,encoding,embed);
-		FontFactory.register(filePath,alias.getName());
-		loadedFonts.put(alias.getName(), alias);
-		return alias.getName();
+		try {
+			String name = "TTF" + fontId++;
+			InputStream is = new FileInputStream(filePath);
+			Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+			loadedFonts.put(name, font);
+			return name;
+		} catch (FontFormatException e) {
+			throw new IOException("Unable to load Font: " + filePath + " with encoding:  " + encoding,e);
+		}
 	}
 
 	@Override
 	IFontPeer getFontInternal(String fontname) {
-		boolean embedded = false;
-		String encoding = "CP1252";
-		if (loadedFonts.containsKey(fontname)) {
-			Alias alias = loadedFonts.get(fontname);
-			fontname = alias.getName();
-			encoding = alias.getEncoding();
-			embedded = alias.isEmbed();
+		Font font = loadedFonts.get(fontname);
+		if (font==null) { 
+			if (BASE14_FONTNAMES.contains(fontname)) {
+				font = new Font(getName(fontname),getStyle(fontname),1);
+			} else {
+				throw new RuntimeException("Font: " + fontname + " not found.");
+			}				
 		}
-		Font font;
-		try {
-			font = FontFactory.getFont(fontname,encoding,embedded,Font.UNDEFINED, Font.UNDEFINED, null);
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to load Font: " + fontname + " with encoding:  " + encoding,e);
-		}
-		if (font==null) {
-			throw new RuntimeException("Font: " + fontname + " not found.");
-		}
-		return new FontPeer(font.getBaseFont());
+		return new FontPeer(font,graphics.getFontMetrics(font.deriveFont(1000.0f)));
 	}
 
 	@Override
@@ -50,32 +60,24 @@ public class FontManager extends AbstractFontManager  {
 		loadedFonts.clear();
 	}
 	
-	
-	private static class Alias {
-		private final String name;
-		private final String encoding;
-		private final boolean embed;
-		
-		Alias(int fontId, String encoding, boolean embed) {
-			this.name = "TTF-" + fontId;
-			this.encoding = encoding;
-			this.embed = embed;
+	private String getName(String fontname) {
+		int dashPos = fontname.indexOf("-");
+		if (dashPos > 0) {
+			return fontname.substring(0, dashPos);
 		}
-
-		String getName() {
-			return name;
-		}
-
-		boolean isEmbed() {
-			return embed;
-		}
-
-		String getEncoding() {
-			return encoding;
-		}
-		
-		
+		return fontname;
 	}
-
+	
+	private int getStyle(String fontname) {
+		int style = Font.PLAIN;
+		if (fontname.endsWith("-Bold")) {
+			style = Font.BOLD;
+		} else if (fontname.endsWith("-Oblique")) {
+			style = Font.ITALIC;
+		} else if (fontname.endsWith("-BoldOblique")) {
+			style = Font.BOLD | Font.ITALIC;
+		}
+		return style;
+	}
 	
 }
