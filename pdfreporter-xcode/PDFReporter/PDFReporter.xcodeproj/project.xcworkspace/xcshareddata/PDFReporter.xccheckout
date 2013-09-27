@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>422FB9CE-AAFB-4EC6-8304-D437D9136C77</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PDFReporter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E0276EB4-F7D5-4378-B83F-153C5A1E462E</key>
+		<string>https://bitbucket.org/digireportag/jasper-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>objc/PDFReporter/PDFReporter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E0276EB4-F7D5-4378-B83F-153C5A1E462E</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/digireportag/jasper-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E0276EB4-F7D5-4378-B83F-153C5A1E462E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E0276EB4-F7D5-4378-B83F-153C5A1E462E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>jasper-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

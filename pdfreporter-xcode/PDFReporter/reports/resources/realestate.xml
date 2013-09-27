@@ -1,0 +1,133 @@
+<protocolInstance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xsd/print-model.xsd">
+    <protocolKind>
+        <protocolname>RealEstateHEV</protocolname>
+        <realestate>
+            <domainname>realestate</domainname>
+            <country>schweiz</country>
+            <city>zurich</city>
+            <street>goolstreet</street>
+            <zip>568</zip>
+            <image>picture-2013-07-04-07-25-27-00005.jpg</image>
+            <number>67</number>
+        </realestate>
+        <appartment>
+            <subdomainname>appartment</subdomainname>
+            <floor>third</floor>
+            <images>picture-2013-06-28-12-39-16-00005.jpg</images>
+            <number>56</number>
+            <rooms>6</rooms>
+            <untermieterneu>
+                <objectrolename>untermieterneu</objectrolename>
+                <name>Markus</name>
+                <firstname>Orkus</firstname>
+            </untermieterneu>
+            <untermieterformer>
+                <objectrolename>untermieterformer</objectrolename>
+                <name>every</name>
+                <firstname>cleer</firstname>
+            </untermieterformer>
+            <newLessee>
+                <objectrolename>newLessee</objectrolename>
+                <name>martin</name>
+                <email>kluz@martin.ch</email>
+                <firstname>antonella</firstname>
+                <iban>ch567098432</iban>
+                <phone>0416758899</phone>
+                <moveInDate>04.08.2013</moveInDate>
+            </newLessee>
+            <formerLessee>
+                <objectrolename>formerLessee</objectrolename>
+                <name>kluz</name>
+                <street>nasarstrasse</street>
+                <city>Zurich</city>
+                <email>kluz@baar.ch</email>
+                <iban>ch56795367908</iban>
+                <zip>6754</zip>
+                <phone>0416758899</phone>
+                <firstname>mara</firstname>
+                <moveInDate>04.08.2013</moveInDate>
+                <moveOutDate>04.08.2017</moveOutDate>
+            </formerLessee>
+        </appartment>
+        <category>
+            <column>
+                <categoryname>attic</categoryname>
+                <columnname>comments</columnname>
+                <description>alles in ordnung</description>
+            </column>
+        </category>
+        <category>
+    		<column>
+                <categoryname>keys</categoryname>
+    			<columnname>Laundryroom</columnname>
+    			<state>Damaged</state>
+    			<costValue>125</costValue>
+    			<description>removed</description>
+    		</column>
+    		<column>
+                <categoryname>keys</categoryname>
+    			<columnname>Remotecontrol</columnname>
+    			<state>Okey</state>
+    			<costValue>250</costValue>
+    			<description>okey</description>
+    		</column>
+    		<column>
+                <categoryname>keys</categoryname>
+    			<columnname>letterbox</columnname>
+    			<state>Damaged</state>
+    			<costValue>125</costValue>
+    			<description>fehlt 2</description>
+    		</column>
+        </category>
+        <category>
+    		<column>
+                <categoryname>kitchen</categoryname>
+    			<columnname>floor</columnname>
+    			<state>Damaged</state>
+    			<costValue>125</costValue>
+    			<description>removed</description>
+    		</column>
+    		<column>
+                <categoryname>kitchen</categoryname>
+    			<columnname>roof</columnname>
+    			<state>Okey</state>
+    			<costValue>250</costValue>
+    			<description>okey</description>
+    		</column>
+    		<column>
+                <categoryname>kitchen</categoryname>
+    			<columnname>wall</columnname>
+    			<state>Okey</state>
+    			<costValue>250</costValue>
+    			<description>fehlt 2</description>
+    		</column>
+        </category>
+        <signoff>
+            <Reinigung>
+                <signoffname>Reinigung</signoffname>
+                <description>in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand, in normalem zustand
+                </description>
+            </Reinigung>
+            <Ergänzungen>
+                <signoffname>Ergänzungen</signoffname>
+                <description>leaving table and chairs</description>
+            </Ergänzungen>
+            <!-- the signing part is dynamic and set together of possible object roles signing at the end-->
+            <signing>
+                <agent>Makler Agency Inc.</agent>
+                <newLessee>antonella martin</newLessee>
+                <formerLessee>mara klus</formerLessee>
+                <untermieterformer>every cleer</untermieterformer>
+                <untermieterneu>Orkus Markus</untermieterneu>
+            </signing>
+        </signoff>
+        <agent>
+            <agentname>Makler Agency Inc.</agentname>
+            <street>Froburgstrasse</street>
+            <number>20</number>
+            <city>Zurich</city>
+            <zip>6754</zip>
+            <phone>0442878282</phone>
+        </agent>
+    </protocolKind>
+</protocolInstance>
