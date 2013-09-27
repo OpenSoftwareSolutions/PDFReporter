@@ -1,17 +1,22 @@
 package org.oss.pdfreporter.pdf;
 
+import org.oss.pdfreporter.registry.ApiRegistry;
+
 public class PdfFactory extends AbstractPdfFactory {
 
-	public PdfFactory(int maxDocuments) {
-		super(maxDocuments);
-	}
-
-	@Override
-	protected IDocument newDocumentInternal(String filePath) throws DocumentException {
-		return null;
+	public static void registerFactory() {
+		ApiRegistry.register(new PdfFactory());
 	}
 	
-	public static void registerFactory() {
-		
+	private PdfFactory() {
+		super(1);
 	}
+	
+
+	@Override
+	protected IDocument newDocumentInternal(String filePath)
+			throws DocumentException {
+		return new Document(filePath);
+	}
+
 }
