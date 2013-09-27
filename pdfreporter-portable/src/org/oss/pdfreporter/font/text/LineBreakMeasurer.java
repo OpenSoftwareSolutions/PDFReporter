@@ -1,5 +1,6 @@
 package org.oss.pdfreporter.font.text;
 
+import org.oss.pdfreporter.text.AttributedStringConverter;
 import org.oss.pdfreporter.text.Paragraph;
 import org.oss.pdfreporter.uses.java.awt.text.AttributedString;
 import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator;

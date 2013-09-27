@@ -1,6 +1,6 @@
 package org.oss.pdfreporter.font;
 
-public class FontFactory extends AbstractFontFactory {
+public class FontFactory extends FontFactoryBase {
 
 	@Override
 	public IFontManager getFontManager() {

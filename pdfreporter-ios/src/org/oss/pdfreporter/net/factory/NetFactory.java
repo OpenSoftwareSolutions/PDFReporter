@@ -9,7 +9,6 @@ public class NetFactory implements INetFactory {
 
 	@Override
 	public IURL newURL(String url) throws MalformedURLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

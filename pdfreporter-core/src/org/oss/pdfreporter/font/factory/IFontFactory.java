@@ -29,22 +29,6 @@ public interface IFontFactory extends ISessionCapable {
 	 */
 	ILineBreakMeasurer newLineBreakMeasurer(AttributedString attributedString, IBreakIterator breakIterator);
 	
-	/**
-	 * Returns a line break measurer.
-	 * @param attributedString
-	 * @param plainText
-	 * @return
-	 */
-	ILineBreakMeasurer newLineBreakMeasurer(AttributedString attributedString, String plainText);
-	
-	/**
-	 * Returns a line break measurer.
-	 * @param attributedString
-	 * @param plainText
-	 * @param breakIterator
-	 * @return
-	 */
-	ILineBreakMeasurer newLineBreakMeasurer(AttributedString attributedString, String plainText, IBreakIterator breakIterator);
 	
 	/**
 	 * Returns a break iterator that breaks at character boundaries.
@@ -56,5 +40,4 @@ public interface IFontFactory extends ISessionCapable {
 	 * Returns a break iterator that breaks at line boundaries.
 	 * @return
 	 */
-	IBreakIterator newWordBreakIterator();
-}
+	IBreakIterator newWordBreakIterator();}

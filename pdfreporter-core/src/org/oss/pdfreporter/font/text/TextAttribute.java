@@ -1,5 +1,8 @@
 package org.oss.pdfreporter.font.text;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator.Attribute;
 
 
@@ -7,6 +10,9 @@ import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator.Attri
 public class TextAttribute extends Attribute {
 
 	private static final long serialVersionUID = 1L;
+	
+    // table of all instances in this class, used by readResolve
+    private static final Map<String,TextAttribute> instanceMap = new HashMap<String,TextAttribute>(9);
 	
 	public static final TextAttribute SIZE = new TextAttribute("size");
 	public static final TextAttribute FAMILY = new TextAttribute("family");
@@ -37,6 +43,9 @@ public class TextAttribute extends Attribute {
 
 	protected TextAttribute(String name) {
 		super(name);
+        if (this.getClass() == TextAttribute.class) {
+            instanceMap.put(name, this);
+        }
 	}
 
 	

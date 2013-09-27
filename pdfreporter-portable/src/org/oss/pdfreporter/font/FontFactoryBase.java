@@ -1,10 +1,13 @@
 package org.oss.pdfreporter.font;
 
-import org.oss.pdfreporter.font.text.BreakIterator;
+import org.oss.pdfreporter.font.AbstractFontFactory;
+import org.oss.pdfreporter.font.text.CharacterBreakIterator;
 import org.oss.pdfreporter.font.text.IBreakIterator;
 import org.oss.pdfreporter.font.text.ILineBreakMeasurer;
 import org.oss.pdfreporter.font.text.LineBreakMeasurer;
+import org.oss.pdfreporter.font.text.WordBreakIterator;
 import org.oss.pdfreporter.uses.java.awt.text.AttributedString;
+
 
 
 public abstract class FontFactoryBase extends AbstractFontFactory {
@@ -15,22 +18,20 @@ public abstract class FontFactoryBase extends AbstractFontFactory {
 		return new LineBreakMeasurer(attributedString);
 	}
 
-
 	@Override
 	public ILineBreakMeasurer newLineBreakMeasurer(
 			AttributedString attributedString, IBreakIterator breakIterator) {
 		return new LineBreakMeasurer(attributedString, breakIterator);
 	}
 
-
 	@Override
 	public IBreakIterator newCharacterBreakIterator() {
-		return BreakIterator.newCharacterInstance();
+		return new CharacterBreakIterator();
 	}
 
 	@Override
 	public IBreakIterator newWordBreakIterator() {
-		return BreakIterator.newWordInstance();
+		return new WordBreakIterator();
 	}
 
 }

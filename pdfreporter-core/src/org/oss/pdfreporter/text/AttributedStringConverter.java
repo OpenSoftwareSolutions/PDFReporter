@@ -1,4 +1,4 @@
-package org.oss.pdfreporter.font.text;
+package org.oss.pdfreporter.text;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -9,12 +9,9 @@ import org.oss.pdfreporter.font.IFontManager;
 import org.oss.pdfreporter.font.IFont.FontDecoration;
 import org.oss.pdfreporter.font.IFont.FontStyle;
 import org.oss.pdfreporter.font.factory.IFontFactory;
+import org.oss.pdfreporter.font.text.TextAttribute;
 import org.oss.pdfreporter.geometry.IColor;
 import org.oss.pdfreporter.registry.ApiRegistry;
-import org.oss.pdfreporter.text.IPositionedLine;
-import org.oss.pdfreporter.text.Paragraph;
-import org.oss.pdfreporter.text.ParagraphText;
-import org.oss.pdfreporter.text.PositionedLined;
 import org.oss.pdfreporter.uses.java.awt.text.AttributedString;
 import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator;
 import org.oss.pdfreporter.uses.java.awt.text.ICharacterIterator;
