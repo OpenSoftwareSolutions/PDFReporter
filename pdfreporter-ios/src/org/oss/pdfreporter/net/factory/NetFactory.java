@@ -2,9 +2,9 @@ package org.oss.pdfreporter.net.factory;
 
 import org.oss.pdfreporter.net.IURL;
 import org.oss.pdfreporter.net.MalformedURLException;
-import org.oss.pdfreporter.net.URL;
 import org.oss.pdfreporter.net.factory.INetFactory;
 import org.oss.pdfreporter.registry.IRegistry;
+import org.oss.pdfreporter.net.URL;
 
 
 public class NetFactory implements INetFactory {

@@ -10,4 +10,8 @@ j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src -d tmp/e
 
 echo
 echo -e "${red}Translating Portable...${nc}"
-j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:../pdfreporter-portable/src:../pdfreporter-java/src -d tmp/port -use-arc --ignore-missing-imports `find ../pdfreporter-portable/src -name '*.java'` | grep error
+j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:../pdfreporter-portable/src:../pdfreporter-java/src -d tmp/ios -use-arc --ignore-missing-imports `find ../pdfreporter-portable/src -name '*.java'` | grep error
+
+echo
+echo -e "${red}Translating iOS...${nc}"
+j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:../pdfreporter-portable/src:../pdfreporter-java/src -d tmp/ios -use-arc --ignore-missing-imports `find ../pdfreporter-ios/src -name '*.java'` | grep error
