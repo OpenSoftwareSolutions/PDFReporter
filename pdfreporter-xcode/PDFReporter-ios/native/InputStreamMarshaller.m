@@ -11,7 +11,7 @@
 #import "java/io/ByteArrayOutputStream.h"
 #import "java/io/FileInputStream.h"
 #import "java/io/InputStream.h"
-
+#import "java/lang/Exception.h"
 @interface InputStreamMarshaller()
 +(NSData *)convertJavaIoInputStreamToNSData:(JavaIoInputStream *)is;
 +(NSData *)convertJavaIoReaderToNSData:(JavaIoReader *)is;
@@ -48,7 +48,7 @@
         if(reader) {
             return [self convertJavaIoReaderToNSData:reader];
         }
-        else @throw [NSException exceptionWithName:@"InputStreamMarshaller" reason:@"nil exception" userInfo:nil];
+        else @throw [JavaLangException exceptionWithName:@"InputStreamMarshaller" reason:@"nil exception" userInfo:nil];
     }
 }
 

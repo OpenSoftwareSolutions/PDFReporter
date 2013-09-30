@@ -26,10 +26,12 @@ import org.oss.pdfreporter.sql.factory.ISqlFactory;
 public class ReportExporter {
 	
 	private final String pdfOutputFolder;
+	private final String databasePath;
 	
-	public ReportExporter(String pdfOutputFolder) {
+	public ReportExporter(String pdfOutputFolder, String databasePath) {
 		super();
 		this.pdfOutputFolder = pdfOutputFolder;
+		this.databasePath = databasePath;
 		Logger.getLogger("").setLevel(Level.FINEST);
 		ApiRegistry.initSession();
 	}
@@ -107,7 +109,7 @@ public class ReportExporter {
 		IConnection sqlDataSource = null;
 		ISqlFactory sqlFactory = ApiRegistry.getSqlFactory();
 		try {
-			sqlDataSource = sqlFactory.newConnection("localhost", "sa", "");
+			sqlDataSource = sqlFactory.newConnection(databasePath, "sa", "");
 			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, fillParameters, sqlDataSource);
 			String pathToPdfFile = pdfOutputFolder + "/" + printReport.getName() + ".pdf";
             JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile,exporterParameters);

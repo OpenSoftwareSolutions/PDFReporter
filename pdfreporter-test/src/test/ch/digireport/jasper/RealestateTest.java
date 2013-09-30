@@ -6,8 +6,13 @@ import java.util.logging.Logger;
 import org.junit.Test;
 import org.oss.pdfreporter.repo.DigireportRepositoryManager;
 
+import test.ch.digireport.jasper.providers.JavaTestProvider;
+import test.ch.digireport.jasper.providers.TestProviderInterface;
+
 
 public class RealestateTest {
+	private TestProviderInterface testProvider;
+	
 	// DRIVERS for Java
 	private static final String HSQLDB_URLPREFIX = "jdbc:hsqldb:hsql://";
 	private static final String HSQLDB_JDBC_DRIVER = "org.hsqldb.jdbcDriver";
@@ -30,10 +35,11 @@ public class RealestateTest {
 	
 
 	public RealestateTest() {
-		this(true);
+		this(true, new JavaTestProvider());
 	}
 	
-	private RealestateTest(boolean initJava) {
+	private RealestateTest(boolean initJava, TestProviderInterface testProvider) {
+		this.testProvider = testProvider;
 		if (initJava) {
 			try {
 				Class<?>[] noArgs = new Class[0];
@@ -55,8 +61,7 @@ public class RealestateTest {
 			for(Handler hndl :handlers) {
 				logger.removeHandler(hndl);
 			}
-			Handler handler = (Handler) Class.forName("CustomJavaUtilLoggingHandler").newInstance();
-			logger.addHandler(handler);
+			
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			} 
@@ -89,28 +94,30 @@ public class RealestateTest {
 		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_EN);
 	}
 	
-	private static ReportExporter getExporter(String reportFolder) {
+	private ReportExporter getExporter(String reportFolder) {
 		return getExporter(reportFolder,null);
 	}
 	
-	private static ReportExporter getExporter(String reportFolder, String extraFolder) {
+	private ReportExporter getExporter(String reportFolder, String extraFolder) {
 		DigireportRepositoryManager repo = DigireportRepositoryManager.getInstance();
-		repo.setDefaultResourceFolder(bundlePath(JRXML_RESOURCE_FOLDER));
-		repo.setDefaulReportFolder(bundlePath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + reportFolder));
+		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
+		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + reportFolder));
 		if (null != extraFolder) {
-			repo.addExtraReportFolder(bundlePath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + extraFolder));
+			repo.addExtraReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + extraFolder));
 		}
-		repo.addExtraReportFolder(bundlePath(XML_DATASOURCE_FOLDER));
+		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 		
-		return new ReportExporter(documentsPath(PDF_OUTPUT_FOLDER));
+		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER), testProvider.databasePath());
 	}
 	
-	public static String bundlePath(String path) {
-		return path;
+	public String inputPath(String path) {
+		if(testProvider != null) return testProvider.inputPath(path);
+		else return path;
 	}
 	
-	public static String documentsPath(String path) {
-		return path;
+	public String outputPath(String path) {
+		if(testProvider != null) return testProvider.outputPath(path);
+		else return path;
 	}
 	
 		

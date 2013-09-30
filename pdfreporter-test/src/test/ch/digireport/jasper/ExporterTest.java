@@ -13,17 +13,22 @@ import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.DigireportRepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
 
+import test.ch.digireport.jasper.providers.JavaTestProvider;
+import test.ch.digireport.jasper.providers.TestProviderInterface;
+
 
 public class ExporterTest {
+	private TestProviderInterface testProvider;
+	
 	// DRIVERS for Java
 	private static final String HSQLDB_URLPREFIX = "jdbc:hsqldb:hsql://";
 	private static final String HSQLDB_JDBC_DRIVER = "org.hsqldb.jdbcDriver";
 	
 	// FOLDERS 
-	private static final String JRXML_RESOURCE_FOLDER = "../pdfreporter-testdata/resource";
-	private static final String JRXML_REPORT_FOLDER = "../pdfreporter-testdata/testdata/jrxml";
-	private static final String XML_DATASOURCE_FOLDER = "../pdfreporter-testdata/datasource";
-	private static final String PDF_OUTPUT_FOLDER = "../pdfreporter-testdata/testdata/pdf";	
+	private static final String JRXML_RESOURCE_FOLDER = "resource";
+	private static final String JRXML_REPORT_FOLDER = "testdata/jrxml";
+	private static final String XML_DATASOURCE_FOLDER = "datasource";
+	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf";	
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_FONTS = "FontsReport.jrxml";
@@ -55,10 +60,11 @@ public class ExporterTest {
 	
 
 	public ExporterTest() {
-		this(true);
+		this(true, new JavaTestProvider());
 	}
 	
-	private ExporterTest(boolean initJava) {
+	protected ExporterTest(boolean initJava, TestProviderInterface testProvider) {
+		this.testProvider = testProvider;
 		if (initJava) {
 			try {
 				Class<?>[] noArgs = new Class[0];
@@ -75,13 +81,11 @@ public class ExporterTest {
 		} else {
 			try {
 			
-			Logger logger = Logger.getLogger("");
-			Handler[] handlers = logger.getHandlers();
-			for(Handler hndl :handlers) {
-				logger.removeHandler(hndl);
-			}
-			Handler handler = (Handler) Class.forName("CustomJavaUtilLoggingHandler").newInstance();
-			logger.addHandler(handler);
+				Logger logger = Logger.getLogger("");
+				Handler[] handlers = logger.getHandlers();
+				for(Handler hndl :handlers) {
+					logger.removeHandler(hndl);
+				}
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			} 
@@ -113,7 +117,7 @@ public class ExporterTest {
 //	}
 	
 	@Test
-	public void runMasterReport() throws Exception {
+	public void exportMasterReport() throws Exception {
 		ReportExporter exporter = getExporter("subreports","extra-fonts"); // initialize Repository
 		JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
 		Map<String,Object> parameters = new HashMap<String,Object>();
@@ -178,28 +182,30 @@ public class ExporterTest {
 	}
 	
 	
-	private static ReportExporter getExporter(String reportFolder) {
+	private ReportExporter getExporter(String reportFolder) {
 		return getExporter(reportFolder,null);
 	}
 	
-	private static ReportExporter getExporter(String reportFolder, String extraFolder) {
+	private ReportExporter getExporter(String reportFolder, String extraFolder) {
 		DigireportRepositoryManager repo = DigireportRepositoryManager.getInstance();
-		repo.setDefaultResourceFolder(bundlePath(JRXML_RESOURCE_FOLDER));
-		repo.setDefaulReportFolder(bundlePath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + reportFolder));
+		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
+		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + reportFolder));
 		if (null != extraFolder) {
-			repo.addExtraReportFolder(bundlePath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + extraFolder));
+			repo.addExtraReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + extraFolder));
 		}
-		repo.addExtraReportFolder(bundlePath(XML_DATASOURCE_FOLDER));
+		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 		
-		return new ReportExporter(documentsPath(PDF_OUTPUT_FOLDER));
+		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER), testProvider.databasePath());
 	}
 	
-	public static String bundlePath(String path) {
-		return path;
+	public String inputPath(String path) {
+		if(testProvider != null) return testProvider.inputPath(path);
+		else return path;
 	}
 	
-	public static String documentsPath(String path) {
-		return path;
+	public String outputPath(String path) {
+		if(testProvider != null) return testProvider.outputPath(path);
+		else return path;
 	}
 	
 		
