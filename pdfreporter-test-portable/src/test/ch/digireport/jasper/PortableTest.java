@@ -38,9 +38,9 @@ public class PortableTest {
 			}
         }
 		if(!failure) {
-			System.out.println("\nTest finished successfully.");
+			System.out.println("\nTesting finished successfully.");
 		} else {
-			System.err.println("\nTest finished with errors.");
+			System.err.println("\nTesting finished with errors.");
 		}
 	}
 	

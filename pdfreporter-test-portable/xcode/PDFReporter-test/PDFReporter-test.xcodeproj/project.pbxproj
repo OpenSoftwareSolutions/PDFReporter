@@ -19,14 +19,6 @@
 		2ECE6B6F17FACC510079A30F /* libPDFReporter-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D6717FAC6900079A30F /* libPDFReporter-core.a */; };
 		2ECE6B7017FACC510079A30F /* libPDFReporter-extensions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D6D17FAC6980079A30F /* libPDFReporter-extensions.a */; };
 		2ECE6B7117FACC510079A30F /* libPDFReporter-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */; };
-		2ECE6BB117FACE220079A30F /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6B9A17FACE220079A30F /* Test.m */; };
-		2ECE6BB217FACE220079A30F /* ExporterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA017FACE220079A30F /* ExporterTest.m */; };
-		2ECE6BB317FACE220079A30F /* PortableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA217FACE220079A30F /* PortableTest.m */; };
-		2ECE6BB417FACE220079A30F /* AndroidTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */; };
-		2ECE6BB517FACE220079A30F /* JavaTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA717FACE220079A30F /* JavaTestProvider.m */; };
-		2ECE6BB617FACE220079A30F /* TestProviderInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA917FACE220079A30F /* TestProviderInterface.m */; };
-		2ECE6BB717FACE220079A30F /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BAB17FACE220079A30F /* RealestateTest.m */; };
-		2ECE6BB917FACE220079A30F /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BB017FACE220079A30F /* ReportExporter.m */; };
 		2ECE6D9C17FAE30E0079A30F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9B17FAE30E0079A30F /* libxml2.dylib */; };
 		2ECE6D9E17FAE3470079A30F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */; };
 		2ECE6DA017FAE3930079A30F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9F17FAE3930079A30F /* libz.dylib */; };
@@ -129,22 +121,6 @@
 		2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-core.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-core/PDFReporter-core.xcodeproj"; sourceTree = "<group>"; };
 		2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-extensions.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-extensions/PDFReporter-extensions.xcodeproj"; sourceTree = "<group>"; };
 		2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-ios.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-ios/PDFReporter-ios.xcodeproj"; sourceTree = "<group>"; };
-		2ECE6B9917FACE220079A30F /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		2ECE6B9A17FACE220079A30F /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
-		2ECE6B9F17FACE220079A30F /* ExporterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExporterTest.h; sourceTree = "<group>"; };
-		2ECE6BA017FACE220079A30F /* ExporterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExporterTest.m; sourceTree = "<group>"; };
-		2ECE6BA117FACE220079A30F /* PortableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortableTest.h; sourceTree = "<group>"; };
-		2ECE6BA217FACE220079A30F /* PortableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortableTest.m; sourceTree = "<group>"; };
-		2ECE6BA417FACE220079A30F /* AndroidTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndroidTestProvider.h; sourceTree = "<group>"; };
-		2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndroidTestProvider.m; sourceTree = "<group>"; };
-		2ECE6BA617FACE220079A30F /* JavaTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaTestProvider.h; sourceTree = "<group>"; };
-		2ECE6BA717FACE220079A30F /* JavaTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaTestProvider.m; sourceTree = "<group>"; };
-		2ECE6BA817FACE220079A30F /* TestProviderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProviderInterface.h; sourceTree = "<group>"; };
-		2ECE6BA917FACE220079A30F /* TestProviderInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProviderInterface.m; sourceTree = "<group>"; };
-		2ECE6BAA17FACE220079A30F /* RealestateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealestateTest.h; sourceTree = "<group>"; };
-		2ECE6BAB17FACE220079A30F /* RealestateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealestateTest.m; sourceTree = "<group>"; };
-		2ECE6BAF17FACE220079A30F /* ReportExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportExporter.h; sourceTree = "<group>"; };
-		2ECE6BB017FACE220079A30F /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
 		2ECE6D9B17FAE30E0079A30F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2ECE6D9F17FAE3930079A30F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -289,80 +265,8 @@
 		2ECE6B9617FACE220079A30F /* gen */ = {
 			isa = PBXGroup;
 			children = (
-				2ECE6B9717FACE220079A30F /* org */,
-				2ECE6B9B17FACE220079A30F /* test */,
 			);
 			path = gen;
-			sourceTree = "<group>";
-		};
-		2ECE6B9717FACE220079A30F /* org */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9817FACE220079A30F /* junit */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		2ECE6B9817FACE220079A30F /* junit */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9917FACE220079A30F /* Test.h */,
-				2ECE6B9A17FACE220079A30F /* Test.m */,
-			);
-			path = junit;
-			sourceTree = "<group>";
-		};
-		2ECE6B9B17FACE220079A30F /* test */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9C17FACE220079A30F /* ch */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		2ECE6B9C17FACE220079A30F /* ch */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9D17FACE220079A30F /* digireport */,
-			);
-			path = ch;
-			sourceTree = "<group>";
-		};
-		2ECE6B9D17FACE220079A30F /* digireport */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9E17FACE220079A30F /* jasper */,
-			);
-			path = digireport;
-			sourceTree = "<group>";
-		};
-		2ECE6B9E17FACE220079A30F /* jasper */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6B9F17FACE220079A30F /* ExporterTest.h */,
-				2ECE6BA017FACE220079A30F /* ExporterTest.m */,
-				2ECE6BA117FACE220079A30F /* PortableTest.h */,
-				2ECE6BA217FACE220079A30F /* PortableTest.m */,
-				2ECE6BA317FACE220079A30F /* providers */,
-				2ECE6BAA17FACE220079A30F /* RealestateTest.h */,
-				2ECE6BAB17FACE220079A30F /* RealestateTest.m */,
-				2ECE6BAF17FACE220079A30F /* ReportExporter.h */,
-				2ECE6BB017FACE220079A30F /* ReportExporter.m */,
-			);
-			path = jasper;
-			sourceTree = "<group>";
-		};
-		2ECE6BA317FACE220079A30F /* providers */ = {
-			isa = PBXGroup;
-			children = (
-				2ECE6BA417FACE220079A30F /* AndroidTestProvider.h */,
-				2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */,
-				2ECE6BA617FACE220079A30F /* JavaTestProvider.h */,
-				2ECE6BA717FACE220079A30F /* JavaTestProvider.m */,
-				2ECE6BA817FACE220079A30F /* TestProviderInterface.h */,
-				2ECE6BA917FACE220079A30F /* TestProviderInterface.m */,
-			);
-			path = providers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,17 +401,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ECE6BB117FACE220079A30F /* Test.m in Sources */,
 				2ECE6DA917FAE4EC0079A30F /* IOSTestProvider.m in Sources */,
 				2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */,
-				2ECE6BB417FACE220079A30F /* AndroidTestProvider.m in Sources */,
-				2ECE6BB517FACE220079A30F /* JavaTestProvider.m in Sources */,
-				2ECE6BB217FACE220079A30F /* ExporterTest.m in Sources */,
 				2ECE5D3417FAC58D0079A30F /* main.m in Sources */,
-				2ECE6BB717FACE220079A30F /* RealestateTest.m in Sources */,
-				2ECE6BB917FACE220079A30F /* ReportExporter.m in Sources */,
-				2ECE6BB617FACE220079A30F /* TestProviderInterface.m in Sources */,
-				2ECE6BB317FACE220079A30F /* PortableTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +524,7 @@
 		2ECE5D5117FAC58E0079A30F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -641,7 +538,7 @@
 				INFOPLIST_FILE = "PDFReporter-test/PDFReporter-test-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/kendra/git/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
+					"../../../pdfreporter-xcode/j2objc/lib/",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -656,6 +553,7 @@
 		2ECE5D5217FAC58E0079A30F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -669,7 +567,7 @@
 				INFOPLIST_FILE = "PDFReporter-test/PDFReporter-test-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/kendra/git/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
+					"../../../pdfreporter-xcode/j2objc/lib/",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -700,6 +598,7 @@
 				2ECE5D5217FAC58E0079A30F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
