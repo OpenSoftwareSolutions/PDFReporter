@@ -3,14 +3,17 @@ package test.ch.digireport.jasper;
 import java.lang.reflect.Method;
 import org.junit.Test;
 
+import test.ch.digireport.jasper.providers.JavaTestProvider;
+import test.ch.digireport.jasper.providers.TestProviderInterface;
+
 public class PortableTest {
 	
 	public static void main(String[] arg){
-		new PortableTest().test();
+		new PortableTest().test(new JavaTestProvider());
 	}
 	
-	public void test() {
-		ExporterTest exporterTest = new ExporterTest(false);
+	public void test(TestProviderInterface testProvider) {
+		ExporterTest exporterTest = new ExporterTest(false, testProvider);
 		Method[] methods = exporterTest.getClass().getMethods();
 		boolean failure = false;
 		System.out.println("Testign started...");
@@ -19,17 +22,17 @@ public class PortableTest {
             if (testAnnotation != null) {
                 try {
                 	System.out.print("Test - "+method.getName());
-                	System.out.flush();
                 	
                 	method.invoke(exporterTest);
-                	
                 	System.out.println(" [Done]");
-                	System.out.flush();
                 } catch (Exception e) {
                 	System.err.println(" [Failure]");
-                	System.err.flush();
                 	failure = true;
                 }  
+                try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+				}
             }
         }
 		if(!failure) {
