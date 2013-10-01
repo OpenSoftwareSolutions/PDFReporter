@@ -1,8 +1,6 @@
 package test.ch.digireport.jasper;
 
 import java.lang.reflect.Method;
-import org.junit.Test;
-
 import test.ch.digireport.jasper.providers.JavaTestProvider;
 import test.ch.digireport.jasper.providers.TestProviderInterface;
 
@@ -18,9 +16,11 @@ public class PortableTest {
 		boolean failure = false;
 		System.out.println("Testign started...");
 		for (Method method : methods) {
+			/* Not working in iOS
             Test testAnnotation = method.getAnnotation(Test.class);
-            if (testAnnotation != null) {
-                try {
+            if (testAnnotation != null) {*/
+			if (method.getName().startsWith("export")){
+				try {
                 	System.out.print("Test - "+method.getName());
                 	
                 	method.invoke(exporterTest);
@@ -33,7 +33,7 @@ public class PortableTest {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
 				}
-            }
+			}
         }
 		if(!failure) {
 			System.out.println("\nTest finished successfully.");

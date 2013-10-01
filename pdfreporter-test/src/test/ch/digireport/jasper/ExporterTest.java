@@ -117,7 +117,7 @@ public class ExporterTest {
 //	}
 	
 	@Test
-	public void runMasterReport() throws Exception {
+	public void exportMasterReport() throws Exception {
 		ReportExporter exporter = getExporter("subreports","extra-fonts"); // initialize Repository
 		JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
 		Map<String,Object> parameters = new HashMap<String,Object>();
