@@ -26,9 +26,9 @@ public class ExporterTest {
 	
 	// FOLDERS 
 	private static final String JRXML_RESOURCE_FOLDER = "resource";
-	private static final String JRXML_REPORT_FOLDER = "../pdfreporter-testdata/testdata/jrxml";
-	private static final String XML_DATASOURCE_FOLDER = "../pdfreporter-testdata/datasource";
-	private static final String PDF_OUTPUT_FOLDER = "../pdfreporter-testdata/testdata/pdf";	
+	private static final String JRXML_REPORT_FOLDER = "testdata/jrxml";
+	private static final String XML_DATASOURCE_FOLDER = "datasource";
+	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf";	
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_FONTS = "FontsReport.jrxml";
@@ -195,7 +195,7 @@ public class ExporterTest {
 		}
 		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 		
-		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER));
+		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER), testProvider.databasePath());
 	}
 	
 	public String inputPath(String path) {

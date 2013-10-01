@@ -107,7 +107,7 @@ public class RealestateTest {
 		}
 		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 		
-		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER));
+		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER), testProvider.databasePath());
 	}
 	
 	public String inputPath(String path) {

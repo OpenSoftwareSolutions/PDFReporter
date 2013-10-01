@@ -11,5 +11,10 @@ public class JavaTestProvider implements TestProviderInterface{
 	public String outputPath(String input) {
 		return "../pdfreporter-testdata/"+input;
 	}
+	
+	@Override
+	public String databasePath() {
+		return "localhost";
+	}
 
 }

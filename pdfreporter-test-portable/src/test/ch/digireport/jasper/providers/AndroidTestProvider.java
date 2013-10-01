@@ -12,4 +12,8 @@ public class AndroidTestProvider implements TestProviderInterface{
 		return ""+input;
 	}
 
+	@Override
+	public String databasePath() {
+		return ":memory:";
+	}
 }

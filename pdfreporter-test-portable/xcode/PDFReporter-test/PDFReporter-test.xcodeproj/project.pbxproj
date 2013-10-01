@@ -1,0 +1,707 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2ECE5D2817FAC58D0079A30F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2717FAC58D0079A30F /* Foundation.framework */; };
+		2ECE5D2A17FAC58D0079A30F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */; };
+		2ECE5D2C17FAC58D0079A30F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2B17FAC58D0079A30F /* UIKit.framework */; };
+		2ECE5D3217FAC58D0079A30F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE5D3017FAC58D0079A30F /* InfoPlist.strings */; };
+		2ECE5D3417FAC58D0079A30F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE5D3317FAC58D0079A30F /* main.m */; };
+		2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE5D3717FAC58D0079A30F /* AppDelegate.m */; };
+		2ECE5D3A17FAC58D0079A30F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE5D3917FAC58D0079A30F /* Images.xcassets */; };
+		2ECE6B6D17FACC510079A30F /* liblibHaru.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D5B17FAC66C0079A30F /* liblibHaru.a */; };
+		2ECE6B6E17FACC510079A30F /* liblibPng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D6117FAC6870079A30F /* liblibPng.a */; };
+		2ECE6B6F17FACC510079A30F /* libPDFReporter-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D6717FAC6900079A30F /* libPDFReporter-core.a */; };
+		2ECE6B7017FACC510079A30F /* libPDFReporter-extensions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D6D17FAC6980079A30F /* libPDFReporter-extensions.a */; };
+		2ECE6B7117FACC510079A30F /* libPDFReporter-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */; };
+		2ECE6BB117FACE220079A30F /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6B9A17FACE220079A30F /* Test.m */; };
+		2ECE6BB217FACE220079A30F /* ExporterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA017FACE220079A30F /* ExporterTest.m */; };
+		2ECE6BB317FACE220079A30F /* PortableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA217FACE220079A30F /* PortableTest.m */; };
+		2ECE6BB417FACE220079A30F /* AndroidTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */; };
+		2ECE6BB517FACE220079A30F /* JavaTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA717FACE220079A30F /* JavaTestProvider.m */; };
+		2ECE6BB617FACE220079A30F /* TestProviderInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BA917FACE220079A30F /* TestProviderInterface.m */; };
+		2ECE6BB717FACE220079A30F /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BAB17FACE220079A30F /* RealestateTest.m */; };
+		2ECE6BB917FACE220079A30F /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6BB017FACE220079A30F /* ReportExporter.m */; };
+		2ECE6D9C17FAE30E0079A30F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9B17FAE30E0079A30F /* libxml2.dylib */; };
+		2ECE6D9E17FAE3470079A30F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */; };
+		2ECE6DA017FAE3930079A30F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6D9F17FAE3930079A30F /* libz.dylib */; };
+		2ECE6DA217FAE43F0079A30F /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA117FAE43F0079A30F /* resource */; };
+		2ECE6DA417FAE45C0079A30F /* testdata in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA317FAE45C0079A30F /* testdata */; };
+		2ECE6DA617FAE4C00079A30F /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6DA517FAE4C00079A30F /* libjre_emul.a */; };
+		2ECE6DA917FAE4EC0079A30F /* IOSTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA817FAE4EC0079A30F /* IOSTestProvider.m */; };
+		2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DAA17FAE9C40079A30F /* northwind.db */; };
+		2ECE6DB717FAEFC70079A30F /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DB617FAEFC70079A30F /* database.db */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2ECE5D5A17FAC66C0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2EFDD96717F0839200D4580A;
+			remoteInfo = libHaru;
+		};
+		2ECE5D6017FAC6870079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2EE1459917F57959002EF172;
+			remoteInfo = libPng;
+		};
+		2ECE5D6617FAC6900079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2EE681BF17F1744D00C7C1FE;
+			remoteInfo = "PDFReporter-core";
+		};
+		2ECE5D6C17FAC6980079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2EE6C1F817F0664E000A49AB;
+			remoteInfo = "PDFReporter-extensions";
+		};
+		2ECE5D7217FAC6A50079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E9E9B1D17F06FE000AF81E3;
+			remoteInfo = "PDFReporter-ios";
+		};
+		2ECE6B6317FACC3F0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E9E9B1C17F06FE000AF81E3;
+			remoteInfo = "PDFReporter-ios";
+		};
+		2ECE6B6517FACC3F0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EE6C1F717F0664E000A49AB;
+			remoteInfo = "PDFReporter-extensions";
+		};
+		2ECE6B6717FACC3F0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EE681BE17F1744D00C7C1FE;
+			remoteInfo = "PDFReporter-core";
+		};
+		2ECE6B6917FACC3F0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EE1459817F57959002EF172;
+			remoteInfo = libPng;
+		};
+		2ECE6B6B17FACC3F0079A30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EFDD96617F0839200D4580A;
+			remoteInfo = libHaru;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2ECE5D2417FAC58D0079A30F /* PDFReporter-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDFReporter-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ECE5D2717FAC58D0079A30F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2ECE5D2B17FAC58D0079A30F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2ECE5D2F17FAC58D0079A30F /* PDFReporter-test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PDFReporter-test-Info.plist"; sourceTree = "<group>"; };
+		2ECE5D3117FAC58D0079A30F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2ECE5D3317FAC58D0079A30F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2ECE5D3517FAC58D0079A30F /* PDFReporter-test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFReporter-test-Prefix.pch"; sourceTree = "<group>"; };
+		2ECE5D3617FAC58D0079A30F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2ECE5D3717FAC58D0079A30F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2ECE5D3917FAC58D0079A30F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2ECE5D4017FAC58E0079A30F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libHaru.xcodeproj; path = "../../../pdfreporter-xcode/libHaru/libHaru.xcodeproj"; sourceTree = "<group>"; };
+		2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libPng.xcodeproj; path = "../../../pdfreporter-xcode/libPng/libPng.xcodeproj"; sourceTree = "<group>"; };
+		2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-core.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-core/PDFReporter-core.xcodeproj"; sourceTree = "<group>"; };
+		2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-extensions.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-extensions/PDFReporter-extensions.xcodeproj"; sourceTree = "<group>"; };
+		2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-ios.xcodeproj"; path = "../../../pdfreporter-xcode/PDFReporter-ios/PDFReporter-ios.xcodeproj"; sourceTree = "<group>"; };
+		2ECE6B9917FACE220079A30F /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		2ECE6B9A17FACE220079A30F /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		2ECE6B9F17FACE220079A30F /* ExporterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExporterTest.h; sourceTree = "<group>"; };
+		2ECE6BA017FACE220079A30F /* ExporterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExporterTest.m; sourceTree = "<group>"; };
+		2ECE6BA117FACE220079A30F /* PortableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortableTest.h; sourceTree = "<group>"; };
+		2ECE6BA217FACE220079A30F /* PortableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortableTest.m; sourceTree = "<group>"; };
+		2ECE6BA417FACE220079A30F /* AndroidTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndroidTestProvider.h; sourceTree = "<group>"; };
+		2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndroidTestProvider.m; sourceTree = "<group>"; };
+		2ECE6BA617FACE220079A30F /* JavaTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaTestProvider.h; sourceTree = "<group>"; };
+		2ECE6BA717FACE220079A30F /* JavaTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaTestProvider.m; sourceTree = "<group>"; };
+		2ECE6BA817FACE220079A30F /* TestProviderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProviderInterface.h; sourceTree = "<group>"; };
+		2ECE6BA917FACE220079A30F /* TestProviderInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProviderInterface.m; sourceTree = "<group>"; };
+		2ECE6BAA17FACE220079A30F /* RealestateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealestateTest.h; sourceTree = "<group>"; };
+		2ECE6BAB17FACE220079A30F /* RealestateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealestateTest.m; sourceTree = "<group>"; };
+		2ECE6BAF17FACE220079A30F /* ReportExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportExporter.h; sourceTree = "<group>"; };
+		2ECE6BB017FACE220079A30F /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
+		2ECE6D9B17FAE30E0079A30F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		2ECE6D9F17FAE3930079A30F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		2ECE6DA117FAE43F0079A30F /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = "../../../pdfreporter-testdata/resource"; sourceTree = "<group>"; };
+		2ECE6DA317FAE45C0079A30F /* testdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testdata; path = "../../../pdfreporter-testdata/testdata"; sourceTree = "<group>"; };
+		2ECE6DA517FAE4C00079A30F /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = "../../../pdfreporter-xcode/j2objc/lib/libjre_emul.a"; sourceTree = "<group>"; };
+		2ECE6DA717FAE4EC0079A30F /* IOSTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSTestProvider.h; sourceTree = "<group>"; };
+		2ECE6DA817FAE4EC0079A30F /* IOSTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSTestProvider.m; sourceTree = "<group>"; };
+		2ECE6DAA17FAE9C40079A30F /* northwind.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = northwind.db; sourceTree = "<group>"; };
+		2ECE6DB617FAEFC70079A30F /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2ECE5D2117FAC58D0079A30F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ECE6DA617FAE4C00079A30F /* libjre_emul.a in Frameworks */,
+				2ECE6DA017FAE3930079A30F /* libz.dylib in Frameworks */,
+				2ECE6D9E17FAE3470079A30F /* libsqlite3.dylib in Frameworks */,
+				2ECE6D9C17FAE30E0079A30F /* libxml2.dylib in Frameworks */,
+				2ECE6B6D17FACC510079A30F /* liblibHaru.a in Frameworks */,
+				2ECE6B6E17FACC510079A30F /* liblibPng.a in Frameworks */,
+				2ECE6B6F17FACC510079A30F /* libPDFReporter-core.a in Frameworks */,
+				2ECE6B7017FACC510079A30F /* libPDFReporter-extensions.a in Frameworks */,
+				2ECE6B7117FACC510079A30F /* libPDFReporter-ios.a in Frameworks */,
+				2ECE5D2A17FAC58D0079A30F /* CoreGraphics.framework in Frameworks */,
+				2ECE5D2C17FAC58D0079A30F /* UIKit.framework in Frameworks */,
+				2ECE5D2817FAC58D0079A30F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2ECE5D1B17FAC58D0079A30F = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */,
+				2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */,
+				2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */,
+				2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */,
+				2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */,
+				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
+				2ECE6B9617FACE220079A30F /* gen */,
+				2ECE5D2617FAC58D0079A30F /* Frameworks */,
+				2ECE5D2517FAC58D0079A30F /* Products */,
+				2ECE6DA317FAE45C0079A30F /* testdata */,
+				2ECE6DA117FAE43F0079A30F /* resource */,
+			);
+			sourceTree = "<group>";
+		};
+		2ECE5D2517FAC58D0079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D2417FAC58D0079A30F /* PDFReporter-test.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE5D2617FAC58D0079A30F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6DA517FAE4C00079A30F /* libjre_emul.a */,
+				2ECE6D9F17FAE3930079A30F /* libz.dylib */,
+				2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */,
+				2ECE6D9B17FAE30E0079A30F /* libxml2.dylib */,
+				2ECE5D2717FAC58D0079A30F /* Foundation.framework */,
+				2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */,
+				2ECE5D2B17FAC58D0079A30F /* UIKit.framework */,
+				2ECE5D4017FAC58E0079A30F /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6DB617FAEFC70079A30F /* database.db */,
+				2ECE6DAA17FAE9C40079A30F /* northwind.db */,
+				2ECE5D3617FAC58D0079A30F /* AppDelegate.h */,
+				2ECE5D3717FAC58D0079A30F /* AppDelegate.m */,
+				2ECE5D3917FAC58D0079A30F /* Images.xcassets */,
+				2ECE5D2E17FAC58D0079A30F /* Supporting Files */,
+				2ECE6DA717FAE4EC0079A30F /* IOSTestProvider.h */,
+				2ECE6DA817FAE4EC0079A30F /* IOSTestProvider.m */,
+			);
+			path = "PDFReporter-test";
+			sourceTree = "<group>";
+		};
+		2ECE5D2E17FAC58D0079A30F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D2F17FAC58D0079A30F /* PDFReporter-test-Info.plist */,
+				2ECE5D3017FAC58D0079A30F /* InfoPlist.strings */,
+				2ECE5D3317FAC58D0079A30F /* main.m */,
+				2ECE5D3517FAC58D0079A30F /* PDFReporter-test-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2ECE5D5717FAC66B0079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D5B17FAC66C0079A30F /* liblibHaru.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE5D5D17FAC6860079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D6117FAC6870079A30F /* liblibPng.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE5D6317FAC6900079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D6717FAC6900079A30F /* libPDFReporter-core.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE5D6917FAC6980079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D6D17FAC6980079A30F /* libPDFReporter-extensions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE5D6F17FAC6A50079A30F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2ECE6B9617FACE220079A30F /* gen */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9717FACE220079A30F /* org */,
+				2ECE6B9B17FACE220079A30F /* test */,
+			);
+			path = gen;
+			sourceTree = "<group>";
+		};
+		2ECE6B9717FACE220079A30F /* org */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9817FACE220079A30F /* junit */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		2ECE6B9817FACE220079A30F /* junit */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9917FACE220079A30F /* Test.h */,
+				2ECE6B9A17FACE220079A30F /* Test.m */,
+			);
+			path = junit;
+			sourceTree = "<group>";
+		};
+		2ECE6B9B17FACE220079A30F /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9C17FACE220079A30F /* ch */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		2ECE6B9C17FACE220079A30F /* ch */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9D17FACE220079A30F /* digireport */,
+			);
+			path = ch;
+			sourceTree = "<group>";
+		};
+		2ECE6B9D17FACE220079A30F /* digireport */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9E17FACE220079A30F /* jasper */,
+			);
+			path = digireport;
+			sourceTree = "<group>";
+		};
+		2ECE6B9E17FACE220079A30F /* jasper */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6B9F17FACE220079A30F /* ExporterTest.h */,
+				2ECE6BA017FACE220079A30F /* ExporterTest.m */,
+				2ECE6BA117FACE220079A30F /* PortableTest.h */,
+				2ECE6BA217FACE220079A30F /* PortableTest.m */,
+				2ECE6BA317FACE220079A30F /* providers */,
+				2ECE6BAA17FACE220079A30F /* RealestateTest.h */,
+				2ECE6BAB17FACE220079A30F /* RealestateTest.m */,
+				2ECE6BAF17FACE220079A30F /* ReportExporter.h */,
+				2ECE6BB017FACE220079A30F /* ReportExporter.m */,
+			);
+			path = jasper;
+			sourceTree = "<group>";
+		};
+		2ECE6BA317FACE220079A30F /* providers */ = {
+			isa = PBXGroup;
+			children = (
+				2ECE6BA417FACE220079A30F /* AndroidTestProvider.h */,
+				2ECE6BA517FACE220079A30F /* AndroidTestProvider.m */,
+				2ECE6BA617FACE220079A30F /* JavaTestProvider.h */,
+				2ECE6BA717FACE220079A30F /* JavaTestProvider.m */,
+				2ECE6BA817FACE220079A30F /* TestProviderInterface.h */,
+				2ECE6BA917FACE220079A30F /* TestProviderInterface.m */,
+			);
+			path = providers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2ECE5D2317FAC58D0079A30F /* PDFReporter-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ECE5D5017FAC58E0079A30F /* Build configuration list for PBXNativeTarget "PDFReporter-test" */;
+			buildPhases = (
+				2ECE5D2017FAC58D0079A30F /* Sources */,
+				2ECE5D2117FAC58D0079A30F /* Frameworks */,
+				2ECE5D2217FAC58D0079A30F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2ECE6B6417FACC3F0079A30F /* PBXTargetDependency */,
+				2ECE6B6617FACC3F0079A30F /* PBXTargetDependency */,
+				2ECE6B6817FACC3F0079A30F /* PBXTargetDependency */,
+				2ECE6B6A17FACC3F0079A30F /* PBXTargetDependency */,
+				2ECE6B6C17FACC3F0079A30F /* PBXTargetDependency */,
+			);
+			name = "PDFReporter-test";
+			productName = "PDFReporter-test";
+			productReference = 2ECE5D2417FAC58D0079A30F /* PDFReporter-test.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2ECE5D1C17FAC58D0079A30F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = inloop;
+			};
+			buildConfigurationList = 2ECE5D1F17FAC58D0079A30F /* Build configuration list for PBXProject "PDFReporter-test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2ECE5D1B17FAC58D0079A30F;
+			productRefGroup = 2ECE5D2517FAC58D0079A30F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2ECE5D5717FAC66B0079A30F /* Products */;
+					ProjectRef = 2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */;
+				},
+				{
+					ProductGroup = 2ECE5D5D17FAC6860079A30F /* Products */;
+					ProjectRef = 2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */;
+				},
+				{
+					ProductGroup = 2ECE5D6317FAC6900079A30F /* Products */;
+					ProjectRef = 2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */;
+				},
+				{
+					ProductGroup = 2ECE5D6917FAC6980079A30F /* Products */;
+					ProjectRef = 2ECE5D6817FAC6980079A30F /* PDFReporter-extensions.xcodeproj */;
+				},
+				{
+					ProductGroup = 2ECE5D6F17FAC6A50079A30F /* Products */;
+					ProjectRef = 2ECE5D6E17FAC6A50079A30F /* PDFReporter-ios.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2ECE5D2317FAC58D0079A30F /* PDFReporter-test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2ECE5D5B17FAC66C0079A30F /* liblibHaru.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibHaru.a;
+			remoteRef = 2ECE5D5A17FAC66C0079A30F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2ECE5D6117FAC6870079A30F /* liblibPng.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibPng.a;
+			remoteRef = 2ECE5D6017FAC6870079A30F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2ECE5D6717FAC6900079A30F /* libPDFReporter-core.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPDFReporter-core.a";
+			remoteRef = 2ECE5D6617FAC6900079A30F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2ECE5D6D17FAC6980079A30F /* libPDFReporter-extensions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPDFReporter-extensions.a";
+			remoteRef = 2ECE5D6C17FAC6980079A30F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPDFReporter-ios.a";
+			remoteRef = 2ECE5D7217FAC6A50079A30F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2ECE5D2217FAC58D0079A30F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ECE5D3217FAC58D0079A30F /* InfoPlist.strings in Resources */,
+				2ECE5D3A17FAC58D0079A30F /* Images.xcassets in Resources */,
+				2ECE6DB717FAEFC70079A30F /* database.db in Resources */,
+				2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */,
+				2ECE6DA417FAE45C0079A30F /* testdata in Resources */,
+				2ECE6DA217FAE43F0079A30F /* resource in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2ECE5D2017FAC58D0079A30F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ECE6BB117FACE220079A30F /* Test.m in Sources */,
+				2ECE6DA917FAE4EC0079A30F /* IOSTestProvider.m in Sources */,
+				2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */,
+				2ECE6BB417FACE220079A30F /* AndroidTestProvider.m in Sources */,
+				2ECE6BB517FACE220079A30F /* JavaTestProvider.m in Sources */,
+				2ECE6BB217FACE220079A30F /* ExporterTest.m in Sources */,
+				2ECE5D3417FAC58D0079A30F /* main.m in Sources */,
+				2ECE6BB717FACE220079A30F /* RealestateTest.m in Sources */,
+				2ECE6BB917FACE220079A30F /* ReportExporter.m in Sources */,
+				2ECE6BB617FACE220079A30F /* TestProviderInterface.m in Sources */,
+				2ECE6BB317FACE220079A30F /* PortableTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2ECE6B6417FACC3F0079A30F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PDFReporter-ios";
+			targetProxy = 2ECE6B6317FACC3F0079A30F /* PBXContainerItemProxy */;
+		};
+		2ECE6B6617FACC3F0079A30F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PDFReporter-extensions";
+			targetProxy = 2ECE6B6517FACC3F0079A30F /* PBXContainerItemProxy */;
+		};
+		2ECE6B6817FACC3F0079A30F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PDFReporter-core";
+			targetProxy = 2ECE6B6717FACC3F0079A30F /* PBXContainerItemProxy */;
+		};
+		2ECE6B6A17FACC3F0079A30F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libPng;
+			targetProxy = 2ECE6B6917FACC3F0079A30F /* PBXContainerItemProxy */;
+		};
+		2ECE6B6C17FACC3F0079A30F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libHaru;
+			targetProxy = 2ECE6B6B17FACC3F0079A30F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2ECE5D3017FAC58D0079A30F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ECE5D3117FAC58D0079A30F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2ECE5D4E17FAC58E0079A30F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2ECE5D4F17FAC58E0079A30F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2ECE5D5117FAC58E0079A30F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PDFReporter-test/PDFReporter-test-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../pdfreporter-xcode/j2objc/include/",
+					gen,
+					"../../../pdfreporter-xcode/PDFReporter-core/gen",
+				);
+				INFOPLIST_FILE = "PDFReporter-test/PDFReporter-test-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kendra/git/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lresolv",
+					"-lxml2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2ECE5D5217FAC58E0079A30F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PDFReporter-test/PDFReporter-test-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"../../../pdfreporter-xcode/j2objc/include/",
+					gen,
+					"../../../pdfreporter-xcode/PDFReporter-core/gen",
+				);
+				INFOPLIST_FILE = "PDFReporter-test/PDFReporter-test-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kendra/git/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lresolv",
+					"-lxml2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2ECE5D1F17FAC58D0079A30F /* Build configuration list for PBXProject "PDFReporter-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ECE5D4E17FAC58E0079A30F /* Debug */,
+				2ECE5D4F17FAC58E0079A30F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2ECE5D5017FAC58E0079A30F /* Build configuration list for PBXNativeTarget "PDFReporter-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ECE5D5117FAC58E0079A30F /* Debug */,
+				2ECE5D5217FAC58E0079A30F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2ECE5D1C17FAC58D0079A30F /* Project object */;
+}
