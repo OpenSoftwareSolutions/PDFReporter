@@ -8,6 +8,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.5.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/pdfreporter-java"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pdfreporter-android"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

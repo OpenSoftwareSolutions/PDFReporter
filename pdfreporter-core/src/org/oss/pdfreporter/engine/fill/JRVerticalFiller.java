@@ -135,7 +135,7 @@ public class JRVerticalFiller extends JRBaseFiller
 	/**
 	 *
 	 */
-	protected synchronized void fillReport() throws JRException
+	protected void fillReport() throws JRException
 	{
 		setLastPageFooter(false);
 
