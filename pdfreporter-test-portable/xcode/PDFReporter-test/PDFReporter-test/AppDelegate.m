@@ -8,14 +8,17 @@
 
 #import "AppDelegate.h"
 #import "PortableTest.h"
-#import "IOSTestProvider.h"
+#import "IOSExportTestProvider.h"
+#import "IOSRealEstateTestProvider.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [[[TestChDigireportJasperPortableTest alloc] init] testWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSTestProvider alloc] init]];
+    [[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    
+    [[[TestChDigireportJasperPortableTest alloc] init] realestateTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UIViewController alloc] init];

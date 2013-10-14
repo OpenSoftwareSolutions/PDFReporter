@@ -18,10 +18,10 @@ public class RealestateTest {
 	private static final String HSQLDB_JDBC_DRIVER = "org.hsqldb.jdbcDriver";
 	
 	// FOLDERS 
-	private static final String JRXML_RESOURCE_FOLDER = "../pdfreporter-testdata/resource";
-	private static final String JRXML_REPORT_FOLDER = "../pdfreporter-testdata/testdata/jrxml";
-	private static final String XML_DATASOURCE_FOLDER = "../pdfreporter-testdata/datasource";
-	private static final String PDF_OUTPUT_FOLDER = "../pdfreporter-testdata/testdata/pdf";	
+	private static final String JRXML_RESOURCE_FOLDER = "resource";
+	private static final String JRXML_REPORT_FOLDER = "testdata/jrxml";
+	private static final String XML_DATASOURCE_FOLDER = "datasource";
+	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf";	
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE = "realestate-checklist-movein-de.jrxml";
@@ -38,7 +38,7 @@ public class RealestateTest {
 		this(true, new JavaTestProvider());
 	}
 	
-	private RealestateTest(boolean initJava, TestProviderInterface testProvider) {
+	protected RealestateTest(boolean initJava, TestProviderInterface testProvider) {
 		this.testProvider = testProvider;
 		if (initJava) {
 			try {

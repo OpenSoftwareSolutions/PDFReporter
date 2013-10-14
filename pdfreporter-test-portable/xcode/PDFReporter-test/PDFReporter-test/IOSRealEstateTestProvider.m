@@ -1,14 +1,6 @@
-//
-//  IOSTestProvider.m
-//  PDFReporter-test
-//
-//  Created by Kendra on 10/1/13.
-//  Copyright (c) 2013 inloop. All rights reserved.
-//
+#import "IOSRealEstateTestProvider.h"
 
-#import "IOSTestProvider.h"
-
-@implementation IOSTestProvider
+@implementation IOSRealestateTestProvider
 
 - (NSString *)inputPathWithNSString:(NSString *)input
 {
@@ -21,6 +13,6 @@
 }
 
 - (NSString *)databasePath {
-    return [self inputPathWithNSString:@"database.db"];
+    return [self inputPathWithNSString:@"realestate.db"];
 }
 @end

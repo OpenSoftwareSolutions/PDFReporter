@@ -8,15 +8,16 @@ import test.ch.digireport.jasper.providers.TestProviderInterface;
 public class PortableTest {
 	
 	public static void main(String[] arg){
-		new PortableTest().test(new JavaTestProvider());
+		new PortableTest().exporterTest(new JavaTestProvider());
+		new PortableTest().realestateTest(new JavaTestProvider());
 	}
 	
-	public void test(TestProviderInterface testProvider) {
+	public void exporterTest(TestProviderInterface testProvider) {
 		ExporterTest exporterTest = new ExporterTest(false, testProvider);
 		Method[] methods = ExporterTest.class.getMethods();
 		boolean failure = false;
 		
-		System.out.println("Testign started...");
+		System.out.println("Exporter tests started...");
 		for (Method method : methods) {
 			/* Not working in iOS
             Test testAnnotation = method.getAnnotation(Test.class);
@@ -38,9 +39,42 @@ public class PortableTest {
 			}
         }
 		if(!failure) {
-			System.out.println("\nTesting finished successfully.");
+			System.out.println("\nExporter tests finished successfully.");
 		} else {
-			System.err.println("\nTesting finished with errors.");
+			System.err.println("\nExporter tests finished with errors.");
+		}
+	}
+	
+	public void realestateTest(TestProviderInterface testProvider) {
+		RealestateTest exporterTest = new RealestateTest(false, testProvider);
+		Method[] methods = RealestateTest.class.getMethods();
+		boolean failure = false;
+		
+		System.out.println("Realestate tests started...");
+		for (Method method : methods) {
+			/* Not working in iOS
+            Test testAnnotation = method.getAnnotation(Test.class);
+            if (testAnnotation != null) {*/
+			if(method.getName().startsWith("export")){
+				try {
+                	System.out.print("Test - "+method.getName());
+                	long time = System.currentTimeMillis();
+                	method.invoke(exporterTest);
+                	System.out.println(" [Done] in "+(System.currentTimeMillis()-time)+"ms");
+                } catch (Exception e) {
+                	System.err.println(" [Failure]");
+                	failure = true;
+                }  
+                try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+				}
+			}
+        }
+		if(!failure) {
+			System.out.println("\nRealestate tests finished successfully.");
+		} else {
+			System.err.println("\nRealestate tests finished with errors.");
 		}
 	}
 	
