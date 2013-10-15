@@ -15,10 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    [[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
-    
     [[[TestChDigireportJasperPortableTest alloc] init] realestateTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
+    
+    //[[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UIViewController alloc] init];

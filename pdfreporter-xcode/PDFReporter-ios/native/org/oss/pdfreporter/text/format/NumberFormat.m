@@ -8,7 +8,7 @@
 
 #import "NumberFormat.h"
 #import "java/util/Locale.h"
-
+#import "java/math/BigDecimal.h"
 
 @implementation NumberFormat
 
@@ -54,7 +54,11 @@
 
 - (NSString *)formatWithId:(id)obj
 {
-    return [formatter stringFromNumber:obj];
+    if ([obj isKindOfClass:[JavaMathBigDecimal class]]) {
+        return [obj description];
+    } else {
+        return [formatter stringFromNumber:obj];
+    }
 }
 
 @end
