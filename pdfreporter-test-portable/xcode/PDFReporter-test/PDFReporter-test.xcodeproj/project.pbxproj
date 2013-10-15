@@ -170,7 +170,6 @@
 				2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */,
 				2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */,
 				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
-				2ECE6B9617FACE220079A30F /* gen */,
 				2ECE5D2617FAC58D0079A30F /* Frameworks */,
 				2ECE5D2517FAC58D0079A30F /* Products */,
 				2ECE6DA317FAE45C0079A30F /* testdata */,
@@ -268,13 +267,6 @@
 				2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2ECE6B9617FACE220079A30F /* gen */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = gen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
