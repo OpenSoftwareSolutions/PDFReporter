@@ -8,23 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E9E9B2117F06FE000AF81E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9E9B2017F06FE000AF81E3 /* Foundation.framework */; };
-		2ED2DBB4180D239900D8DC61 /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB8B180D239900D8DC61 /* BeanUtils.m */; };
-		2ED2DBB5180D239900D8DC61 /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB8E180D239900D8DC61 /* BeansFactory.m */; };
-		2ED2DBB6180D239900D8DC61 /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB91180D239900D8DC61 /* FontFactory.m */; };
-		2ED2DBB7180D239900D8DC61 /* FontFactoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB93180D239900D8DC61 /* FontFactoryBase.m */; };
-		2ED2DBB8180D239900D8DC61 /* CharacterBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB96180D239900D8DC61 /* CharacterBreakIterator.m */; };
-		2ED2DBB9180D239900D8DC61 /* LineBreakMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB98180D239900D8DC61 /* LineBreakMeasurer.m */; };
-		2ED2DBBA180D239900D8DC61 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB9A180D239900D8DC61 /* TextLayout.m */; };
-		2ED2DBBB180D239900D8DC61 /* WordBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB9C180D239900D8DC61 /* WordBreakIterator.m */; };
-		2ED2DBBC180D239900D8DC61 /* AffineTransformMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DB9F180D239900D8DC61 /* AffineTransformMatrix.m */; };
-		2ED2DBBD180D239900D8DC61 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBA1180D239900D8DC61 /* Color.m */; };
-		2ED2DBBE180D239900D8DC61 /* Dimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBA3180D239900D8DC61 /* Dimension.m */; };
-		2ED2DBBF180D239900D8DC61 /* GeometryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBA5180D239900D8DC61 /* GeometryFactory.m */; };
-		2ED2DBC0180D239900D8DC61 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBA7180D239900D8DC61 /* Rectangle.m */; };
-		2ED2DBC1180D239900D8DC61 /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBA9180D239900D8DC61 /* Stroke.m */; };
-		2ED2DBC2180D239900D8DC61 /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBAC180D239900D8DC61 /* ImageFactory.m */; };
-		2ED2DBC3180D239900D8DC61 /* NetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBB0180D239900D8DC61 /* NetFactory.m */; };
-		2ED2DBC4180D239900D8DC61 /* PdfFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2DBB3180D239900D8DC61 /* PdfFactory.m */; };
 		2EE6819717F16F6100C7C1FE /* CustomJavaUtilLoggingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6814C17F16F6000C7C1FE /* CustomJavaUtilLoggingHandler.m */; };
 		2EE6819817F16F6100C7C1FE /* InputStreamMarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6814E17F16F6000C7C1FE /* InputStreamMarshaller.m */; };
 		2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6815017F16F6000C7C1FE /* LibXmlReaderParser.m */; };
@@ -75,40 +58,6 @@
 		2E9E9B1D17F06FE000AF81E3 /* libPDFReporter-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPDFReporter-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E9E9B2017F06FE000AF81E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2E9E9B2417F06FE000AF81E3 /* PDFReporter-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFReporter-ios-Prefix.pch"; sourceTree = "<group>"; };
-		2ED2DB8A180D239900D8DC61 /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
-		2ED2DB8B180D239900D8DC61 /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
-		2ED2DB8D180D239900D8DC61 /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
-		2ED2DB8E180D239900D8DC61 /* BeansFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeansFactory.m; sourceTree = "<group>"; };
-		2ED2DB90180D239900D8DC61 /* FontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactory.h; sourceTree = "<group>"; };
-		2ED2DB91180D239900D8DC61 /* FontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactory.m; sourceTree = "<group>"; };
-		2ED2DB92180D239900D8DC61 /* FontFactoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactoryBase.h; sourceTree = "<group>"; };
-		2ED2DB93180D239900D8DC61 /* FontFactoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactoryBase.m; sourceTree = "<group>"; };
-		2ED2DB95180D239900D8DC61 /* CharacterBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterBreakIterator.h; sourceTree = "<group>"; };
-		2ED2DB96180D239900D8DC61 /* CharacterBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterBreakIterator.m; sourceTree = "<group>"; };
-		2ED2DB97180D239900D8DC61 /* LineBreakMeasurer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBreakMeasurer.h; sourceTree = "<group>"; };
-		2ED2DB98180D239900D8DC61 /* LineBreakMeasurer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBreakMeasurer.m; sourceTree = "<group>"; };
-		2ED2DB99180D239900D8DC61 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
-		2ED2DB9A180D239900D8DC61 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
-		2ED2DB9B180D239900D8DC61 /* WordBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordBreakIterator.h; sourceTree = "<group>"; };
-		2ED2DB9C180D239900D8DC61 /* WordBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordBreakIterator.m; sourceTree = "<group>"; };
-		2ED2DB9E180D239900D8DC61 /* AffineTransformMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffineTransformMatrix.h; sourceTree = "<group>"; };
-		2ED2DB9F180D239900D8DC61 /* AffineTransformMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AffineTransformMatrix.m; sourceTree = "<group>"; };
-		2ED2DBA0180D239900D8DC61 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
-		2ED2DBA1180D239900D8DC61 /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
-		2ED2DBA2180D239900D8DC61 /* Dimension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
-		2ED2DBA3180D239900D8DC61 /* Dimension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dimension.m; sourceTree = "<group>"; };
-		2ED2DBA4180D239900D8DC61 /* GeometryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryFactory.h; sourceTree = "<group>"; };
-		2ED2DBA5180D239900D8DC61 /* GeometryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeometryFactory.m; sourceTree = "<group>"; };
-		2ED2DBA6180D239900D8DC61 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
-		2ED2DBA7180D239900D8DC61 /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
-		2ED2DBA8180D239900D8DC61 /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
-		2ED2DBA9180D239900D8DC61 /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
-		2ED2DBAB180D239900D8DC61 /* ImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFactory.h; sourceTree = "<group>"; };
-		2ED2DBAC180D239900D8DC61 /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
-		2ED2DBAF180D239900D8DC61 /* NetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetFactory.h; sourceTree = "<group>"; };
-		2ED2DBB0180D239900D8DC61 /* NetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetFactory.m; sourceTree = "<group>"; };
-		2ED2DBB2180D239900D8DC61 /* PdfFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfFactory.h; sourceTree = "<group>"; };
-		2ED2DBB3180D239900D8DC61 /* PdfFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfFactory.m; sourceTree = "<group>"; };
 		2EE6814B17F16F6000C7C1FE /* CustomJavaUtilLoggingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomJavaUtilLoggingHandler.h; sourceTree = "<group>"; };
 		2EE6814C17F16F6000C7C1FE /* CustomJavaUtilLoggingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomJavaUtilLoggingHandler.m; sourceTree = "<group>"; };
 		2EE6814D17F16F6000C7C1FE /* InputStreamMarshaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStreamMarshaller.h; sourceTree = "<group>"; };
@@ -191,7 +140,6 @@
 		2E9E9B1417F06FE000AF81E3 = {
 			isa = PBXGroup;
 			children = (
-				2ED2DB85180D239900D8DC61 /* gen */,
 				2EE6814A17F16F6000C7C1FE /* native */,
 				2E9E9B2217F06FE000AF81E3 /* PDFReporter-ios */,
 				2E9E9B1F17F06FE000AF81E3 /* Frameworks */,
@@ -222,143 +170,6 @@
 				2E9E9B2417F06FE000AF81E3 /* PDFReporter-ios-Prefix.pch */,
 			);
 			path = "PDFReporter-ios";
-			sourceTree = "<group>";
-		};
-		2ED2DB85180D239900D8DC61 /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB86180D239900D8DC61 /* org */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
-		2ED2DB86180D239900D8DC61 /* org */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB87180D239900D8DC61 /* oss */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		2ED2DB87180D239900D8DC61 /* oss */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB88180D239900D8DC61 /* pdfreporter */,
-			);
-			path = oss;
-			sourceTree = "<group>";
-		};
-		2ED2DB88180D239900D8DC61 /* pdfreporter */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB89180D239900D8DC61 /* beans */,
-				2ED2DB8F180D239900D8DC61 /* font */,
-				2ED2DB9D180D239900D8DC61 /* geometry */,
-				2ED2DBAA180D239900D8DC61 /* image */,
-				2ED2DBAD180D239900D8DC61 /* net */,
-				2ED2DBB1180D239900D8DC61 /* pdf */,
-			);
-			path = pdfreporter;
-			sourceTree = "<group>";
-		};
-		2ED2DB89180D239900D8DC61 /* beans */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB8A180D239900D8DC61 /* BeanUtils.h */,
-				2ED2DB8B180D239900D8DC61 /* BeanUtils.m */,
-				2ED2DB8C180D239900D8DC61 /* factory */,
-			);
-			path = beans;
-			sourceTree = "<group>";
-		};
-		2ED2DB8C180D239900D8DC61 /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB8D180D239900D8DC61 /* BeansFactory.h */,
-				2ED2DB8E180D239900D8DC61 /* BeansFactory.m */,
-			);
-			path = factory;
-			sourceTree = "<group>";
-		};
-		2ED2DB8F180D239900D8DC61 /* font */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB90180D239900D8DC61 /* FontFactory.h */,
-				2ED2DB91180D239900D8DC61 /* FontFactory.m */,
-				2ED2DB92180D239900D8DC61 /* FontFactoryBase.h */,
-				2ED2DB93180D239900D8DC61 /* FontFactoryBase.m */,
-				2ED2DB94180D239900D8DC61 /* text */,
-			);
-			path = font;
-			sourceTree = "<group>";
-		};
-		2ED2DB94180D239900D8DC61 /* text */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB95180D239900D8DC61 /* CharacterBreakIterator.h */,
-				2ED2DB96180D239900D8DC61 /* CharacterBreakIterator.m */,
-				2ED2DB97180D239900D8DC61 /* LineBreakMeasurer.h */,
-				2ED2DB98180D239900D8DC61 /* LineBreakMeasurer.m */,
-				2ED2DB99180D239900D8DC61 /* TextLayout.h */,
-				2ED2DB9A180D239900D8DC61 /* TextLayout.m */,
-				2ED2DB9B180D239900D8DC61 /* WordBreakIterator.h */,
-				2ED2DB9C180D239900D8DC61 /* WordBreakIterator.m */,
-			);
-			path = text;
-			sourceTree = "<group>";
-		};
-		2ED2DB9D180D239900D8DC61 /* geometry */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DB9E180D239900D8DC61 /* AffineTransformMatrix.h */,
-				2ED2DB9F180D239900D8DC61 /* AffineTransformMatrix.m */,
-				2ED2DBA0180D239900D8DC61 /* Color.h */,
-				2ED2DBA1180D239900D8DC61 /* Color.m */,
-				2ED2DBA2180D239900D8DC61 /* Dimension.h */,
-				2ED2DBA3180D239900D8DC61 /* Dimension.m */,
-				2ED2DBA4180D239900D8DC61 /* GeometryFactory.h */,
-				2ED2DBA5180D239900D8DC61 /* GeometryFactory.m */,
-				2ED2DBA6180D239900D8DC61 /* Rectangle.h */,
-				2ED2DBA7180D239900D8DC61 /* Rectangle.m */,
-				2ED2DBA8180D239900D8DC61 /* Stroke.h */,
-				2ED2DBA9180D239900D8DC61 /* Stroke.m */,
-			);
-			path = geometry;
-			sourceTree = "<group>";
-		};
-		2ED2DBAA180D239900D8DC61 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DBAB180D239900D8DC61 /* ImageFactory.h */,
-				2ED2DBAC180D239900D8DC61 /* ImageFactory.m */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
-		2ED2DBAD180D239900D8DC61 /* net */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DBAE180D239900D8DC61 /* factory */,
-			);
-			path = net;
-			sourceTree = "<group>";
-		};
-		2ED2DBAE180D239900D8DC61 /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DBAF180D239900D8DC61 /* NetFactory.h */,
-				2ED2DBB0180D239900D8DC61 /* NetFactory.m */,
-			);
-			path = factory;
-			sourceTree = "<group>";
-		};
-		2ED2DBB1180D239900D8DC61 /* pdf */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2DBB2180D239900D8DC61 /* PdfFactory.h */,
-				2ED2DBB3180D239900D8DC61 /* PdfFactory.m */,
-			);
-			path = pdf;
 			sourceTree = "<group>";
 		};
 		2EE6814A17F16F6000C7C1FE /* native */ = {
@@ -643,50 +454,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ED2DBBF180D239900D8DC61 /* GeometryFactory.m in Sources */,
 				2EE681A217F16F6100C7C1FE /* Document.m in Sources */,
 				2EE6819A17F16F6100C7C1FE /* Font.m in Sources */,
 				2EE681AA17F16F6100C7C1FE /* SqlFactory.m in Sources */,
-				2ED2DBBA180D239900D8DC61 /* TextLayout.m in Sources */,
 				2EE681A817F16F6100C7C1FE /* ResultMetaData.m in Sources */,
 				2EE6819C17F16F6100C7C1FE /* FontManager.m in Sources */,
-				2ED2DBC2180D239900D8DC61 /* ImageFactory.m in Sources */,
 				2EE6819817F16F6100C7C1FE /* InputStreamMarshaller.m in Sources */,
-				2ED2DBB5180D239900D8DC61 /* BeansFactory.m in Sources */,
 				2EE6819B17F16F6100C7C1FE /* FontBox.m in Sources */,
 				2EE681B217F16F6100C7C1FE /* Attributes.m in Sources */,
 				2EE681B517F16F6100C7C1FE /* ReportExporter.m in Sources */,
 				2EE681B317F16F6100C7C1FE /* XmlParserFactory.m in Sources */,
-				2ED2DBB8180D239900D8DC61 /* CharacterBreakIterator.m in Sources */,
 				2EE681B417F16F6100C7C1FE /* XmlParser.m in Sources */,
-				2ED2DBB6180D239900D8DC61 /* FontFactory.m in Sources */,
-				2ED2DBBD180D239900D8DC61 /* Color.m in Sources */,
 				2EE681A717F16F6100C7C1FE /* PreparedStatement.m in Sources */,
 				2EE681A017F16F6100C7C1FE /* ImageManager.m in Sources */,
 				2EE68FF017F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
 				2EE69C0817F18D6400C7C1FE /* FallbackFormater.m in Sources */,
-				2ED2DBC4180D239900D8DC61 /* PdfFactory.m in Sources */,
 				2EE681AE17F16F6100C7C1FE /* SimpleFormatFactory.m in Sources */,
-				2ED2DBB4180D239900D8DC61 /* BeanUtils.m in Sources */,
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
-				2ED2DBBC180D239900D8DC61 /* AffineTransformMatrix.m in Sources */,
-				2ED2DBB9180D239900D8DC61 /* LineBreakMeasurer.m in Sources */,
 				2EE681A417F16F6100C7C1FE /* Page.m in Sources */,
 				2EE6819D17F16F6100C7C1FE /* FontMetrics.m in Sources */,
 				2EE681AB17F16F6100C7C1FE /* Sqlite3Box.m in Sources */,
-				2ED2DBC0180D239900D8DC61 /* Rectangle.m in Sources */,
 				2EE681AD17F16F6100C7C1FE /* DateFormat.m in Sources */,
 				2EE681A917F16F6100C7C1FE /* ResultSet.m in Sources */,
 				2EE681A617F16F6100C7C1FE /* Connection.m in Sources */,
-				2ED2DBC1180D239900D8DC61 /* Stroke.m in Sources */,
 				2EE6819F17F16F6100C7C1FE /* ImageBox.m in Sources */,
 				2EE6819717F16F6100C7C1FE /* CustomJavaUtilLoggingHandler.m in Sources */,
-				2ED2DBBE180D239900D8DC61 /* Dimension.m in Sources */,
-				2ED2DBC3180D239900D8DC61 /* NetFactory.m in Sources */,
 				2EE681AC17F16F6100C7C1FE /* Chunk.m in Sources */,
 				2EE681B017F16F6100C7C1FE /* Formatter.m in Sources */,
-				2ED2DBBB180D239900D8DC61 /* WordBreakIterator.m in Sources */,
-				2ED2DBB7180D239900D8DC61 /* FontFactoryBase.m in Sources */,
 				2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */,
 				2EE681A117F16F6100C7C1FE /* URL.m in Sources */,
 				2EE681B117F16F6100C7C1FE /* NumberFormat.m in Sources */,
@@ -773,6 +567,7 @@
 		2E9E9B4117F06FE000AF81E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/PDFReporter_ios.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReporter-ios/PDFReporter-ios-Prefix.pch";
@@ -780,6 +575,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -790,6 +586,7 @@
 		2E9E9B4217F06FE000AF81E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/PDFReporter_ios.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReporter-ios/PDFReporter-ios-Prefix.pch";
@@ -797,6 +594,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

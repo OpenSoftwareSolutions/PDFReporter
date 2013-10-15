@@ -87,7 +87,7 @@ public class ExporterTest {
 					logger.removeHandler(hndl);
 				}
 			} catch (Exception e) {
-				throw new RuntimeException(e);
+				
 			} 
 		}
 	}

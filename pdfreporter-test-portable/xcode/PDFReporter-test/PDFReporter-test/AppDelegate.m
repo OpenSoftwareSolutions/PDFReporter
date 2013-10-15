@@ -17,7 +17,7 @@
 {
     [[[TestChDigireportJasperPortableTest alloc] init] realestateTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
     
-    //[[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    [[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
     
     
     

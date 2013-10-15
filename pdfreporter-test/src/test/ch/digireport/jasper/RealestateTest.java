@@ -63,7 +63,7 @@ public class RealestateTest {
 			}
 			
 			} catch (Exception e) {
-				throw new RuntimeException(e);
+				
 			} 
 		}
 	}

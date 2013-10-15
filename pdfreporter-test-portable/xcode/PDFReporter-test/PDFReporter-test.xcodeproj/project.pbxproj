@@ -30,14 +30,6 @@
 		2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA817FAE4EC0079A30F /* IOSExportTestProvider.m */; };
 		2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DAA17FAE9C40079A30F /* northwind.db */; };
 		2ECE6DB717FAEFC70079A30F /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DB617FAEFC70079A30F /* database.db */; };
-		2ED2CDC7180D235800D8DC61 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDB0180D235800D8DC61 /* Test.m */; };
-		2ED2CDC8180D235800D8DC61 /* ExporterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDB6180D235800D8DC61 /* ExporterTest.m */; };
-		2ED2CDC9180D235800D8DC61 /* PortableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDB8180D235800D8DC61 /* PortableTest.m */; };
-		2ED2CDCA180D235800D8DC61 /* AndroidTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDBB180D235800D8DC61 /* AndroidTestProvider.m */; };
-		2ED2CDCB180D235800D8DC61 /* JavaTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDBD180D235800D8DC61 /* JavaTestProvider.m */; };
-		2ED2CDCC180D235800D8DC61 /* TestProviderInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDBF180D235800D8DC61 /* TestProviderInterface.m */; };
-		2ED2CDCD180D235800D8DC61 /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDC1180D235800D8DC61 /* RealestateTest.m */; };
-		2ED2CDCF180D235800D8DC61 /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2CDC6180D235800D8DC61 /* ReportExporter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,22 +136,6 @@
 		2ECE6DA817FAE4EC0079A30F /* IOSExportTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSExportTestProvider.m; sourceTree = "<group>"; };
 		2ECE6DAA17FAE9C40079A30F /* northwind.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = northwind.db; sourceTree = "<group>"; };
 		2ECE6DB617FAEFC70079A30F /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
-		2ED2CDAF180D235800D8DC61 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		2ED2CDB0180D235800D8DC61 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
-		2ED2CDB5180D235800D8DC61 /* ExporterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExporterTest.h; sourceTree = "<group>"; };
-		2ED2CDB6180D235800D8DC61 /* ExporterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExporterTest.m; sourceTree = "<group>"; };
-		2ED2CDB7180D235800D8DC61 /* PortableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortableTest.h; sourceTree = "<group>"; };
-		2ED2CDB8180D235800D8DC61 /* PortableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortableTest.m; sourceTree = "<group>"; };
-		2ED2CDBA180D235800D8DC61 /* AndroidTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndroidTestProvider.h; sourceTree = "<group>"; };
-		2ED2CDBB180D235800D8DC61 /* AndroidTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndroidTestProvider.m; sourceTree = "<group>"; };
-		2ED2CDBC180D235800D8DC61 /* JavaTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaTestProvider.h; sourceTree = "<group>"; };
-		2ED2CDBD180D235800D8DC61 /* JavaTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaTestProvider.m; sourceTree = "<group>"; };
-		2ED2CDBE180D235800D8DC61 /* TestProviderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProviderInterface.h; sourceTree = "<group>"; };
-		2ED2CDBF180D235800D8DC61 /* TestProviderInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProviderInterface.m; sourceTree = "<group>"; };
-		2ED2CDC0180D235800D8DC61 /* RealestateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealestateTest.h; sourceTree = "<group>"; };
-		2ED2CDC1180D235800D8DC61 /* RealestateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealestateTest.m; sourceTree = "<group>"; };
-		2ED2CDC5180D235800D8DC61 /* ReportExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportExporter.h; sourceTree = "<group>"; };
-		2ED2CDC6180D235800D8DC61 /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +170,6 @@
 				2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */,
 				2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */,
 				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
-				2ED2CDAC180D235800D8DC61 /* gen */,
 				2ECE5D2617FAC58D0079A30F /* Frameworks */,
 				2ECE5D2517FAC58D0079A30F /* Products */,
 				2ECE6DA317FAE45C0079A30F /* testdata */,
@@ -292,85 +267,6 @@
 				2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2ED2CDAC180D235800D8DC61 /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDAD180D235800D8DC61 /* org */,
-				2ED2CDB1180D235800D8DC61 /* test */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
-		2ED2CDAD180D235800D8DC61 /* org */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDAE180D235800D8DC61 /* junit */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		2ED2CDAE180D235800D8DC61 /* junit */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDAF180D235800D8DC61 /* Test.h */,
-				2ED2CDB0180D235800D8DC61 /* Test.m */,
-			);
-			path = junit;
-			sourceTree = "<group>";
-		};
-		2ED2CDB1180D235800D8DC61 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDB2180D235800D8DC61 /* ch */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		2ED2CDB2180D235800D8DC61 /* ch */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDB3180D235800D8DC61 /* digireport */,
-			);
-			path = ch;
-			sourceTree = "<group>";
-		};
-		2ED2CDB3180D235800D8DC61 /* digireport */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDB4180D235800D8DC61 /* jasper */,
-			);
-			path = digireport;
-			sourceTree = "<group>";
-		};
-		2ED2CDB4180D235800D8DC61 /* jasper */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDB5180D235800D8DC61 /* ExporterTest.h */,
-				2ED2CDB6180D235800D8DC61 /* ExporterTest.m */,
-				2ED2CDB7180D235800D8DC61 /* PortableTest.h */,
-				2ED2CDB8180D235800D8DC61 /* PortableTest.m */,
-				2ED2CDB9180D235800D8DC61 /* providers */,
-				2ED2CDC0180D235800D8DC61 /* RealestateTest.h */,
-				2ED2CDC1180D235800D8DC61 /* RealestateTest.m */,
-				2ED2CDC5180D235800D8DC61 /* ReportExporter.h */,
-				2ED2CDC6180D235800D8DC61 /* ReportExporter.m */,
-			);
-			path = jasper;
-			sourceTree = "<group>";
-		};
-		2ED2CDB9180D235800D8DC61 /* providers */ = {
-			isa = PBXGroup;
-			children = (
-				2ED2CDBA180D235800D8DC61 /* AndroidTestProvider.h */,
-				2ED2CDBB180D235800D8DC61 /* AndroidTestProvider.m */,
-				2ED2CDBC180D235800D8DC61 /* JavaTestProvider.h */,
-				2ED2CDBD180D235800D8DC61 /* JavaTestProvider.m */,
-				2ED2CDBE180D235800D8DC61 /* TestProviderInterface.h */,
-				2ED2CDBF180D235800D8DC61 /* TestProviderInterface.m */,
-			);
-			path = providers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,17 +402,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ED2CDC7180D235800D8DC61 /* Test.m in Sources */,
 				2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */,
 				2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */,
-				2ED2CDCF180D235800D8DC61 /* ReportExporter.m in Sources */,
-				2ED2CDC9180D235800D8DC61 /* PortableTest.m in Sources */,
-				2ED2CDCB180D235800D8DC61 /* JavaTestProvider.m in Sources */,
-				2ED2CDCA180D235800D8DC61 /* AndroidTestProvider.m in Sources */,
-				2ED2CDCD180D235800D8DC61 /* RealestateTest.m in Sources */,
-				2ED2CDCC180D235800D8DC61 /* TestProviderInterface.m in Sources */,
 				2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */,
-				2ED2CDC8180D235800D8DC61 /* ExporterTest.m in Sources */,
 				2ECE5D3417FAC58D0079A30F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
