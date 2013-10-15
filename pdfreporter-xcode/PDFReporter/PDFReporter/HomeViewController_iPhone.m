@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     testPosition = -1;
     pickViewController = [[PickViewController_iPad alloc] initWithPickResponder:self];
     UIView * pView = [pickViewController view];
@@ -38,6 +39,12 @@
     //[[self indicator] setHidden:NO];
     //[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     //[self performSelectorInBackground:@selector(initializeInParallel) withObject:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(void)initializeInParallel

@@ -41,6 +41,12 @@
     [UpdateHelper initializeReportsDirectory];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 -(void)initializeInParallel
 {
     [UpdateHelper initializeReportsDirectory];

@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>422FB9CE-AAFB-4EC6-8304-D437D9136C77</string>
+	<string>D727074A-2D1B-4D2D-8BD5-5D7C8E8DAF53</string>
 	<key>IDESourceControlProjectName</key>
 	<string>PDFReporter</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E0276EB4-F7D5-4378-B83F-153C5A1E462E</key>
-		<string>https://bitbucket.org/digireportag/jasper-ios.git</string>
+		<key>82D2255C-3DE6-4807-8698-09C0C2526199</key>
+		<string>ssh://git.code.sf.net/p/pdfreporter/code</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>objc/PDFReporter/PDFReporter.xcodeproj/project.xcworkspace</string>
+	<string>pdfreporter-xcode/PDFReporter/PDFReporter.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E0276EB4-F7D5-4378-B83F-153C5A1E462E</key>
+		<key>82D2255C-3DE6-4807-8698-09C0C2526199</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://bitbucket.org/digireportag/jasper-ios.git</string>
+	<string>ssh://git.code.sf.net/p/pdfreporter/code</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E0276EB4-F7D5-4378-B83F-153C5A1E462E</string>
+	<string>82D2255C-3DE6-4807-8698-09C0C2526199</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E0276EB4-F7D5-4378-B83F-153C5A1E462E</string>
+			<string>82D2255C-3DE6-4807-8698-09C0C2526199</string>
 			<key>IDESourceControlWCCName</key>
-			<string>jasper-ios</string>
+			<string>pdfreporter-code</string>
 		</dict>
 	</array>
 </dict>

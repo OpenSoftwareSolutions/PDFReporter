@@ -851,7 +851,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/kendra/git/jasper-ios/objc/j2objc/lib",
+					../j2objc/lib,
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -871,7 +871,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/kendra/git/jasper-ios/objc/j2objc/lib",
+					../j2objc/lib,
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
