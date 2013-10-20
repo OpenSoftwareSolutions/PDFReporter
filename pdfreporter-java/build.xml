@@ -1,0 +1,98 @@
+<project name="pdfreporter-java" default="unit-test" basedir=".">
+
+	<property name="build.dir"   value="build"/>
+    <property name="report.dir"  value="${build.dir}/junit-report"/>
+    <property name="src.dir"     value="src"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+	
+    
+	<property name="user" value="@see authors.txt file"/>
+	<property name="version" value="0.9.0"/>
+	<property name="spec-title" value="pdfreporter-java"/>
+	<property name="impl-title" value="pdfreporter-java RC 1"/>
+	<property name="licence" value="GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0"/>
+	
+    		
+    <target name="clean">
+    	 <delete dir="${build.dir}"/>
+    </target>
+    
+	
+    <path id="application" location="${jar.dir}/${ant.project.name}.jar"/>
+	
+	<path id="classpath">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+				
+	<target name="compile">
+		<mkdir dir="${classes.dir}"/>
+			<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+	</target>
+
+	<target name="jar" depends="compile" description="Builds the jar file.">
+		<mkdir dir="${jar.dir}" />
+		<tstamp>
+			<format property="touch.time" pattern="MM/dd/yyyy"/>
+		</tstamp>
+		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Built-by" value="${user}" />
+				<attribute name="Licence" value="${licence}" />
+				<section name="common">
+					<attribute name="Specification-Title" value="${spec-title}" />
+					<attribute name="Specification-Version" value="${version}" />
+					<attribute name="Specification-Vendor" value="Open Software Solutions GmbH" />
+					<attribute name="Implementation-Title" value="${impl-title}" />
+					<attribute name="Implementation-Version" value="${version}" />
+					<attribute name="Built-Date" value="${TODAY}" />
+					<attribute name="Implementation-Vendor" value="Open Software Solutions GmbH" />
+				</section>
+			</manifest>
+			<fileset dir=".">
+				<include name="license.txt" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="unit-test" depends="jar">
+	  <mkdir dir="${report.dir}"/>
+	  <junit printsummary="yes" haltonfailure="yes">
+	    <classpath>
+	    	  <path refid="classpath"/>
+	    	  <path refid="application"/>
+	    </classpath>
+			
+		<formatter type="xml"/>
+	  	<!-- here comes the single tests -->
+	  		    
+	  </junit>
+	</target>
+	
+	<target name="batch-test" depends="jar">
+	    <mkdir dir="${report.dir}"/>
+	    <junit printsummary="yes" haltonfailure="no">
+	    	<classpath>
+	    	   <path refid="classpath"/>
+	    	   <path refid="application"/>
+	    	</classpath>
+	    	<formatter type="xml"/>
+	    	   	
+	      <batchtest fork="yes" todir="${report.dir}">
+	        <fileset dir="${src.dir}">
+	          <include name="**/*Test*.java"/>
+	        </fileset>
+	      </batchtest>
+	    </junit>
+	</target>
+	
+	<target name="junit-report">
+	    <junitreport todir="${report.dir}">
+	    	   <fileset dir="${report.dir}" includes="TEST-*.xml"/>
+	    	<report todir="${report.dir}"/>
+	    </junitreport>
+	</target>
+	
+</project>
