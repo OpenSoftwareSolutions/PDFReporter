@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2004 World Wide Web Consortium,
  *

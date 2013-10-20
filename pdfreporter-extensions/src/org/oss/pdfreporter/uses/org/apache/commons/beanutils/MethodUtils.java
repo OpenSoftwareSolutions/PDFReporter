@@ -1,5 +1,3 @@
-package org.oss.pdfreporter.uses.org.apache.commons.beanutils;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -16,7 +14,7 @@ package org.oss.pdfreporter.uses.org.apache.commons.beanutils;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package org.oss.pdfreporter.uses.org.apache.commons.beanutils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
