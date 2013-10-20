@@ -1,4 +1,3 @@
-package org.oss.pdfreporter.engine.style;
 /*
  * JasperReports - Free Java Reporting Library.
  * Copyright (C) 2001 - 2011 Jaspersoft Corporation. All rights reserved.
@@ -22,6 +21,7 @@ package org.oss.pdfreporter.engine.style;
  * You should have received a copy of the GNU Lesser General Public License
  * along with JasperReports. If not, see <http://www.gnu.org/licenses/>.
  */
+package org.oss.pdfreporter.engine.style;
 
 
 import java.util.ArrayList;
