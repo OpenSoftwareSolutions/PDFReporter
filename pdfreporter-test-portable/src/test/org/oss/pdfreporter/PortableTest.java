@@ -1,9 +1,11 @@
-package test.ch.digireport.jasper;
+package test.org.oss.pdfreporter;
 
 import java.lang.reflect.Method;
 
-import test.ch.digireport.jasper.providers.JavaTestProvider;
-import test.ch.digireport.jasper.providers.TestProviderInterface;
+import test.org.oss.pdfreporter.ExporterTest;
+import test.org.oss.pdfreporter.RealestateTest;
+import test.org.oss.pdfreporter.providers.JavaTestProvider;
+import test.org.oss.pdfreporter.providers.TestProviderInterface;
 
 public class PortableTest {
 	
