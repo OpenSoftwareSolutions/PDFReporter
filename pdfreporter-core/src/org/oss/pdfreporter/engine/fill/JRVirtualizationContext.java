@@ -57,7 +57,7 @@ import org.oss.pdfreporter.uses.org.apache.commons.collections.ReferenceMap;
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JRVirtualizationContext.java 5484 2012-07-09 08:19:37Z lucianc $
  */
-// TODO (23.05.2013, Donat, Digireport): Remove virtualization support
+// TODO (23.05.2013, Donat, Open Software Solutions): Remove virtualization support
 public class JRVirtualizationContext implements Serializable, VirtualizationListener<VirtualElementsData>
 {
 	private static final long serialVersionUID = JRConstants.SERIAL_VERSION_UID;
@@ -86,7 +86,7 @@ public class JRVirtualizationContext implements Serializable, VirtualizationList
 	{
 		this.jasperReportsContext = jasperReportsContext;
 		
-		// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
+		// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 		cachedRenderers = new HashMap<String,Renderable>();
 		cachedTemplates = new HashMap<String,JRTemplateElement>();
 		
@@ -482,7 +482,7 @@ public class JRVirtualizationContext implements Serializable, VirtualizationList
 	 */
 	public void lock()
 	{
-		// TODO (23.05.2013, Donat, Digireport): Notice single threaded application no concurrency support
+		// TODO (23.05.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class JRVirtualizationContext implements Serializable, VirtualizationList
 	 */
 	public boolean tryLock()
 	{
-	// TODO (23.05.2013, Donat, Digireport): Notice single threaded application no concurrency support
+	// TODO (23.05.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 		return true;
 	}
 
@@ -501,7 +501,7 @@ public class JRVirtualizationContext implements Serializable, VirtualizationList
 	 */
 	public void unlock()
 	{
-		// TODO (23.05.2013, Donat, Digireport): Notice single threaded application no concurrency support
+		// TODO (23.05.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 	}
 	
 	/**

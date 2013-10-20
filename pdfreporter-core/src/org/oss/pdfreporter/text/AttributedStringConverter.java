@@ -79,7 +79,7 @@ public class AttributedStringConverter {
 	private ParagraphText getParagrapghText(Map<Attribute, Object> attributes, String text) {
 		IFont font = (IFont) attributes.get(TextAttribute.FONT);
 		if (font==null) {
-			// TODO (12.07.2013, Donat, Digireport): If the font is not in the attributes where we get the correct style from ?
+			// TODO (12.07.2013, Donat, Open Software Solutions): If the font is not in the attributes where we get the correct style from ?
 			IFontManager fontManager = fontFactory.getFontManager();
 			String fontFamily = (String) attributes.get(TextAttribute.FAMILY);
 			Float fontSize = (Float) attributes.get(TextAttribute.SIZE);

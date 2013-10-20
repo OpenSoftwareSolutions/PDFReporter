@@ -565,7 +565,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			parameterValues.put(JRParameter.REPORT_LOCALE, locale);
 		}
 		
-		// TODO (29.04.2013, Donat, Digireport AG): Notice ResourceBundle support was removed 
+		// TODO (29.04.2013, Donat, Open Software Solutions AG): Notice ResourceBundle support was removed 
 //		resourceBundle = (ResourceBundle) parameterValues.get(JRParameter.REPORT_RESOURCE_BUNDLE);
 //		if (resourceBundle == null)
 //		{

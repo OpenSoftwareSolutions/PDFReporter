@@ -130,7 +130,7 @@ public class ParameterTypeSelectorClauseFunction implements JRClauseFunction
 				CONTEXT_KEY_FUNCTION_PER_TYPES_CACHE);
 		if (cache == null)
 		{
-			// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
+			// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 			cache = new HashMap<Object, JRClauseFunction>();
 			
 			// we don't need to handle race conditions here as it's a lightweight cache

@@ -182,7 +182,7 @@ public class JasperDesignCache
 			
 			if (jasperDesign == null)
 			{
-				throw new JRRuntimeException("resource loading is not supported by Digireport AG");
+				throw new JRRuntimeException("resource loading is not supported");
 			}
 			else
 			{

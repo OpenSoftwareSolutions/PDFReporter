@@ -7,7 +7,7 @@ import org.oss.pdfreporter.font.IFontManager;
 import org.oss.pdfreporter.font.IFont.FontStyle;
 import org.oss.pdfreporter.net.IURL;
 import org.oss.pdfreporter.registry.ApiRegistry;
-import org.oss.pdfreporter.repo.DigireportFileResourceLoader;
+import org.oss.pdfreporter.repo.FileResourceLoader;
 
 
 public class LazyFontFace implements FontFace {
@@ -26,7 +26,7 @@ public class LazyFontFace implements FontFace {
 	
 	public static FontFace getInstance(FontFamily fontFamily, FontStyle style, String file) {
 		// Resolve file immediately to fail fast.
-		IURL url = DigireportFileResourceLoader.getURL(file);
+		IURL url = FileResourceLoader.getURL(file);
 		if (url==null) {
 			throw new RuntimeException("Font file: " + file + " not found.");
 		}

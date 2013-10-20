@@ -164,8 +164,8 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	public String str(String key)
 	{
 		String str = null;
-		// TODO (29.04.2013, Donat, Digireport): Notice ResourceBundle support was removed 
-		// TODO (29.04.2013, Donat, Digireport): Revisit ResourceBundle, extract platform independent concept for translatable Strings  
+		// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed 
+		// TODO (29.04.2013, Donat, Open Software Solutions): Revisit ResourceBundle, extract platform independent concept for translatable Strings  
 //		try
 //		{
 //			str = ((ResourceBundle) resourceBundle.getValue()).getString(key);
@@ -206,7 +206,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 					logger.finest("evaluate: " + expression.getId() + " = " + msg);
 				}
 			}
-			// TODO (30.04.2013, Donat, Digireport): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
+			// TODO (30.04.2013, Donat, Open Software Solutions): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
 			catch (NullPointerException e) //NOPMD
 			{
 			}
@@ -240,7 +240,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 				value = evaluateOld(expression.getId());
 				logger.finest("evaluateOld: " + expression.getId() + " = " + value);
 			}
-			// TODO (30.04.2013, Donat, Digireport): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
+			// TODO (30.04.2013, Donat, Open Software Solutions): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
 			catch (NullPointerException e) //NOPMD
 			{
 			}
@@ -274,7 +274,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 				value = evaluateEstimated(expression.getId());
 				logger.finest("evaluateEstimated: " + expression.getId() + " = " + value);
 			}
-			// TODO (30.04.2013, Donat, Digireport): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
+			// TODO (30.04.2013, Donat, Open Software Solutions): Very bad style eating exceptions keep it for compatibility (catch for OutOfMemory is not supported by j2objc)
 			catch (NullPointerException e) //NOPMD
 			{
 			}

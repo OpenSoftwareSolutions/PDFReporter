@@ -70,7 +70,7 @@ public class JRResultSetDataSource implements JRDataSource
 	private IResultSet resultSet;
 	private Map<String,Integer> columnIndexMap = new HashMap<String,Integer>();
 
-	// TODO (20.06.2013, Donat, Digireport): No time zone support for now
+	// TODO (20.06.2013, Donat, Open Software Solutions): No time zone support for now
 	private TimeZone timeZone;
 	private boolean timeZoneOverride;
 	private Map<JRField, Calendar> fieldCalendars = new HashMap<JRField, Calendar>();
@@ -121,7 +121,7 @@ public class JRResultSetDataSource implements JRDataSource
 	/**
 	 *
 	 */
-	// TODO (19.07.2013, Donat, Digireport): Added support for sql datatypes better to convert datatypes while loading jrxml
+	// TODO (19.07.2013, Donat, Open Software Solutions): Added support for sql datatypes better to convert datatypes while loading jrxml
 	public Object getFieldValue(JRField field) throws JRException
 	{
 		Object objValue = null;
@@ -255,7 +255,7 @@ public class JRResultSetDataSource implements JRDataSource
 					}
 					else
 					{
-						// TODO (29.04.2013, Donat, Digireport): Add support for memory images JRImageLoader.getInstance(jasperReportsContext).loadAwtImageFromBytes(bytes);
+						// TODO (29.04.2013, Donat, Open Software Solutions): Add support for memory images JRImageLoader.getInstance(jasperReportsContext).loadAwtImageFromBytes(bytes);
 						logger.warning("Images from Database are not supported.");
 						objValue = null;
 					}					
@@ -277,12 +277,12 @@ public class JRResultSetDataSource implements JRDataSource
 
 	protected Object readDate(Integer columnIndex, JRField field) throws SQLException
 	{
-		// NOTICE (20.06.2013, Donat, Digireport): No time zone support for now Calendar calendar = getFieldCalendar(field);		
+		// NOTICE (20.06.2013, Donat, Open Software Solutions): No time zone support for now Calendar calendar = getFieldCalendar(field);		
 		Object objValue = null;
 		IDate value =  resultSet.getDate(columnIndex.intValue());
 		if(!resultSet.wasNull())
 		{
-			// TODO (20.06.2013, Donat, Digireport): Add support to IDate or IDateTime instead of java.util.date	
+			// TODO (20.06.2013, Donat, Open Software Solutions): Add support to IDate or IDateTime instead of java.util.date	
 			objValue = value.getDate();
 		} 
 		return objValue;
@@ -291,12 +291,12 @@ public class JRResultSetDataSource implements JRDataSource
 
 	protected Object readTimestamp(Integer columnIndex, JRField field) throws SQLException
 	{
-		// NOTICE (20.06.2013, Donat, Digireport): No time zone support for now Calendar calendar = getFieldCalendar(field);		
+		// NOTICE (20.06.2013, Donat, Open Software Solutions): No time zone support for now Calendar calendar = getFieldCalendar(field);		
 		Object objValue = null;
 		ITimestamp value = resultSet.getTimestamp(columnIndex.intValue());
 		if(!resultSet.wasNull())
 		{
-			// TODO (20.06.2013, Donat, Digireport): Add support to ITimestamp instead of java.util.date	
+			// TODO (20.06.2013, Donat, Open Software Solutions): Add support to ITimestamp instead of java.util.date	
 			objValue = new Date(value.getMilliseconds());
 		} 
 		return objValue;
@@ -305,12 +305,12 @@ public class JRResultSetDataSource implements JRDataSource
 
 	protected Object readTime(Integer columnIndex, JRField field) throws SQLException
 	{
-		// NOTICE (20.06.2013, Donat, Digireport): No time zone support for now Calendar calendar = getFieldCalendar(field);		
+		// NOTICE (20.06.2013, Donat, Open Software Solutions): No time zone support for now Calendar calendar = getFieldCalendar(field);		
 		Object objValue = null;
 		ITime value = resultSet.getTime(columnIndex.intValue());
 		if(!resultSet.wasNull())
 		{
-			// TODO (20.06.2013, Donat, Digireport): Add support to use ITime instead of java.util.date	
+			// TODO (20.06.2013, Donat, Open Software Solutions): Add support to use ITime instead of java.util.date	
 			objValue = value.getDate();
 		} 
 		return objValue;

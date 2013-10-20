@@ -130,7 +130,7 @@ public class DefaultRepositoryService implements StreamRepositoryService
 				return JRLoader.getInputStream(file);
 			}
 			
-			url = DigireportFileResourceLoader.getURL(uri);
+			url = FileResourceLoader.getURL(uri);
 			if (url != null)
 			{
 				return JRLoader.getInputStream(url);

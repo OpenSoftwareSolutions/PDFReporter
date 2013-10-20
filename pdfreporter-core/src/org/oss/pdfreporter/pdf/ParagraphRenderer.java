@@ -39,7 +39,7 @@ public class ParagraphRenderer {
 				renderLine(page);
 			} else {
 				add(text);
-				// TODO (27.06.2013, Donat, Digireport): Hack to render Styled Text Report (add proper support for linebreaks and tabs)
+				// TODO (27.06.2013, Donat, Open Software Solutions): Hack to render Styled Text Report (add proper support for linebreaks and tabs)
 				if (text.getText().contains("\n")) {
 					renderLine(page);
 				}

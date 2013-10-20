@@ -47,7 +47,7 @@ public class XalanXPathQueryExecuterFactory extends JRXPathQueryExecuterFactory
 {
 	/**
 	 * Built-in parameter holdin the value of the <code>javax.xml.parsers.DocumentBuilderFactor</code> used to create 
-	 * documents of type <code>ch.digireport.uses.org.w3c.dom.Document<code>
+	 * documents of type <code>org.oss.pdfreporter.uses.org.w3c.dom.Document<code>
 	 */
 	public final static String PARAMETER_DOCUMENT_BUILDER_FACTORY = "DOCUMENT_BUILDER_FACTORY";
 	
@@ -88,7 +88,7 @@ public class XalanXPathQueryExecuterFactory extends JRXPathQueryExecuterFactory
 	public final static String XML_DETECT_NAMESPACES = JRPropertiesUtil.PROPERTY_PREFIX + "xml.detect.namespaces";
 	
 	private final static Object[] XALAN_XPATH_BUILTIN_PARAMETERS = {
-		PARAMETER_XML_DATA_DOCUMENT,  "ch.digireport.uses.org.w3c.dom.Document",
+		PARAMETER_XML_DATA_DOCUMENT,  "org.oss.pdfreporter.uses.org.w3c.dom.Document",
 		PARAMETER_DOCUMENT_BUILDER_FACTORY, "javax.xml.parsers.DocumentBuilderFactory",
 		PARAMETER_XML_NAMESPACE_MAP, "java.util.Map",
 		XML_DATE_PATTERN, "java.lang.String",

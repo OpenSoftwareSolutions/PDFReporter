@@ -446,7 +446,7 @@ public final class JRPropertiesUtil
 					if (prop != null)
 					{
 						value = prop;
-						// TODO (29.04.2013, Donat, Digireport): Problem with j2obj with break to label (break main;)
+						// TODO (29.04.2013, Donat, Open Software Solutions): Problem with j2obj with break to label (break main;)
 						return value;
 					}
 				}

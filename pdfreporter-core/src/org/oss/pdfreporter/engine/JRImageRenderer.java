@@ -35,7 +35,7 @@ import org.oss.pdfreporter.pdf.DocumentException;
 import org.oss.pdfreporter.pdf.IPage;
 import org.oss.pdfreporter.pdf.IPage.ScaleMode;
 import org.oss.pdfreporter.registry.ApiRegistry;
-import org.oss.pdfreporter.repo.DigireportFileResourceLoader;
+import org.oss.pdfreporter.repo.FileResourceLoader;
 
 
 
@@ -135,11 +135,11 @@ public class JRImageRenderer extends JRAbstractRenderer
 		if (image == null)
 		{
 			try {
-				IURL url = DigireportFileResourceLoader.getURL(imageLocation);
+				IURL url = FileResourceLoader.getURL(imageLocation);
 				if (url==null) {
 					throw new RuntimeException("Image file: " + imageLocation + " not found.");
 				}
-				// TODO (28.06.2013, Donat, Digireport): Define and read compression parameter to pass to image loading
+				// TODO (28.06.2013, Donat, Open Software Solutions): Define and read compression parameter to pass to image loading
 				image = ApiRegistry.getImageFactory().getImageManager().loadImage(url.getPath());
 			} catch (IOException e) {
 				throw new JRException(e);

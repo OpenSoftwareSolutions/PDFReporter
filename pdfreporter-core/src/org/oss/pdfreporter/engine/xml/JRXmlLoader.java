@@ -200,7 +200,7 @@ public class JRXmlLoader
 
 		JRXmlLoader xmlLoader = null;
 
-		// TODO (08.08.2013, Donat, Digireport): Temporary solution to reset properties and extensions for each exporter run
+		// TODO (08.08.2013, Donat, Open Software Solutions): Temporary solution to reset properties and extensions for each exporter run
 		JRProperties.reload();
 		ExtensionsEnvironment.reset();
 		try 

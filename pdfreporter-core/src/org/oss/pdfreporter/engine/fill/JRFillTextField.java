@@ -814,8 +814,8 @@ public class JRFillTextField extends JRFillTextElement implements JRTextField
 		String pattern = null;
 		String originalPattern = getPattern();
 
-// TODO (23.05.2013, Donat, Digireport): Verify impact of disabling support for concrete IFormat implementations, perhaps IFormat should support toPattern()
-// TODO (23.05.2013, Donat, Digireport): Refactoring simplify handling of formatting factories
+// TODO (23.05.2013, Donat, Open Software Solutions): Verify impact of disabling support for concrete IFormat implementations, perhaps IFormat should support toPattern()
+// TODO (23.05.2013, Donat, Open Software Solutions): Refactoring simplify handling of formatting factories
 //		if (value instanceof java.util.Date)
 //		{
 //			if (format instanceof SimpleDateFormat)

@@ -16,7 +16,7 @@ public class SubreportUtil {
 	public static JasperReport loadSubreport(String location) throws JRException {
 		InputStream isReport = null;
 		try {
-			isReport = DigireportFileResourceLoader.getInputStream(location.replace(".jasper", ".jrxml"));
+			isReport = FileResourceLoader.getInputStream(location.replace(".jasper", ".jrxml"));
 			if (isReport==null) {
 				throw new JRException("Subreport file not found: " + location);
 			}

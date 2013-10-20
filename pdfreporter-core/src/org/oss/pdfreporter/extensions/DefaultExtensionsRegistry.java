@@ -215,7 +215,7 @@ public class DefaultExtensionsRegistry implements ExtensionsRegistry
 		return factory.createRegistry(registryId, props);
 	}
 
-	// TODO (20.07.2013, Donat, Digireport): Hack to reset the extensions environment, forcing a reload of configured extensions 
+	// TODO (20.07.2013, Donat, Open Software Solutions): Hack to reset the extensions environment, forcing a reload of configured extensions 
 	void reset() {
 		registrySetCache.clear();
 	}

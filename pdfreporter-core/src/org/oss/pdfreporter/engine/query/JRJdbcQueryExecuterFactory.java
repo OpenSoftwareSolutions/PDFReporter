@@ -117,10 +117,10 @@ public class JRJdbcQueryExecuterFactory extends AbstractQueryExecuterFactory
 				"java.math.BigDecimal",
 				"java.lang.String", 
 				"java.util.Date", 
-				"ch.digireport.sql.IDateTime", 
-				"ch.digireport.sql.IDate", 
-				"ch.digireport.sql.ITimestamp", 
-				"ch.digireport.sql.ITime" };
+				"org.oss.pdfreporter.sql.IDateTime", 
+				"org.oss.pdfreporter.sql.IDate", 
+				"org.oss.pdfreporter.sql.ITimestamp", 
+				"org.oss.pdfreporter.sql.ITime" };
 
 		Arrays.sort(queryParameterClassNames);
 	}

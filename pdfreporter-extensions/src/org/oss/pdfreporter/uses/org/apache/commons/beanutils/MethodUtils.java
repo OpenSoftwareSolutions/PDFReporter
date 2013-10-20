@@ -49,8 +49,8 @@ import java.util.Map;
  * @author Robert Burrell Donkin
  */
 
-//TODO (23.05.2013, Donat, Digireport): Used by Digester implementation move to a factory to prevent platform specific hack methodMatchesOrStartsSame
-//TODO (23.05.2013, Donat, Digireport): Analyze need for a sophisticated implementation like this as we know all Bean signatures while loading jrxml
+//TODO (23.05.2013, Donat, Open Software Solutions): Used by Digester implementation move to a factory to prevent platform specific hack methodMatchesOrStartsSame
+//TODO (23.05.2013, Donat, Open Software Solutions): Analyze need for a sophisticated implementation like this as we know all Bean signatures while loading jrxml
 public class MethodUtils {
 
     // --------------------------------------------------------- Private Methods

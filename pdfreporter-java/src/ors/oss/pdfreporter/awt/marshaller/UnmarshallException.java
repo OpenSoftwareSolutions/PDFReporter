@@ -1,4 +1,4 @@
-package ch.digireport.awt.util;
+package ors.oss.pdfreporter.awt.marshaller;
 
 public class UnmarshallException extends RuntimeException {
 

@@ -3,8 +3,8 @@ package org.oss.pdfreporter.engine.fill;
 import org.oss.pdfreporter.engine.JRParagraph;
 
 public class LineHeightCalculator {
-	// TODO (13.04.2013, Donat, Digireport): Refactoring remove getLineHeight() from  AbstractTextRenderer in the exporter Project and replace usage by this
-	// TODO (13.04.2013, Donat, Digireport): Refactoring remove LINE_BREAK_FONT_RENDER_CONTEXT from  AbstractTextRenderer in the exporter Project and replace usage by this
+	// TODO (13.04.2013, Donat, Open Software Solutions): Refactoring remove getLineHeight() from  AbstractTextRenderer in the exporter Project and replace usage by this
+	// TODO (13.04.2013, Donat, Open Software Solutions): Refactoring remove LINE_BREAK_FONT_RENDER_CONTEXT from  AbstractTextRenderer in the exporter Project and replace usage by this
 	// Make anb abstract base class, what name should it get ?
 	
 

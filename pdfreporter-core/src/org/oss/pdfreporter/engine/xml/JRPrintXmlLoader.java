@@ -60,7 +60,7 @@ public class JRPrintXmlLoader implements XMLErrorHandler
 	/**
 	 *
 	 */
-	// TODO (29.04.2013, Donat, Digireport): Only left for compatibility
+	// TODO (29.04.2013, Donat, Open Software Solutions): Only left for compatibility
 	private JasperReportsContext jasperReportsContext;
 	private JasperPrint jasperPrint;
 	private List<Exception> errors = new ArrayList<Exception>();
@@ -292,7 +292,7 @@ public class JRPrintXmlLoader implements XMLErrorHandler
 		digester.addSetNext("*/paragraph/tabStop", "addTabStop", TabStop.class.getName());
 
 		/*   */
-		// TODO (28.06.2013, Donat, Digireport): Removed support for embedded images in xml (icon as byte array)		
+		// TODO (28.06.2013, Donat, Open Software Solutions): Removed support for embedded images in xml (icon as byte array)		
 //		digester.addFactoryCreate("*/image/imageSource", JRPrintImageSourceFactory.class.getName());
 //		digester.addCallMethod("*/image/imageSource", "setImageSource", 0);
 

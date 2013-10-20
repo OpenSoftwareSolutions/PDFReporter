@@ -12,7 +12,7 @@ import org.oss.pdfreporter.xml.parsers.ParserConfigurationException;
 
 /**
  * Factory to to create a platform independent XMLParser and document builder factory.
- * TODO (10.05.2013, Digireport, Donat) implement an xml schema abstraction to configure from outside (we are only using DTDs for now).
+ * TODO (10.05.2013, Open Software Solutions, Donat) implement an xml schema abstraction to configure from outside (we are only using DTDs for now).
  * @author donatmuller, 2013, last change 10:58:22 PM
  * 
  */

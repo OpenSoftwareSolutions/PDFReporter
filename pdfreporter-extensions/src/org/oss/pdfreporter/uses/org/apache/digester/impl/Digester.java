@@ -144,7 +144,7 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
         List<IRule> rules = getRules().match(namespaceURI, match);
         matches.push(rules);
         if ((rules != null) && (rules.size() > 0)) {
-            // TODO (10.05.2013, Donat, Digireport) Notice No Substitutor
+            // TODO (10.05.2013, Donat, Open Software Solutions) Notice No Substitutor
             for (int i = 0; i < rules.size(); i++) {
                 try {
                     IRule rule = rules.get(i);
@@ -200,7 +200,7 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
         List<IRule> rules = matches.pop();
         if ((rules != null) && (rules.size() > 0)) {
             String bodyText = this.bodyText.toString();
-            // TODO (10.05.2013, Donat, Digireport) Notice No Substitutor
+            // TODO (10.05.2013, Donat, Open Software Solutions) Notice No Substitutor
             for (int i = 0; i < rules.size(); i++) {
                 try {
                     IRule rule = rules.get(i);

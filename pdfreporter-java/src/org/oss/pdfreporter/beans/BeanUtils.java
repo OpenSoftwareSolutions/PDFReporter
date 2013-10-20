@@ -16,7 +16,7 @@ public class BeanUtils implements IBeansUtils {
 	public void setProperty(Object top, String propertyName, Object value) {
 		if (top != null) {
 			try {
-				// TODO (19.4.2013, Donat, Digireport) add support for
+				// TODO (19.4.2013, Donat, Open Software Solutions) add support for
 				// properties declared on superclasses
 				Field field = top.getClass().getDeclaredField(propertyName);
 				field.setAccessible(true);
@@ -32,7 +32,7 @@ public class BeanUtils implements IBeansUtils {
 	@Override
 	public Object getProperty(Object top, String propertyName) {
 		try {
-			// TODO (19.4.2013, Donat, Digireport) add support for properties
+			// TODO (19.4.2013, Donat, Open Software Solutions) add support for properties
 			// declared on superclasses
 			Field field = top.getClass().getDeclaredField(propertyName);
 			field.setAccessible(true);

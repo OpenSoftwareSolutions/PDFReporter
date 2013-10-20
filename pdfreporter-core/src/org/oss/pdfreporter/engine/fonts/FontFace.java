@@ -47,7 +47,7 @@ public interface FontFace
 	public String getFile();
 	
 	/**
-	 * Returns a non-null instance of ch.digireport.awt.Font representing the font face.
+	 * Returns a non-null instance of org.oss.pdfreporter.awt.Font representing the font face.
 	 */
 	public IFont getFont();
 

@@ -37,7 +37,7 @@ import org.oss.pdfreporter.engine.JasperReportsContext;
 import org.oss.pdfreporter.net.IURL;
 import org.oss.pdfreporter.net.MalformedURLException;
 import org.oss.pdfreporter.registry.IRegistry;
-import org.oss.pdfreporter.repo.DigireportFileResourceLoader;
+import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.repo.FileSystemResource;
 
 
@@ -341,7 +341,7 @@ public final class JRLoader
 	 */
 	public static byte[] loadBytesFromResource(String resourceName) throws JRException
 	{
-		IURL url = DigireportFileResourceLoader.getURL(resourceName);
+		IURL url = FileResourceLoader.getURL(resourceName);
 		if (url != null)
 		{
 			return loadBytes(url);
@@ -423,7 +423,7 @@ public final class JRLoader
 	{
 		InputStream is = null;
 		
-		IURL resourceUrl = DigireportFileResourceLoader.getURL(resource);
+		IURL resourceUrl = FileResourceLoader.getURL(resource);
 		
 		if (resourceUrl!=null) {
 			try {
@@ -448,12 +448,12 @@ public final class JRLoader
 	 */
 	public static List<IURL> getResources(String resource)
 	{
-		return DigireportFileResourceLoader.getConfiguredFileResources();
+		return FileResourceLoader.getConfiguredFileResources();
 	}
 
 
 	public static List<FileSystemResource> getFileSystemResources(String resource) {
-		return DigireportFileResourceLoader.findConfiguredFileSystemResources(resource);
+		return FileResourceLoader.findConfiguredFileSystemResources(resource);
 	}
 
 	/**
@@ -466,7 +466,7 @@ public final class JRLoader
 	 */
 	public static IURL getResource(String resource)
 	{
-		return DigireportFileResourceLoader.getURL(resource);
+		return FileResourceLoader.getURL(resource);
 	}
 
 	/**
@@ -487,7 +487,7 @@ public final class JRLoader
 		}
 		catch (MalformedURLException e)
 		{
-			// TODO (29.04.2013, Donat, Digireport): Very bad practice but keep it for compatibility			
+			// TODO (29.04.2013, Donat, Open Software Solutions): Very bad practice but keep it for compatibility			
 		}
 		catch (IOException e)
 		{

@@ -106,7 +106,7 @@ public class SimplePdfTextRenderer extends AbstractPdfTextRenderer
 			horizontalAlignment
 			);
 
-		// TODO (15.06.2013, Donat, Digireport): Do we need the stuff below ?
+		// TODO (15.06.2013, Donat, Open Software Solutions): Do we need the stuff below ?
 //		colText.setLeading(0, text.getLineSpacingFactor());// * text.getFont().getSize());
 //		colText.setRunDirection(
 //			text.getRunDirectionValue() == RunDirectionEnum.LTR

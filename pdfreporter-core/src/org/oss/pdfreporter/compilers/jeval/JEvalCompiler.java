@@ -24,9 +24,9 @@ import org.oss.pdfreporter.engine.fill.JREvaluator;
 public class JEvalCompiler extends JRAbstractCompiler {
 	private static final Logger logger = Logger.getLogger(JEvalCompiler.class.getName());
 	private final static Map<String,JREvaluator> evaluators = new HashMap<String, JREvaluator>();
-	// TODO (21.04.2013, Donat, Digireport): Add facility to build from xml instead of compiling
-	// TODO (21.04.2013, Donat, Digireport): Add support for the JREvaluator str() and msg() function
-	// TODO (21.04.2013, Donat, Digireport): Add support or replacement for java.text.MessageFormat
+	// TODO (21.04.2013, Donat, Open Software Solutions): Add facility to build from xml instead of compiling
+	// TODO (21.04.2013, Donat, Open Software Solutions): Add support for the JREvaluator str() and msg() function
+	// TODO (21.04.2013, Donat, Open Software Solutions): Add support or replacement for java.text.MessageFormat
 	
 	
 	
@@ -44,7 +44,7 @@ public class JEvalCompiler extends JRAbstractCompiler {
 	@Override
 	protected JREvaluator loadEvaluator(Serializable compileData,
 			String unitName) throws JRException {
-		// TODO (12.04.2013, Donat, Digireport): Implement with deserialization of evaluator
+		// TODO (12.04.2013, Donat, Open Software Solutions): Implement with deserialization of evaluator
 		logger.finest("loadEvaluator: compileData=" + compileData + ", unitName=" + unitName);
 		return evaluators.get(unitName);
 	}
@@ -66,7 +66,7 @@ public class JEvalCompiler extends JRAbstractCompiler {
 	@Override
 	protected JRCompilationSourceCode generateSourceCode(
 			JRSourceCompileTask sourceTask) throws JRException {
-		// TODO (12.04.2013, Donat, Digireport): Create a evaluator instance per call and serialize it
+		// TODO (12.04.2013, Donat, Open Software Solutions): Create a evaluator instance per call and serialize it
 		JEvalExpressionEvaluator evaluator = new JEvalExpressionEvaluator();
 		evaluator.initializeWithDefaults(sourceTask);
 		evaluator.parseExpressions(sourceTask);

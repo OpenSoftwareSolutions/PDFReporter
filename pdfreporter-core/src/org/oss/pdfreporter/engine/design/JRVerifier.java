@@ -1831,7 +1831,7 @@ public class JRVerifier
 				Class<?> percentageCalculatorClass = measure.getPercentageCalculatorClass();
 				if (percentageCalculatorClass == null)
 				{
-					// TODO (30.03.2013, Digireport, Donat): Reactivate PercentageCalculator if needed
+					// TODO (30.03.2013, Open Software Solutions, Donat): Reactivate PercentageCalculator if needed
 //					if (valueClass != null && !JRPercentageCalculatorFactory.hasBuiltInCalculator(valueClass))
 //					{
 //						addBrokenRule("Percentage calculator class needs to be specified for measure " + measureName + ".", measure);
@@ -1839,7 +1839,7 @@ public class JRVerifier
 				}
 				else
 				{
-					// TODO (30.03.2013, Digireport, Donat): Reactivate PercentageCalculator if needed
+					// TODO (30.03.2013, Open Software Solutions, Donat): Reactivate PercentageCalculator if needed
 //					if (!JRPercentageCalculator.class.isAssignableFrom(percentageCalculatorClass))
 //					{
 //						addBrokenRule("Incompatible percentage calculator class for measure " + measureName + ".", measure);
@@ -1856,7 +1856,7 @@ public class JRVerifier
 		{
 			@SuppressWarnings("unused")
 			Class<?> incrementerFactoryClass = measure.getIncrementerFactoryClass();
-			// TODO (30.03.2013, Digireport, Donat): Reactivate JRExtendedIncrementerFactory if needed
+			// TODO (30.03.2013, Open Software Solutions, Donat): Reactivate JRExtendedIncrementerFactory if needed
 //			if (incrementerFactoryClass != null && !JRExtendedIncrementerFactory.class.isAssignableFrom(incrementerFactoryClass))
 //			{
 //				addBrokenRule("Crosstab measures need extended incrementers (net.sf.jasperreports.engine.fill.JRExtendedIncrementerFactory).", measure);

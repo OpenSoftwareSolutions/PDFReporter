@@ -128,7 +128,7 @@ public final class ExtensionsEnvironment
 		return NULL_CACHE_KEY;
 	}
 	
-	// TODO (20.07.2013, Donat, Digireport): Hack to reset the extensions environment, forcing a reload of configured extensions 
+	// TODO (20.07.2013, Donat, Open Software Solutions): Hack to reset the extensions environment, forcing a reload of configured extensions 
 	public static void reset() {
 		if (systemRegistry instanceof DefaultExtensionsRegistry) {
 			((DefaultExtensionsRegistry)systemRegistry).reset();

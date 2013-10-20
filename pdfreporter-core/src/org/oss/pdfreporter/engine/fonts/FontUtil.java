@@ -75,7 +75,7 @@ public final class FontUtil
 		return new FontUtil(jasperReportsContext);
 	}
 	
-	// TODO (29.04.2013, Donat, Digireport): Notice single threaded no threaded missing font cache support required
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded no threaded missing font cache support required
 	
 	
 	/**
@@ -318,7 +318,7 @@ public final class FontUtil
 
 	
 	/**
-	 * Returns a ch.digireport.awt.Font instance by converting a JRFont instance.
+	 * Returns a org.oss.pdfreporter.awt.Font instance by converting a JRFont instance.
 	 * Mostly used in combination with third-party visualization packages such as JFreeChart (for chart themes).
 	 * Unless the font parameter is null, this method always returns a non-null AWT font, regardless whether it was
 	 * found in the font extensions or not. This is because we do need a font to draw with and there is no point
@@ -330,7 +330,7 @@ public final class FontUtil
 		{
 			return null;
 		}
-		// TODO (27.06.2013, Donat, Digireport): Too much heuristics to determine font name and style
+		// TODO (27.06.2013, Donat, Open Software Solutions): Too much heuristics to determine font name and style
 		
 		// ignoring missing font as explained in the Javadoc
 		IFont awtFont = 
@@ -344,7 +344,7 @@ public final class FontUtil
 		
 		if (awtFont == null)
 		{
-			// TODO (27.06.2013, Donat, Digireport): Add support to load fonts from attributes if required
+			// TODO (27.06.2013, Donat, Open Software Solutions): Add support to load fonts from attributes if required
 			throw new JRRuntimeException("The '" + font.getFontName() + " returns a null font.");
 		}
 		else
@@ -363,7 +363,7 @@ public final class FontUtil
 			
 			if (!attributes.isEmpty())
 			{
-				// TODO (27.06.2013, Donat, Digireport): We do set underline and strikethrough at text level
+				// TODO (27.06.2013, Donat, Open Software Solutions): We do set underline and strikethrough at text level
 				logger.warning("Font " + awtFont.getName() + " cannot be decorated with underline or strikethrough");
 //				awtFont = awtFont.deriveFont(attributes);
 			}

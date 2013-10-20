@@ -408,7 +408,7 @@ public class SetNestedPropertiesRule extends AbstractRule {
             if (!allowUnknownChildElements) {
                 // Force an exception if the property does not exist
                 // (BeanUtils.setProperty() silently returns in this case)
-        		// TODO (27, Donat, Digireport): DynaBeans are not supported
+        		// TODO (27, Donat, Open Software Solutions): DynaBeans are not supported
            	if (!IRegistry.getIBeansFactory().newBeansUtils().hasProperty(top, propName)) {
             		throw new NoSuchMethodException
             		("Bean has no property named " + propName);

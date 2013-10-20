@@ -130,7 +130,7 @@ public interface FillContext extends IJRFillExpressionEvaluator
 	 * @see net.sf.jasperreports.engine.JRReport#getResourceBundle()
 	 * @see net.sf.jasperreports.engine.JRParameter#REPORT_RESOURCE_BUNDLE
 	 */
-	// TODO (29.04.2013, Donat, Digireport): Notice ResourceBundle support was removed 
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed 
 //	ResourceBundle getReportResourceBundle();
 	
 	/**

@@ -32,9 +32,9 @@ public interface IDocument extends  ISessionListener {
 	public final static int PERMISSION_EDIT = 16;
 	
 	
-	// TODO (23.05.2013, Digireport, Donat) Verify what is addViewerPreference and the meaning of Scaling (JRPDFExporter 529 - 539)
-	// TODO (23.05.2013, Digireport, Donat) Verify what is createXmpMetadata and setRgbTransparencyBlending (JRPDFExporter 590 - 596)
-	// TODO (23.05.2013, Digireport, Donat)Add PDFA Dictionary support (JRPDFExporter 602 - 619)
+	// TODO (23.05.2013, Open Software Solutions, Donat) Verify what is addViewerPreference and the meaning of Scaling (JRPDFExporter 529 - 539)
+	// TODO (23.05.2013, Open Software Solutions, Donat) Verify what is createXmpMetadata and setRgbTransparencyBlending (JRPDFExporter 590 - 596)
+	// TODO (23.05.2013, Open Software Solutions, Donat)Add PDFA Dictionary support (JRPDFExporter 602 - 619)
 	
 	/**
 	 * Document author

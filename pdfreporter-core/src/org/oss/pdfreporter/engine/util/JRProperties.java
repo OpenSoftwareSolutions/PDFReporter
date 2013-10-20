@@ -150,8 +150,8 @@ public final class JRProperties
 	public static final String QUERY_EXECUTER_FACTORY_PREFIX = PROPERTY_PREFIX + "query.executer.factory.";
 	
 	// FIXME remove volatile after we get rid of restoreProperties()
-	// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
-	// TODO (29.04.2013, Donat, Digireport): Can't we just remove volatile and the restore properties functionality	
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
+	// TODO (29.04.2013, Donat, Open Software Solutions): Can't we just remove volatile and the restore properties functionality	
 	protected static volatile Map<String, String> properties;
 	
 	protected static Map<String, String> savedProps;
@@ -161,7 +161,7 @@ public final class JRProperties
 		initProperties();
 	}
 
-	// TODO (20.07.2013, Donat, Digireport): Hack to reset the extensions environment, forcing a reload of configured extensions 
+	// TODO (20.07.2013, Donat, Open Software Solutions): Hack to reset the extensions environment, forcing a reload of configured extensions 
 	public static void reload() {
 		properties.clear();
 		initProperties();
@@ -193,7 +193,7 @@ public final class JRProperties
 				}
 			}
 
-			// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
+			// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 			properties = new HashMap<String, String>();
 			for (Enumeration<?> names = loadedProps.propertyNames(); names.hasMoreElements();)
 			{
@@ -230,7 +230,7 @@ public final class JRProperties
 		Properties defaults = new Properties();
 		
 		InputStream is = JRLoader.getResourceInputStream("default.jasperreports.properties");
-		// TODO (29.04.2013, Donat, Digireport): Verify if above line is an adequate replacement for JRProperties.class.getResourceAsStream("/default.jasperreports.properties");
+		// TODO (29.04.2013, Donat, Open Software Solutions): Verify if above line is an adequate replacement for JRProperties.class.getResourceAsStream("/default.jasperreports.properties");
 		
 		if (is == null)
 		{
@@ -714,7 +714,7 @@ public final class JRProperties
 					if (prop != null)
 					{
 						value = prop;
-						// TODO (29.04.2013, Donat, Digireport): Problem with j2obj with break to label (break main;)
+						// TODO (29.04.2013, Donat, Open Software Solutions): Problem with j2obj with break to label (break main;)
 						return value;
 					}
 				}

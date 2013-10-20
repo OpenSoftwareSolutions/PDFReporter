@@ -10,7 +10,8 @@ import org.oss.pdfreporter.text.Paragraph;
 import org.oss.pdfreporter.uses.java.awt.text.AttributedString;
 import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator;
 
-import ch.digireport.awt.util.AwtUnmarshallingCharacterIterator;
+import ors.oss.pdfreporter.awt.marshaller.AwtUnmarshallingCharacterIterator;
+
 
 public class LineBreakMeasurer implements ILineBreakMeasurer {
 	

@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class DigireportRepositoryManager {
-	private final static Logger logger = Logger.getLogger(DigireportRepositoryManager.class.getName());
+public class RepositoryManager {
+	private final static Logger logger = Logger.getLogger(RepositoryManager.class.getName());
 	
 	public static final String PATH_DELIMITER = "/";
-	private final static DigireportRepositoryManager INSTANCE = new DigireportRepositoryManager(); 
+	private final static RepositoryManager INSTANCE = new RepositoryManager(); 
 	private final static String DEFAULT_RESOURCE_FOLDER = "./resource/";
 	private final static String DEFAULT_REPORT_FOLDER = "./data/";
 	
 	private final List<String> repositoryFolders;
 	
-	private DigireportRepositoryManager() {
+	private RepositoryManager() {
 		this.repositoryFolders = new ArrayList<String>();
 		reset();
 	}
 
-	public static DigireportRepositoryManager getInstance() {
+	public static RepositoryManager getInstance() {
 		return INSTANCE;
 	}
 	
@@ -69,7 +69,7 @@ public class DigireportRepositoryManager {
 
 	@Override
 	public String toString() {
-		return "DigireportRepositoryManager [repositoryFolders="
+		return "Open Software SolutionsRepositoryManager [repositoryFolders="
 				+ repositoryFolders + "]";
 	}
 }

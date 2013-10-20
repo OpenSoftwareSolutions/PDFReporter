@@ -5,18 +5,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FileResourceLoader implements IURL {
+public class FileUrl implements IURL {
 
 	private final File file;
 	
 	
-	public FileResourceLoader(File file) {
+	public FileUrl(File file) {
 		super();
 		this.file = file;
 	}
 
 
-	public FileResourceLoader(String file) {
+	public FileUrl(String file) {
 		this(new File(file));
 	}
 	

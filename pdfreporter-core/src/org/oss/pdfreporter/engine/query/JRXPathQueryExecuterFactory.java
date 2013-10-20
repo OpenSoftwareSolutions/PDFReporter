@@ -44,7 +44,7 @@ import org.oss.pdfreporter.engine.JasperReportsContext;
 public class JRXPathQueryExecuterFactory extends AbstractQueryExecuterFactory
 {
 	/**
-	 * Built-in parameter holding the value of the ch.digireport.uses.org.w3c.dom.Document used to run the XPath query.
+	 * Built-in parameter holding the value of the org.oss.pdfreporter.uses.org.w3c.dom.Document used to run the XPath query.
 	 */
 	public final static String PARAMETER_XML_DATA_DOCUMENT = "XML_DATA_DOCUMENT";
 	
@@ -94,7 +94,7 @@ public class JRXPathQueryExecuterFactory extends AbstractQueryExecuterFactory
 	public final static String XML_TIME_ZONE = "XML_TIME_ZONE";
 	
 	private final static Object[] XPATH_BUILTIN_PARAMETERS = {
-		PARAMETER_XML_DATA_DOCUMENT,  "ch.digireport.uses.org.w3c.dom.Document",
+		PARAMETER_XML_DATA_DOCUMENT,  "org.oss.pdfreporter.uses.org.w3c.dom.Document",
 		XML_INPUT_STREAM, "java.io.InputStream",
 		XML_FILE, "java.io.File",
 		XML_SOURCE, "java.lang.String",

@@ -61,7 +61,7 @@ public final class JRSaver
 		File file
 		) throws JRException
 	{
-		// TODO (29.04.2013, Donat, Digireport): Add serialization support via XML
+		// TODO (29.04.2013, Donat, Open Software Solutions): Add serialization support via XML
 //		FileOutputStream fos = null;
 //		ObjectOutputStream oos = null;
 //
@@ -114,7 +114,7 @@ public final class JRSaver
 		OutputStream os
 		) throws JRException
 	{
-		// TODO (29.04.2013, Donat, Digireport): Add serialization support via XML
+		// TODO (29.04.2013, Donat, Open Software Solutions): Add serialization support via XML
 //		ObjectOutputStream oos = null;
 //
 //		try

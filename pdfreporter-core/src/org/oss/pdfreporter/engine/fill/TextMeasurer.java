@@ -234,7 +234,7 @@ public class TextMeasurer implements JRTextMeasurer
 		}
 		
 		Context measureContext = new Context();
-		// TODO (28.06.2013, Donat, Digireport): Implement a really simple and fast textline wrapper for single short phrases fitting in one line with no attribute changes
+		// TODO (28.06.2013, Donat, Open Software Solutions): Implement a really simple and fast textline wrapper for single short phrases fitting in one line with no attribute changes
 //		simpleLineWrapper = new SimpleTextLineWrapper();
 //		simpleLineWrapper.init(measureContext);
 		
@@ -450,7 +450,7 @@ public class TextMeasurer implements JRTextMeasurer
 		{
 			//handle last rendered row
 			logger.warning("Truncating last line with overflow is not yet handled correctly.");
-			// TODO (28.06.2013, Donat, Digireport): Move logic to TextLineWrapper
+			// TODO (28.06.2013, Donat, Open Software Solutions): Move logic to TextLineWrapper
 //			processLastTruncatedRow(lineWrapper, lastParagraphText, lastParagraphStart, renderedLine);
 		}
 		

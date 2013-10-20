@@ -37,7 +37,7 @@ import org.oss.pdfreporter.engine.ReportContext;
 
 
 /**
- * TODO (30.03.2013, Magnus, Digireport): Class stays but the implementation will only support reading files from ./ directory locally
+ * TODO (30.03.2013, Magnus, Open Software Solutions): Class stays but the implementation will only support reading files from ./ directory locally
  * since on mobile devices no remote calls for files can be supported - the net could be broken...
  * @author Teodor Danciu (teodord@users.sourceforge.net)
  * @version $Id: RepositoryUtil.java 5346 2012-05-08 12:08:01Z teodord $
@@ -255,7 +255,7 @@ public final class RepositoryUtil
 	 */
 	private InputStream findInputStream(String location) throws JRException
 	{
-		return DigireportFileResourceLoader.getInputStream(location);
+		return FileResourceLoader.getInputStream(location);
 	}
 	
 	
@@ -265,9 +265,9 @@ public final class RepositoryUtil
 	public byte[] getBytesFromLocation(String location) throws JRException
 	{
 		InputStream is = findInputStream(location);
-//		// TODO (12.04.2013, Donat, Digireport): Replace repository with FileResourceLoader
+//		// TODO (12.04.2013, Donat, Open Software Solutions): Replace repository with FileResourceLoader
 //		if (is==null) {			
-//			is = DigireportFileResourceLoader.getInputStream(location);
+//			is = Open Software SolutionsFileResourceLoader.getInputStream(location);
 //		}
 		
 		if (is == null)

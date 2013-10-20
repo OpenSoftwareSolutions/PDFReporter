@@ -131,7 +131,7 @@ public class Document extends AbstractDocument {
 	}
 	
 	private IPage newPage(PageOrientation orientation, Rectangle pageSize) {
-		// TODO (25.05.2013, Donat, Digireport): Verify if rotating is due to iText or Jasper (LANDSCAPE && WIDTH < HEIGHT)
+		// TODO (25.05.2013, Donat, Open Software Solutions): Verify if rotating is due to iText or Jasper (LANDSCAPE && WIDTH < HEIGHT)
 		delegate.setPageSize(orientation==PageOrientation.LANDSCAPE ? pageSize.rotate() : pageSize);
 		delegate.newPage();
 		return new Page(pdfWriter.getDirectContent());
@@ -143,7 +143,7 @@ public class Document extends AbstractDocument {
 	}
 
 	/* (non-Javadoc)
-	 * @see ch.digireport.pdf.IDocument#registerTrueTypeFont(java.lang.String, boolean)
+	 * @see org.oss.pdfreporter.pdf.IDocument#registerTrueTypeFont(java.lang.String, boolean)
 	 * Implementation note: the font is only registered but not attached or embedded 
 	 */
 	@Override
@@ -153,7 +153,7 @@ public class Document extends AbstractDocument {
 	}
 
 	/* (non-Javadoc)
-	 * @see ch.digireport.pdf.IDocument#registerTrueTypeFonts(java.lang.String, boolean)
+	 * @see org.oss.pdfreporter.pdf.IDocument#registerTrueTypeFonts(java.lang.String, boolean)
 	 * Implementation note: the fonts are only registered but not attached or embedded
 	 */
 	@Override

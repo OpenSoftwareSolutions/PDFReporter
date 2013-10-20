@@ -3,7 +3,7 @@ package org.oss.pdfreporter.geometry;
 
 /**
  * Temporary line stroke value object.
- * TODO (27.06.2013, Digireport, Donat) Move functionality to geometry including LineCap and LineJoin from IPage
+ * TODO (27.06.2013, Open Software Solutions, Donat) Move functionality to geometry including LineCap and LineJoin from IPage
  * @author donatmuller, 2013, last change 7:46:46 AM
  * 
  */

@@ -1371,7 +1371,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 *
 	 * @return the report resource bundle
 	 */
-	// TODO (29.04.2013, Donat, Digireport AG): Notice ResourceBundle support was removed 
+	// TODO (29.04.2013, Donat, Open Software Solutions AG): Notice ResourceBundle support was removed 
 
 
 	/**
@@ -1698,7 +1698,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		if (subfillers == null)
 		{
-			// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
+			// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 			subfillers = new HashMap<Integer, JRBaseFiller>();
 		}
 

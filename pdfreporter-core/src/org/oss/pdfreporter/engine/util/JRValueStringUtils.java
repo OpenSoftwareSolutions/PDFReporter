@@ -74,7 +74,7 @@ public final class JRValueStringUtils
 	{
 		serializers = getSerializers();
 		defaultSerializer = null;
-		// TODO (29.04.2013, Donat, Digireport): Notice removed serialization support defaultSerializer = new DefaultSerializer();
+		// TODO (29.04.2013, Donat, Open Software Solutions): Notice removed serialization support defaultSerializer = new DefaultSerializer();
 		
 	}
 	

@@ -50,7 +50,7 @@ public class FillDatasetPosition implements Serializable
 		this.attributes = new LinkedHashMap<String, Object>();
 	}
 	
-	// TODO (23.05.2013, Donat, Digireport): Notice changed Parameter value from Serializable to Object
+	// TODO (23.05.2013, Donat, Open Software Solutions): Notice changed Parameter value from Serializable to Object
 	public void addAttribute(String key, Object value)
 	{
 		attributes.put(key, value == null ? null : value);

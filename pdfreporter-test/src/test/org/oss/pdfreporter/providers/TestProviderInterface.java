@@ -1,4 +1,4 @@
-package test.ch.digireport.jasper.providers;
+package test.org.oss.pdfreporter.providers;
 
 public interface TestProviderInterface {
 	public String inputPath(String input);

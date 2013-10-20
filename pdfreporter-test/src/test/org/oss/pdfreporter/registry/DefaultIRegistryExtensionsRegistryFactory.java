@@ -1,4 +1,4 @@
-package test.ch.digireport.jasper.registry;
+package test.org.oss.pdfreporter.registry;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -38,7 +38,7 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 		}
 	}
 	
-	// TODO (20.07.2013, Donat, Digireport): Find a better place to initialize the factories. 
+	// TODO (20.07.2013, Donat, Open Software Solutions): Find a better place to initialize the factories. 
 	// This is a static configuration that will not change. Whereas extension registries and properties can change on a report base and should therefore be discarded for each run.
 	synchronized private void initializeIRegistry() {
 		if (!isInitialized) {

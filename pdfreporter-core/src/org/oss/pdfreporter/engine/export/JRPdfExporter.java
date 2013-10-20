@@ -667,10 +667,10 @@ public class JRPdfExporter extends JRAbstractExporter
 	{
 //		Map<Attribute,Object> attributes = new HashMap<Attribute,Object>();
 //		FontUtil.getInstance(jasperReportsContext).getAttributesWithoutAwtFont(attributes, new JRBasePrintText(jasperPrint.getDefaultStyleProvider()));
-//		// TODO (28.03.2013, Donat, Digireport): Think about AWT and PDFFont representation and mapping
+//		// TODO (28.03.2013, Donat, Open Software Solutions): Think about AWT and PDFFont representation and mapping
 //		Font pdfFont = getFont(attributes, getLocale(), false);
 //		Chunk chunk = new Chunk(" ", pdfFont);
-//		// TODO (28.03.2013, Donat, Digireport): Implement and use Chunks and Phrases
+//		// TODO (28.03.2013, Donat, Open Software Solutions): Implement and use Chunks and Phrases
 //		// IChunk chunk = IRegistry.getITextFactory().newChunk(" ", pdfFont);
 //		
 //		chunk.setLocalDestination(JR_PAGE_ANCHOR_PREFIX + reportIndex + "_" + (pageIndex + 1));
@@ -1108,7 +1108,7 @@ public class JRPdfExporter extends JRAbstractExporter
 	/**
 	 *
 	 */
-	// TODO (15.06.2013, Donat, Digireport): Replace Image loading with new Factory
+	// TODO (15.06.2013, Donat, Open Software Solutions): Replace Image loading with new Factory
 	public void exportImage(JRPrintImage printImage) throws DocumentException, IOException,  JRException
 	{
 		if (printImage.getModeValue() == ModeEnum.OPAQUE)
@@ -1302,7 +1302,7 @@ public class JRPdfExporter extends JRAbstractExporter
 	/**
 	 *
 	 */
-	// TODO (25.06.2013, Donat, Digireport): Add Hyperlink support later
+	// TODO (25.06.2013, Donat, Open Software Solutions): Add Hyperlink support later
 //	protected void setHyperlinkInfo(Chunk chunk, JRPrintHyperlink link)
 //	{
 //		if (link != null)
@@ -1432,7 +1432,7 @@ public class JRPdfExporter extends JRAbstractExporter
 
 		IAttributedCharacterIterator iterator = as.getIterator();
 		
-		// TODO (15.06.2013, Donat, Digireport): Add locale support later
+		// TODO (15.06.2013, Donat, Open Software Solutions): Add locale support later
 //		Locale locale = getTextLocale(textElement);
 		 
 		boolean firstText = true;
@@ -1441,14 +1441,14 @@ public class JRPdfExporter extends JRAbstractExporter
 			Map<Attribute,Object> attributes = iterator.getAttributes();
 			ParagraphText paragraphText = getParagrapghText(attributes, text.substring(iterator.getIndex(), runLimit));
 			
-			// TODO (15.06.2013, Donat, Digireport): Add Bookmark support later
+			// TODO (15.06.2013, Donat, Open Software Solutions): Add Bookmark support later
 			if (firstText)
 			{
 				// only set anchor + bookmark for the first chunk in the text
 //				setAnchor(chunk, textElement, textElement);
 			}
 			
-			// TODO (25.06.2013, Donat, Digireport): Add Hyperlink support later
+			// TODO (25.06.2013, Donat, Open Software Solutions): Add Hyperlink support later
 //			JRPrintHyperlink hyperlink = textElement;
 //			if (hyperlink.getHyperlinkTypeValue() == HyperlinkTypeEnum.NONE)
 //			{
@@ -1471,7 +1471,7 @@ public class JRPdfExporter extends JRAbstractExporter
 	 */
 	protected ParagraphText getParagrapghText(Map<Attribute,Object> attributes, String text)
 	{
-		// TODO (27.06.2013, Donat, Digireport): Use AttributedStringConverter
+		// TODO (27.06.2013, Donat, Open Software Solutions): Use AttributedStringConverter
 		// size, style, underline and strikethrough are set on the font below
 		org.oss.pdfreporter.font.IFont font = getFont(attributes);
 		IColor forecolor = (IColor)attributes.get(TextAttribute.FOREGROUND);
@@ -1481,7 +1481,7 @@ public class JRPdfExporter extends JRAbstractExporter
 		IPositionedLine line = underline ? PositionedLined.newUnderline() : strikethrough ? PositionedLined.newStrikethrough() : null;
 		return new ParagraphText(text,font,forecolor,backcolor,line);
 		
-// TODO (15.04.2013, Donat, Digireport): Add text raise to the IPage API (use leadingfactor 1.25 * fontsize to calc offset)
+// TODO (15.04.2013, Donat, Open Software Solutions): Add text raise to the IPage API (use leadingfactor 1.25 * fontsize to calc offset)
 //		Object script = attributes.get(TextAttribute.SUPERSCRIPT);
 //		if (script != null)
 //		{
@@ -1521,7 +1521,7 @@ public class JRPdfExporter extends JRAbstractExporter
 
 	protected org.oss.pdfreporter.font.IFont getFont(Map<Attribute,Object> attributes)
 	{
-		// TODO (15.06.2013, Donat, Digireport): Font loading is done elsewhere so the following translation is not required here
+		// TODO (15.06.2013, Donat, Open Software Solutions): Font loading is done elsewhere so the following translation is not required here
 		// FontInfo fontInfo = FontUtil.getInstance(jasperReportsContext).getFontInfo(jrFont.getFontName(), locale);
 		
 		JRFont jrFont = new JRBaseFont(attributes);
@@ -1538,7 +1538,7 @@ public class JRPdfExporter extends JRAbstractExporter
 		if (logger.isLoggable(Level.FINEST)) {
 			logger.finest("X: " + text.getX() + ", Y: " + text.getY() + ", Width: " + text.getWidth() + ", Height: " + text.getTextHeight() + ", Text: ['" + text.getFullText() + "']");
 		}
-		// NOTICE (04.07.2013, Donat, Digireport): SimpleTextLineWrapper lead to SimplePdfTextRenderer and ComplexTExtLineWrapper lead to PdfTextRenderer
+		// NOTICE (04.07.2013, Donat, Open Software Solutions): SimpleTextLineWrapper lead to SimplePdfTextRenderer and ComplexTExtLineWrapper lead to PdfTextRenderer
 		AbstractPdfTextRenderer textRenderer = 
 			text.getLeadingOffset() == 0 
 			? new PdfTextRenderer(
@@ -1614,7 +1614,7 @@ public class JRPdfExporter extends JRAbstractExporter
 //			tagHelper.endText();
 		}
 
-		// TODO (15.06.2013, Donat, Digireport): We have the restore function that can undo a transformation instead of reverse transforming
+		// TODO (15.06.2013, Donat, Open Software Solutions): We have the restore function that can undo a transformation instead of reverse transforming
 //		atrans = IRegistry.getAwtFactory().newAffineTransform();
 //		atrans.rotate(-angle, textRenderer.getX(), jasperPrint.getPageHeight() - textRenderer.getY());
 //		pdfPage.transform(AwtUnmarshaller.getAffineTransform(atrans));
@@ -1900,7 +1900,7 @@ public class JRPdfExporter extends JRAbstractExporter
     	IFontManager fontManager = fontFactory.getFontManager();
     	FontStyle style = font.isBold() && font.isItalic() ? FontStyle.BOLD_OBLIQUE : font.isBold() ? FontStyle.BOLD : font.isItalic() ? FontStyle.OBLIQUE : FontStyle.PLAIN;
     	org.oss.pdfreporter.font.IFont pdfFont = fontManager.getFont(font.getFontName(), style);
-    	// TODO (27.06.2013, Donat, Digireport): Remove find font after migration of code
+    	// TODO (27.06.2013, Donat, Open Software Solutions): Remove find font after migration of code
     	if (pdfFont==null) {
     		pdfFont = fontManager.findFont(font.getFontName(), style);
     	}
@@ -1922,7 +1922,7 @@ public class JRPdfExporter extends JRAbstractExporter
 	/**
 	 *
 	 */
-	// TODO (15.06.2013, Donat, Digireport): Add support for all LineCap styles
+	// TODO (15.06.2013, Donat, Open Software Solutions): Add support for all LineCap styles
 	private static void preparePen(IPage aPdfPage, JRPen pen, LineCap lineCap)
 	{
 		float lineWidth = pen.getLineWidth().floatValue();
@@ -1993,8 +1993,8 @@ public class JRPdfExporter extends JRAbstractExporter
 	protected static synchronized void registerFonts ()
 	{
 //		IFontManager fontManager = ApiRegistry.getFontFactory().getFontManager();
-		// TODO (15.06.2013, Donat, Digireport): @see FontReportSample for alias feature, perhaps add an API method to register alias name for a font
-		// TODO (15.06.2013, Donat, Digireport): Change font loading so that XML when font specification is read the font manager is called to load the basic font styles
+		// TODO (15.06.2013, Donat, Open Software Solutions): @see FontReportSample for alias feature, perhaps add an API method to register alias name for a font
+		// TODO (15.06.2013, Donat, Open Software Solutions): Change font loading so that XML when font specification is read the font manager is called to load the basic font styles
 //		if (!fontsRegistered)
 //		{
 //			List<PropertySuffix> fontFiles = JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getProperties(PDF_FONT_FILES_PREFIX);//FIXMECONTEXT no default here and below
@@ -2030,7 +2030,7 @@ public class JRPdfExporter extends JRAbstractExporter
 //		}
 	}
 
-	// TODO (15.06.2013, Donat, Digireport): Add Bookmark support later
+	// TODO (15.06.2013, Donat, Open Software Solutions): Add Bookmark support later
 /*
 	static protected class Bookmark
 	{

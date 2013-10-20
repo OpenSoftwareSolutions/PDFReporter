@@ -52,7 +52,7 @@ public class DefaultExtensionsRegistryFactory implements ExtensionsRegistryFacto
 				}
 				else if (MessageProviderFactory.class.equals(extensionType))
 				{
-					// TODO (29.04.2013, Donat, Digireport): Notice ResourceBundle support was removed ResourceBundleMessageProviderFactory
+					// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed ResourceBundleMessageProviderFactory
 					throw new RuntimeException("ResourceBundle support was removed.");
 				}
 				return null;

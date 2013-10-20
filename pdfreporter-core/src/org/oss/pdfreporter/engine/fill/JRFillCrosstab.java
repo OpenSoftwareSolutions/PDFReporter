@@ -519,7 +519,7 @@ public class JRFillCrosstab extends JRFillElement implements JRCrosstab, JROrigi
 				false//hasFormatFactory
 				);
 		
-		// TODO (29.04.2013, Donat, Digireport): Revisit ResourceBundle, extract platform independent concept for translatable Strings  
+		// TODO (29.04.2013, Donat, Open Software Solutions): Revisit ResourceBundle, extract platform independent concept for translatable Strings  
 ///		ResourceBundle resBdl = (ResourceBundle) parameterValues.get(JRParameter.REPORT_RESOURCE_BUNDLE);
 //		if (resBdl == null)
 //		{

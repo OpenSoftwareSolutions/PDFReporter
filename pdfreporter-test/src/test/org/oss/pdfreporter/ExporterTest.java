@@ -1,4 +1,4 @@
-package test.ch.digireport.jasper;
+package test.org.oss.pdfreporter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +10,11 @@ import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.pdf.IDocument;
-import org.oss.pdfreporter.repo.DigireportRepositoryManager;
+import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
 
-import test.ch.digireport.jasper.providers.JavaTestProvider;
-import test.ch.digireport.jasper.providers.TestProviderInterface;
+import test.org.oss.pdfreporter.providers.JavaTestProvider;
+import test.org.oss.pdfreporter.providers.TestProviderInterface;
 
 
 public class ExporterTest {
@@ -187,11 +187,11 @@ public class ExporterTest {
 	}
 	
 	private ReportExporter getExporter(String reportFolder, String extraFolder) {
-		DigireportRepositoryManager repo = DigireportRepositoryManager.getInstance();
+		RepositoryManager repo = RepositoryManager.getInstance();
 		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
-		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + reportFolder));
+		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + RepositoryManager.PATH_DELIMITER + reportFolder));
 		if (null != extraFolder) {
-			repo.addExtraReportFolder(inputPath(JRXML_REPORT_FOLDER + DigireportRepositoryManager.PATH_DELIMITER + extraFolder));
+			repo.addExtraReportFolder(inputPath(JRXML_REPORT_FOLDER + RepositoryManager.PATH_DELIMITER + extraFolder));
 		}
 		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 		

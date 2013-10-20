@@ -60,7 +60,7 @@ public class DefaultJasperReportsContext implements JasperReportsContext
 	 */
 	private static final DefaultJasperReportsContext INSTANCE = new DefaultJasperReportsContext();
 	
-	// TODO (29.04.2013, Donat, Digireport): Notice single threaded application no concurrency support
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application no concurrency support
 	private Map<String, Object> values = new HashMap<String, Object>();// assume low update concurrency
 
 	// FIXME remove volatile after we get rid of restoreProperties()
@@ -151,7 +151,7 @@ public class DefaultJasperReportsContext implements JasperReportsContext
 		Properties defaults = new Properties();
 		
 		InputStream is = JRLoader.getResourceInputStream("default.jasperreports.properties");
-		// TODO (29.04.2013, Donat, Digireport): Verify if above line is an adequate replacement for JRPropertiesUtil.class.getResourceAsStream("/default.jasperreports.properties");
+		// TODO (29.04.2013, Donat, Open Software Solutions): Verify if above line is an adequate replacement for JRPropertiesUtil.class.getResourceAsStream("/default.jasperreports.properties");
 		
 		if (is == null)
 		{

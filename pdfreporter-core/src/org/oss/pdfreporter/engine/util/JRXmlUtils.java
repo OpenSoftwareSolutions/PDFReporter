@@ -75,7 +75,7 @@ public final class JRXmlUtils
 		}
 	}
 	
-	// TODO (26.04.2013, Donat, Digireport): Not supported feature: static Document parse(String uri,  boolean isNamespaceAware) throws JRException
+	// TODO (26.04.2013, Donat, Open Software Solutions): Not supported feature: static Document parse(String uri,  boolean isNamespaceAware) throws JRException
 	
 
 	
@@ -128,7 +128,7 @@ public final class JRXmlUtils
 	}
 
 
-	// TODO (26.04.2013, Donat, Digireport): Not supported feature: static Document parse(IURL url, boolean isNamespaceAware) throws JRException
+	// TODO (26.04.2013, Donat, Open Software Solutions): Not supported feature: static Document parse(IURL url, boolean isNamespaceAware) throws JRException
 
 
 	public static IDocumentBuilder createDocumentBuilder() throws JRException

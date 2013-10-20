@@ -107,7 +107,7 @@ public class JRJdbcQueryExecuter extends JRAbstractQueryExecuter
 
 	protected IResultSet resultSet;
 	
-	// TODO (20.06.2013, Donat, Digireport): No cached row set support
+	// TODO (20.06.2013, Donat, Open Software Solutions): No cached row set support
 	private boolean isCachedRowSet;
 
 	private TimeZone timeZone;
@@ -202,7 +202,7 @@ public class JRJdbcQueryExecuter extends JRAbstractQueryExecuter
 		{
 			try
 			{
-				// NOTICE (20.06.2013, Donat, Digireport): No cached row set support
+				// NOTICE (20.06.2013, Donat, Open Software Solutions): No cached row set support
 				resultSet = statement.executeQuery();
 				dataSource = new JRResultSetDataSource(getJasperReportsContext(), resultSet);
 				dataSource.setTimeZone(timeZone, timeZoneOverride);
@@ -230,7 +230,7 @@ public class JRJdbcQueryExecuter extends JRAbstractQueryExecuter
 		{
 			try
 			{
-				// TODO (20.06.2013, Donat, Digireport): No cached result set type, concurrency, holdability, fetch size and max field size, max row size support
+				// TODO (20.06.2013, Donat, Open Software Solutions): No cached result set type, concurrency, holdability, fetch size and max field size, max row size support
 //				String type = getPropertiesUtil().getProperty(dataset,	JRJdbcQueryExecuterFactory.PROPERTY_JDBC_RESULT_SET_TYPE);
 //				String concurrency = getPropertiesUtil().getProperty(dataset, JRJdbcQueryExecuterFactory.PROPERTY_JDBC_CONCURRENCY);
 //				String holdability = getPropertiesUtil().getProperty(dataset, JRJdbcQueryExecuterFactory.PROPERTY_JDBC_HOLDABILITY);
@@ -395,7 +395,7 @@ public class JRJdbcQueryExecuter extends JRAbstractQueryExecuter
 	
 	protected void setStatementParameter(int parameterIndex, Class<?> parameterType, Object parameterValue) throws SQLException
 	{
-		// NOTICE (20.06.2013, Donat, Digireport): Boolean should translate to 1 char
+		// NOTICE (20.06.2013, Donat, Open Software Solutions): Boolean should translate to 1 char
 		if (java.lang.Boolean.class.isAssignableFrom(parameterType))
 		{
 			if (parameterValue == null)
@@ -507,7 +507,7 @@ public class JRJdbcQueryExecuter extends JRAbstractQueryExecuter
 		{
 			statement.setNull(parameterIndex, SqlType.DATE);
 		}
-		// NOTICE (20.06.2013, Donat, Digireport): No custom types support
+		// NOTICE (20.06.2013, Donat, Open Software Solutions): No custom types support
 	}
 
 

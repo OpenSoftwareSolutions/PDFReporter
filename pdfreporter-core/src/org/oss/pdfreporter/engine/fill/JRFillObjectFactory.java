@@ -972,6 +972,6 @@ public class JRFillObjectFactory extends JRAbstractFillObjectFactory
 		setVisitResult(fill);
 	}
 
-	// TODO (21.03.2013, Donat, Digireport): Refactoring JFreeChart reactivate removed chart packages, see original class for the job
+	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart reactivate removed chart packages, see original class for the job
 
 }

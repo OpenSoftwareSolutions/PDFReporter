@@ -39,7 +39,7 @@ import org.oss.pdfreporter.registry.ApiRegistry;
  * @version $Id: JRPrintImageArea.java 5180 2012-03-29 13:23:12Z teodord $
  * @see JRPrintImageAreaHyperlink
  */
-// TODO (28.06.2013, Donat, Digireport): Remove class no printing support
+// TODO (28.06.2013, Donat, Open Software Solutions): Remove class no printing support
 public class JRPrintImageArea implements Serializable
 {
 

@@ -142,7 +142,7 @@ public final class GenericElementHandlerEnviroment
 			String namespace = bundle.getNamespace();
 			if (bundles.containsKey(namespace))
 			{
-				// TODO (12.04.2013, Donat, Digireport): optional logging warn("Found two generic element handler bundles for namespace " + namespace);
+				// TODO (12.04.2013, Donat, Open Software Solutions): optional logging warn("Found two generic element handler bundles for namespace " + namespace);
 			}
 			else
 			{

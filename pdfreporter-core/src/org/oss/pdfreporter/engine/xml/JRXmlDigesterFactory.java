@@ -372,7 +372,7 @@ public final class JRXmlDigesterFactory
 		digester.addCallMethod("*/subreport/subreportParameter/subreportParameterExpression", "setText", 0);
 
 		/*   */
-		// TODO (29.04.2013, Donat, Digireport): Notice java.sql.Connection support removed		
+		// TODO (29.04.2013, Donat, Open Software Solutions): Notice java.sql.Connection support removed		
 		digester.addFactoryCreate("*/connectionExpression", JRExpressionFactory.ConnectionExpressionFactory.class.getName());
 		digester.addSetNext("*/connectionExpression", "setConnectionExpression", JRExpression.class.getName());
 		digester.addCallMethod("*/connectionExpression", "setText", 0);
@@ -391,9 +391,9 @@ public final class JRXmlDigesterFactory
 		digester.addFactoryCreate("*/elementGroup", JRElementGroupFactory.class.getName());
 		digester.addSetNext("*/elementGroup", "addElementGroup", JRDesignElementGroup.class.getName());
 
-		// TODO (13.06.2013, Donat, Digireport): Remove when reenabling Charting
+		// TODO (13.06.2013, Donat, Open Software Solutions): Remove when reenabling Charting
 		addPreDatasetRules(digester);
-		// TODO (21.03.2013, Donat, Digireport): Refactoring JFreeChart uncomment addChartRules for charting		
+		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
 //		addChartRules(digester);
 
 		addDatasetRules(digester);
@@ -406,7 +406,7 @@ public final class JRXmlDigesterFactory
 		
 		addGenericElementRules(digester);
 		
-		// TODO (21.03.2013, Donat, Digireport): Refactoring JFreeChart uncomment addChartRules for charting		
+		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
 ///		addMultiAxisDataRules(digester);
 	}
 
@@ -458,7 +458,7 @@ public final class JRXmlDigesterFactory
 	/**
 	 *
 	 */
-	// TODO (21.03.2013, Donat, Digireport): Refactoring JFreeChart reactivate digester rules for charting		
+	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart reactivate digester rules for charting		
 //	private static void addChartRules(Digester digester)
 //	{
 //		digester.addFactoryCreate("*/dataset", JRElementDatasetFactory.class.getName());
@@ -1236,7 +1236,7 @@ public final class JRXmlDigesterFactory
 	}
 
 
-	// TODO (21.03.2013, Donat, Digireport): Refactoring JFreeChart uncomment addChartRules for charting		
+	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
 ///	private static void addMultiAxisDataRules(Digester digester)
 //	{
 //		String dataPattern = "*/" + JRXmlConstants.ELEMENT_multiAxisData;

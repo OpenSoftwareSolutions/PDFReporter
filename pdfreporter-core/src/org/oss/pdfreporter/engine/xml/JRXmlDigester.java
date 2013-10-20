@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.oss.pdfreporter.registry.IRegistry;
-import org.oss.pdfreporter.repo.DigireportFileResourceLoader;
+import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.uses.org.apache.digester.DelegatingAbstractDigester;
 import org.oss.pdfreporter.uses.org.apache.digester.IDigester;
 import org.oss.pdfreporter.xml.parsers.IInputSource;
@@ -124,11 +124,11 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 			
 			if (resource == null)
 			{
-				// TODO (25.04.2013, Donat, Digireport): Implement IInputSource with systemId
+				// TODO (25.04.2013, Donat, Open Software Solutions): Implement IInputSource with systemId
 				throw new RuntimeException("Unknown entity resource with ID: " + systemId);
 			}
 
-			InputStream is = DigireportFileResourceLoader.getInputStream(resource);
+			InputStream is = FileResourceLoader.getInputStream(resource);
 			
 			if (is != null)
 			{

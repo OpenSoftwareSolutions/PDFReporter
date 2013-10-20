@@ -1,4 +1,4 @@
-package ch.digireport.awt.util;
+package ors.oss.pdfreporter.awt.marshaller;
 
 import java.lang.reflect.Field;
 import java.util.AbstractMap;
@@ -40,7 +40,7 @@ public class AwtTextAttributeUnmarshaller {
 			nameField.setAccessible(true);
 			String awtName = (String) nameField.get(a);
 			
-			// Access the private instanceMap field of ch.digireport.awt.font.TextAttribut
+			// Access the private instanceMap field of org.oss.pdfreporter.awt.font.TextAttribut
 			Field instanceMapField = TextAttribute.class.getDeclaredField("instanceMap");
 			instanceMapField.setAccessible(true);
 			Map drMap = (Map) instanceMapField.get(null);
@@ -110,7 +110,7 @@ public class AwtTextAttributeUnmarshaller {
 			instanceMapField.setAccessible(true);
 			Map awtInstanceMap = (Map) instanceMapField.get(null);
 			
-			// Access the private name field of ch.digireport.awt.font.TextAttribut
+			// Access the private name field of org.oss.pdfreporter.awt.font.TextAttribut
 			Field nameField = a.getClass().getSuperclass().getDeclaredField("name");
 			nameField.setAccessible(true);
 			String drName = (String) nameField.get(a);

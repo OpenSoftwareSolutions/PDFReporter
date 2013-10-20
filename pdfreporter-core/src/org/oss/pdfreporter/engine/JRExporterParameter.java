@@ -216,7 +216,7 @@ public class JRExporterParameter
 
 	
 	public static final JRExporterParameter URL_HANDLER_FACTORY = new JRExporterParameter("IURL Handler Factory");
-	// TODO (29.04.2013, Donat, Digireport): Notice URLStreamHandlerFactory support was removed	
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice URLStreamHandlerFactory support was removed	
 
 	
 	/**

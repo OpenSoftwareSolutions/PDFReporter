@@ -1,4 +1,4 @@
-package test.ch.digireport.jasper;
+package test.org.oss.pdfreporter;
 
 import java.io.Closeable;
 import java.io.InputStream;
@@ -18,7 +18,7 @@ import org.oss.pdfreporter.engine.data.JRXmlDataSource;
 import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.registry.ApiRegistry;
-import org.oss.pdfreporter.repo.DigireportFileResourceLoader;
+import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.sql.IConnection;
 import org.oss.pdfreporter.sql.factory.ISqlFactory;
 
@@ -74,7 +74,7 @@ public class ReportExporter {
 	public JasperDesign loadReport(String reportFileName) throws Exception {
 		InputStream isReport = null;
 		try {
-			isReport = DigireportFileResourceLoader.getInputStream(reportFileName);
+			isReport = FileResourceLoader.getInputStream(reportFileName);
 			return JRXmlLoader.load(isReport);
 		} finally {
 			close(isReport);
@@ -92,7 +92,7 @@ public class ReportExporter {
 			if (xmlDataFile == null) {
 				dataSource = new JREmptyDataSource();
 			} else {
-				isXmlData = DigireportFileResourceLoader.getInputStream(xmlDataFile);
+				isXmlData = FileResourceLoader.getInputStream(xmlDataFile);
 				JRXmlDataSource xmlDataSource = new JRXmlDataSource(isXmlData, xmlXpath);
 				xmlDataSource.setDatePattern("yyyy-MM-dd");
 				dataSource = xmlDataSource;

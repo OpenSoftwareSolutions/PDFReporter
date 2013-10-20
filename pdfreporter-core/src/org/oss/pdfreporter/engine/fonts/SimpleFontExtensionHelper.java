@@ -87,7 +87,7 @@ public final class SimpleFontExtensionHelper implements XMLErrorHandler
 	/**
 	 * Thread local soft cache of instances.
 	 */
-	// TODO (29.04.2013, Donat, Digireport): Notice single threaded application SoftReference are static
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice single threaded application SoftReference are static
 	private static SimpleFontExtensionHelper instance = null;
 	
 	/**

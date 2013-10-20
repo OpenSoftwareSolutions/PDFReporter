@@ -1029,7 +1029,7 @@ public final class JasperFillManager
 		fileResolver.setResolveAbsolutePath(true);
 		
 		LocalJasperReportsContext localJasperReportsContext = new LocalJasperReportsContext(jasperReportsContext);
-		// TODO (01.04.2013, Magnus, Digireport AG): the file resolver was removed since we will only have local behavior on the 
+		// TODO (01.04.2013, Magnus, Open Software Solutions AG): the file resolver was removed since we will only have local behavior on the 
 		// devices
 		//localJasperReportsContext.setFileResolver(fileResolver);
 		jasperReportsContext = localJasperReportsContext;

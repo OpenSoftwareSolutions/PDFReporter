@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.oss.pdfreporter.net.FileResourceLoader;
+import org.oss.pdfreporter.net.FileUrl;
 import org.oss.pdfreporter.net.IURL;
 import org.oss.pdfreporter.net.MalformedURLException;
 import org.oss.pdfreporter.registry.IRegistry;
 
 
-public class DigireportFileResourceLoader {
-	private static final Logger logger = Logger.getLogger(DigireportFileResourceLoader.class.getName());
+public class FileResourceLoader {
+	private static final Logger logger = Logger.getLogger(FileResourceLoader.class.getName());
 	private final static String URL_MATCH = "^[a-z]+://.*";
 	
 	public static InputStream getInputStream(String resourceName) {
@@ -36,7 +36,7 @@ public class DigireportFileResourceLoader {
 
 	public static IURL getURL(String resourceName) {
 		try {
-			// TODO (17.05.2013, Martin, Digireport): The regular expression fails with an error , find out why
+			// TODO (17.05.2013, Martin, Open Software Solutions): The regular expression fails with an error , find out why
 			if (resourceName.matches(URL_MATCH)) {
 				return IRegistry.getINetFactory().newURL(resourceName);
 			}
@@ -50,20 +50,20 @@ public class DigireportFileResourceLoader {
 	}
 	
 	public static List<IURL> getConfiguredFileResources() {
-		return new DelegatingUrlList(findFiles(DigireportRepositoryManager.getInstance().getRepositoryFolders(), new AccepptAll(),false));
+		return new DelegatingUrlList(findFiles(RepositoryManager.getInstance().getRepositoryFolders(), new AccepptAll(),false));
 	}
 	
 	public static List<IURL> findConfiguredFileResources(String resource) {
-		return new DelegatingUrlList(findFiles(DigireportRepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),false));
+		return new DelegatingUrlList(findFiles(RepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),false));
 	}
 	
 	public static List<FileSystemResource> findConfiguredFileSystemResources(String resource) {
-		return new DelegatingFileSystemResourceList(findFiles(DigireportRepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),false));
+		return new DelegatingFileSystemResourceList(findFiles(RepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),false));
 	}
 
 	public static IURL findFirstConfiguredFileResource(String resource) {
-		List<File> files = findFiles(DigireportRepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),true);
-		return files.isEmpty() ? null : new FileResourceLoader(files.get(0));
+		List<File> files = findFiles(RepositoryManager.getInstance().getRepositoryFolders(), new FileResourceFilter(resource),true);
+		return files.isEmpty() ? null : new FileUrl(files.get(0));
 	}
 	
 	
@@ -108,7 +108,7 @@ public class DigireportFileResourceLoader {
 		
 		public FileResourceFilter(String resource) {
 			super();
-			int idx = resource.lastIndexOf(DigireportRepositoryManager.PATH_DELIMITER);
+			int idx = resource.lastIndexOf(RepositoryManager.PATH_DELIMITER);
 			if (idx>=0) {
 				file = resource.substring(idx + 1);
 				path = resource.substring(0,idx);
@@ -125,7 +125,7 @@ public class DigireportFileResourceLoader {
 
 		@Override
 		public String toString() {
-			return (path==null ? file : path + DigireportRepositoryManager.PATH_DELIMITER + file);
+			return (path==null ? file : path + RepositoryManager.PATH_DELIMITER + file);
 		}
 	}
 	
@@ -154,7 +154,7 @@ public class DigireportFileResourceLoader {
 
 		@Override
 		public IURL get(int index) {
-			return new FileResourceLoader(delegate.get(index));
+			return new FileUrl(delegate.get(index));
 		}
 
 		@Override

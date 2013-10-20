@@ -105,7 +105,7 @@ public interface JRParameter extends JRPropertiesHolder, JRCloneable
 	public static final String REPORT_CLASS_LOADER = "REPORT_CLASS_LOADER";
 
 	
-	// TODO (29.04.2013, Donat, Digireport): Notice URLStreamHandlerFactory support was removed	
+	// TODO (29.04.2013, Donat, Open Software Solutions): Notice URLStreamHandlerFactory support was removed	
 
 
 	/**

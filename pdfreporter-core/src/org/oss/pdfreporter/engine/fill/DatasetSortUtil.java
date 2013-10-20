@@ -225,7 +225,7 @@ public class DatasetSortUtil
 class DataSourceComparator implements Comparator<Integer>
 {
 	private static final Logger logger = Logger.getLogger(DataSourceComparator.class.getName());
-// TODO (23.05.2013, Donat, Digireport): Reintroduce locale aware sorting with Collator in later version
+// TODO (23.05.2013, Donat, Open Software Solutions): Reintroduce locale aware sorting with Collator in later version
 //	Collator collator;
 	SortFieldInfo[] sortFieldInfo;
 	private final List<SortedDataSource.SortRecord> records;
@@ -233,7 +233,7 @@ class DataSourceComparator implements Comparator<Integer>
 	public DataSourceComparator(SortFieldInfo[] sortFieldInfo, Locale locale, 
 			List<SortedDataSource.SortRecord> records)
 	{
-// TODO (23.05.2013, Donat, Digireport): Reintroduce locale aware sorting with Collator in later version
+// TODO (23.05.2013, Donat, Open Software Solutions): Reintroduce locale aware sorting with Collator in later version
 //		this.collator = Collator.getInstance(locale);
 		for (SortFieldInfo sfi : sortFieldInfo)	{
 			if (sfi.collatorFlag) {
@@ -271,7 +271,7 @@ class DataSourceComparator implements Comparator<Integer>
 			}
 			else
 			{
-// TODO (23.05.2013, Donat, Digireport): Reintroduce locale aware sorting with Collator in later version
+// TODO (23.05.2013, Donat, Open Software Solutions): Reintroduce locale aware sorting with Collator in later version
 //				if (info.collatorFlag)
 //				{
 //					ret = collator.compare(field1, field2);
