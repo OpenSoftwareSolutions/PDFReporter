@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agent" language="jeval" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agent" language="jeval" printOrder="Horizontal" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="60"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[select * from media m, agent b, domain_realestate, subdomain_appartment, role_newlessee where m.IMAGE_ID = b.a_logo]]>
 	</queryString>
@@ -43,314 +42,314 @@
 		<variableExpression><![CDATA[$F{MEDIA}]]></variableExpression>
 	</variable>
 	<title>
-		<band height="516" splitType="Stretch">
+		<band height="477" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="44f815dd-2533-4608-9045-652627f76337" x="2" y="2" width="488" height="35"/>
+				<reportElement uuid="44f815dd-2533-4608-9045-652627f76337" x="1" y="0" width="488" height="22"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Helvetica" size="11" isBold="true"/>
+					<font fontName="HelveticaWorld" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Liegenschaftsverwaltung]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="a02f1cee-af3e-4b6e-83b8-809ccf3d54de" x="3" y="30" width="516" height="1"/>
+				<reportElement uuid="a02f1cee-af3e-4b6e-83b8-809ccf3d54de" x="1" y="22" width="517" height="1"/>
 			</line>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="93229428-6f86-485c-82f6-20c4bb897f21" isPrintRepeatedValues="false" x="75" y="61" width="214" height="20"/>
+				<reportElement uuid="93229428-6f86-485c-82f6-20c4bb897f21" isPrintRepeatedValues="false" x="71" y="56" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="3d974247-152c-491a-ae07-bf74630c17d9" x="75" y="40" width="214" height="20"/>
+				<reportElement uuid="3d974247-152c-491a-ae07-bf74630c17d9" x="71" y="35" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_COMPANYNAME}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="16fdfd51-1348-48af-8cac-cd2fb5d004e7" x="75" y="82" width="214" height="20"/>
+				<reportElement uuid="16fdfd51-1348-48af-8cac-cd2fb5d004e7" x="71" y="77" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="f739c71e-613f-465c-8a1c-56486e9c49dc" x="75" y="122" width="214" height="20"/>
+				<reportElement uuid="f739c71e-613f-465c-8a1c-56486e9c49dc" x="71" y="117" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_CITY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="6e29b6a1-4c7b-4e14-8946-f96f173d351a" x="75" y="102" width="214" height="20"/>
+				<reportElement uuid="6e29b6a1-4c7b-4e14-8946-f96f173d351a" x="71" y="97" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_ZIP}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="99240d62-c589-47e0-bb9d-cfbd446dbae3" x="2" y="41" width="68" height="20"/>
+				<reportElement uuid="99240d62-c589-47e0-bb9d-cfbd446dbae3" x="1" y="35" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Firma]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7934ccf2-f728-4b63-a9fb-1af9b246ebbd" x="2" y="61" width="68" height="20"/>
+				<reportElement uuid="7934ccf2-f728-4b63-a9fb-1af9b246ebbd" x="1" y="57" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Strasse]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="78114a21-78d8-4802-91d6-a74b5d419bf8" x="2" y="81" width="68" height="20"/>
+				<reportElement uuid="78114a21-78d8-4802-91d6-a74b5d419bf8" x="1" y="77" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Nummer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="212055e3-b9d5-4424-a0c1-bd42f4a0990d" x="2" y="101" width="68" height="20"/>
+				<reportElement uuid="212055e3-b9d5-4424-a0c1-bd42f4a0990d" x="1" y="97" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Postleitzahl]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="613a8552-c521-45a4-aac8-bcc46d3fca43" x="2" y="121" width="68" height="20"/>
+				<reportElement uuid="613a8552-c521-45a4-aac8-bcc46d3fca43" x="1" y="117" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Stadt]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="40388bc5-6412-4ae0-9e3a-a42975bebab8" x="2" y="141" width="68" height="20"/>
+				<reportElement uuid="40388bc5-6412-4ae0-9e3a-a42975bebab8" x="1" y="137" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Land]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="84b28371-cdcf-459d-9436-e79e1d3264e7" x="75" y="142" width="214" height="20"/>
+				<reportElement uuid="84b28371-cdcf-459d-9436-e79e1d3264e7" x="71" y="137" width="214" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{A_COUNTRY}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="29644488-0fa3-4a8b-bef5-1b2bc7bea73a" x="2" y="241" width="68" height="20"/>
+				<reportElement uuid="29644488-0fa3-4a8b-bef5-1b2bc7bea73a" x="1" y="222" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Stadt]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ea752be3-29fc-4b68-8de1-62ebe5b4bb22" x="72" y="240" width="187" height="20"/>
+				<reportElement uuid="ea752be3-29fc-4b68-8de1-62ebe5b4bb22" x="71" y="221" width="187" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{D_CITY}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="743786ab-08cc-498f-82d0-b67a582b0f58" x="2" y="202" width="517" height="1"/>
+				<reportElement uuid="743786ab-08cc-498f-82d0-b67a582b0f58" x="2" y="185" width="517" height="1"/>
 			</line>
 			<staticText>
-				<reportElement uuid="7c8d3f56-ec0b-4d6b-8d51-49bfd96c6081" x="2" y="222" width="68" height="18"/>
+				<reportElement uuid="7c8d3f56-ec0b-4d6b-8d51-49bfd96c6081" x="1" y="203" width="68" height="18"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Postleitzahl]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="6383e865-4e74-4b76-bdbb-664f4a23189d" x="72" y="260" width="187" height="20"/>
+				<reportElement uuid="6383e865-4e74-4b76-bdbb-664f4a23189d" x="71" y="241" width="187" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{D_COUNTRY}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="189df5a5-6895-4a7d-980b-2e65b8e5a04d" x="2" y="301" width="68" height="20"/>
+				<reportElement uuid="189df5a5-6895-4a7d-980b-2e65b8e5a04d" x="1" y="282" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Nummer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="09a4285a-7531-47e6-8915-ebecd0c8341e" x="2" y="183" width="488" height="16"/>
+				<reportElement uuid="09a4285a-7531-47e6-8915-ebecd0c8341e" x="2" y="169" width="488" height="16"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Helvetica" size="11" isBold="true"/>
+					<font fontName="HelveticaWorld" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Wohnung]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="2760765f-4cb0-4a74-857c-ef9d9cf89b55" x="72" y="220" width="187" height="20"/>
+				<reportElement uuid="2760765f-4cb0-4a74-857c-ef9d9cf89b55" x="71" y="201" width="187" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{D_ZIP}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="b9f4f91b-4acc-462d-8ea7-c34b26b3f1e0" x="2" y="261" width="68" height="20"/>
+				<reportElement uuid="b9f4f91b-4acc-462d-8ea7-c34b26b3f1e0" x="1" y="242" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Land]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="6db940ad-7e0b-4b4d-b9f2-e675091e4300" x="72" y="280" width="187" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6db940ad-7e0b-4b4d-b9f2-e675091e4300" x="71" y="261" width="187" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{D_STREET}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="1025aefe-0e96-4fa2-bb44-468f0ec65f6b" x="72" y="300" width="187" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="1025aefe-0e96-4fa2-bb44-468f0ec65f6b" x="71" y="281" width="187" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{D_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="a5d08838-c869-4059-a6a7-30ce088d0f6d" x="2" y="281" width="68" height="20"/>
+				<reportElement uuid="a5d08838-c869-4059-a6a7-30ce088d0f6d" x="1" y="262" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Strasse]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ac6bf2c0-b179-4707-9ea2-53fcdbe92c95" x="368" y="220" width="122" height="20"/>
+				<reportElement uuid="ac6bf2c0-b179-4707-9ea2-53fcdbe92c95" x="370" y="199" width="122" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{S_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="9b1a6fe2-fbcf-49d1-afd9-b0324414df29" x="368" y="260" width="122" height="20"/>
+				<reportElement uuid="9b1a6fe2-fbcf-49d1-afd9-b0324414df29" x="370" y="239" width="122" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{S_ROOMS}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="cbfe010a-e990-42dc-a81d-c4407e5f9d3b" x="278" y="261" width="68" height="20"/>
+				<reportElement uuid="cbfe010a-e990-42dc-a81d-c4407e5f9d3b" x="280" y="240" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Anzahl Zimmer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d411745a-2b0c-4154-8dd2-2e7a1730482e" x="278" y="241" width="68" height="18"/>
+				<reportElement uuid="d411745a-2b0c-4154-8dd2-2e7a1730482e" x="280" y="220" width="68" height="18"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Etage]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="6375f69e-1e7e-49f0-9293-148ee0922d19" x="278" y="222" width="87" height="20"/>
+				<reportElement uuid="6375f69e-1e7e-49f0-9293-148ee0922d19" x="280" y="201" width="87" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Wohnungsnummer]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="1e9eb66a-9851-43d6-b954-0f6f41278283" x="368" y="240" width="122" height="20"/>
+				<reportElement uuid="1e9eb66a-9851-43d6-b954-0f6f41278283" x="370" y="219" width="122" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{S_FLOOR}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="1e2a92d6-d697-4337-bab3-09d25ebaaba5" x="1" y="346" width="168" height="35"/>
+				<reportElement uuid="1e2a92d6-d697-4337-bab3-09d25ebaaba5" x="1" y="314" width="168" height="28"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Helvetica" size="11" isBold="true"/>
+					<font fontName="HelveticaWorld" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Neuer Mieter]]></text>
 			</staticText>
-			<textField>
-				<reportElement uuid="bd886e78-a2eb-4545-8baa-28f1ad246d89" x="70" y="447" width="189" height="22"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bd886e78-a2eb-4545-8baa-28f1ad246d89" x="71" y="412" width="189" height="22"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_PHONE}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement uuid="99002cd9-8289-4087-ab24-7bba4ec63e02" x="70" y="489" width="189" height="20"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="99002cd9-8289-4087-ab24-7bba4ec63e02" x="71" y="454" width="189" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_MOVEINDATE}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="5058b91d-4956-4aaf-bcd2-5a0c4f70c57c" x="1" y="449" width="68" height="20"/>
+				<reportElement uuid="5058b91d-4956-4aaf-bcd2-5a0c4f70c57c" x="1" y="413" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Telefon]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="888908b0-b64d-48b3-90e8-92bf65b5a9cc" x="70" y="427" width="189" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="888908b0-b64d-48b3-90e8-92bf65b5a9cc" x="71" y="392" width="189" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_EMAIL}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="42ee0706-68a4-4d68-8c3f-9a6dd31dd505" x="1" y="373" width="517" height="1"/>
+				<reportElement uuid="42ee0706-68a4-4d68-8c3f-9a6dd31dd505" x="1" y="341" width="517" height="1"/>
 			</line>
 			<staticText>
-				<reportElement uuid="7c5d1f35-d8c0-4b63-8f07-f54b8a1df5de" x="1" y="389" width="68" height="20"/>
+				<reportElement uuid="7c5d1f35-d8c0-4b63-8f07-f54b8a1df5de" x="1" y="353" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Vorname]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="aa79de6d-01d5-4b0b-8033-389803f8ed4d" x="1" y="489" width="68" height="20"/>
+				<reportElement uuid="aa79de6d-01d5-4b0b-8033-389803f8ed4d" x="1" y="453" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Einzugsdatum]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="fad61ff3-66d9-4aeb-b5d3-6eb39ec25e09" x="1" y="469" width="68" height="20"/>
+				<reportElement uuid="fad61ff3-66d9-4aeb-b5d3-6eb39ec25e09" x="1" y="433" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[IBAN]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="023f6fb1-4373-4020-9f7a-2138dc4fed72" x="70" y="469" width="189" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="023f6fb1-4373-4020-9f7a-2138dc4fed72" x="71" y="434" width="189" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_IBAN}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="1332e69d-9aba-47ab-8d31-b60bdd45c336" x="1" y="429" width="68" height="20"/>
+				<reportElement uuid="1332e69d-9aba-47ab-8d31-b60bdd45c336" x="1" y="393" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b57c0f19-7703-462b-be76-92153d14cf2d" x="1" y="409" width="68" height="20"/>
+				<reportElement uuid="b57c0f19-7703-462b-be76-92153d14cf2d" x="1" y="373" width="68" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="9" isItalic="true"/>
+					<font fontName="HelveticaWorld" size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Nachname]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="7236b535-0da8-44f4-8309-951693d4852b" x="70" y="407" width="189" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="7236b535-0da8-44f4-8309-951693d4852b" x="71" y="372" width="189" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_LASTNAME}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="bc6abf1b-14b2-47db-8366-13649bf88310" x="70" y="387" width="189" height="20"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bc6abf1b-14b2-47db-8366-13649bf88310" x="71" y="352" width="189" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" isBold="true"/>
+					<font fontName="HelveticaWorld" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NEWLESSEE_FIRSTNAME}]]></textFieldExpression>
 			</textField>

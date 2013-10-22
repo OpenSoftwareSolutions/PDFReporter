@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
 #import "TestProviderInterface.h"
-@interface IOSExportTestProvider : NSObject<TestChDigireportJasperProvidersTestProviderInterface>
+@interface IOSExportTestProvider : NSObject<TestOrgOssPdfreporterProvidersTestProviderInterface>
 
 @end

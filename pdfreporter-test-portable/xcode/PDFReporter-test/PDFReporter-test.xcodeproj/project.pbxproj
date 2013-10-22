@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		2E102647180BE19C006BC2C8 /* realestate.db in Resources */ = {isa = PBXBuildFile; fileRef = 2E102646180BE19C006BC2C8 /* realestate.db */; };
 		2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */; };
+		2E33D4F21816B8B1004DE7F7 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4DB1816B8B1004DE7F7 /* Test.m */; };
+		2E33D4F31816B8B1004DE7F7 /* ExporterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4E11816B8B1004DE7F7 /* ExporterTest.m */; };
+		2E33D4F41816B8B1004DE7F7 /* PortableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4E31816B8B1004DE7F7 /* PortableTest.m */; };
+		2E33D4F51816B8B1004DE7F7 /* AndroidTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4E61816B8B1004DE7F7 /* AndroidTestProvider.m */; };
+		2E33D4F61816B8B1004DE7F7 /* JavaTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4E81816B8B1004DE7F7 /* JavaTestProvider.m */; };
+		2E33D4F71816B8B1004DE7F7 /* TestProviderInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4EA1816B8B1004DE7F7 /* TestProviderInterface.m */; };
+		2E33D4F81816B8B1004DE7F7 /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4EC1816B8B1004DE7F7 /* RealestateTest.m */; };
+		2E33D4F91816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33D4EF1816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.m */; };
+		2E33E2F21816BD46004DE7F7 /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E33E2F11816BD46004DE7F7 /* ReportExporter.m */; };
 		2ECE5D2817FAC58D0079A30F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2717FAC58D0079A30F /* Foundation.framework */; };
 		2ECE5D2A17FAC58D0079A30F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */; };
 		2ECE5D2C17FAC58D0079A30F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2B17FAC58D0079A30F /* UIKit.framework */; };
@@ -109,6 +118,24 @@
 		2E102646180BE19C006BC2C8 /* realestate.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = realestate.db; sourceTree = "<group>"; };
 		2E102648180BE20E006BC2C8 /* IOSRealEstateTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSRealEstateTestProvider.h; sourceTree = "<group>"; };
 		2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSRealEstateTestProvider.m; sourceTree = "<group>"; };
+		2E33D4DA1816B8B1004DE7F7 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		2E33D4DB1816B8B1004DE7F7 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		2E33D4E01816B8B1004DE7F7 /* ExporterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExporterTest.h; sourceTree = "<group>"; };
+		2E33D4E11816B8B1004DE7F7 /* ExporterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExporterTest.m; sourceTree = "<group>"; };
+		2E33D4E21816B8B1004DE7F7 /* PortableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortableTest.h; sourceTree = "<group>"; };
+		2E33D4E31816B8B1004DE7F7 /* PortableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortableTest.m; sourceTree = "<group>"; };
+		2E33D4E51816B8B1004DE7F7 /* AndroidTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndroidTestProvider.h; sourceTree = "<group>"; };
+		2E33D4E61816B8B1004DE7F7 /* AndroidTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndroidTestProvider.m; sourceTree = "<group>"; };
+		2E33D4E71816B8B1004DE7F7 /* JavaTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaTestProvider.h; sourceTree = "<group>"; };
+		2E33D4E81816B8B1004DE7F7 /* JavaTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaTestProvider.m; sourceTree = "<group>"; };
+		2E33D4E91816B8B1004DE7F7 /* TestProviderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProviderInterface.h; sourceTree = "<group>"; };
+		2E33D4EA1816B8B1004DE7F7 /* TestProviderInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProviderInterface.m; sourceTree = "<group>"; };
+		2E33D4EB1816B8B1004DE7F7 /* RealestateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealestateTest.h; sourceTree = "<group>"; };
+		2E33D4EC1816B8B1004DE7F7 /* RealestateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealestateTest.m; sourceTree = "<group>"; };
+		2E33D4EE1816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIRegistryExtensionsRegistryFactory.h; sourceTree = "<group>"; };
+		2E33D4EF1816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
+		2E33E2F01816BD46004DE7F7 /* ReportExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportExporter.h; sourceTree = "<group>"; };
+		2E33E2F11816BD46004DE7F7 /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
 		2ECE5D2417FAC58D0079A30F /* PDFReporter-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDFReporter-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECE5D2717FAC58D0079A30F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -161,6 +188,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E33D4D71816B8B1004DE7F7 /* gen */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4D81816B8B1004DE7F7 /* org */,
+				2E33D4DC1816B8B1004DE7F7 /* test */,
+			);
+			path = gen;
+			sourceTree = "<group>";
+		};
+		2E33D4D81816B8B1004DE7F7 /* org */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4D91816B8B1004DE7F7 /* junit */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		2E33D4D91816B8B1004DE7F7 /* junit */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4DA1816B8B1004DE7F7 /* Test.h */,
+				2E33D4DB1816B8B1004DE7F7 /* Test.m */,
+			);
+			path = junit;
+			sourceTree = "<group>";
+		};
+		2E33D4DC1816B8B1004DE7F7 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4DD1816B8B1004DE7F7 /* org */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		2E33D4DD1816B8B1004DE7F7 /* org */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4DE1816B8B1004DE7F7 /* oss */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		2E33D4DE1816B8B1004DE7F7 /* oss */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4DF1816B8B1004DE7F7 /* pdfreporter */,
+			);
+			path = oss;
+			sourceTree = "<group>";
+		};
+		2E33D4DF1816B8B1004DE7F7 /* pdfreporter */ = {
+			isa = PBXGroup;
+			children = (
+				2E33E2F01816BD46004DE7F7 /* ReportExporter.h */,
+				2E33E2F11816BD46004DE7F7 /* ReportExporter.m */,
+				2E33D4E01816B8B1004DE7F7 /* ExporterTest.h */,
+				2E33D4E11816B8B1004DE7F7 /* ExporterTest.m */,
+				2E33D4E21816B8B1004DE7F7 /* PortableTest.h */,
+				2E33D4E31816B8B1004DE7F7 /* PortableTest.m */,
+				2E33D4E41816B8B1004DE7F7 /* providers */,
+				2E33D4EB1816B8B1004DE7F7 /* RealestateTest.h */,
+				2E33D4EC1816B8B1004DE7F7 /* RealestateTest.m */,
+				2E33D4ED1816B8B1004DE7F7 /* registry */,
+			);
+			path = pdfreporter;
+			sourceTree = "<group>";
+		};
+		2E33D4E41816B8B1004DE7F7 /* providers */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4E51816B8B1004DE7F7 /* AndroidTestProvider.h */,
+				2E33D4E61816B8B1004DE7F7 /* AndroidTestProvider.m */,
+				2E33D4E71816B8B1004DE7F7 /* JavaTestProvider.h */,
+				2E33D4E81816B8B1004DE7F7 /* JavaTestProvider.m */,
+				2E33D4E91816B8B1004DE7F7 /* TestProviderInterface.h */,
+				2E33D4EA1816B8B1004DE7F7 /* TestProviderInterface.m */,
+			);
+			path = providers;
+			sourceTree = "<group>";
+		};
+		2E33D4ED1816B8B1004DE7F7 /* registry */ = {
+			isa = PBXGroup;
+			children = (
+				2E33D4EE1816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.h */,
+				2E33D4EF1816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.m */,
+			);
+			path = registry;
+			sourceTree = "<group>";
+		};
 		2ECE5D1B17FAC58D0079A30F = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +285,7 @@
 				2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */,
 				2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */,
 				2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */,
+				2E33D4D71816B8B1004DE7F7 /* gen */,
 				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
 				2ECE5D2617FAC58D0079A30F /* Frameworks */,
 				2ECE5D2517FAC58D0079A30F /* Products */,
@@ -402,9 +519,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E33D4F21816B8B1004DE7F7 /* Test.m in Sources */,
 				2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */,
 				2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */,
+				2E33E2F21816BD46004DE7F7 /* ReportExporter.m in Sources */,
+				2E33D4F41816B8B1004DE7F7 /* PortableTest.m in Sources */,
+				2E33D4F61816B8B1004DE7F7 /* JavaTestProvider.m in Sources */,
+				2E33D4F51816B8B1004DE7F7 /* AndroidTestProvider.m in Sources */,
+				2E33D4F81816B8B1004DE7F7 /* RealestateTest.m in Sources */,
+				2E33D4F71816B8B1004DE7F7 /* TestProviderInterface.m in Sources */,
 				2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */,
+				2E33D4F31816B8B1004DE7F7 /* ExporterTest.m in Sources */,
+				2E33D4F91816B8B1004DE7F7 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
 				2ECE5D3417FAC58D0079A30F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,74 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate-checklist-movein" language="jeval" pageWidth="595" pageHeight="845" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate-checklist-movein" language="jeval" pageWidth="595" pageHeight="845" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Sat Jul 27 07:01:46 CEST 2013"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[select * from SIGNOFF]]>
 	</queryString>
 	<field name="CLEANING" class="java.lang.String"/>
 	<field name="THEOLDTENANTISLEAVING" class="java.lang.String"/>
 	<summary>
-		<band height="323">
+		<band height="323" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="11a0f2ca-0567-4819-aaf6-f600544a7aaf" x="1" y="96" width="518" height="25"/>
 				<textElement>
-					<font fontName="Helvetica" size="10"/>
+					<font fontName="HelveticaWorld" size="10"/>
 				</textElement>
 				<text><![CDATA[The new tenant acknowledges accepting the rented property in orderly condition. Apart from the defects recorded in this checklist, no further defects were identified.
 ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="36807ccc-c298-4eda-8077-6c7e1baed844" x="0" y="157" width="518" height="52" forecolor="#000000"/>
+				<reportElement uuid="36807ccc-c298-4eda-8077-6c7e1baed844" x="1" y="157" width="518" height="52" forecolor="#000000"/>
 				<textElement>
-					<font fontName="Helvetica" size="10" isBold="false"/>
+					<font fontName="HelveticaWorld" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CLEANING}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="df86cf99-05a9-474e-815a-af5ff342d29f" x="1" y="76" width="100" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="10" isBold="true"/>
+					<font fontName="HelveticaWorld" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[The new tenant]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="4a0b6cac-d37b-4853-98de-75732cfdf575" x="0" y="240" width="518" height="80"/>
+				<reportElement uuid="4a0b6cac-d37b-4853-98de-75732cfdf575" x="1" y="240" width="518" height="80"/>
 				<textElement>
-					<font fontName="Helvetica" size="10"/>
+					<font fontName="HelveticaWorld" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{THEOLDTENANTISLEAVING}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="9d2fc7c9-ad80-434a-b05d-6b3f0a225d32" positionType="Float" x="0" y="21" width="518" height="38"/>
+				<reportElement uuid="9d2fc7c9-ad80-434a-b05d-6b3f0a225d32" positionType="Float" x="1" y="21" width="518" height="38"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font fontName="Helvetica" size="10" isBold="false" isStrikeThrough="false"/>
+					<font fontName="HelveticaWorld" size="10" isBold="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[The previous tenant is liable to pay compensation at the percentage or the amount in Swiss francs entered in the column headed KA. He/she authorizes the landlord/agent to initiate the necessary maintenance work and undertakes to cover the cost incurred.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e217114f-ad1a-4e40-938c-75497c4a8e30" x="0" y="2" width="150" height="20"/>
+				<reportElement uuid="e217114f-ad1a-4e40-938c-75497c4a8e30" x="1" y="2" width="150" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="10" isBold="true"/>
+					<font fontName="HelveticaWorld" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[The old tenant]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8b4b5d90-674d-435b-8d4d-4557ac7777e1" x="0" y="209" width="516" height="31"/>
+				<reportElement uuid="8b4b5d90-674d-435b-8d4d-4557ac7777e1" x="1" y="209" width="516" height="31"/>
 				<textElement>
-					<font fontName="Helvetica" size="10" isBold="true"/>
+					<font fontName="HelveticaWorld" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[The old tenant is leaving behind the following items that do not form part of the fixtures and fittings of the rented property:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="375c24d1-25f2-45c9-bcd4-5cd79f3d7bc6" x="0" y="137" width="100" height="20"/>
+				<reportElement uuid="375c24d1-25f2-45c9-bcd4-5cd79f3d7bc6" x="1" y="137" width="100" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="10" isBold="true"/>
+					<font fontName="HelveticaWorld" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cleaning]]></text>
 			</staticText>

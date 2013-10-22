@@ -15,9 +15,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[[TestChDigireportJasperPortableTest alloc] init] realestateTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
+    [[[TestOrgOssPdfreporterPortableTest alloc] init] realestateTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
     
-    [[[TestChDigireportJasperPortableTest alloc] init] exporterTestWithTestChDigireportJasperProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    [[[TestOrgOssPdfreporterPortableTest alloc] init] exporterTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
     
     
     

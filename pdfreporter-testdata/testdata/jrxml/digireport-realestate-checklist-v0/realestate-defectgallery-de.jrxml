@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="maengelliste" language="jeval" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="28" bottomMargin="20" isTitleNewPage="true" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="maengelliste" language="jeval" printOrder="Horizontal" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="28" bottomMargin="20" isTitleNewPage="true" uuid="55297619-ee58-4e3d-82b4-76001a186ce6">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="16"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -12,7 +11,7 @@
 	</parameter>
 	<parameter name="return_logo" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_KITCHEN a1, CRITERIA_KITCHEN b1 where a1.FK_CRITERIA_KITCHEN_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE  , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, -1 as IMAGE from CATEGORY_KEYS a1, CRITERIA_KEYS b1 where a1.FK_CRITERIA_KEYS_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_LIVINGROOM a1, CRITERIA_LIVINGROOM b1 where a1.FK_CRITERIA_LIVINGROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BEDROOM a1, CRITERIA_BEDROOM b1 where a1.FK_CRITERIA_BEDROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_ROOM a1, CRITERIA_ROOM b1 where a1.FK_CRITERIA_ROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_CORRIDOR a1, CRITERIA_CORRIDOR b1 where a1.FK_CRITERIA_CORRIDOR_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BATHROOM a1, CRITERIA_BATHROOM b1 where a1.FK_CRITERIA_BATHROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_SEPWC a1, CRITERIA_SEPBATHROOM b1 where a1.FK_CRITERIA_SEPBATHROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BASEMENT a1, CRITERIA_BASEMENT b1 where a1.FK_CRITERIA_BASEMENT_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, null, DESCRIPTION, null, -1 from CATEGORY_ATTIC a1, CRITERIA_COMMENTS b1 where a1.FK_CRITERIA_COMMENTS_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, null, DESCRIPTION, null, -1 from CATEGORY_GARAGE a1, CRITERIA_COMMENTS b1 where a1.FK_CRITERIA_COMMENTS_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE union all select a1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, null, DESCRIPTION, null, -1 from CATEGORY_LETTERBOX a1, CRITERIA_COMMENTS b1 where a1.FK_CRITERIA_COMMENTS_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE]]>
+		<![CDATA[select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_KITCHEN a1, CRITERIA_KITCHEN b1 where a1.FK_CRITERIA_KITCHEN_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_LIVINGROOM a1, CRITERIA_LIVINGROOM b1 where a1.FK_CRITERIA_LIVINGROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BEDROOM a1, CRITERIA_BEDROOM b1 where a1.FK_CRITERIA_BEDROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_ROOM a1, CRITERIA_ROOM b1 where a1.FK_CRITERIA_ROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_CORRIDOR a1, CRITERIA_CORRIDOR b1 where a1.FK_CRITERIA_CORRIDOR_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BATHROOM a1, CRITERIA_BATHROOM b1 where a1.FK_CRITERIA_BATHROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_SEPWC a1, CRITERIA_SEPBATHROOM b1 where a1.FK_CRITERIA_SEPBATHROOM_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null union all select b1.PK_NAME, a1.FK_CATEGORY_NAME_ALTERNATE , ROW_NAME, STATE, DESCRIPTION, COSTVALUE, IMAGE from CATEGORY_BASEMENT a1, CRITERIA_BASEMENT b1 where a1.FK_CRITERIA_BASEMENT_PK_NAME = b1.PK_NAME and a1.FK_CATEGORY_NAME_ALTERNATE = b1.FK_CATEGORY_NAME_ALTERNATE and b1.IMAGE is not null]]>
 	</queryString>
 	<field name="PK_NAME" class="java.lang.String"/>
 	<field name="FK_CATEGORY_NAME_ALTERNATE" class="java.lang.String"/>
@@ -25,11 +24,11 @@
 	<group name="Category" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{FK_CATEGORY_NAME_ALTERNATE}]]></groupExpression>
 		<groupHeader>
-			<band height="25">
-				<textField>
-					<reportElement uuid="1da3c0cb-9aed-4a15-aa76-cbdbce0e7ebe" isPrintRepeatedValues="false" x="15" y="2" width="267" height="20" isPrintInFirstWholeBand="true" forecolor="#FF6633"/>
+			<band height="25" splitType="Stretch">
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1da3c0cb-9aed-4a15-aa76-cbdbce0e7ebe" isPrintRepeatedValues="false" x="11" y="2" width="360" height="20" isPrintInFirstWholeBand="true" forecolor="#FF6633"/>
 					<textElement>
-						<font fontName="Helvetica" size="12" isBold="true"/>
+						<font fontName="HelveticaWorld" size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{FK_CATEGORY_NAME_ALTERNATE}]]></textFieldExpression>
 				</textField>
@@ -39,20 +38,80 @@
 	<group name="Column" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{ROW_NAME}]]></groupExpression>
 		<groupHeader>
-			<band height="24">
-				<textField>
-					<reportElement uuid="a39b5933-45b4-40ed-a211-c0b06f12e10f" x="15" y="0" width="265" height="20"/>
+			<band height="105" splitType="Stretch">
+				<staticText>
+					<reportElement uuid="f31456dd-bbf5-4920-ae7f-e725ff1f91e2" isPrintRepeatedValues="false" x="11" y="26" width="46" height="10" isPrintInFirstWholeBand="true"/>
 					<textElement>
-						<font fontName="Helvetica" size="10" isBold="true"/>
+						<font fontName="HelveticaWorld" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Kosten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f5514e53-4fe1-4339-aa87-d7404de3d6b8" x="11" y="63" width="56" height="10"/>
+					<textElement>
+						<font fontName="HelveticaWorld" size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Beschreibung]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="89a98b62-2854-4ebc-8190-c6a61d1e60d0" x="11" y="46" width="46" height="10"/>
+					<textElement>
+						<font fontName="HelveticaWorld" size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Zustand]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="49f6debd-16bf-4e87-8a15-a2f2fd720596" x="11" y="22" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="4aa161e6-65ba-48b2-ae1c-04b2912e3028" x="11" y="42" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="c01db064-d0aa-4b88-bea4-4612cffe496a" x="11" y="60" width="179" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="ba0476a8-fda0-4f68-b9a0-d0d39c0d8e83" isPrintRepeatedValues="false" x="85" y="62" width="456" height="40"/>
+					<textElement>
+						<font fontName="HelveticaWorld"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="7ad0ec37-862b-4538-86da-d7b3cbbdb71e" isPrintRepeatedValues="false" x="85" y="26" width="286" height="15"/>
+					<textElement>
+						<font fontName="HelveticaWorld"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COSTVALUE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="2886f29c-43a9-433b-adf8-8331319cadd5" isPrintRepeatedValues="false" x="85" y="44" width="286" height="15"/>
+					<textElement>
+						<font fontName="HelveticaWorld"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="a39b5933-45b4-40ed-a211-c0b06f12e10f" x="11" y="1" width="360" height="20"/>
+					<textElement>
+						<font fontName="HelveticaWorld" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ROW_NAME}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="150">
+			<band height="150" splitType="Stretch">
 				<subreport>
-					<reportElement uuid="f5ec5744-dd95-4947-8cea-5d5221fde4fc" x="0" y="0" width="555" height="150"/>
+					<reportElement uuid="f5ec5744-dd95-4947-8cea-5d5221fde4fc" x="11" y="3" width="540" height="141"/>
 					<subreportParameter name="param_image_id">
 						<subreportParameterExpression><![CDATA[$F{IMAGE}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -62,109 +121,42 @@
 			</band>
 		</groupFooter>
 	</group>
-	<group name="State">
-		<groupExpression><![CDATA[$F{STATE}]]></groupExpression>
-		<groupHeader>
-			<band height="89">
-				<textField isBlankWhenNull="true">
-					<reportElement uuid="2886f29c-43a9-433b-adf8-8331319cadd5" isPrintRepeatedValues="false" x="84" y="21" width="286" height="15"/>
-					<textElement>
-						<font fontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement uuid="7ad0ec37-862b-4538-86da-d7b3cbbdb71e" isPrintRepeatedValues="false" x="84" y="4" width="286" height="15"/>
-					<textElement>
-						<font fontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{COSTVALUE}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement uuid="f31456dd-bbf5-4920-ae7f-e725ff1f91e2" isPrintRepeatedValues="false" x="14" y="5" width="46" height="10" isPrintInFirstWholeBand="true"/>
-					<textElement>
-						<font fontName="Helvetica" size="8" isBold="true" isItalic="true"/>
-					</textElement>
-					<text><![CDATA[Kosten]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement uuid="ba0476a8-fda0-4f68-b9a0-d0d39c0d8e83" isPrintRepeatedValues="false" x="84" y="38" width="410" height="40"/>
-					<textElement>
-						<font fontName="Helvetica"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement uuid="f5514e53-4fe1-4339-aa87-d7404de3d6b8" x="14" y="39" width="56" height="10"/>
-					<textElement>
-						<font fontName="Helvetica" size="8" isItalic="true"/>
-					</textElement>
-					<text><![CDATA[Beschreibung]]></text>
-				</staticText>
-				<staticText>
-					<reportElement uuid="89a98b62-2854-4ebc-8190-c6a61d1e60d0" x="14" y="23" width="46" height="10"/>
-					<textElement>
-						<font fontName="Helvetica" size="8" isItalic="true"/>
-					</textElement>
-					<text><![CDATA[Zustand]]></text>
-				</staticText>
-				<line>
-					<reportElement uuid="49f6debd-16bf-4e87-8a15-a2f2fd720596" x="14" y="3" width="179" height="1"/>
-					<graphicElement>
-						<pen lineStyle="Dotted"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement uuid="4aa161e6-65ba-48b2-ae1c-04b2912e3028" x="14" y="19" width="179" height="1"/>
-					<graphicElement>
-						<pen lineStyle="Dotted"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement uuid="c01db064-d0aa-4b88-bea4-4612cffe496a" x="14" y="35" width="179" height="1"/>
-					<graphicElement>
-						<pen lineStyle="Dotted"/>
-					</graphicElement>
-				</line>
-			</band>
-		</groupHeader>
-	</group>
 	<title>
-		<band height="254" splitType="Stretch">
+		<band height="183" splitType="Stretch">
 			<textField>
-				<reportElement uuid="89b44c19-b7eb-4961-afda-7520a105d247" x="435" y="2" width="80" height="20"/>
+				<reportElement uuid="89b44c19-b7eb-4961-afda-7520a105d247" x="433" y="0" width="80" height="20"/>
 				<textElement textAlignment="Right">
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="ea396cdf-0e78-44d5-844a-43a26f34fc91" x="515" y="2" width="40" height="20"/>
+				<reportElement uuid="ea396cdf-0e78-44d5-844a-43a26f34fc91" x="515" y="0" width="40" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[' / ' + '$V{PAGE_NUMBER}']]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="aeb2c567-cea9-4536-b454-5c60f623d975" x="-19" y="32" width="593" height="35"/>
+				<reportElement uuid="aeb2c567-cea9-4536-b454-5c60f623d975" x="0" y="37" width="555" height="35"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Helvetica" size="12" isBold="true"/>
+					<font fontName="HelveticaWorld" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mängelliste]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="b74d6d40-1dd8-4787-8f3c-7bb3402524c1" x="401" y="2" width="100" height="20"/>
+				<reportElement uuid="b74d6d40-1dd8-4787-8f3c-7bb3402524c1" x="399" y="0" width="100" height="20"/>
 				<textElement textAlignment="Right">
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(date) now()]]></textFieldExpression>
 			</textField>
-			<image evaluationTime="Report">
-				<reportElement uuid="062304e2-0801-40e8-a493-a7a8c3f467d4" x="15" y="4" width="100" height="22"/>
+			<image onErrorType="Blank" evaluationTime="Report">
+				<reportElement uuid="062304e2-0801-40e8-a493-a7a8c3f467d4" x="11" y="4" width="100" height="22"/>
 				<imageExpression><![CDATA[$V{logo}]]></imageExpression>
 			</image>
 			<subreport>
-				<reportElement uuid="1834488e-f52c-41cf-9873-2504f7510af2" x="15" y="67" width="540" height="168"/>
+				<reportElement uuid="1834488e-f52c-41cf-9873-2504f7510af2" x="11" y="72" width="540" height="106"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<returnValue subreportVariable="return_logo" toVariable="logo"/>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + 'realestate-defectgallery-agent-de.jasper']]></subreportExpression>
@@ -172,30 +164,30 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="42">
+		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement uuid="a726bab0-1a3e-4a4d-bdfa-8e16e4a3345f" x="479" y="2" width="37" height="20"/>
+				<reportElement uuid="a726bab0-1a3e-4a4d-bdfa-8e16e4a3345f" x="419" y="0" width="80" height="20"/>
 				<textElement textAlignment="Right">
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="fdc70d6c-7b20-4011-b1a6-90c4be111903" x="516" y="2" width="39" height="20"/>
+				<reportElement uuid="fdc70d6c-7b20-4011-b1a6-90c4be111903" x="501" y="0" width="40" height="20"/>
 				<textElement>
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[' / ' + '$V{PAGE_NUMBER}']]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="302c76c6-1a11-422d-b7bd-14ce9c6bdac2" x="412" y="2" width="86" height="20"/>
+				<reportElement uuid="302c76c6-1a11-422d-b7bd-14ce9c6bdac2" x="385" y="0" width="100" height="20"/>
 				<textElement textAlignment="Right">
-					<font fontName="Helvetica" size="8"/>
+					<font fontName="HelveticaWorld" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(date) now()]]></textFieldExpression>
 			</textField>
-			<image evaluationTime="Report">
-				<reportElement uuid="78a8323f-a991-4ee0-8bfc-f613b18b11e2" x="15" y="4" width="100" height="22"/>
+			<image onErrorType="Blank" evaluationTime="Report">
+				<reportElement uuid="78a8323f-a991-4ee0-8bfc-f613b18b11e2" x="11" y="0" width="110" height="20"/>
 				<imageExpression><![CDATA[$V{logo}]]></imageExpression>
 			</image>
 		</band>

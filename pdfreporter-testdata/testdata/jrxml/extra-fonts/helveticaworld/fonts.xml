@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+
+	<fontFamily name="HelveticaWorld">
+		<normal>helveticaworld/HelveticaWorld-Regular.ttf</normal>
+		<bold>helveticaworld/HelveticaWorld-Bold.ttf</bold>
+		<italic>helveticaworld/HelveticaWorld-Italic.ttf</italic>
+		<boldItalic>helveticaworld/HelveticaWorld-BoldItalic.ttf</boldItalic>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">HelveticaWorld</export>
+			<export key="net.sf.jasperreports.xhtml">HelveticaWorld</export>
+		</exportFonts>
+		<!--
+		<locales>
+			<locale>en_US</locale>
+			<locale>de_DE</locale>
+		</locales>
+		-->
+	</fontFamily>
+
+</fontFamilies>
