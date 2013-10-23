@@ -71,27 +71,27 @@ public class RealestateTest {
 	
 	@Test
 	public void exportRealEstateChecklistMoveInDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE);
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE);
 	}
 	@Test
 	public void exportRealEstateDefectDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_DE);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_DE);
 	}
 	@Test
 	public void exportRealEstateChecklistMoveInEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN);
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN);
 	}
 	@Test
 	public void exportRealEstateDefectEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_EN);
+		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_EN);
 	}
 	
 	private ReportExporter getExporter(String reportFolder) {
@@ -120,5 +120,5 @@ public class RealestateTest {
 		else return path;
 	}
 	
-		
+	
 }
