@@ -3,8 +3,8 @@
 #import "java/io/InputStream.h"
 #import "org/oss/pdfreporter/sql/IConnection.h"
 #import "SqlFactory.h"
-#import "org/oss/pdfreporter/repo/DigireportRepositoryManager.h"
-#import "org/oss/pdfreporter/repo/DigireportFileResourceLoader.h"
+#import "org/oss/pdfreporter/repo/RepositoryManager.h"
+#import "org/oss/pdfreporter/repo/FileResourceLoader.h"
 #import "org/oss/pdfreporter/engine/xml/JRXmlLoader.h"
 #import "org/oss/pdfreporter/engine/data/JRXmlDataSource.h"
 #import "org/oss/pdfreporter/engine/JREmptyDataSource.h"
@@ -89,7 +89,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(OrgOssPdfreporterEngineJasperReport*)loadReport:(NSString*)jrxmlFile
 {
-    JavaIoInputStream *isReport = [OrgOssPdfreporterRepoDigireportFileResourceLoader getInputStreamWithNSString:jrxmlFile];
+    JavaIoInputStream *isReport = [OrgOssPdfreporterRepoFileResourceLoader getInputStreamWithNSString:jrxmlFile];
     OrgOssPdfreporterEngineDesignJasperDesign *design = [OrgOssPdfreporterEngineXmlJRXmlLoader load__WithJavaIoInputStream:isReport];
     [isReport close];
     return [OrgOssPdfreporterEngineJasperCompileManager compileReportWithOrgOssPdfreporterEngineDesignJasperDesign:design];
@@ -102,7 +102,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
 {
-    JavaIoInputStream *isXmlData = [OrgOssPdfreporterRepoDigireportFileResourceLoader getInputStreamWithNSString:xmlFile];
+    JavaIoInputStream *isXmlData = [OrgOssPdfreporterRepoFileResourceLoader getInputStreamWithNSString:xmlFile];
     OrgOssPdfreporterEngineDataJRXmlDataSource *xmlDataSource = [[OrgOssPdfreporterEngineDataJRXmlDataSource alloc] initWithJavaIoInputStream:isXmlData withNSString:xPath];
     [xmlDataSource setDatePatternWithNSString:@"yyyy-MM-dd"];
     OrgOssPdfreporterEngineJasperPrint *print = [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:nil withOrgOssPdfreporterEngineJRDataSource:xmlDataSource];
@@ -120,7 +120,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(NSString*)setupJrxmlPath:(NSString*)jrxmlPath andResourceFolders:(NSArray*)resourceFolders
 {
-    OrgOssPdfreporterRepoDigireportRepositoryManager *repositoryManager = [OrgOssPdfreporterRepoDigireportRepositoryManager getInstance];
+    OrgOssPdfreporterRepoRepositoryManager *repositoryManager = [OrgOssPdfreporterRepoRepositoryManager getInstance];
     [repositoryManager reset];
     
     NSString *jrxmlFolder = [NSString string];

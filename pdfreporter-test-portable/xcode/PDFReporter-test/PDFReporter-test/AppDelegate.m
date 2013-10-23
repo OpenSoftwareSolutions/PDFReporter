@@ -17,10 +17,9 @@
 {
     [[[TestOrgOssPdfreporterPortableTest alloc] init] realestateTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
     
-    [[[TestOrgOssPdfreporterPortableTest alloc] init] exporterTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    //[[[TestOrgOssPdfreporterPortableTest alloc] init] exporterTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
     
-    
-    
+        
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UIViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
