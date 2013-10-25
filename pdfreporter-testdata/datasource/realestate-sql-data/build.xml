@@ -13,7 +13,22 @@
 			<classpath refid="hsql-classpath"/>
 		</java>
 	</target>
-
+	
+	<target name="runServerNoWait" description="Launches the HSQLDB database server.">
+		<java classname="org.hsqldb.Server" fork="true" spawn="true">
+			<classpath refid="hsql-classpath"/>
+		</java>
+	</target>
+	
+	<target name="stopServer">
+		<sql driver="org.hsqldb.jdbcDriver"
+			url="jdbc:hsqldb:hsql://localhost:9001" userid="sa" password=""
+			autocommit="true">
+			SHUTDOWN
+			<classpath refid="hsql-classpath"/>
+			</sql>
+	</target>	
+	
 	<target name="runManager" description="Launches the HSQLDB manager.">
 		<java classname="org.hsqldb.util.DatabaseManager" fork="true">
 			<classpath refid="hsql-classpath"/>

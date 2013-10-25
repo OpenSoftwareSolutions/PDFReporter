@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013 Open Software Solutions GmbH.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl-3.0.html
+ * 
+ * Contributors:
+ *     Open Software Solutions GmbH - initial API and implementation
+ ******************************************************************************/
 package test.org.oss.pdfreporter;
 
 import java.util.logging.Handler;
@@ -21,7 +31,7 @@ public class RealestateTest {
 	private static final String JRXML_RESOURCE_FOLDER = "resource";
 	private static final String JRXML_REPORT_FOLDER = "testdata/jrxml";
 	private static final String XML_DATASOURCE_FOLDER = "datasource";
-	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf";	
+	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf/java";	
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE = "realestate-checklist-movein-de.jrxml";
@@ -93,11 +103,7 @@ public class RealestateTest {
 	public void exportRealEstateDefectEn() throws Exception {
 		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_EN);
 	}
-	
-	private ReportExporter getExporter(String reportFolder) {
-		return getExporter(reportFolder,null);
-	}
-	
+		
 	private ReportExporter getExporter(String reportFolder, String extraFolder) {
 		RepositoryManager repo = RepositoryManager.getInstance();
 		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
@@ -120,5 +126,5 @@ public class RealestateTest {
 		else return path;
 	}
 	
-	
+		
 }
