@@ -13,6 +13,9 @@
 		2EFDDA2F17F083D100D4580A /* liblibHaru.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFDD99617F0839300D4580A /* liblibHaru.a */; };
 		2EFDDA5717F084BB00D4580A /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFDDA5617F084BB00D4580A /* libjre_emul.a */; };
 		2EFDDA5D17F084E100D4580A /* libPDFReporter-extensions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE6C22717F0664F000A49AB /* libPDFReporter-extensions.a */; };
+		3D31637B181A85D200826501 /* Icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D316378181A85D200826501 /* Icon76.png */; };
+		3D31637C181A85D200826501 /* Icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D316379181A85D200826501 /* Icon120.png */; };
+		3D31637D181A85D200826501 /* Icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D31637A181A85D200826501 /* Icon152.png */; };
 		51525303179AE41F007A838A /* test.script in Resources */ = {isa = PBXBuildFile; fileRef = 51525302179AE41F007A838A /* test.script */; };
 		51525308179AE4E1007A838A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C13165179ADC970059E90D /* libsqlite3.dylib */; };
 		51525310179AE7EE007A838A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5152530F179AE7EE007A838A /* libz.dylib */; };
@@ -158,6 +161,9 @@
 		2EE6C22117F0664E000A49AB /* PDFReporter-extensions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PDFReporter-extensions.xcodeproj"; path = "../PDFReporter-extensions/PDFReporter-extensions.xcodeproj"; sourceTree = "<group>"; };
 		2EFDD99017F0839200D4580A /* libHaru.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libHaru.xcodeproj; path = ../libHaru/libHaru.xcodeproj; sourceTree = "<group>"; };
 		2EFDDA5617F084BB00D4580A /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
+		3D316378181A85D200826501 /* Icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon76.png; sourceTree = SOURCE_ROOT; };
+		3D316379181A85D200826501 /* Icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon120.png; sourceTree = SOURCE_ROOT; };
+		3D31637A181A85D200826501 /* Icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon152.png; sourceTree = SOURCE_ROOT; };
 		51525302179AE41F007A838A /* test.script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.script; path = PDFReporter/test.script; sourceTree = "<group>"; };
 		51525309179AE504007A838A /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../../JasperReportLib/j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
 		5152530F179AE7EE007A838A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -370,6 +376,9 @@
 				51C018BE17C3537C00C6227A /* Icon72.png */,
 				51C018BC17C3536700C6227A /* Icon114.png */,
 				51C018BA17C3536000C6227A /* Icon57.png */,
+				3D316378181A85D200826501 /* Icon76.png */,
+				3D316379181A85D200826501 /* Icon120.png */,
+				3D31637A181A85D200826501 /* Icon152.png */,
 				51C018C217C35A2000C6227A /* background.jpg */,
 				51BC7D8C17A959BF007E4ED9 /* background_iphone.jpg */,
 				51BC7D8A17A959A6007E4ED9 /* firstRealEstate.pdf */,
@@ -653,13 +662,16 @@
 			files = (
 				51C104E2179AB5320059E90D /* InfoPlist.strings in Resources */,
 				51C104F4179AB5320059E90D /* HomeViewController_iPhone.xib in Resources */,
+				3D31637C181A85D200826501 /* Icon120.png in Resources */,
 				51C104F7179AB5320059E90D /* HomeViewController_iPad.xib in Resources */,
+				3D31637B181A85D200826501 /* Icon76.png in Resources */,
 				51525303179AE41F007A838A /* test.script in Resources */,
 				51F19A95179B072800C80FBC /* PdfViewController_iPad.xib in Resources */,
 				51BDAF79179BC5CB00575913 /* PickViewController_iPad.xib in Resources */,
 				51E3B699179E72680051BB36 /* genButton.png in Resources */,
 				51E3B69B179E7ADF0051BB36 /* downArrow.png in Resources */,
 				5182BED6179E921600DFD0EE /* pickButton.png in Resources */,
+				3D31637D181A85D200826501 /* Icon152.png in Resources */,
 				51BC7D8B17A959A6007E4ED9 /* firstRealEstate.pdf in Resources */,
 				51BC7D8D17A959BF007E4ED9 /* background_iphone.jpg in Resources */,
 				51C0453717AA3E0C007936EC /* pickButton_iphone.png in Resources */,
@@ -848,7 +860,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "PDFReporter/PDFReporter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../j2objc/lib,
@@ -868,7 +880,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "PDFReporter/PDFReporter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../j2objc/lib,

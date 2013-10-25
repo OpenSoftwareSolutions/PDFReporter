@@ -14,12 +14,13 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon.png</string>
-				<string>Icon114.png</string>
-				<string>Icon~ipad.png</string>
 				<string>Icon57.png</string>
+				<string>Icon114.png</string>
+				<string>Icon120.png</string>
 				<string>Icon72.png</string>
 				<string>Icon144.png</string>
+				<string>Icon76.png</string>
+				<string>Icon152.png</string>
 			</array>
 		</dict>
 	</dict>
@@ -32,11 +33,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
