@@ -25,15 +25,22 @@
 	
     <path id="application" location="${jar.dir}/${ant.project.name}.jar"/>
 	
-	<path id="classpath">
+	<path id="classpath-java-awt">
 		<fileset dir="lib">
 			<include name="*.jar"/>
+			<exclude name="pdfreporter-android.jar"/>
 		</fileset>
 	</path>
-				
+	<path id="classpath-java-portable">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+			<exclude name="pdfreporter-java.jar"/>
+		</fileset>
+	</path>
+					
 	<target name="compile">
 		<mkdir dir="${classes.dir}"/>
-			<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+			<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath-java-awt" includeantruntime="false"/>
 	</target>
 
 	<target name="jar" depends="compile" description="Builds the jar file.">
@@ -63,21 +70,25 @@
 
 	<target name="unit-test" depends="jar">
 		<echo message="start junit" />
+		<delete includeEmptyDirs="true" failonerror="false">
+			<fileset dir="${data.dir}/testdata/pdf/java" />
+		</delete>
 		<mkdir dir="${data.dir}/testdata/pdf/java" />
 		<mkdir dir="${report.dir}" />
+		<!-- test with awt based implementation -->
 		<antcall target="runServerNoWait">
 			<param name="basedir" value="${db1.dir}" />
 		</antcall>
 		<junit printsummary="yes" haltonfailure="yes">
 			<classpath>
-				<path refid="classpath" />
+				<path refid="classpath-java-awt" />
 				<path refid="application" />
 			</classpath>
 
 			<formatter type="xml" />
 			<!-- here comes the single tests -->
 			<test name="test.org.oss.pdfreporter.ExporterTest"
-				haltonfailure="no" outfile="${report.dir}/ExporterTest" />
+				haltonfailure="no" outfile="${report.dir}/ExporterTest-Awt" />
 
 		</junit>
 		<antcall target="stopServer">
@@ -89,20 +100,72 @@
 
 		<junit printsummary="yes" haltonfailure="yes">
 			<classpath>
-				<path refid="classpath" />
+				<path refid="classpath-java-awt" />
 				<path refid="application" />
 			</classpath>
 
 			<formatter type="xml" />
 			<!-- here comes the single tests -->
 			<test name="test.org.oss.pdfreporter.RealestateTest"
-				haltonfailure="no" outfile="${report.dir}/RealestateTest" />
+				haltonfailure="no" outfile="${report.dir}/RealestateTest-Awt" />
 
 		</junit>
 
 		<antcall target="stopServer">
 			<param name="basedir" value="${db2.dir}" />
 		</antcall>
+		<mkdir dir="${data.dir}/testdata/pdf/java/awt" />
+		<move todir="${data.dir}/testdata/pdf/java/awt">
+			<fileset dir="${data.dir}/testdata/pdf/java">
+				<include name="*.pdf" />
+			</fileset>
+		</move>
+		<!-- test with portable implementation -->
+
+		<antcall target="runServerNoWait">
+			<param name="basedir" value="${db1.dir}" />
+		</antcall>
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<path refid="classpath-java-portable" />
+				<path refid="application" />
+			</classpath>
+
+			<formatter type="xml" />
+			<!-- here comes the single tests -->
+			<test name="test.org.oss.pdfreporter.ExporterTest"
+				haltonfailure="no" outfile="${report.dir}/ExporterTest-Portable" />
+
+		</junit>
+		<antcall target="stopServer">
+			<param name="basedir" value="${db1.dir}" />
+		</antcall>
+		<antcall target="runServerNoWait">
+			<param name="basedir" value="${db2.dir}" />
+		</antcall>
+
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<path refid="classpath-java-portable" />
+				<path refid="application" />
+			</classpath>
+
+			<formatter type="xml" />
+			<!-- here comes the single tests -->
+			<test name="test.org.oss.pdfreporter.RealestateTest"
+				haltonfailure="no" outfile="${report.dir}/RealestateTest-Portable" />
+
+		</junit>
+
+		<antcall target="stopServer">
+			<param name="basedir" value="${db2.dir}" />
+		</antcall>
+		<mkdir dir="${data.dir}/testdata/pdf/java/portable" />
+		<move todir="${data.dir}/testdata/pdf/java/portable">
+			<fileset dir="${data.dir}/testdata/pdf/java">
+				<include name="*.pdf" />
+			</fileset>
+		</move>
 
 		<echo message="end junit" />
 	</target>

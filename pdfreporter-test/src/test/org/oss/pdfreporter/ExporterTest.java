@@ -42,7 +42,7 @@ public class ExporterTest {
 	
 	// DESIGN REPORTS
 	private static final String DESIGN_REPORT_FONTS = "FontsReport.jrxml";
-	private static final String DESIGN_REPORT_SHIPMENTS = "ShipmentsReportSqlJeval.jrxml";
+	private static final String DESIGN_REPORT_SHIPMENTS = "ShipmentsReport.jrxml";
 	private static final String DESIGN_REPORT_PRODUCTS = "ProductsReport.jrxml";
 	private static final String DESIGN_REPORT_ORDERS = "OrdersReport.jrxml";
 	private static final String DESIGN_REPORT_LATE_ORDERS = "LateOrdersReport.jrxml";
@@ -56,6 +56,15 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_ROTATION = "RotationReport.jrxml";
 	private static final String DESIGN_REPORT_PDFCRYPT = "PdfEncryptReport.jrxml";
 	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
+//	private static final String DESIGN_REPORT_HORIZONTAL = "HorizontalReport.jrxml";
+	private static final String DESIGN_REPORT_LANDSCAPE = "LandscapeReport.jrxml";
+//	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
+//	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
+//	private static final String DESIGN_REPORT_NOPAGEBREAK = "NoPageBreakReport.jrxml";
+	private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
+//	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
+	private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
+//	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
 
 	// XML DATA
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
@@ -140,6 +149,54 @@ public class ExporterTest {
 		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_PRODUCTS);
 	}
 
+// PDF ERROR generates no pages	
+//	@Test
+//	public void exportHorizontal() throws Exception {
+//		getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
+//	}
+
+// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
+//	@Test
+//	public void exportHoprizontalList() throws Exception {
+//		getExporter("list").exportSqlReport(DESIGN_REPORT_HORIZONTALLIST);
+//	}
+	
+// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
+//	@Test
+//	public void exportList() throws Exception {
+//		getExporter("list").exportSqlReport(DESIGN_REPORT_LIST);
+//	}
+	
+// COMPILER ERROR No support for EmptyCollection new java.util.ArrayList()	
+//	@Test
+//	public void exportNoPageBreak() throws Exception {
+//		getExporter("nopagebreak").exportSqlReport(DESIGN_REPORT_NOPAGEBREAK);
+//	}
+	
+	@Test
+	public void exportStretch() throws Exception {
+		getExporter("stretch").exportReport(DESIGN_REPORT_STRETCH);
+	}
+	
+// DIGESTER ERROR setFeature not implemented	
+//	@Test
+//	public void exportTemplates() throws Exception {
+//		getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
+//	}
+	
+// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
+//	@Test
+//	public void exportTable() throws Exception {
+//		getExporter("table").exportReport(DESIGN_REPORT_TABLE);
+//	}
+
+	@Test
+	public void exportTabular() throws Exception {
+		getExporter("tabular","extra-fonts").exportReport(DESIGN_REPORT_TABULAR);
+	}
+
+
+	
 	@Test
 	public void exportOrders() throws Exception {
 		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS);
@@ -153,6 +210,11 @@ public class ExporterTest {
 	@Test
 	public void exportImages() throws Exception {
 		getExporter("images").exportReport(DESIGN_REPORT_IMAGE);
+	}
+			
+	@Test
+	public void exportLandscape() throws Exception {
+		getExporter("landscape").exportReport(DESIGN_REPORT_LANDSCAPE);
 	}
 			
 	@Test
