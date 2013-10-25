@@ -12,7 +12,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.pdfreporter.R;
 
 public class MainActivity extends Activity {
 
