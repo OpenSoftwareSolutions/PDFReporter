@@ -60,13 +60,15 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
 //	private static final String DESIGN_REPORT_HORIZONTAL = "HorizontalReport.jrxml";
 	private static final String DESIGN_REPORT_LANDSCAPE = "LandscapeReport.jrxml";
-//	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
-//	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
-//	private static final String DESIGN_REPORT_NOPAGEBREAK = "NoPageBreakReport.jrxml";
 	private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
-//	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
 	private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
-	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
+	
+// Tests that are not supported in PDFReporter see comments at the end of unit tests for details 	
+//	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
+//	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
+//	private static final String DESIGN_REPORT_NOPAGEBREAK = "NoPageBreakReport.jrxml";
+//	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
+//	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
 
 	// XML DATA
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
