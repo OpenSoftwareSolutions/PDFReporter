@@ -10,6 +10,7 @@
  ******************************************************************************/
 package test.org.oss.pdfreporter;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Handler;
@@ -22,6 +23,7 @@ import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
+import org.oss.pdfreporter.uses.org.apache.digester.impl.NotImplementedDigester;
 
 import test.org.oss.pdfreporter.providers.JavaTestProvider;
 import test.org.oss.pdfreporter.providers.TestProviderInterface;
@@ -64,7 +66,7 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
 //	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
 	private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
-//	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
+	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
 
 	// XML DATA
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
@@ -84,6 +86,7 @@ public class ExporterTest {
 	
 	protected ExporterTest(boolean initJava, TestProviderInterface testProvider) {
 		this.testProvider = testProvider;
+		new File(outputPath(PDF_OUTPUT_FOLDER)).mkdirs();
 		if (initJava) {
 			try {
 				Class<?>[] noArgs = new Class[0];
@@ -123,7 +126,7 @@ public class ExporterTest {
 		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_SHIPMENTS);
 	}
 
-	
+//	TODO Fix
 //	@Test
 //	public void exportFirstJasper() throws Exception {
 //		ImageFactory.registerFactory();
@@ -149,52 +152,23 @@ public class ExporterTest {
 		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_PRODUCTS);
 	}
 
-// PDF ERROR generates no pages	
+// TODO Fix PDF ERROR generates no pages	
 //	@Test
 //	public void exportHorizontal() throws Exception {
 //		getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
 //	}
 
-// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
-//	@Test
-//	public void exportHoprizontalList() throws Exception {
-//		getExporter("list").exportSqlReport(DESIGN_REPORT_HORIZONTALLIST);
-//	}
 	
-// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
-//	@Test
-//	public void exportList() throws Exception {
-//		getExporter("list").exportSqlReport(DESIGN_REPORT_LIST);
-//	}
-	
-// COMPILER ERROR No support for EmptyCollection new java.util.ArrayList()	
-//	@Test
-//	public void exportNoPageBreak() throws Exception {
-//		getExporter("nopagebreak").exportSqlReport(DESIGN_REPORT_NOPAGEBREAK);
-//	}
 	
 	@Test
 	public void exportStretch() throws Exception {
 		getExporter("stretch").exportReport(DESIGN_REPORT_STRETCH);
 	}
 	
-// DIGESTER ERROR setFeature not implemented	
-//	@Test
-//	public void exportTemplates() throws Exception {
-//		getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
-//	}
-	
-// DIGESTER ERROR No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement	
-//	@Test
-//	public void exportTable() throws Exception {
-//		getExporter("table").exportReport(DESIGN_REPORT_TABLE);
-//	}
-
 	@Test
 	public void exportTabular() throws Exception {
 		getExporter("tabular","extra-fonts").exportReport(DESIGN_REPORT_TABULAR);
 	}
-
 
 	
 	@Test
@@ -253,6 +227,57 @@ public class ExporterTest {
 		getExporter("cdbooklet","extra-fonts").exportReport(DESIGN_REPORT_CDBOOCKLET, XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
 	}
 	
+///////////// BEGIN NOT SUPPORTED FEATURES /////////////////	
+	
+	/**
+	 * Our Digester does not support addRuleSet and setFeature @see {@link NotImplementedDigester}
+	 *  
+		@Test
+		public void exportTemplates() throws Exception {
+			getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
+		}
+	*
+	* running above reports results in NotImplementedException
+	*/
+
+
+	/**
+	 * Components are not supported in initial release, for the tests below code from the original
+	 * source package net.sf.jasperreports.components.list is required.
+	 *  
+		@Test
+		public void exportHoprizontalList() throws Exception {
+			getExporter("list").exportSqlReport(DESIGN_REPORT_HORIZONTALLIST);
+		}
+
+		@Test
+		public void exportList() throws Exception {
+			getExporter("list").exportSqlReport(DESIGN_REPORT_LIST);
+		}
+
+		@Test
+		public void exportTable() throws Exception {
+			getExporter("table").exportReport(DESIGN_REPORT_TABLE);
+		}
+
+	*
+	* running above reports results in 
+	* No such accessible method: setDatasetRun() on object: org.oss.pdfreporter.engine.design.JRDesignComponentElement
+	*/
+	
+	/**
+	 * The JEval expression language does not support java classes as expression elements such as new java.util.ArrayList()
+	 * If required the class ResultCast could be extended to support something like '(emptycollection)'
+	 *  
+		@Test
+		public void exportNoPageBreak() throws Exception {
+			getExporter("nopagebreak").exportSqlReport(DESIGN_REPORT_NOPAGEBREAK);
+		}
+	*
+	* running above reports results in compiler parse exception
+	*/
+	
+///////////// END NOT SUPPORTED FEATURES /////////////////	
 	
 	private ReportExporter getExporter(String reportFolder) {
 		return getExporter(reportFolder,null);
