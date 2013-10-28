@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>jrxml</key>
-	<string>jrxml/digireport-realestate-checklist-v0/realestate-checklist-movein-en.jrxml</string>
-	<key>xml</key>
-	<string>realestate.xml</string>
-	<key>xpath</key>
-	<string>/protocolInstance/protocolKind/category/column</string>
+	<string>jrxml/shapes/ShapesReport.jrxml</string>
 	<key>resources</key>
 	<string>resources</string>
 </dict>

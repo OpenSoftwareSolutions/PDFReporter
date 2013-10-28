@@ -1,8 +1,16 @@
 package org.oss.pdfreporter.android;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 
+import org.oss.pdfreporter.android.pdfreporter.R;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +20,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.pdfreporter.R;
 
 public class MainActivity extends Activity {
 
@@ -59,6 +66,8 @@ public class MainActivity extends Activity {
 								
 			}
 		});
+		
+		tryCopyAssetsToSDCard();
 	}
 	
 	@Override
@@ -69,6 +78,61 @@ public class MainActivity extends Activity {
 		else {
 			super.onBackPressed();
 		}
+	}
+	
+	public void tryCopyAssetsToSDCard() {
+		
+		String dirPath = getExternalFilesDir(null)+"/reports";
+		File dir = new File(dirPath);
+		if (!dir.exists()) {
+			final ProgressDialog progress = ProgressDialog.show(this, "Preparing for first run", "Copying files...", true, false);
+			Thread copyThread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					copyAsset("reports");
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							progress.dismiss();
+						}
+					});
+				}
+			});
+			copyThread.start();
+		}
+	}
+	
+	private void copyAsset(String file) {
+		String extDir = getExternalFilesDir(null)+"/";
+		try {
+			InputStream is = getAssets().open(file);
+			FileOutputStream os = new FileOutputStream(extDir+file);
+			copyFile(is, os);
+			is.close();
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			try {
+				String[] list = getAssets().list(file);
+				File dir = new File(extDir+file);
+				dir.mkdir();
+				for(String listFile : list){
+					copyAsset(file + "/" +listFile);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	private void copyFile(InputStream in, OutputStream out) throws IOException {
+	    byte[] buffer = new byte[1024*16];
+	    int read;
+	    while((read = in.read(buffer)) != -1){
+	      out.write(buffer, 0, read);
+	    }
 	}
 	
 	private void hidePicker() {

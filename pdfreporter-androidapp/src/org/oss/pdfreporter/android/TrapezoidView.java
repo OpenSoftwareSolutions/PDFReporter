@@ -1,12 +1,12 @@
 package org.oss.pdfreporter.android;
 
-import com.example.pdfreporter.R;
+import org.oss.pdfreporter.android.pdfreporter.R;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Paint.Style;
+import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
