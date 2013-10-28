@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.pdfreporter.R;
 
 public class MainActivity extends Activity {
 
@@ -20,10 +21,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		View view = findViewById(R.id.view1);
-		view.setBackgroundDrawable(new TrapezoidDrawable(getResources().getColor(R.color.bg_light), (float)347/453));
-		
+				
 		ListView list = (ListView) findViewById(R.id.listView1);
 		list.setAdapter(new ReportAdapter(this, Arrays.asList("Test1", "Test2", "Test3", "Test2", "Test3", "Test2", "Test3" )));
 		list.setOnItemClickListener(new OnItemClickListener() {
