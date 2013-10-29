@@ -10,7 +10,8 @@
  ******************************************************************************/
 package org.oss.pdfreporter.pdf;
 
-import java.awt.geom.AffineTransform;
+import harmony.java.awt.geom.AffineTransform;
+
 import java.io.IOException;
 
 import org.oss.pdfreporter.exception.NotImplementedException;

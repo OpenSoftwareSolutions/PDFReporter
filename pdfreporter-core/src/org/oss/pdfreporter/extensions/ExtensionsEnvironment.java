@@ -65,7 +65,9 @@ public final class ExtensionsEnvironment
 	
 	private static ExtensionsRegistry createDefaultRegistry()
 	{
-		String registryClass = JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getProperty(PROPERTY_EXTENSIONS_REGISTRY_CLASS);
+		DefaultJasperReportsContext instance = DefaultJasperReportsContext.getInstance();
+		JRPropertiesUtil instance2 = JRPropertiesUtil.getInstance(instance);
+		String registryClass = instance2.getProperty(PROPERTY_EXTENSIONS_REGISTRY_CLASS);
 		
 		ExtensionsRegistry registry = (ExtensionsRegistry) ClassUtils.
 			instantiateClass(registryClass, ExtensionsRegistry.class);

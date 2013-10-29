@@ -47,7 +47,6 @@ public class XmlParserFactory implements IXmlParserFactory {
 	}
 
 	private XmlParserFactory() {
-		// not intended to create
 	}
 	
 	@Override
@@ -99,7 +98,8 @@ public class XmlParserFactory implements IXmlParserFactory {
         if (xmlParserFactory == null) {
         	xmlParserFactory = SAXParserFactory.newInstance();
         	xmlParserFactory.setNamespaceAware(namespaceAware);
-        	xmlParserFactory.setXIncludeAware(xincludeAware);
+        	//TODO: donat look it up please
+        	//xmlParserFactory.setXIncludeAware(xincludeAware);
         	xmlParserFactory.setValidating(validating);
         }
         return (xmlParserFactory);
@@ -109,7 +109,8 @@ public class XmlParserFactory implements IXmlParserFactory {
     	if (documentBuilderFactory==null) {
     		documentBuilderFactory = DocumentBuilderFactory.newInstance();
     		documentBuilderFactory.setNamespaceAware(namespaceAware);
-    		documentBuilderFactory.setXIncludeAware(xincludeAware);
+    		//TODO: donat look it up please
+    		//documentBuilderFactory.setXIncludeAware(xincludeAware);
     		documentBuilderFactory.setValidating(validating);
     	}
     	return (documentBuilderFactory);

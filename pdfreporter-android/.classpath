@@ -7,8 +7,7 @@
 	<classpathentry kind="lib" path="lib/bcmail-jdk14-138.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk14-138.jar"/>
 	<classpathentry kind="lib" path="lib/hsqldb-1.8.0-10.jar"/>
-	<classpathentry kind="lib" path="lib/itext-2.1.7-sources.jar"/>
-	<classpathentry kind="lib" path="lib/iText-2.1.7.js1.jar"/>
 	<classpathentry kind="lib" path="lib/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/iText.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

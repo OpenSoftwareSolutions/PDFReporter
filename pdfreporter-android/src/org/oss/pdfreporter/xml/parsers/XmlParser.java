@@ -34,7 +34,9 @@ public class XmlParser extends AbstractXmlParser {
 	private final XMLReader reader;
 	
 	public XmlParser(SAXParser parser, IInputSource input, IContentHandler handler) throws ParserConfigurationException {
-		super(input,handler,parser.isValidating(),parser.isNamespaceAware(),parser.isXIncludeAware());
+		//TODO: donat look it up please
+		//super(input,handler,parser.isValidating(),parser.isNamespaceAware(), parser.isXIncludeAware());
+		super(input,handler,parser.isValidating(),parser.isNamespaceAware(), false);
 		try {
 			this.reader = parser.getXMLReader();
 		} catch (SAXException e) {
