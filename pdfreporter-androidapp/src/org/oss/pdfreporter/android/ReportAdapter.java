@@ -20,12 +20,23 @@ public class ReportAdapter implements ListAdapter {
 	private final Context mContext;
 	private final LayoutInflater inflater;
 	
-	public ReportAdapter(Context context, List<String> reportList) {
+	public ReportAdapter(Context context) {
 		mObserverList = new ArrayList<DataSetObserver>();
 		mContext = context;
 		inflater = LayoutInflater.from(context);
-		mReportList = reportList;
 	}
+
+	public void update() {
+		for (DataSetObserver obs : mObserverList) {
+			obs.onChanged();
+		}
+	}
+	
+	public void setReportList(List<String> reportList) {
+		mReportList = reportList;
+		update();
+	}
+
 
 	@Override
 	public int getCount() {
