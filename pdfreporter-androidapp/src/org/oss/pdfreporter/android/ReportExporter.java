@@ -15,6 +15,8 @@ import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.repo.RepositoryManager;
+import org.oss.pdfreporter.sql.IConnection;
+import org.oss.pdfreporter.sql.SQLException;
 
 public class ReportExporter {
 	
@@ -49,6 +51,11 @@ public class ReportExporter {
 		return JasperFillManager.fillReport(report, null, new JREmptyDataSource());
 	}
 	
+	public static JasperPrint fillReport(JasperReport report, String sqlite3) throws JRException, SQLException {
+		IConnection sqlDataSource = ApiRegistry.getSqlFactory().newConnection(sqlite3, null, null);
+		return JasperFillManager.fillReport(report, null, sqlDataSource);
+	}
+		
 	public static void exportReportToPdf(String pdfPath, String jrxmlPath, String[] resourceFolders) throws JRException, IOException {
 		ApiRegistry.initSession();
 		String jrxmlFile = ReportExporter.setupJrxmlPath(jrxmlPath, resourceFolders);
@@ -60,22 +67,18 @@ public class ReportExporter {
 		ApiRegistry.dispose();
 	}
 	
-	/*static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
-
-	@implementation ReportExporter
-
-	+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders
-	{
-	    [OrgOssPdfreporterRegistryApiRegistry initSession];
-	    NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
-	        
-	    OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];        
-	    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report];
-	    
-	    [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
-	    [OrgOssPdfreporterRegistryApiRegistry dispose];
+	public static void exportReportToPdf(String pdfPath, String jrxmlPath, String[] resourceFolders, String sqlite3) throws JRException, IOException, SQLException {
+		ApiRegistry.initSession();
+		String jrxmlFile = ReportExporter.setupJrxmlPath(jrxmlPath, resourceFolders);
+		
+		JasperReport report = ReportExporter.loadReport(jrxmlFile);
+		JasperPrint printReport = ReportExporter.fillReport(report, sqlite3);
+		
+		JasperExportManager.exportReportToPdfFile(printReport, pdfPath);
+		ApiRegistry.dispose();
 	}
-
+	
+	/*
 	+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders andSqlite3:(NSString*)sqlite3
 	{
 	    [OrgOssPdfreporterRegistryApiRegistry initSession];

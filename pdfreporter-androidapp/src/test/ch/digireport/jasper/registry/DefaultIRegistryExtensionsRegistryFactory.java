@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.oss.pdfreporter.android.sql.SQLiteFactory;
 import org.oss.pdfreporter.beans.factory.BeansFactory;
 import org.oss.pdfreporter.engine.JRPropertiesMap;
 import org.oss.pdfreporter.extensions.ExtensionsRegistry;
@@ -63,6 +64,7 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 			ImageFactory.registerFactory();
 			GeometryFactory.registerFactory();
 			PdfFactory.registerFactory();
+			SQLiteFactory.registerFactory();
 			isInitialized = true;
 			logger.info("Initialized IRegistry");
 		}

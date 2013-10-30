@@ -165,7 +165,12 @@ public class MainActivity extends Activity {
 							folders = new String[]{dirPath+"/"+reportPlist.getResources(), dirPath+"/"+reportPlist.getExtra()};
 						}
 						
-						ReportExporter.exportReportToPdf(pdfPath,dirPath + "/"+reportPlist.getJrxml(), folders);
+						if(TextUtils.isEmpty(reportPlist.getSqlite3())) {
+							ReportExporter.exportReportToPdf(pdfPath,dirPath + "/"+reportPlist.getJrxml(), folders);
+						}
+						else {
+							ReportExporter.exportReportToPdf(pdfPath,dirPath + "/"+reportPlist.getJrxml(), folders, dirPath + "/" + reportPlist.getSqlite3());
+						}
 						
 						runOnUiThread(new Runnable() {
 
