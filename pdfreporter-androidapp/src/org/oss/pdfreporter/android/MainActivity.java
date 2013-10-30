@@ -28,7 +28,10 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -42,9 +45,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
-	private ReportAdapter reportAdapter;
-	private String plistFile = null;
+
+	private ReportAdapter	reportAdapter;
+	private String			plistFile	= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class MainActivity extends Activity {
 		reportAdapter = new ReportAdapter(this);
 		ListView list = (ListView) findViewById(R.id.listView1);
 		list.setAdapter(reportAdapter);
-		
+
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -94,7 +97,7 @@ public class MainActivity extends Activity {
 		tryCopyAssetsToSDCard();
 		reportAdapter.setReportList(loadPlists());
 	}
-	
+
 	public List<String> loadPlists() {
 		String dirPath = getExternalFilesDir(null) + "/reports";
 		File dir = new File(dirPath);
@@ -102,42 +105,42 @@ public class MainActivity extends Activity {
 		if (dir.exists() && dir.isDirectory()) {
 			String[] items = dir.list();
 			for (String item : items) {
-				if(item.endsWith(".plist")) {
+				if (item.endsWith(".plist")) {
 					list.add(item.substring(0, item.indexOf(".")));
 				}
 			}
 		}
 		return list;
 	}
-	
+
 	public ReportPlist readPlist(String path) throws Exception {
 		DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = docBuilder.parse(new FileInputStream(path));
 		NodeList keys = doc.getElementsByTagName("key");
 		NodeList values = doc.getElementsByTagName("string");
-		if(keys.getLength() != values.getLength()) throw new Exception("Malformed plist");
+		if (keys.getLength() != values.getLength()) throw new Exception("Malformed plist");
 		ReportPlist reportPlist = new ReportPlist();
-		for (int i=0; i<keys.getLength(); i++) {
+		for (int i = 0; i < keys.getLength(); i++) {
 			Node key = keys.item(i);
 			Node value = values.item(i);
 			String skey = key.getTextContent();
 			String svalue = value.getTextContent();
-			if(skey.equals("jrxml")) {
+			if (skey.equals("jrxml")) {
 				reportPlist.setJrxml(svalue);
 			}
-			else if(skey.equals("resources")) {
+			else if (skey.equals("resources")) {
 				reportPlist.setResources(svalue);
 			}
-			else if(skey.equals("extra")) {
+			else if (skey.equals("extra")) {
 				reportPlist.setExtra(svalue);
 			}
-			else if(skey.equals("sqlite3")) {
+			else if (skey.equals("sqlite3")) {
 				reportPlist.setSqlite3(svalue);
 			}
-			else if(skey.equals("xml")) {
+			else if (skey.equals("xml")) {
 				reportPlist.setXml(svalue);
 			}
-			else if(skey.equals("xpath")) {
+			else if (skey.equals("xpath")) {
 				reportPlist.setXpath(svalue);
 			}
 		}
@@ -145,57 +148,77 @@ public class MainActivity extends Activity {
 	}
 
 	public void generate() {
-		if(plistFile != null) {
-			final ProgressDialog progressDialog = ProgressDialog.show(this, "PDFReporter", "Generating report...", true, false);
+		if (plistFile != null) {
+			final ProgressDialog progressDialog = ProgressDialog.show(this, "PDFReporter", "Generating report...",
+					true, false);
 			new Thread(new Runnable() {
 
 				@Override
 				public void run() {
 					final String dirPath = getExternalFilesDir(null) + "/reports";
-					final String pdfPath = getExternalFilesDir(null) + "/output.pdf";
-					
-					
+					final String pdfPath = getExternalFilesDir(null) + "/report.pdf";
+
 					try {
-						ReportPlist reportPlist = readPlist(dirPath+"/"+plistFile+".plist");
+						ReportPlist reportPlist = readPlist(dirPath + "/" + plistFile + ".plist");
 						String[] folders;
-						if(TextUtils.isEmpty(reportPlist.getExtra())) {
-							folders = new String[]{dirPath+"/"+reportPlist.getResources()};
+						if (TextUtils.isEmpty(reportPlist.getExtra())) {
+							folders = new String[] { dirPath + "/" + reportPlist.getResources() };
 						}
 						else {
-							folders = new String[]{dirPath+"/"+reportPlist.getResources(), dirPath+"/"+reportPlist.getExtra()};
+							folders = new String[] { dirPath + "/" + reportPlist.getResources(),
+									dirPath + "/" + reportPlist.getExtra() };
 						}
-						
-						if(TextUtils.isEmpty(reportPlist.getSqlite3())) {
-							ReportExporter.exportReportToPdf(pdfPath,dirPath + "/"+reportPlist.getJrxml(), folders);
+
+						if (TextUtils.isEmpty(reportPlist.getSqlite3())) {
+							ReportExporter.exportReportToPdf(pdfPath, dirPath + "/" + reportPlist.getJrxml(), folders);
 						}
 						else {
-							ReportExporter.exportReportToPdf(pdfPath,dirPath + "/"+reportPlist.getJrxml(), folders, dirPath + "/" + reportPlist.getSqlite3());
+							ReportExporter.exportReportToPdf(pdfPath, dirPath + "/" + reportPlist.getJrxml(), folders,
+									dirPath + "/" + reportPlist.getSqlite3());
 						}
-						
+
 						runOnUiThread(new Runnable() {
 
 							@Override
 							public void run() {
-								try {
-									
-									progressDialog.dismiss();
-									Intent intent = new Intent(Intent.ACTION_VIEW);
-									intent.setDataAndType(Uri.fromFile(new File(pdfPath)), "application/pdf");
-									intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-									startActivity(intent);
-									
-								} catch (ActivityNotFoundException e1) {
-									runOnUiThread(new Runnable() {
+								progressDialog.dismiss();
 
+								final Intent viewIntent = new Intent(Intent.ACTION_VIEW);
+								viewIntent.setDataAndType(Uri.fromFile(new File(pdfPath)), "application/pdf");
+								viewIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+								
+								final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND); 
+								emailIntent.setType("application/pdf"); 
+								emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pdfPath)));
+
+								AlertDialog.Builder builder = new Builder(MainActivity.this);
+								builder.setTitle("Report created.").setCancelable(true);
+								boolean needOK = true;
+								if (isAvailable(viewIntent)) {
+									needOK = false;
+									builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
+										
 										@Override
-										public void run() {
-											progressDialog.dismiss();
-											AlertDialog.Builder builder = new Builder(MainActivity.this);
-											builder.setTitle("Report created.").setPositiveButton("OK", null).create().show();
-
+										public void onClick(DialogInterface dialog, int which) {
+											startActivity(viewIntent);									
 										}
 									});
 								}
+								
+								if(isAvailable(emailIntent)){
+									needOK = false;
+									builder.setNegativeButton("Send by E-Mail", new DialogInterface.OnClickListener() {
+										
+										@Override
+										public void onClick(DialogInterface dialog, int which) {
+											startActivity(emailIntent);									
+										}
+									});
+								}
+								if(needOK) {
+									builder.setNeutralButton("OK", null);
+								}
+								builder.create().show();
 							}
 						});
 
@@ -206,7 +229,8 @@ public class MainActivity extends Activity {
 							public void run() {
 								progressDialog.dismiss();
 								AlertDialog.Builder builder = new Builder(MainActivity.this);
-								builder.setTitle("Report failed to generate.").setNegativeButton("OK", null).create().show();
+								builder.setTitle("Report failed to generate.").setNegativeButton("OK", null).create()
+										.show();
 							}
 						});
 					}
@@ -223,6 +247,14 @@ public class MainActivity extends Activity {
 		else {
 			super.onBackPressed();
 		}
+	}
+
+	public boolean isAvailable(Intent intent) {
+		final PackageManager mgr = getPackageManager();
+		List<ResolveInfo> list =
+				mgr.queryIntentActivities(intent,
+						PackageManager.MATCH_DEFAULT_ONLY);
+		return list.size() > 0;
 	}
 
 	public void tryCopyAssetsToSDCard() {
