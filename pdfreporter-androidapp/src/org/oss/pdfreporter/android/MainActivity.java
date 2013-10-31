@@ -26,14 +26,18 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Xml;
 import android.view.View;
@@ -91,6 +95,15 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				generate();
+			}
+		});
+		
+		findViewById(R.id.textView1).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				downloadUpdate();
+				
 			}
 		});
 
@@ -325,4 +338,22 @@ public class MainActivity extends Activity {
 				AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_up));
 		findViewById(R.id.picker).setVisibility(View.VISIBLE);
 	}
+	
+	private void downloadUpdate() {
+		String url = "http://pdfreporting.com/update-samples/reports.zip";
+		DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+		request.setDescription("Samples update");
+		request.setTitle("PDFReporter");
+		// in order for this if to run, you must use the android 3.2 to compile your app
+		/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+		}*/
+		request.setDestinationInExternalFilesDir(this, null, "reports.zip");
+
+		// get download service and enqueue file
+		DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+		manager.enqueue(request);
+	}
+	
+	
 }
