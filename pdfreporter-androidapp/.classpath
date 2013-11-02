@@ -6,6 +6,5 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pdfreporter-android"/>
-	<classpathentry exported="true" kind="lib" path="/pdfreporter-android/lib/iText.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
