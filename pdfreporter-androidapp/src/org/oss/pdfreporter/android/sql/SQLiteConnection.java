@@ -13,7 +13,7 @@ public class SQLiteConnection implements IConnection {
 	private SQLiteDatabase	db;
 
 	public SQLiteConnection(String filename) {
-		db = SQLiteDatabase.openDatabase(filename, null, SQLiteDatabase.OPEN_READONLY);
+		db = SQLiteDatabase.openDatabase(filename, null, SQLiteDatabase.OPEN_READONLY| SQLiteDatabase.NO_LOCALIZED_COLLATORS);
 	}
 	
 	@Override
