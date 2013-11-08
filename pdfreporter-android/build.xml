@@ -5,11 +5,12 @@
     <property name="src.dir"     value="src"/>
     <property name="src-inc.dir" value="../pdfreporter-portable/src"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="release.dir"     value="${build.dir}/release"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
 	
     
 	<property name="user" value="@see authors.txt file"/>
-	<property name="version" value="0.9.0"/>
+	<property name="version" value="1.0.0"/>
 	<property name="spec-title" value="pdfreporter-android"/>
 	<property name="impl-title" value="pdfreporter-android RC 1"/>
 	<property name="licence" value="GNU GENERAL PUBLIC LICENSE, Version 3.0"/>
@@ -59,6 +60,30 @@
 				<include name="license.txt" />
 			</fileset>
 		</jar>
+	</target>
+
+	<target name="release" description="builds a release version of the library">
+		<ant antfile="../pdfreporter-extensions/build.xml" target="jar" />
+		<copy todir="../pdfreporter-core/lib">
+			<fileset dir="../pdfreporter-extensions/build/jar" includes="**/*.jar" />
+		</copy>
+		<ant antfile="../pdfreporter-core/build.xml" target="jar" />
+		<copy todir="lib">
+			<fileset dir="../pdfreporter-extensions/build/jar" includes="**/*.jar" />
+		</copy>
+		<copy todir="lib">
+			<fileset dir="../pdfreporter-core/build/jar" includes="**/*.jar" />
+		</copy>
+		<antcall target="jar" />
+		<zip destfile="${release.dir}/pdfreporter-android-${version}.zip">
+			<fileset dir="lib" includes="pdfreporter-*.jar" />
+			<fileset dir="${jar.dir}" />
+		</zip>
+		<tar destfile="${release.dir}/pdfreporter-android-${version}.tar.gz"
+			compression="gzip">
+			<fileset dir="lib" includes="pdfreporter-*.jar" />
+			<fileset dir="${jar.dir}" />
+		</tar>
 	</target>
 	
 	<target name="unit-test" depends="jar">
