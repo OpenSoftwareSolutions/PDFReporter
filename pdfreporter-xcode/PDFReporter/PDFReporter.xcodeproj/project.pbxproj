@@ -875,6 +875,7 @@
 		51C104FC179AB5320059E90D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Open Software Solutions GmbH (FSY39VUCWR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReporter/PDFReporter-Prefix.pch";
 				GCC_VERSION = "";
@@ -887,6 +888,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "FECFDA8C-9AD4-48F2-90B9-F824F17667AF";
 				USER_HEADER_SEARCH_PATHS = "../PDFReporter-ios/native ../j2objc/include";
 				WRAPPER_EXTENSION = app;
 			};
