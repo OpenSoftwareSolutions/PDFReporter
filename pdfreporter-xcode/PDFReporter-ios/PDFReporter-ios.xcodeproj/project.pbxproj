@@ -40,6 +40,23 @@
 		2EE68FF017F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */; };
 		2EE69C0817F18D6400C7C1FE /* FallbackFormater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69C0717F18D6400C7C1FE /* FallbackFormater.m */; };
 		2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69C0A17F18D7B00C7C1FE /* FallbackFormatFactory.m */; };
+		3D348C551835034400E7E1CF /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C2C1835034400E7E1CF /* BeanUtils.m */; };
+		3D348C561835034400E7E1CF /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C2F1835034400E7E1CF /* BeansFactory.m */; };
+		3D348C571835034400E7E1CF /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C321835034400E7E1CF /* FontFactory.m */; };
+		3D348C581835034400E7E1CF /* FontFactoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C341835034400E7E1CF /* FontFactoryBase.m */; };
+		3D348C591835034400E7E1CF /* CharacterBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C371835034400E7E1CF /* CharacterBreakIterator.m */; };
+		3D348C5A1835034400E7E1CF /* LineBreakMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C391835034400E7E1CF /* LineBreakMeasurer.m */; };
+		3D348C5B1835034400E7E1CF /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C3B1835034400E7E1CF /* TextLayout.m */; };
+		3D348C5C1835034400E7E1CF /* WordBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C3D1835034400E7E1CF /* WordBreakIterator.m */; };
+		3D348C5D1835034400E7E1CF /* AffineTransformMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C401835034400E7E1CF /* AffineTransformMatrix.m */; };
+		3D348C5E1835034400E7E1CF /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C421835034400E7E1CF /* Color.m */; };
+		3D348C5F1835034400E7E1CF /* Dimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C441835034400E7E1CF /* Dimension.m */; };
+		3D348C601835034400E7E1CF /* GeometryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C461835034400E7E1CF /* GeometryFactory.m */; };
+		3D348C611835034400E7E1CF /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C481835034400E7E1CF /* Rectangle.m */; };
+		3D348C621835034400E7E1CF /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C4A1835034400E7E1CF /* Stroke.m */; };
+		3D348C631835034400E7E1CF /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C4D1835034400E7E1CF /* ImageFactory.m */; };
+		3D348C641835034400E7E1CF /* NetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C511835034400E7E1CF /* NetFactory.m */; };
+		3D348C651835034400E7E1CF /* PdfFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D348C541835034400E7E1CF /* PdfFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +140,40 @@
 		2EE69C0917F18D7B00C7C1FE /* FallbackFormatFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackFormatFactory.h; sourceTree = "<group>"; };
 		2EE69C0A17F18D7B00C7C1FE /* FallbackFormatFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallbackFormatFactory.m; sourceTree = "<group>"; };
 		2EFDDA5E17F0856100D4580A /* libJasperReportLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libJasperReportLib.a; path = "../JasperReportLib/build/Debug-iphoneos/libJasperReportLib.a"; sourceTree = "<group>"; };
+		3D348C2B1835034400E7E1CF /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
+		3D348C2C1835034400E7E1CF /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
+		3D348C2E1835034400E7E1CF /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
+		3D348C2F1835034400E7E1CF /* BeansFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeansFactory.m; sourceTree = "<group>"; };
+		3D348C311835034400E7E1CF /* FontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactory.h; sourceTree = "<group>"; };
+		3D348C321835034400E7E1CF /* FontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactory.m; sourceTree = "<group>"; };
+		3D348C331835034400E7E1CF /* FontFactoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactoryBase.h; sourceTree = "<group>"; };
+		3D348C341835034400E7E1CF /* FontFactoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactoryBase.m; sourceTree = "<group>"; };
+		3D348C361835034400E7E1CF /* CharacterBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterBreakIterator.h; sourceTree = "<group>"; };
+		3D348C371835034400E7E1CF /* CharacterBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterBreakIterator.m; sourceTree = "<group>"; };
+		3D348C381835034400E7E1CF /* LineBreakMeasurer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBreakMeasurer.h; sourceTree = "<group>"; };
+		3D348C391835034400E7E1CF /* LineBreakMeasurer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBreakMeasurer.m; sourceTree = "<group>"; };
+		3D348C3A1835034400E7E1CF /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
+		3D348C3B1835034400E7E1CF /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
+		3D348C3C1835034400E7E1CF /* WordBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordBreakIterator.h; sourceTree = "<group>"; };
+		3D348C3D1835034400E7E1CF /* WordBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordBreakIterator.m; sourceTree = "<group>"; };
+		3D348C3F1835034400E7E1CF /* AffineTransformMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffineTransformMatrix.h; sourceTree = "<group>"; };
+		3D348C401835034400E7E1CF /* AffineTransformMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AffineTransformMatrix.m; sourceTree = "<group>"; };
+		3D348C411835034400E7E1CF /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		3D348C421835034400E7E1CF /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
+		3D348C431835034400E7E1CF /* Dimension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
+		3D348C441835034400E7E1CF /* Dimension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dimension.m; sourceTree = "<group>"; };
+		3D348C451835034400E7E1CF /* GeometryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryFactory.h; sourceTree = "<group>"; };
+		3D348C461835034400E7E1CF /* GeometryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeometryFactory.m; sourceTree = "<group>"; };
+		3D348C471835034400E7E1CF /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		3D348C481835034400E7E1CF /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
+		3D348C491835034400E7E1CF /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
+		3D348C4A1835034400E7E1CF /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
+		3D348C4C1835034400E7E1CF /* ImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFactory.h; sourceTree = "<group>"; };
+		3D348C4D1835034400E7E1CF /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
+		3D348C501835034400E7E1CF /* NetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetFactory.h; sourceTree = "<group>"; };
+		3D348C511835034400E7E1CF /* NetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetFactory.m; sourceTree = "<group>"; };
+		3D348C531835034400E7E1CF /* PdfFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfFactory.h; sourceTree = "<group>"; };
+		3D348C541835034400E7E1CF /* PdfFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +191,7 @@
 		2E33E2B01816BBE2004DE7F7 /* gen */ = {
 			isa = PBXGroup;
 			children = (
+				3D348C271835034400E7E1CF /* org */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -411,6 +463,135 @@
 			path = fallback;
 			sourceTree = "<group>";
 		};
+		3D348C271835034400E7E1CF /* org */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C281835034400E7E1CF /* oss */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		3D348C281835034400E7E1CF /* oss */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C291835034400E7E1CF /* pdfreporter */,
+			);
+			path = oss;
+			sourceTree = "<group>";
+		};
+		3D348C291835034400E7E1CF /* pdfreporter */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C2A1835034400E7E1CF /* beans */,
+				3D348C301835034400E7E1CF /* font */,
+				3D348C3E1835034400E7E1CF /* geometry */,
+				3D348C4B1835034400E7E1CF /* image */,
+				3D348C4E1835034400E7E1CF /* net */,
+				3D348C521835034400E7E1CF /* pdf */,
+			);
+			path = pdfreporter;
+			sourceTree = "<group>";
+		};
+		3D348C2A1835034400E7E1CF /* beans */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C2B1835034400E7E1CF /* BeanUtils.h */,
+				3D348C2C1835034400E7E1CF /* BeanUtils.m */,
+				3D348C2D1835034400E7E1CF /* factory */,
+			);
+			path = beans;
+			sourceTree = "<group>";
+		};
+		3D348C2D1835034400E7E1CF /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C2E1835034400E7E1CF /* BeansFactory.h */,
+				3D348C2F1835034400E7E1CF /* BeansFactory.m */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
+		3D348C301835034400E7E1CF /* font */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C311835034400E7E1CF /* FontFactory.h */,
+				3D348C321835034400E7E1CF /* FontFactory.m */,
+				3D348C331835034400E7E1CF /* FontFactoryBase.h */,
+				3D348C341835034400E7E1CF /* FontFactoryBase.m */,
+				3D348C351835034400E7E1CF /* text */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		3D348C351835034400E7E1CF /* text */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C361835034400E7E1CF /* CharacterBreakIterator.h */,
+				3D348C371835034400E7E1CF /* CharacterBreakIterator.m */,
+				3D348C381835034400E7E1CF /* LineBreakMeasurer.h */,
+				3D348C391835034400E7E1CF /* LineBreakMeasurer.m */,
+				3D348C3A1835034400E7E1CF /* TextLayout.h */,
+				3D348C3B1835034400E7E1CF /* TextLayout.m */,
+				3D348C3C1835034400E7E1CF /* WordBreakIterator.h */,
+				3D348C3D1835034400E7E1CF /* WordBreakIterator.m */,
+			);
+			path = text;
+			sourceTree = "<group>";
+		};
+		3D348C3E1835034400E7E1CF /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C3F1835034400E7E1CF /* AffineTransformMatrix.h */,
+				3D348C401835034400E7E1CF /* AffineTransformMatrix.m */,
+				3D348C411835034400E7E1CF /* Color.h */,
+				3D348C421835034400E7E1CF /* Color.m */,
+				3D348C431835034400E7E1CF /* Dimension.h */,
+				3D348C441835034400E7E1CF /* Dimension.m */,
+				3D348C451835034400E7E1CF /* GeometryFactory.h */,
+				3D348C461835034400E7E1CF /* GeometryFactory.m */,
+				3D348C471835034400E7E1CF /* Rectangle.h */,
+				3D348C481835034400E7E1CF /* Rectangle.m */,
+				3D348C491835034400E7E1CF /* Stroke.h */,
+				3D348C4A1835034400E7E1CF /* Stroke.m */,
+			);
+			path = geometry;
+			sourceTree = "<group>";
+		};
+		3D348C4B1835034400E7E1CF /* image */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C4C1835034400E7E1CF /* ImageFactory.h */,
+				3D348C4D1835034400E7E1CF /* ImageFactory.m */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		3D348C4E1835034400E7E1CF /* net */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C4F1835034400E7E1CF /* factory */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		3D348C4F1835034400E7E1CF /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C501835034400E7E1CF /* NetFactory.h */,
+				3D348C511835034400E7E1CF /* NetFactory.m */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
+		3D348C521835034400E7E1CF /* pdf */ = {
+			isa = PBXGroup;
+			children = (
+				3D348C531835034400E7E1CF /* PdfFactory.h */,
+				3D348C541835034400E7E1CF /* PdfFactory.m */,
+			);
+			path = pdf;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,33 +643,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D348C601835034400E7E1CF /* GeometryFactory.m in Sources */,
 				2EE681A217F16F6100C7C1FE /* Document.m in Sources */,
 				2EE6819A17F16F6100C7C1FE /* Font.m in Sources */,
 				2EE681AA17F16F6100C7C1FE /* SqlFactory.m in Sources */,
+				3D348C5B1835034400E7E1CF /* TextLayout.m in Sources */,
 				2EE681A817F16F6100C7C1FE /* ResultMetaData.m in Sources */,
 				2EE6819C17F16F6100C7C1FE /* FontManager.m in Sources */,
+				3D348C631835034400E7E1CF /* ImageFactory.m in Sources */,
 				2EE6819817F16F6100C7C1FE /* InputStreamMarshaller.m in Sources */,
+				3D348C561835034400E7E1CF /* BeansFactory.m in Sources */,
 				2EE6819B17F16F6100C7C1FE /* FontBox.m in Sources */,
 				2EE681B217F16F6100C7C1FE /* Attributes.m in Sources */,
 				2EE681B517F16F6100C7C1FE /* ReportExporter.m in Sources */,
 				2EE681B317F16F6100C7C1FE /* XmlParserFactory.m in Sources */,
+				3D348C591835034400E7E1CF /* CharacterBreakIterator.m in Sources */,
 				2EE681B417F16F6100C7C1FE /* XmlParser.m in Sources */,
+				3D348C571835034400E7E1CF /* FontFactory.m in Sources */,
+				3D348C5E1835034400E7E1CF /* Color.m in Sources */,
 				2EE681A717F16F6100C7C1FE /* PreparedStatement.m in Sources */,
 				2EE681A017F16F6100C7C1FE /* ImageManager.m in Sources */,
 				2EE68FF017F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
 				2EE69C0817F18D6400C7C1FE /* FallbackFormater.m in Sources */,
+				3D348C651835034400E7E1CF /* PdfFactory.m in Sources */,
 				2EE681AE17F16F6100C7C1FE /* SimpleFormatFactory.m in Sources */,
+				3D348C551835034400E7E1CF /* BeanUtils.m in Sources */,
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
+				3D348C5D1835034400E7E1CF /* AffineTransformMatrix.m in Sources */,
+				3D348C5A1835034400E7E1CF /* LineBreakMeasurer.m in Sources */,
 				2EE681A417F16F6100C7C1FE /* Page.m in Sources */,
 				2EE6819D17F16F6100C7C1FE /* FontMetrics.m in Sources */,
 				2EE681AB17F16F6100C7C1FE /* Sqlite3Box.m in Sources */,
+				3D348C611835034400E7E1CF /* Rectangle.m in Sources */,
 				2EE681AD17F16F6100C7C1FE /* DateFormat.m in Sources */,
 				2EE681A917F16F6100C7C1FE /* ResultSet.m in Sources */,
 				2EE681A617F16F6100C7C1FE /* Connection.m in Sources */,
+				3D348C621835034400E7E1CF /* Stroke.m in Sources */,
 				2EE6819F17F16F6100C7C1FE /* ImageBox.m in Sources */,
 				2EE6819717F16F6100C7C1FE /* CustomJavaUtilLoggingHandler.m in Sources */,
+				3D348C5F1835034400E7E1CF /* Dimension.m in Sources */,
+				3D348C641835034400E7E1CF /* NetFactory.m in Sources */,
 				2EE681AC17F16F6100C7C1FE /* Chunk.m in Sources */,
 				2EE681B017F16F6100C7C1FE /* Formatter.m in Sources */,
+				3D348C5C1835034400E7E1CF /* WordBreakIterator.m in Sources */,
+				3D348C581835034400E7E1CF /* FontFactoryBase.m in Sources */,
 				2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */,
 				2EE681A117F16F6100C7C1FE /* URL.m in Sources */,
 				2EE681B117F16F6100C7C1FE /* NumberFormat.m in Sources */,
