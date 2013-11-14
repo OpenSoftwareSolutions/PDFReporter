@@ -230,7 +230,7 @@ public class Evaluator {
 	
 	// Allows for user to set their own variable resolver.
 	private VariableResolver variableResolver = null;
-
+	
 	/**
 	 * The default constructor. This constructor calls the five parameter
 	 * Evaluator constructor and passes in the following default values:
@@ -683,7 +683,7 @@ public class Evaluator {
 		final String result = evaluate(expression);
 
 		try {
-			Double doubleResult = new Double(result);
+			Double doubleResult = Util.s2d(result);
 
 			if (doubleResult.doubleValue() == 1.0) {
 				return true;
@@ -718,7 +718,7 @@ public class Evaluator {
 		Double doubleResult = null;
 
 		try {
-			doubleResult = new Double(result);
+			doubleResult = Util.s2d(result);
 		} catch (NumberFormatException nfe) {
 			throw new EvaluationException(
 					"Expression does not produce a number.", nfe);
@@ -1250,7 +1250,7 @@ public class Evaluator {
 			if (!isExpressionString(resultString)) {
 				Double resultDouble = null;
 				try {
-					resultDouble = new Double(resultString);
+					resultDouble = Util.s2d(resultString);
 				} catch (Exception e) {
 					throw new EvaluationException("Expression is invalid.", e);
 				}
@@ -1290,7 +1290,7 @@ public class Evaluator {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = new Double(resultString);
+					Double resultDouble = Util.s2d(resultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {

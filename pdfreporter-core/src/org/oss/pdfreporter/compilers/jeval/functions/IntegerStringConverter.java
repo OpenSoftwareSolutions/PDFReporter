@@ -11,6 +11,7 @@
 package org.oss.pdfreporter.compilers.jeval.functions;
 
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
+import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -30,7 +31,7 @@ public class IntegerStringConverter implements Function {
 		Integer number = null;
 
 		try {
-			number = new Double(arguments).intValue();
+			number = Util.s2d(arguments).intValue();
 		} catch (Exception e) {
 			throw new FunctionException("Invalid argument.", e);
 		}

@@ -11,6 +11,7 @@
 package org.oss.pdfreporter.compilers.jeval.functions;
 
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
+import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -30,7 +31,7 @@ public class DateStringConverter implements Function {
 		Long number = null;
 
 		try {
-			number = new Double(arguments).longValue();
+			number = Util.s2d(arguments).longValue();
 		} catch (Exception e) {
 			throw new FunctionException("Invalid argument.", e);
 		}

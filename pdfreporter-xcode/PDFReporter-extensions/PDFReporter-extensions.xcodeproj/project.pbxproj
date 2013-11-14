@@ -25,7 +25,6 @@
 /* Begin PBXFileReference section */
 		2EE6C1F817F0664E000A49AB /* libPDFReporter-extensions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPDFReporter-extensions.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE6C1FB17F0664E000A49AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2EE6C1FF17F0664E000A49AB /* PDFReporter-extensions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFReporter-extensions-Prefix.pch"; sourceTree = "<group>"; };
 		2EE6D00017F068CF000A49AB /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				2E33E06E1816BBD7004DE7F7 /* gen */,
-				2EE6C1FD17F0664E000A49AB /* PDFReporter-extensions */,
 				2EE6C1FA17F0664E000A49AB /* Frameworks */,
 				2EE6C1F917F0664E000A49AB /* Products */,
 			);
@@ -73,14 +71,6 @@
 				2EE6C1FB17F0664E000A49AB /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2EE6C1FD17F0664E000A49AB /* PDFReporter-extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2EE6C1FF17F0664E000A49AB /* PDFReporter-extensions-Prefix.pch */,
-			);
-			path = "PDFReporter-extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -13,6 +13,7 @@ package org.oss.pdfreporter.compilers.jeval;
 import java.util.Date;
 
 import org.oss.pdfreporter.compilers.jeval.functions.NullValue;
+import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 
 
 
@@ -40,19 +41,19 @@ public class ResultUtil {
 	}
 	
 	public static Double getDoubleResult(String result) {
-		return new Double(result);
+		return Util.s2d(result);
 	}
 	
 	public static Integer getIntResult(String result) {
-		return new Double(result).intValue();
+		return Util.s2d(result).intValue();
 	}
 	
 	public static Long getLongResult(String result) {
-		return new Double(result).longValue();
+		return Util.s2d(result).longValue();
 	}
 	
 	public static Date geDateResult(String result) {
-		return new Date(new Double(result).longValue());
+		return new Date(Util.s2d(result).longValue());
 	}
 	
 	public static Boolean getBooleanResult(String result) {

@@ -147,8 +147,13 @@ public class EvaluationResult {
 	 *             Thrown if the result value is not a double.
 	 */
 	public Double getDouble() throws NumberFormatException {
-
-		return new Double(result);
+		Double tmp;
+		try {
+			tmp = new Double(result);
+		} catch (NumberFormatException e) {
+			tmp = new Double(result.replace('.', ','));
+		}
+		return tmp;
 	}
 
 	/**

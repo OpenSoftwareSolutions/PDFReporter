@@ -29,6 +29,7 @@ import org.oss.pdfreporter.engine.JRPen;
 import org.oss.pdfreporter.engine.JRStyle;
 import org.oss.pdfreporter.engine.type.LineStyleEnum;
 import org.oss.pdfreporter.engine.util.JRColorUtil;
+import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.xml.parsers.IAttributes;
 
 
@@ -56,7 +57,7 @@ public class JRPenFactory extends JRBaseFactory
 		String lineWidth = atts.getValue(JRXmlConstants.ATTRIBUTE_lineWidth);
 		if (lineWidth != null && lineWidth.length() > 0)
 		{
-			pen.setLineWidth(Float.parseFloat(lineWidth));
+			pen.setLineWidth(Util.s2d(lineWidth).floatValue());
 		}
 
 		LineStyleEnum lineStyle = LineStyleEnum.getByName(atts.getValue(JRXmlConstants.ATTRIBUTE_lineStyle));

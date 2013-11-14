@@ -42,7 +42,7 @@ public class ExpressionTree {
 
 	// The Evaluator object processing this tree.
 	private Evaluator evaluator = null;
-
+	
 	/**
 	 * Creates a new ExpressionTree.
 	 * 
@@ -131,7 +131,7 @@ public class ExpressionTree {
 					.evaluate(wrapStringFunctionResults);
 
 			try {
-				leftResultDouble = new Double(leftResultString);
+				leftResultDouble = Util.s2d(leftResultString);
 				leftResultString = null;
 			} catch (NumberFormatException exception) {
 				leftResultDouble = null;
@@ -147,7 +147,7 @@ public class ExpressionTree {
 			// then it must be a number.
 			if (!evaluator.isExpressionString(leftResultString)) {
 				try {
-					leftResultDouble = new Double(leftResultString);
+					leftResultDouble = Util.s2d(leftResultString);
 					leftResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -183,7 +183,7 @@ public class ExpressionTree {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = new Double(leftResultString);
+					Double resultDouble = Util.s2d(leftResultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {
@@ -216,7 +216,7 @@ public class ExpressionTree {
 
 			if (!evaluator.isExpressionString(leftResultString)) {
 				try {
-					leftResultDouble = new Double(leftResultString);
+					leftResultDouble = Util.s2d(leftResultString);
 					leftResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -237,7 +237,7 @@ public class ExpressionTree {
 					.evaluate(wrapStringFunctionResults);
 
 			try {
-				rightResultDouble = new Double(rightResultString);
+				rightResultDouble = Util.s2d(rightResultString);
 				rightResultString = null;
 			} catch (NumberFormatException exception) {
 				rightResultDouble = null;
@@ -253,7 +253,7 @@ public class ExpressionTree {
 			// then it must be a number.
 			if (!evaluator.isExpressionString(rightResultString)) {
 				try {
-					rightResultDouble = new Double(rightResultString);
+					rightResultDouble = Util.s2d(rightResultString);
 					rightResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -289,7 +289,7 @@ public class ExpressionTree {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = new Double(rightResultString);
+					Double resultDouble = Util.s2d(rightResultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {
@@ -322,7 +322,7 @@ public class ExpressionTree {
 
 			if (!evaluator.isExpressionString(rightResultString)) {
 				try {
-					rightResultDouble = new Double(rightResultString);
+					rightResultDouble = Util.s2d(rightResultString);
 					rightResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);

@@ -21,6 +21,7 @@ import org.oss.pdfreporter.text.format.factory.IFormatFactory.FormatType;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
+import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -56,7 +57,7 @@ public class Message implements Function {
 					args.add(stringArg);
 				}
 			} else {
-				Double doubleArg = new Double(rawarg);
+				Double doubleArg = Util.s2d(rawarg);
 				if (doubleArg.compareTo(Math.floor(doubleArg))==0) {
 					args.add(doubleArg.longValue());
 				} else {
