@@ -12,10 +12,10 @@ package org.oss.pdfreporter.compilers.jeval.functions;
 
 import java.util.Calendar;
 
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -44,7 +44,7 @@ public class TruncateDateTo implements Function {
 			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(
 					arguments, EvaluationConstants.FUNCTION_ARGUMENT_SEPARATOR);
 			String mode = tokenizer.nextToken();
-			date = Util.s2d(tokenizer.nextToken()).longValue();
+			date = DecimalConverter.toDouble(tokenizer.nextToken()).longValue();
 			
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(date);

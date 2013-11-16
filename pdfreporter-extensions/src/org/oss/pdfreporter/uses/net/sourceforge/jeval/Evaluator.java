@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.java.util.Stack;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
@@ -683,7 +684,7 @@ public class Evaluator {
 		final String result = evaluate(expression);
 
 		try {
-			Double doubleResult = Util.s2d(result);
+			Double doubleResult = DecimalConverter.toDouble(result);
 
 			if (doubleResult.doubleValue() == 1.0) {
 				return true;
@@ -718,7 +719,7 @@ public class Evaluator {
 		Double doubleResult = null;
 
 		try {
-			doubleResult = Util.s2d(result);
+			doubleResult = DecimalConverter.toDouble(result);
 		} catch (NumberFormatException nfe) {
 			throw new EvaluationException(
 					"Expression does not produce a number.", nfe);
@@ -1250,7 +1251,7 @@ public class Evaluator {
 			if (!isExpressionString(resultString)) {
 				Double resultDouble = null;
 				try {
-					resultDouble = Util.s2d(resultString);
+					resultDouble = DecimalConverter.toDouble(resultString);
 				} catch (Exception e) {
 					throw new EvaluationException("Expression is invalid.", e);
 				}
@@ -1290,7 +1291,7 @@ public class Evaluator {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = Util.s2d(resultString);
+					Double resultDouble = DecimalConverter.toDouble(resultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {

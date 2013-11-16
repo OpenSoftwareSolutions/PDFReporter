@@ -15,13 +15,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.oss.pdfreporter.compilers.jeval.ResultUtil;
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.text.format.IMessageFormat;
 import org.oss.pdfreporter.text.format.factory.IFormatFactory.FormatType;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -57,7 +57,7 @@ public class Message implements Function {
 					args.add(stringArg);
 				}
 			} else {
-				Double doubleArg = Util.s2d(rawarg);
+				Double doubleArg = DecimalConverter.toDouble(rawarg);
 				if (doubleArg.compareTo(Math.floor(doubleArg))==0) {
 					args.add(doubleArg.longValue());
 				} else {

@@ -18,8 +18,8 @@ package org.oss.pdfreporter.uses.net.sourceforge.jeval.function;
 
 import java.util.ArrayList;
 
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 
 
 /**
@@ -101,7 +101,7 @@ public class FunctionHelper {
 
 			while (tokenizer.hasMoreTokens()) {
 				final String token = tokenizer.nextToken().trim();
-				returnValues.add(Util.s2d(token));
+				returnValues.add(DecimalConverter.toDouble(token));
 			}
 		} catch (Exception e) {
 			throw new FunctionException("Invalid values in string.", e);
@@ -178,7 +178,7 @@ public class FunctionHelper {
 					returnValues.add(token);
 				} else if (tokenCtr == 1) {
 					final String token = tokenizer.nextToken().trim();
-					returnValues.add(new Integer(Util.s2d(token).intValue()));
+					returnValues.add(new Integer(DecimalConverter.toDouble(token).intValue()));
 				} else {
 					throw new FunctionException("Invalid values in string.");
 				}
@@ -224,7 +224,7 @@ public class FunctionHelper {
 					returnValues.add(token);
 				} else if (tokenCtr == 2) {
 					final String token = tokenizer.nextToken().trim();
-					returnValues.add(new Integer(Util.s2d(token).intValue()));
+					returnValues.add(new Integer(DecimalConverter.toDouble(token).intValue()));
 				} else {
 					throw new FunctionException("Invalid values in string.");
 				}
@@ -270,7 +270,7 @@ public class FunctionHelper {
 					returnValues.add(token);
 				} else if (tokenCtr == 1 || tokenCtr == 2) {
 					final String token = tokenizer.nextToken().trim();
-					returnValues.add(new Integer(Util.s2d(token).intValue()));
+					returnValues.add(new Integer(DecimalConverter.toDouble(token).intValue()));
 				} else {
 					throw new FunctionException("Invalid values in string.");
 				}

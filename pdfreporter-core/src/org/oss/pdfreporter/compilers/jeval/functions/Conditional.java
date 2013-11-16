@@ -11,10 +11,10 @@
 package org.oss.pdfreporter.compilers.jeval.functions;
 
 import org.oss.pdfreporter.compilers.jeval.ResultUtil;
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -40,7 +40,7 @@ public class Conditional implements Function {
 		try {
 			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(
 					arguments, EvaluationConstants.FUNCTION_ARGUMENT_SEPARATOR);
-			expression = Util.s2d(tokenizer.nextToken());
+			expression = DecimalConverter.toDouble(tokenizer.nextToken());
 			resultTrue = tokenizer.nextToken();
 			resultFalse = tokenizer.nextToken();
 		} catch (Exception e) {

@@ -16,6 +16,7 @@
 
 package org.oss.pdfreporter.uses.net.sourceforge.jeval;
 
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -131,7 +132,7 @@ public class ExpressionTree {
 					.evaluate(wrapStringFunctionResults);
 
 			try {
-				leftResultDouble = Util.s2d(leftResultString);
+				leftResultDouble = DecimalConverter.toDouble(leftResultString);
 				leftResultString = null;
 			} catch (NumberFormatException exception) {
 				leftResultDouble = null;
@@ -147,7 +148,7 @@ public class ExpressionTree {
 			// then it must be a number.
 			if (!evaluator.isExpressionString(leftResultString)) {
 				try {
-					leftResultDouble = Util.s2d(leftResultString);
+					leftResultDouble = DecimalConverter.toDouble(leftResultString);
 					leftResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -183,7 +184,7 @@ public class ExpressionTree {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = Util.s2d(leftResultString);
+					Double resultDouble = DecimalConverter.toDouble(leftResultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {
@@ -216,7 +217,7 @@ public class ExpressionTree {
 
 			if (!evaluator.isExpressionString(leftResultString)) {
 				try {
-					leftResultDouble = Util.s2d(leftResultString);
+					leftResultDouble = DecimalConverter.toDouble(leftResultString);
 					leftResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -237,7 +238,7 @@ public class ExpressionTree {
 					.evaluate(wrapStringFunctionResults);
 
 			try {
-				rightResultDouble = Util.s2d(rightResultString);
+				rightResultDouble = DecimalConverter.toDouble(rightResultString);
 				rightResultString = null;
 			} catch (NumberFormatException exception) {
 				rightResultDouble = null;
@@ -253,7 +254,7 @@ public class ExpressionTree {
 			// then it must be a number.
 			if (!evaluator.isExpressionString(rightResultString)) {
 				try {
-					rightResultDouble = Util.s2d(rightResultString);
+					rightResultDouble = DecimalConverter.toDouble(rightResultString);
 					rightResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);
@@ -289,7 +290,7 @@ public class ExpressionTree {
 				if (functionResult.getType() == 
 					FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC) {
 					
-					Double resultDouble = Util.s2d(rightResultString);
+					Double resultDouble = DecimalConverter.toDouble(rightResultString);
 
 					// Process a unary operator if one exists.
 					if (parsedFunction.getUnaryOperator() != null) {
@@ -322,7 +323,7 @@ public class ExpressionTree {
 
 			if (!evaluator.isExpressionString(rightResultString)) {
 				try {
-					rightResultDouble = Util.s2d(rightResultString);
+					rightResultDouble = DecimalConverter.toDouble(rightResultString);
 					rightResultString = null;
 				} catch (NumberFormatException nfe) {
 					throw new EvaluationException("Expression is invalid.", nfe);

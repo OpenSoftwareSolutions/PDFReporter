@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.jeval.functions;
 
+import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.Util;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
@@ -31,7 +31,7 @@ public class IntegerStringConverter implements Function {
 		Integer number = null;
 
 		try {
-			number = Util.s2d(arguments).intValue();
+			number = DecimalConverter.toDouble(arguments).intValue();
 		} catch (Exception e) {
 			throw new FunctionException("Invalid argument.", e);
 		}
