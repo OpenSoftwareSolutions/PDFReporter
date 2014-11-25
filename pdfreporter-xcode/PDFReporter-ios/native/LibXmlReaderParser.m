@@ -170,7 +170,7 @@ bool wasClosed = NO;
             localName = [NSString stringWithUTF8String:(const char *)xmlTextReaderLocalName(reader)];
             qualifiedName = [NSString stringWithUTF8String:(const char *)xmlTextReaderName(reader)];
             int attributeCount = xmlTextReaderHasAttributes(reader) == 1 ? xmlTextReaderAttributeCount(reader) : 0;
-            attributeDict = [NSMutableDictionary dictionaryWithCapacity:(NSUInteger)[NSNumber numberWithInt:attributeCount]];
+            attributeDict = [NSMutableDictionary dictionaryWithCapacity:attributeCount];
             while (xmlTextReaderMoveToNextAttribute(reader)) {
                 NSString *key = [NSString stringWithUTF8String:(const char *)xmlTextReaderConstName(reader)];
                 NSString *value = [NSString stringWithUTF8String:(const char *)xmlTextReaderConstValue(reader)];

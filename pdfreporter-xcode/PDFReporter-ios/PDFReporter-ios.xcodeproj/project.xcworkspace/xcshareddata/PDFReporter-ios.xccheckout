@@ -10,29 +10,29 @@
 	<string>PDFReporter-ios</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>82D2255C-3DE6-4807-8698-09C0C2526199</key>
+		<key>1290C958603762FE6120E34A2B9E786A4D2A77A6</key>
 		<string>ssh://git.code.sf.net/p/pdfreporter/code</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>pdfreporter-xcode/PDFReporter-ios/PDFReporter-ios.xcodeproj/project.xcworkspace</string>
+	<string>pdfreporter-xcode/PDFReporter-ios/PDFReporter-ios.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>82D2255C-3DE6-4807-8698-09C0C2526199</key>
+		<key>1290C958603762FE6120E34A2B9E786A4D2A77A6</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://git.code.sf.net/p/pdfreporter/code</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>82D2255C-3DE6-4807-8698-09C0C2526199</string>
+	<string>1290C958603762FE6120E34A2B9E786A4D2A77A6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>82D2255C-3DE6-4807-8698-09C0C2526199</string>
+			<string>1290C958603762FE6120E34A2B9E786A4D2A77A6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>pdfreporter-code</string>
 		</dict>
