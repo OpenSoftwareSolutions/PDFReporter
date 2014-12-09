@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,6 +59,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	public static final String TAG = "pdf-reporter-sample";
 	private ReportAdapter reportAdapter;
 	private String plistFile = null;
 
@@ -193,14 +195,23 @@ public class MainActivity extends Activity {
 									dirPath + "/" + reportPlist.getExtra() };
 						}
 
-						if (TextUtils.isEmpty(reportPlist.getSqlite3())) {
-							ReportExporter.exportReportToPdf(pdfPath, dirPath
-									+ "/" + reportPlist.getJrxml(), folders);
-						} else {
-							ReportExporter.exportReportToPdf(pdfPath, dirPath
+						if (!TextUtils.isEmpty(reportPlist.getSqlite3())) {  
+							// has SQL datasource
+							ReportExporter.exportReportToPdfSql(pdfPath, dirPath
 									+ "/" + reportPlist.getJrxml(), folders,
 									dirPath + "/" + reportPlist.getSqlite3());
+						} else if (!TextUtils.isEmpty(reportPlist.getXml())) { 
+							// has XML datasource
+							ReportExporter.exportReportToPdfXml(pdfPath, dirPath
+									+ "/" + reportPlist.getJrxml(), folders,
+									dirPath + "/" + reportPlist.getXml(), 
+									reportPlist.getXpath());
+						} else { 
+							//has no datasource
+							ReportExporter.exportReportToPdf(pdfPath, dirPath
+									+ "/" + reportPlist.getJrxml(), folders);
 						}
+						
 
 						runOnUiThread(new Runnable() {
 
@@ -264,6 +275,7 @@ public class MainActivity extends Activity {
 						});
 
 					} catch (Exception e) {
+						Log.e(TAG, "Failed to generate report : " + (e != null ? e.getMessage() : "null"));
 						runOnUiThread(new Runnable() {
 
 							@Override
@@ -343,6 +355,7 @@ public class MainActivity extends Activity {
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
+				Log.e(TAG, "Failed to copy resoruces to SD card : " + (e != null ? e.getMessage() : null));
 			}
 		}
 	}

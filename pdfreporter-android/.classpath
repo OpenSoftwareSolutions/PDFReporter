@@ -5,5 +5,7 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pdfreporter-core"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pdfreporter-portable"/>
 	<classpathentry exported="true" kind="lib" path="lib/iText.jar"/>
+	<classpathentry kind="lib" path="lib/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

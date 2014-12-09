@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>jrxml</key>
+	<string>jrxml/cdbooklet/CDBooklet.jrxml</string>
+	<key>resources</key>
+	<string>resources</string>
+	<key>xml</key>
+	<string>resources/CDBooklets.xml</string>
+	<key>xpath</key>
+	<string>/CDBooklets</string>
+</dict>
+</plist>
