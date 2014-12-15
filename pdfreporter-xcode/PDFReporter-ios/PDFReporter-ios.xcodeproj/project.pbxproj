@@ -40,6 +40,8 @@
 		2EE68FF017F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */; };
 		2EE69C0817F18D6400C7C1FE /* FallbackFormater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69C0717F18D6400C7C1FE /* FallbackFormater.m */; };
 		2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69C0A17F18D7B00C7C1FE /* FallbackFormatFactory.m */; };
+		3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */; };
+		3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */; };
 		3DB99F2D183A0F5A007580DF /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F04183A0F59007580DF /* BeanUtils.m */; };
 		3DB99F2E183A0F5A007580DF /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F07183A0F59007580DF /* BeansFactory.m */; };
 		3DB99F2F183A0F5A007580DF /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F0A183A0F59007580DF /* FontFactory.m */; };
@@ -140,6 +142,10 @@
 		2EE69C0917F18D7B00C7C1FE /* FallbackFormatFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackFormatFactory.h; sourceTree = "<group>"; };
 		2EE69C0A17F18D7B00C7C1FE /* FallbackFormatFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallbackFormatFactory.m; sourceTree = "<group>"; };
 		2EFDDA5E17F0856100D4580A /* libJasperReportLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libJasperReportLib.a; path = "../JasperReportLib/build/Debug-iphoneos/libJasperReportLib.a"; sourceTree = "<group>"; };
+		3D416DAF1A3F537200FEE6E3 /* XalanXPathExecuterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuterFactory.h; sourceTree = "<group>"; };
+		3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuterFactory.m; sourceTree = "<group>"; };
+		3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuter.h; sourceTree = "<group>"; };
+		3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuter.m; sourceTree = "<group>"; };
 		3DB99F03183A0F59007580DF /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
 		3DB99F04183A0F59007580DF /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
 		3DB99F06183A0F59007580DF /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 		2EE6815317F16F6000C7C1FE /* pdfreporter */ = {
 			isa = PBXGroup;
 			children = (
+				3D416DAC1A3F537200FEE6E3 /* engine */,
 				2EE6815417F16F6000C7C1FE /* font */,
 				2EE6815D17F16F6000C7C1FE /* image */,
 				2EE6816417F16F6000C7C1FE /* net */,
@@ -455,6 +462,33 @@
 			path = fallback;
 			sourceTree = "<group>";
 		};
+		3D416DAC1A3F537200FEE6E3 /* engine */ = {
+			isa = PBXGroup;
+			children = (
+				3D416DAD1A3F537200FEE6E3 /* util */,
+			);
+			path = engine;
+			sourceTree = "<group>";
+		};
+		3D416DAD1A3F537200FEE6E3 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				3D416DAE1A3F537200FEE6E3 /* xml */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		3D416DAE1A3F537200FEE6E3 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				3D416DAF1A3F537200FEE6E3 /* XalanXPathExecuterFactory.h */,
+				3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */,
+				3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */,
+				3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
 		3DB99EFE183A0F59007580DF /* gen */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +680,7 @@
 				3DB99F38183A0F5A007580DF /* GeometryFactory.m in Sources */,
 				2EE681A217F16F6100C7C1FE /* Document.m in Sources */,
 				2EE6819A17F16F6100C7C1FE /* Font.m in Sources */,
+				3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */,
 				2EE681AA17F16F6100C7C1FE /* SqlFactory.m in Sources */,
 				3DB99F33183A0F5A007580DF /* TextLayout.m in Sources */,
 				2EE681A817F16F6100C7C1FE /* ResultMetaData.m in Sources */,
@@ -661,6 +696,7 @@
 				2EE681B417F16F6100C7C1FE /* XmlParser.m in Sources */,
 				3DB99F2F183A0F5A007580DF /* FontFactory.m in Sources */,
 				3DB99F36183A0F5A007580DF /* Color.m in Sources */,
+				3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */,
 				2EE681A717F16F6100C7C1FE /* PreparedStatement.m in Sources */,
 				2EE681A017F16F6100C7C1FE /* ImageManager.m in Sources */,
 				2EE68FF017F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,

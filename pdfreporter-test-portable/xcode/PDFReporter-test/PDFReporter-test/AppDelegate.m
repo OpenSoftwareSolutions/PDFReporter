@@ -15,9 +15,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[[TestOrgOssPdfreporterPortableTest alloc] init] realestateTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
+//    [[[TestOrgOssPdfreporterPortableTest alloc] init] realestateTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSRealestateTestProvider alloc] init]];
     
-    //[[[TestOrgOssPdfreporterPortableTest alloc] init] exporterTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
+    [[[TestOrgOssPdfreporterPortableTest alloc] init] exporterTestWithTestOrgOssPdfreporterProvidersTestProviderInterface:[[IOSExportTestProvider alloc] init]];
     
         
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
