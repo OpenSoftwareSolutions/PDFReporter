@@ -3,7 +3,7 @@
 //  PDFReporter-ios
 //
 //  Created by Kendra on 9/24/13.
-//  Copyright (c) 2013 inloop. All rights reserved.
+//  Copyright (c) 2014 Open Software Solutions GmbH. All rights reserved.
 //
 
 #import "FallbackFormatFactory.h"

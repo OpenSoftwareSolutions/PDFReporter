@@ -3,7 +3,7 @@
 //  PDFReporter-test
 //
 //  Created by Kendra on 10/1/13.
-//  Copyright (c) 2013 inloop. All rights reserved.
+//  Copyright (c) 2014 Open Software Solutions GmbH. All rights reserved.
 //
 
 #import "AppDelegate.h"

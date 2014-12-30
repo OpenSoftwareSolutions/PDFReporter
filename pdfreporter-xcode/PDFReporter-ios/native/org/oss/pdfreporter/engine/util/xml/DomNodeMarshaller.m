@@ -3,7 +3,7 @@
 //  PDFReporter-ios
 //
 //  Created by Martin Krasnocka on 29/12/14.
-//  Copyright (c) 2014 inloop. All rights reserved.
+//  Copyright (c) 2014 Open Software Solutions GmbH. All rights reserved.
 //
 
 #import "DomNodeMarshaller.h"
