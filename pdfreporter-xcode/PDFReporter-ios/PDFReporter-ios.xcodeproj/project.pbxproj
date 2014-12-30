@@ -42,6 +42,8 @@
 		2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69C0A17F18D7B00C7C1FE /* FallbackFormatFactory.m */; };
 		3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */; };
 		3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */; };
+		3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */; };
+		3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DD1A517B230068C812 /* XPathQuery.m */; };
 		3DB99F2D183A0F5A007580DF /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F04183A0F59007580DF /* BeanUtils.m */; };
 		3DB99F2E183A0F5A007580DF /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F07183A0F59007580DF /* BeansFactory.m */; };
 		3DB99F2F183A0F5A007580DF /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB99F0A183A0F59007580DF /* FontFactory.m */; };
@@ -146,6 +148,10 @@
 		3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuterFactory.m; sourceTree = "<group>"; };
 		3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuter.h; sourceTree = "<group>"; };
 		3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuter.m; sourceTree = "<group>"; };
+		3D83C1D91A516EC20068C812 /* DomNodeMarshaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomNodeMarshaller.h; sourceTree = "<group>"; };
+		3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomNodeMarshaller.m; sourceTree = "<group>"; };
+		3D83C1DC1A517B230068C812 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		3D83C1DD1A517B230068C812 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		3DB99F03183A0F59007580DF /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
 		3DB99F04183A0F59007580DF /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
 		3DB99F06183A0F59007580DF /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
@@ -485,6 +491,10 @@
 				3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */,
 				3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */,
 				3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */,
+				3D83C1D91A516EC20068C812 /* DomNodeMarshaller.h */,
+				3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */,
+				3D83C1DC1A517B230068C812 /* XPathQuery.h */,
+				3D83C1DD1A517B230068C812 /* XPathQuery.m */,
 			);
 			path = xml;
 			sourceTree = "<group>";
@@ -704,6 +714,7 @@
 				3DB99F3D183A0F5A007580DF /* PdfFactory.m in Sources */,
 				2EE681AE17F16F6100C7C1FE /* SimpleFormatFactory.m in Sources */,
 				3DB99F2D183A0F5A007580DF /* BeanUtils.m in Sources */,
+				3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */,
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
 				3DB99F35183A0F5A007580DF /* AffineTransformMatrix.m in Sources */,
 				3DB99F32183A0F5A007580DF /* LineBreakMeasurer.m in Sources */,
@@ -724,6 +735,7 @@
 				3DB99F34183A0F5A007580DF /* WordBreakIterator.m in Sources */,
 				3DB99F30183A0F5A007580DF /* FontFactoryBase.m in Sources */,
 				2EE69C0B17F18D7B00C7C1FE /* FallbackFormatFactory.m in Sources */,
+				3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */,
 				2EE681A117F16F6100C7C1FE /* URL.m in Sources */,
 				2EE681B117F16F6100C7C1FE /* NumberFormat.m in Sources */,
 				2EE681A317F16F6100C7C1FE /* HpdfDocBox.m in Sources */,
