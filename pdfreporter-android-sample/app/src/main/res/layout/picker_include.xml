@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/picker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5000"
+    android:clickable="true"
+    android:focusable="false"
+    android:visibility="gone" >
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/popup_shape"
+        android:divider="@drawable/divider"
+        android:dividerHeight="1px"
+        android:listSelector="@color/transparent"
+        tools:listitem="@layout/list_item" >
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PDFReporter</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_report">[ Select report ]</string>
+    <string name="slogan">World-class library for generating pdf documents and reports based on your own predefined layout and data.</string>
+    <string name="slogan1">World-class library for generating pdf documents and</string>
+    <string name="slogan2">reports based on your own predefined</string>
+    <string name="slogan3">layout and data.</string>
+</resources>

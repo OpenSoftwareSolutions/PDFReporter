@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CDBooklet" language="jeval" pageWidth="396" pageHeight="396" columnWidth="396" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="362"/>
+	<style name="Sans_Normal" isDefault="true" fontName="Comic Sans MS" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Sans_Bold" fontName="Comic Sans MS" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Sans_Italic" fontName="Comic Sans MS" fontSize="12" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Heading 1" fontSize="16" isBold="true"/>
+	<queryString language="xPath">
+		<![CDATA[/CDBooklets]]>
+	</queryString>
+	<field name="ArtistName" class="java.lang.String">
+		<fieldDescription><![CDATA[Artist/ArtistName]]></fieldDescription>
+	</field>
+	<field name="AlbumTitle" class="java.lang.String">
+		<fieldDescription><![CDATA[Artist/AlbumTitle]]></fieldDescription>
+	</field>
+	<field name="AlbumImage" class="java.lang.String">
+		<fieldDescription><![CDATA[Artist/AlbumImage]]></fieldDescription>
+	</field>
+	<field name="Track1ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='1']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track1Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='1']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track1Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='1']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track2ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='2']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track2Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='2']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track2Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='2']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track3ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='3']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track3Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='3']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track3Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='3']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track4ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='4']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track4Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='4']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track4Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='4']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track5ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='5']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track5Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='5']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track5Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='5']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track6ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='6']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track6Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='6']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track6Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='6']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track7ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='7']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track7Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='7']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track7Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='7']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track8ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='8']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track8Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='8']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track8Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='8']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track9ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='9']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track9Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='9']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track9Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='9']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track10ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='10']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track10Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='10']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track10Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='10']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track11ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='11']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track11Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='11']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track11Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='11']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track12ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='12']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track12Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='12']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track12Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='12']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track13ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='13']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track13Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='13']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track13Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='13']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track14ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='14']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track14Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='14']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track14Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='14']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track15ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='15']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track15Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='15']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track15Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='15']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track16ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='16']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track16Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='16']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track16Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='16']/Duration]]></fieldDescription>
+	</field>
+	<field name="Track17ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='17']/TrackID]]></fieldDescription>
+	</field>
+	<field name="Track17Title" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='17']/TrackTitle]]></fieldDescription>
+	</field>
+	<field name="Track17Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[Track[TrackID='17']/Duration]]></fieldDescription>
+	</field>
+	<field name="Lyric1" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='1']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric2" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='2']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric3" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='3']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric4" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='4']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric5" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='5']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric6" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='6']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric7" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='7']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric8" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='8']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric9" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='9']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric10" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='10']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric11" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='11']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric12" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='12']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric13" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='13']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric14" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='14']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric15" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='15']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric16" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='16']/LyricData]]></fieldDescription>
+	</field>
+	<field name="Lyric17" class="java.lang.String">
+		<fieldDescription><![CDATA[Lyric[TrackID='17']/LyricData]]></fieldDescription>
+	</field>
+	<background>
+		<band height="396">
+			<image scaleImage="FillFrame" vAlign="Bottom" isUsingCache="true">
+				<reportElement mode="Opaque" x="0" y="0" width="396" height="396" forecolor="#999999"/>
+				<imageExpression><![CDATA["background.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="384">
+			<textField>
+				<reportElement style="Heading 1" x="17" y="16" width="361" height="52" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="36" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ArtistName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="79" width="361" height="37"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="22" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AlbumTitle}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement x="17" y="128" width="361" height="233"/>
+				<imageExpression><![CDATA[$F{AlbumImage}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="389">
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="17" y="5" width="361" height="17" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tracklist]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="27" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track1ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="27" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track1Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="27" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track1Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="47" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track2ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="47" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track2Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="47" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track2Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="67" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track3ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="67" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track3Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="67" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track3Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="87" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track4ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="87" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track4Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="87" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track4Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="107" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track5ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="107" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track5Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="107" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track5Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="127" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track6ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="127" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track6Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="127" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track6Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="147" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track7ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="147" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track7Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="147" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track7Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="167" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track8ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="167" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track8Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="167" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track8Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="187" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track9ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="187" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track9Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="187" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track9Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="207" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track10ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="207" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track10Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="207" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track10Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="227" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track11ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="227" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track11Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="227" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track11Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="247" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track12ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="247" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track12Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="247" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track12Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="267" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track13ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="267" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track13Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="267" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track13Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="287" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track14ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="287" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track14Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="287" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track14Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="307" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track15ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="307" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track15Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="307" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track15Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="327" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track16ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="327" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track16Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="327" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track16Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="347" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track17ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="347" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track17Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="347" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track17Duration}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="367" width="41" height="20"/>
+				<textElement>
+					<font fontName="Helvetica" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track17ID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="367" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Track17Title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="323" y="367" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track17Duration}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track1Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track1Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric1}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track2Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track2Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric2}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track3Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track3Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric3}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track4Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track4Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric4}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track5Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track5Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric5}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track6Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track6Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric6}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track7Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track7Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric7}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track8Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track8Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric8}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track9Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track9Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric9}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track10Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track10Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric10}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track11Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track11Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric11}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track12Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track12Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric12}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track13Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track13Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric13}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track14Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track14Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric14}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track15Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track15Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric15}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track16Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track16Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric16}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(boolean)!equals($F{Track17Title},'')]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="17" y="10" width="361" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Track17Title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="17" y="35" width="361" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lyric17}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="56" width="100" height="1"/>
+			</break>
+		</band>
+	</detail>
+</jasperReport>

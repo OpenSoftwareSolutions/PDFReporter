@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_light">#262c2d</color>   
+    <color name="bg_dark">#1e2223</color>    
+    <color name="text_slogan">#9ba4a7</color>
+    <color name="text_spiner">#303638</color>
+    <color name="text_spiner_selected">#101618</color>
+    <color name="bg_spiner_item">#515b5e</color>
+    <color name="transparent">#0000</color>
+    
+</resources>
+
