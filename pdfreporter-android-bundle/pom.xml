@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.pdfreporting</groupId>
+    <artifactId>pdfreporter-android-bundle</artifactId>
+    <version>1.1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>PDFReporting android bundle library</name>
+
+	<parent>
+        <groupId>com.pdfreporting</groupId>
+        <artifactId>pdfreporter-application</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-core</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-extensions</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-extensions</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-portable</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-portable</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+		
+		<dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-android</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-android</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+		
+		<dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>droidtext</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>droidtext</artifactId>
+			<version>1.0.0</version>
+            <classifier>sources</classifier>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+          
+			<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.3</version>
+				<executions>
+					<execution>
+						<id>package-all</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/all-jar.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sources</includeClassifiers>
+                            <excludeTransitive>true</excludeTransitive>
+                            <outputDirectory>${project.build.directory}/javadoc-src</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <!-- generate the javadoc -->
+                    <execution>
+                        <id>generate-all-javadoc</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <tasks>
+                                <javadoc packagenames="org.oss.*"
+                                         maxmemory="256m"
+                                         sourcepath="${project.build.directory}/javadoc-src"
+                                         defaultexcludes="yes"
+                                         destdir="${project.build.directory}/apidocs/"
+                                         version="true"
+                                         use="true"
+                                         windowtitle="${project.name} API">
+                                    <doctitle>
+                                        <![CDATA[<h1>${project.name} API v${project.version}</h1>]]></doctitle>
+            
+                                    <classpath refid="maven.dependency.classpath"/>
+                                </javadoc>
+                                <jar destfile="${project.build.directory}/${project.build.finalName}-javadoc.jar"
+                                     basedir="${project.build.directory}/apidocs/"
+                                     includes="**/**" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${project.build.finalName}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

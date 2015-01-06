@@ -29,7 +29,7 @@ import org.oss.pdfreporter.engine.util.xml.JRXPathExecuterFactory;
 
 
 /**
- * {@link XalanXPathExecuter Apache Xalan XPath executers} factory.
+ *
  * 
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: XalanXPathExecuterFactory.java 4595 2011-09-08 15:55:10Z teodord $
@@ -39,7 +39,7 @@ public class XalanXPathExecuterFactory implements JRXPathExecuterFactory
 
 	public JRXPathExecuter getXPathExecuter()
 	{
-		return new XalanXPathExecuter();
+		return new AndroidXPathExecuter();
 	}
 
 }
