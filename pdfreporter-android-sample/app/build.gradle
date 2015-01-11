@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    mavenCentral()
+    maven {
+        url "https://github.com/OpenSoftwareSolutions/mvn-repo/raw/master/repository/"
+    }
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion "21.1.1"
@@ -22,5 +29,5 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.android.support:multidex:1.0.0'
-    compile files('libs/pdfreporter-android-1.1.1.jar')
+    compile 'com.pdfreporting:pdfreporter-android:1.1.1'
 }
