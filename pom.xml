@@ -32,5 +32,8 @@
         <module>pdfreporter-android</module>
 		<module>pdfreporter-portable</module>
 		<module>pdfreporter-android-bundle</module>
+		<module>pdfreporter-java</module>
+		<module>pdfreporter-test</module>
+		<module>pdfreporter-testdata</module>
     </modules>
 </project>
