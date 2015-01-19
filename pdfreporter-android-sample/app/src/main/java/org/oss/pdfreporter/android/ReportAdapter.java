@@ -3,7 +3,7 @@ package org.oss.pdfreporter.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.oss.pdfreporter.android.pdfreporter.R;
+import org.oss.pdfreporter.android.R;
 
 import android.content.Context;
 import android.database.DataSetObserver;

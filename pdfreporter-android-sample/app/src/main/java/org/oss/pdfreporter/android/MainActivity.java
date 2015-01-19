@@ -18,7 +18,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.oss.pdfreporter.android.pdfreporter.R;
+import org.oss.pdfreporter.android.R;
 import org.oss.pdfreporter.net.FileUrl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

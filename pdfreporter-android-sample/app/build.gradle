@@ -12,7 +12,7 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "org.oss.pdfreporter.android.pdfreporter"
+        applicationId "org.oss.pdfreporter.android"
         minSdkVersion 9
         targetSdkVersion 21
         multiDexEnabled true
@@ -27,7 +27,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
-    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support:support-v4:21.0.3'
     compile 'com.pdfreporting:pdfreporter-android:1.1.1'
 }
