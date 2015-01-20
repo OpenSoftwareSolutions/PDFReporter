@@ -8,12 +8,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
     defaultConfig {
         applicationId "org.oss.pdfreporter.android"
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 21
         multiDexEnabled true
     }
