@@ -1,20 +1,17 @@
 package org.oss.pdfreporter.android;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
+import java.util.logging.LogManager;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -65,6 +62,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button1).setOnClickListener(mOnClickListener);
 
         tryCopyAssetsToSDCard();
+
     }
 
     private final OnClickListener mOnClickListener = new OnClickListener() {
@@ -149,7 +147,7 @@ public class MainActivity extends Activity {
         AlertDialog.Builder builder = new Builder(MainActivity.this);
         builder.setTitle("Report created.").setCancelable(true);
         boolean needOK = true;
-        if (isAvailable(viewIntent)) {
+        if (Util.isAvailable(this, viewIntent)) {
             needOK = false;
             builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
 
@@ -160,7 +158,7 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (isAvailable(emailIntent)) {
+        if (Util.isAvailable(this, emailIntent)) {
             needOK = false;
             builder.setNegativeButton("Send by E-Mail", new DialogInterface.OnClickListener() {
 
@@ -185,13 +183,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    public boolean isAvailable(Intent intent) {
-        final PackageManager mgr = getPackageManager();
-        List<ResolveInfo> list = mgr.queryIntentActivities(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        return list.size() > 0;
-    }
-
     public void tryCopyAssetsToSDCard() {
 
         final String dirPath = getExternalFilesDir(null) + "/reports";
@@ -204,10 +195,10 @@ public class MainActivity extends Activity {
                 @Override
                 protected Void doInBackground(Void... params) {
                     if (isApplicationUpdated()) {
-                        deleteRecursive(dir);
+                        Util.deleteRecursive(dir);
                     }
-                    copyAsset("reports");
-                    PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putInt("version", getCurrentVersion()).commit();
+                    Util.copyAsset(MainActivity.this.getApplicationContext(), "reports");
+                    PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putInt("version", Util.getCurrentVersion(MainActivity.this.getApplicationContext())).commit();
                     return null;
                 }
 
@@ -222,57 +213,7 @@ public class MainActivity extends Activity {
 
     private boolean isApplicationUpdated() {
         int lastVersion = PreferenceManager.getDefaultSharedPreferences(this).getInt("version", 0);
-        return getCurrentVersion() != lastVersion;
-    }
-
-    private int getCurrentVersion() {
-        int currentVersion = 0;
-        try {
-            currentVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
-        return currentVersion;
-    }
-
-    private void deleteRecursive(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory())
-            for (File child : fileOrDirectory.listFiles())
-                deleteRecursive(child);
-
-        fileOrDirectory.delete();
-    }
-
-    private void copyAsset(String file) {
-        String extDir = getExternalFilesDir(null) + "/";
-        try {
-            InputStream is = getAssets().open(file);
-            FileOutputStream os = new FileOutputStream(extDir + file);
-            copyFile(is, os);
-            is.close();
-            os.flush();
-            os.close();
-        } catch (IOException e) {
-            try {
-                String[] list = getAssets().list(file);
-                File dir = new File(extDir + file);
-                dir.mkdir();
-                for (String listFile : list) {
-                    copyAsset(file + "/" + listFile);
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                Log.e(TAG, "Failed to copy resoruces to SD card : " + e.getMessage());
-            }
-        }
-    }
-
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024 * 16];
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-        }
+        return Util.getCurrentVersion(this.getApplicationContext()) != lastVersion;
     }
 
     private void hidePicker() {
