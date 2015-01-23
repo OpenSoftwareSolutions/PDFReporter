@@ -11,11 +11,20 @@
         <relativePath>../pom.xml</relativePath>
   </parent>
   
-  <dependency>
-      <groupId>com.pdfreporting</groupId>
-      <artifactId>pdfreporter-core</artifactId>
-      <version>1.1.1</version>
-  </dependency>
+  <dependencies>
+	  <dependency>
+		  <groupId>com.pdfreporting</groupId>
+		  <artifactId>pdfreporter-core</artifactId>
+		  <version>1.1.1</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.pdfreporting</groupId>
+		  <artifactId>pdfreporter-test</artifactId>
+		  <version>1.1.1</version>
+	  </dependency>
+	 
+   </dependencies>
    
   <build>
     <sourceDirectory>src</sourceDirectory>

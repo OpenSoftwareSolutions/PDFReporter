@@ -8,6 +8,15 @@
     <version>1.1.1</version>
 	<packaging>pom</packaging>
 	
+	<repositories>
+		<repository>
+			<id>OpenSoftwareSolutionsMvn</id>
+			<name>your custom repo</name>
+			<url>https://github.com/OpenSoftwareSolutions/mvn-repo/raw/master/repository/</url>
+		</repository>
+	</repositories>
+  
+	
 	 <build>
         <plugins>
             <plugin>
