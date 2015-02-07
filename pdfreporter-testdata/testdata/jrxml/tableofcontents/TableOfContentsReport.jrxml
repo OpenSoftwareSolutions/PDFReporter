@@ -13,11 +13,11 @@
 	<queryString><![CDATA[SELECT * FROM Orders WHERE OrderID < 12000 ORDER BY ShipCountry]]></queryString>
 	<field name="OrderID" class="java.lang.Integer">
 	</field>
-	<field name="ShipName" class="java.lang.String">
+	<field name="ShipName">
 	</field>
-	<field name="ShipCity" class="java.lang.String">
+	<field name="ShipCity">
 	</field>
-	<field name="ShipCountry" class="java.lang.String">
+	<field name="ShipCountry">
 	</field>
 	<variable name="HeadingsCollection" class="java.util.Collection" calculation="System">
 		<initialValueExpression><![CDATA[new java.util.ArrayList()]]></initialValueExpression>
