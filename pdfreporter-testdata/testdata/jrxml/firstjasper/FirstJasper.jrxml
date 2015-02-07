@@ -450,7 +450,7 @@
 				</box>
 				<image>
 					<reportElement x="5" y="5" width="100" height="45"/>
-					<imageExpression class="java.awt.Image"><![CDATA[$P{SummaryImage}]]></imageExpression>
+					<imageExpression><![CDATA[$P{SummaryImage}]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="200" y="5" width="200" height="45"/>
