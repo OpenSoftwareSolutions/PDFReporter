@@ -13,7 +13,7 @@
 			<image scaleImage="Clip">
 				<reportElement x="0" y="5" width="165" height="40"/>
 				<graphicElement/>
-				<imageExpression class="java.lang.String"><![CDATA["jasperreports.png"]]></imageExpression>
+				<imageExpression><![CDATA['jasperreports.png']]></imageExpression>
 				<hyperlinkTooltipExpression>"The JasperReports Logo"</hyperlinkTooltipExpression>
 			</image>
 			<staticText>
@@ -144,7 +144,7 @@
 					<leftPen lineWidth="1" lineColor="red"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA["multi\nline text"]]></textFieldExpression>
+				<textFieldExpression><![CDATA['multi\nline text']]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="0" width="100" height="15" stretchType="RelativeToTallestObject">
@@ -154,7 +154,7 @@
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA["text two"]]></textFieldExpression>
+				<textFieldExpression><![CDATA['text two']]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="200" y="0" width="100" height="15" stretchType="RelativeToTallestObject">
@@ -164,7 +164,7 @@
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA["text three"]]></textFieldExpression>
+				<textFieldExpression><![CDATA['text three']]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="300" y="0" width="155" height="15" stretchType="RelativeToTallestObject">
@@ -174,7 +174,7 @@
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA["text four"]]></textFieldExpression>
+				<textFieldExpression><![CDATA['text four']]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="455" y="0" width="100" height="15" stretchType="RelativeToTallestObject">
@@ -186,7 +186,7 @@
 					<rightPen lineWidth="1" lineColor="red"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["12345"]]></textFieldExpression>
+				<textFieldExpression><![CDATA['12345']]></textFieldExpression>
 			</textField>
 		</frame>
 		</band>
