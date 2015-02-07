@@ -104,22 +104,22 @@
 				<textField>
 					<reportElement style="Sans_Bold" mode="Opaque" x="130" y="14" width="70" height="11" forecolor="#FF0000" backcolor="#FFDDDD"/>
 					<textElement/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$V{FirstLetter}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{FirstLetter}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Group" evaluationGroup="FirstLetterGroup">
 					<reportElement style="Sans_Bold" mode="Opaque" x="240" y="14" width="30" height="11" forecolor="#FF0000" backcolor="#FFDDDD"/>
 					<textElement/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[intString($V{PAGE_NUMBER}) + ' - ' + intString($V{FirstLetterStartPageNumber} + 1)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[intString($V{PAGE_NUMBER}) + ' - ' + intString($V{FirstLetterStartPageNumber} + 1)]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="Sans_Bold" mode="Opaque" x="200" y="14" width="30" height="11" forecolor="#FF0000" backcolor="#FFDDDD"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[ifelse($V{FirstLetterGroup_COUNT} == 0 , 1 : $V{PAGE_NUMBER} - $V{FirstLetterStartPageNumber} + 1)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[ifelse($V{FirstLetterGroup_COUNT} == 0 , 1 : $V{PAGE_NUMBER} - $V{FirstLetterStartPageNumber} + 1)]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="Sans_Bold" mode="Opaque" x="230" y="14" width="10" height="11" forecolor="#FF0000" backcolor="#FFDDDD"/>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression class="java.lang.String"><![CDATA["/"]]></textFieldExpression>
+					<textFieldExpression><![CDATA['/']]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -136,7 +136,7 @@
 				<textField>
 					<reportElement style="Sans_Bold" x="45" y="1" width="25" height="11" forecolor="#FF0000"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{FirstLetterGroup_COUNT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(int)$V{FirstLetterGroup_COUNT}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="Sans_Bold" x="70" y="1" width="100" height="11" forecolor="#FF0000"/>
@@ -146,12 +146,12 @@
 				<textField pattern="0.00">
 					<reportElement style="Sans_Bold" x="170" y="1" width="60" height="11" forecolor="#FF0000"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$V{FreightSumFirstLetterGroup}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(double)$V{FreightSumFirstLetterGroup}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Auto">
 					<reportElement style="Sans_Bold" x="230" y="1" width="40" height="11" forecolor="#FF0000"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.String"><![CDATA[doubleString(100 * $V{FreightSumFirstLetterGroup} / $V{FreightSumReport}) + '%']]></textFieldExpression>
+					<textFieldExpression><![CDATA[doubleString(100 * $V{FreightSumFirstLetterGroup} / $V{FreightSumReport}) + '%']]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -171,7 +171,7 @@
 						<property name="net.sf.jasperreports.export.xls.repeat.value" value="true"/>
 					</reportElement>
 					<textElement/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ShipCountry}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{ShipCountry}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Group" evaluationGroup="CountryGroup">
 					<reportElement style="Sans_Bold" x="170" y="2" width="100" height="11"/>
@@ -191,7 +191,7 @@
 				<textField>
 					<reportElement style="Sans_Bold" mode="Opaque" x="45" y="0" width="25" height="11" backcolor="#C0C0C0"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{CountryGroup_COUNT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(int)$V{CountryGroup_COUNT}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="Sans_Bold" mode="Opaque" x="70" y="0" width="100" height="11" backcolor="#C0C0C0"/>
@@ -201,12 +201,12 @@
 				<textField pattern="0.00">
 					<reportElement style="Sans_Bold" mode="Opaque" x="170" y="0" width="60" height="11" backcolor="#C0C0C0"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$V{FreightSumCountryGroup}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(double)$V{FreightSumCountryGroup}]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Auto">
 					<reportElement style="Sans_Bold" mode="Opaque" x="230" y="0" width="40" height="11" backcolor="#C0C0C0"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.String"><![CDATA[doubleString(100 * $V{FreightSumCountryGroup} / $V{FreightSumFirstLetterGroup}) + '%']]></textFieldExpression>
+					<textFieldExpression><![CDATA[doubleString(100 * $V{FreightSumCountryGroup} / $V{FreightSumFirstLetterGroup}) + '%']]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -228,8 +228,8 @@
 				</line>
 				<image scaleImage="Clip">
 					<reportElement x="0" y="5" width="165" height="40" key="TransparentImage"/>
-					<imageExpression class="java.lang.String"><![CDATA["jasperreports.png"]]></imageExpression>
-					<hyperlinkTooltipExpression><![CDATA["The JasperReports Logo"]]></hyperlinkTooltipExpression>
+					<imageExpression><![CDATA['jasperreports.png']]></imageExpression>
+					<hyperlinkTooltipExpression><![CDATA['The JasperReports Logo']]></hyperlinkTooltipExpression>
 				</image>
 			</elementGroup>
 			<textField isBlankWhenNull="true">
@@ -237,7 +237,7 @@
 				<textElement textAlignment="Right">
 					<font size="22"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ReportTitle}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ReportTitle}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Sans_Italic" x="180" y="40" width="375" height="15"/>
@@ -272,7 +272,7 @@
 					<textElement textAlignment="Center">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA['Max order ID is : ' + intString($P{MaxOrderID})]]></textFieldExpression>
+					<textFieldExpression><![CDATA['Max order ID is : ' + intString($P{MaxOrderID})]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -314,7 +314,7 @@
 					<property name="net.sf.jasperreports.export.xls.column.name" value="Order"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{OrderID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(int)$F{OrderID}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="40" y="0" width="110" height="11">
@@ -324,7 +324,7 @@
 					<propertyExpression name="net.sf.jasperreports.export.xls.data"><![CDATA[$F{ShipCity}]]></propertyExpression>
 				</reportElement>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{ShipName} + ', ' + $F{ShipCity}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ShipName} + ', ' + $F{ShipCity}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="155" y="0" width="25" height="11">
@@ -332,7 +332,7 @@
 					<property name="net.sf.jasperreports.export.xls.column.name" value="ShipRegion"/>
 				</reportElement>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{ShipRegion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ShipRegion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="185" y="0" width="50" height="11">
@@ -340,7 +340,7 @@
 					<property name="net.sf.jasperreports.export.xls.column.name" value="OrderDate"/>
 				</reportElement>
 				<textElement/>
-				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{OrderDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(date)$F{OrderDate}]]></textFieldExpression>
 			</textField>
 			<textField pattern="0.00">
 				<reportElement x="235" y="0" width="35" height="11">
@@ -348,7 +348,7 @@
 					<property name="net.sf.jasperreports.export.xls.column.name" value="Freight"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Freight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(double)$F{Freight}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="0" y="12" width="270" height="1" forecolor="#808080"/>
@@ -368,7 +368,7 @@
 			<textField>
 				<reportElement style="Sans_Bold" mode="Opaque" x="45" y="0" width="25" height="11" forecolor="#FFFFFF" backcolor="#333333"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(int)$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Sans_Bold" mode="Opaque" x="70" y="0" width="140" height="11" forecolor="#FFFFFF" backcolor="#333333"/>
@@ -378,7 +378,7 @@
 			<textField pattern="0.00">
 				<reportElement style="Sans_Bold" mode="Opaque" x="210" y="0" width="60" height="11" forecolor="#FFFFFF" backcolor="#333333"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{FreightSumColumn}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(double)$V{FreightSumColumn}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
@@ -401,7 +401,7 @@
 					<textElement textAlignment="Right">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(int)$V{PAGE_COUNT}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="430" y="5" width="50" height="20"/>
@@ -415,14 +415,14 @@
 					<textElement textAlignment="Right">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$V{FreightSumPage}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(double)$V{FreightSumPage}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="200" y="5" width="75" height="20"/>
 					<textElement textAlignment="Right">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(int)$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="275" y="5" width="5" height="20"/>
@@ -436,7 +436,7 @@
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(int)$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
