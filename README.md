@@ -11,3 +11,7 @@ http://opensoftwaresolutions.github.io/PDFReporter/
 
 # Official Webpage
 http://www.pdfreporting.com
+
+# Support
+Generally most of the issues will be post on wiki https://github.com/OpenSoftwareSolutions/PDFReporter/wiki.
+You also find our milestones at http://sourceforge.net/p/pdfreporter/tickets/.
