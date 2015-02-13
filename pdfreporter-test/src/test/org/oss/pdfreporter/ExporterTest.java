@@ -23,7 +23,6 @@ import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
-import org.oss.pdfreporter.uses.org.apache.digester.impl.NotImplementedDigester;
 
 import test.org.oss.pdfreporter.providers.JavaTestProvider;
 import test.org.oss.pdfreporter.providers.TestProviderInterface;
