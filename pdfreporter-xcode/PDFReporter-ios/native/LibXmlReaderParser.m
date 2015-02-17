@@ -17,6 +17,7 @@
 #import "org/oss/pdfreporter/xml/parsers/XMLErrorHandler.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLParseException.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLEntityResolver.h"
+#import "NSString+JavaString.h"
 
 @implementation LibXmlReaderParser
 
@@ -230,7 +231,7 @@ bool wasClosed = NO;
             // text element, CDATA
             value = [NSString stringWithUTF8String:(const char *)xmlTextReaderConstValue(reader)];
             IOSCharArray *charArray = [nil_chk(value) toCharArray];
-            [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray count]];
+            [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray length]];
             //NSLog(@"Characters - %@", value);
             break;
         }

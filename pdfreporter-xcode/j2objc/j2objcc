@@ -38,10 +38,15 @@ else
 fi
 readonly LIB_PATH=${DIR}/lib
 
-declare CC_FLAGS="-Werror -Wno-parentheses"
-declare OBJC=-ObjC
-declare LIBS="-ljre_emul -l j2objc_main"
-declare LINK_FLAGS="${LIBS} -framework Foundation -framework ExceptionHandling -L ${LIB_PATH}"
+declare FRAMEWORKS="-framework Foundation -framework Security"
+if [ "x${IPHONEOS_DEPLOYMENT_TARGET}" = "x" ]; then
+  FRAMEWORKS="${FRAMEWORKS} -framework ExceptionHandling"
+fi
+
+declare CC_FLAGS="-Werror -Wno-parentheses -fno-strict-overflow"
+declare OBJC="-std=c11"
+declare LIBS="-ljre_emul -l icucore -l z -l j2objc_main"
+declare LINK_FLAGS="${LIBS} ${FRAMEWORKS} -L ${LIB_PATH}"
 
 for arg; do
   case $arg in
@@ -52,4 +57,4 @@ for arg; do
   esac
 done
 
-xcrun clang $* -I ${INCLUDE_PATH} ${CC_FLAGS} ${OBJC} ${LINK_FLAGS}
+xcrun clang "$@" -I ${INCLUDE_PATH} ${CC_FLAGS} ${OBJC} ${LINK_FLAGS}

@@ -43,7 +43,7 @@
 
 - (id<OrgOssPdfreporterSqlITimestamp>)newTimestampWithLongInt:(long long int)milliseconds
 {
-    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLongInt:milliseconds];
+    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLong:milliseconds];
 }
 
 - (id<OrgOssPdfreporterSqlIDateTime>)newDateTimeWithJavaUtilDate:(JavaUtilDate *)datetime

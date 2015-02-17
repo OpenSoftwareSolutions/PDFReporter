@@ -11,4 +11,5 @@
 
 @interface OrgOssPdfreporterXmlParsersFactoryXmlParserFactory : NSObject <OrgOssPdfreporterXmlParsersFactoryIXmlParserFactory>
 +(void)registerFactory;
+void OrgOssPdfreporterXmlParsersFactoryXmlParserFactory_registerFactory();
 @end

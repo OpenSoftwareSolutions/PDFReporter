@@ -11,4 +11,5 @@
 
 @interface OrgOssPdfreporterTextFormatFactorySimpleFormatFactory : NSObject < OrgOssPdfreporterTextFormatFactoryIFormatFactory >
 + (void)registerFactory;
+void OrgOssPdfreporterTextFormatFactorySimpleFormatFactory_registerFactory();
 @end

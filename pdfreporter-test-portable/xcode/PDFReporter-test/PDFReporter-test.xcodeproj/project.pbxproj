@@ -39,6 +39,7 @@
 		2ED90B241817EAD1003E3363 /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B181817EAD1003E3363 /* RealestateTest.m */; };
 		2ED90B261817EAD1003E3363 /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B1D1817EAD1003E3363 /* ReportExporter.m */; };
 		2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */; };
+		3D929EEE1A9219D000039533 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D929EED1A9219D000039533 /* libicucore.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		2ED90B1D1817EAD1003E3363 /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
 		2ED90B281817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIRegistryExtensionsRegistryFactory.h; sourceTree = "<group>"; };
 		2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
+		3D929EED1A9219D000039533 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D929EEE1A9219D000039533 /* libicucore.dylib in Frameworks */,
 				2ECE6DA617FAE4C00079A30F /* libjre_emul.a in Frameworks */,
 				2ECE6DA017FAE3930079A30F /* libz.dylib in Frameworks */,
 				2ECE6D9E17FAE3470079A30F /* libsqlite3.dylib in Frameworks */,
@@ -216,6 +219,7 @@
 		2ECE5D2617FAC58D0079A30F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D929EED1A9219D000039533 /* libicucore.dylib */,
 				2ECE6DA517FAE4C00079A30F /* libjre_emul.a */,
 				2ECE6D9F17FAE3930079A30F /* libz.dylib */,
 				2ECE6D9D17FAE3470079A30F /* libsqlite3.dylib */,
@@ -670,6 +674,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../../../pdfreporter-xcode/j2objc/lib/",
+					"/Volumes/development/inloop/Swiss/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -702,6 +707,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../../../pdfreporter-xcode/j2objc/lib/",
+					"/Volumes/development/inloop/Swiss/pdfreporter-code/pdfreporter-xcode/j2objc/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

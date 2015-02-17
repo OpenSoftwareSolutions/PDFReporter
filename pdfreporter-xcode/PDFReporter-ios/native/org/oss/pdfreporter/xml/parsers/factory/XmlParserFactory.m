@@ -44,9 +44,9 @@
 {
     if (self.documentBuilderFactory_ == nil) {
         self.documentBuilderFactory_ = [[OrgOssPdfreporterXmlParsersImplDocumentBuilderFactory alloc] init];
-        [self.documentBuilderFactory_ setNamespaceAwareWithBOOL:self.namespaceAware];
-        [self.documentBuilderFactory_ setXIncludeAwareWithBOOL:self.xincludeAware];
-        [self.documentBuilderFactory_ setValidatingWithBOOL:self.validating];
+        [self.documentBuilderFactory_ setNamespaceAwareWithBoolean:self.namespaceAware];
+        [self.documentBuilderFactory_ setXIncludeAwareWithBoolean:self.xincludeAware];
+        [self.documentBuilderFactory_ setValidatingWithBoolean:self.validating];
     }
     return (self.documentBuilderFactory_);
 }
@@ -65,19 +65,19 @@
 
 - (id<OrgOssPdfreporterXmlParsersIXmlParser>)newXmlParserWithOrgOssPdfreporterXmlParsersIInputSource:(id<OrgOssPdfreporterXmlParsersIInputSource>)source withOrgOssPdfreporterXmlParsersIContentHandler:(id<OrgOssPdfreporterXmlParsersIContentHandler>)handler
 {
-    LibXmlReaderParser *parser = [[LibXmlReaderParser alloc] initWithOrgOssPdfreporterXmlParsersIInputSource:source withOrgOssPdfreporterXmlParsersIContentHandler:handler withBOOL:self.validating withBOOL:self.namespaceAware withBOOL:self.xincludeAware];
+    LibXmlReaderParser *parser = [[LibXmlReaderParser alloc] initWithOrgOssPdfreporterXmlParsersIInputSource:source withOrgOssPdfreporterXmlParsersIContentHandler:handler withBoolean:self.validating withBoolean:self.namespaceAware withBoolean:self.xincludeAware];
     return parser;
 }
 
-- (void)setNamespaceAwareWithBOOL:(BOOL)aware
+- (void)setNamespaceAwareWithBoolean:(BOOL)aware
 {
     self.namespaceAware = aware;
 }
-- (void)setXIncludeAwareWithBOOL:(BOOL)aware
+- (void)setXIncludeAwareWithBoolean:(BOOL)aware
 {
     self.xincludeAware = aware;
 }
-- (void)setValidatingWithBOOL:(BOOL)validating
+- (void)setValidatingWithBoolean:(BOOL)validating
 {
     self.validating = validating;
 }
@@ -86,5 +86,9 @@
 
 }
 
+void OrgOssPdfreporterXmlParsersFactoryXmlParserFactory_registerFactory()
+{
+    [OrgOssPdfreporterXmlParsersFactoryXmlParserFactory registerFactory];
+}
 
 @end

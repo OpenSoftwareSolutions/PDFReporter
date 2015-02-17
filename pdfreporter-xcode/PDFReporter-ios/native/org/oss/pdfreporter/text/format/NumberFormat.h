@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "org/oss/pdfreporter/text/format/INumberFormat.h"
+@class JavaUtilLocale;
 
 @interface NumberFormat : NSObject < OrgOssPdfreporterTextFormatINumberFormat > {
     NSNumberFormatter *formatter;

@@ -23,7 +23,7 @@
     return self;
 }
 
-- (NSString *)loadFontInternalWithNSString:(NSString *)filePath withNSString:(NSString *)encoding withBOOL:(BOOL)embed {
+- (NSString *)loadFontInternalWithNSString:(NSString *)filePath withNSString:(NSString *)encoding withBoolean:(BOOL)embed {
     if(filePath == nil) return nil;
     
     HpdfDocBox *docBox = [HpdfDocBox GetDocBoxFromSession:[[OrgOssPdfreporterRegistryApiRegistry getFontFactory] getSession]];
@@ -34,7 +34,7 @@
     if(cName == nil) return nil;
     NSString *fontName = [NSString stringWithCString:cName encoding:NSUTF8StringEncoding];
     // @"UTF-8" encoding @"FontSpecific"
-    Font *font = [[Font alloc] initWithFontName:fontName style:[OrgOssPdfreporterFontIFont_FontStyleEnum PLAIN] size:1 encoding: @"UTF-8" manager:self];
+    Font *font = [[Font alloc] initWithFontName:fontName style:OrgOssPdfreporterFontIFont_FontStyleEnum_PLAIN size:1 encoding: @"UTF-8" manager:self];
     
     [fontDict setObject:font forKey:fontName];
     
@@ -45,7 +45,7 @@
     if(fontname == nil) return nil;
     id<OrgOssPdfreporterFontIFont> font = [fontDict objectForKey:fontname];
     if(font == nil) {
-        font = [[Font alloc] initWithFontName:fontname style:[OrgOssPdfreporterFontIFont_FontStyleEnum PLAIN] size:1 encoding:@"FontSpecific" manager:self];
+        font = [[Font alloc] initWithFontName:fontname style:OrgOssPdfreporterFontIFont_FontStyleEnum_PLAIN size:1 encoding:@"FontSpecific" manager:self];
         [fontDict setObject:font forKey:fontname];
     }
     return font;

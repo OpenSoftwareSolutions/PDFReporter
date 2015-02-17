@@ -48,7 +48,7 @@
 {
     NSDate *date = [formatter dateFromString:source];
     long long int mili = (long long int)([date timeIntervalSince1970]*1000);
-    return [[JavaUtilDate alloc] initWithLongInt:mili];
+    return [[JavaUtilDate alloc] initWithLong:mili];
 }
 
 - (NSString *)formatWithJavaUtilDate:(JavaUtilDate *)date
@@ -60,7 +60,7 @@
 {
     NSDate *date = [formatter dateFromString:source];
     long long int mili = (long long int)([date timeIntervalSince1970]*1000);
-    return [[JavaUtilDate alloc] initWithLongInt:mili];
+    return [[JavaUtilDate alloc] initWithLong:mili];
 }
 
 - (NSString *)formatWithId:(id)obj

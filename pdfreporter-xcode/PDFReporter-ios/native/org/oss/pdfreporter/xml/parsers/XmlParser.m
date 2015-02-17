@@ -14,6 +14,7 @@
 #import "org/oss/pdfreporter/xml/parsers/XMLErrorHandler.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLParseException.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLEntityResolver.h"
+#import "NSString+JavaString.h"
 
 @implementation XmlParser
 
@@ -60,7 +61,7 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     IOSCharArray *charArray = [nil_chk(string) toCharArray];
-    [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray count]];
+    [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray length]];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName

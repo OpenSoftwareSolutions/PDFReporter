@@ -9,15 +9,13 @@
 #ifndef _NSDictionaryMap_H_
 #define _NSDictionaryMap_H_
 
-#import <Foundation/Foundation.h>
-
 #import "java/util/Map.h"
 
 // An implementation of java.util.Map backed by an NSDictionary.
 // The entrySet, keySet and valueSet methods return sets not backed
 // by the Map, so modifications to the map won't be reflected in the
 // sets and vice-versa.
-// TODO(user): Make this inherit from AbstractMap to get compliance
+// TODO(pankaj): Make this inherit from AbstractMap to get compliance
 // with spec.
 @interface NSDictionaryMap : NSObject<JavaUtilMap> {
 @private
@@ -26,8 +24,8 @@
 }
 
 // Initializes an empty map.
-- (id)init;
-+ (NSDictionaryMap *)map;
+- (instancetype)init;
++ (instancetype)map;
 
 // Initializes a map with the given dictionary.
 - (id)initWithDictionary:(NSDictionary *)dictionary;

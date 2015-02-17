@@ -60,7 +60,7 @@
     HPDF_SetInfoAttr([self hpdfHelper], HPDF_INFO_KEYWORDS, cstring);
 }
 
-- (void)setCompressionWithBOOL:(BOOL)compress {
+- (void)setCompressionWithBoolean:(BOOL)compress {
     HPDF_UINT mode = HPDF_COMP_NONE;
     if(compress) mode = HPDF_COMP_ALL;
     HPDF_SetCompressionMode([self hpdfHelper], mode);
@@ -78,7 +78,7 @@
     const char* cUserPass =  [userPassword UTF8String];
     
     HPDF_EncryptMode mode = HPDF_ENCRYPT_R2;
-    if(keyLength == [OrgOssPdfreporterPdfIEncryption_KeyLengthEnum ENCRYPTION_128]) mode = HPDF_ENCRYPT_R3;
+    if(keyLength == OrgOssPdfreporterPdfIEncryption_KeyLengthEnum_ENCRYPTION_128) mode = HPDF_ENCRYPT_R3;
     
     HPDF_SetPassword([self hpdfHelper], cOwnerPass, cUserPass);
     HPDF_SetEncryptionMode([self hpdfHelper], mode, 16);
@@ -108,7 +108,7 @@
 
 - (void)setPdfConformanceWithOrgOssPdfreporterPdfIDocument_ConformanceLevelEnum:(OrgOssPdfreporterPdfIDocument_ConformanceLevelEnum *)level {
     HPDF_PDFAType type = HPDF_PDFA_1A;
-    if (level == [OrgOssPdfreporterPdfIDocument_ConformanceLevelEnum PDF_1B]) type = HPDF_PDFA_1B;
+    if (level == OrgOssPdfreporterPdfIDocument_ConformanceLevelEnum_PDF_1B) type = HPDF_PDFA_1B;
     
     HPDF_PDFA_SetPDFAConformance([self hpdfHelper], type);
 }
@@ -139,10 +139,10 @@
     }
 }
 
-- (void)registerTrueTypeFontWithNSString:(NSString *)font withBOOL:(BOOL)embed {
+- (void)registerTrueTypeFontWithNSString:(NSString *)font withBoolean:(BOOL)embed {
     
 }
 
-- (void)registerTrueTypeFontsWithNSString:(NSString *)directory withBOOL:(BOOL)embed {
+- (void)registerTrueTypeFontsWithNSString:(NSString *)directory withBoolean:(BOOL)embed {
 }
 @end

@@ -22,7 +22,8 @@
 #ifndef _ExecutableMember_H_
 #define _ExecutableMember_H_
 
-#import "AccessibleObject.h"
+#import "java/lang/reflect/AccessibleObject.h"
+#import "java/lang/reflect/Member.h"
 
 // The first arguments all messages have are self and _cmd.
 // These are unmodified when specifying method-specific arguments.
@@ -30,19 +31,27 @@
 
 @class IOSClass;
 @class IOSObjectArray;
+@class JavaMethodMetadata;
 
 // Common parent of Member and Constructor with their shared functionality.
 // This class isn't directly called from translated Java, since Java's
 // Method and Constructor classes just duplicate their common code.
-@interface ExecutableMember : AccessibleObject {
+@interface ExecutableMember : JavaLangReflectAccessibleObject {
  @protected
   IOSClass *class_;
   SEL selector_;
-  BOOL classMethod_;
   NSMethodSignature *methodSignature_;
+  JavaMethodMetadata *metadata_;
 }
 
-- (id)initWithSelector:(SEL)aSelector withClass:(IOSClass *)aClass;
+@property (readonly) NSMethodSignature *signature;
+
+- (instancetype)initWithMethodSignature:(NSMethodSignature *)methodSignature
+                               selector:(SEL)selector
+                                  class:(IOSClass *)aClass
+                               metadata:(JavaMethodMetadata *)metadata;
+
+- (NSString *)getName;
 
 // This method returns Modifier.PUBLIC (1) for an instance method, or
 // Modifier.PUBLIC | Modifier.STATIC (9) for a class method.  Even though
@@ -56,10 +65,32 @@
 // Returns the class this executable is a member of.
 - (IOSClass *)getDeclaringClass;
 
+// Returns the types of any declared exceptions.
+- (IOSObjectArray *)getExceptionTypes;
+- (IOSObjectArray *)getGenericExceptionTypes;
+
 // Returns the parameter types for this executable member.
 //
 // @return an array of strings.
 - (IOSObjectArray *)getParameterTypes;
+- (IOSObjectArray *)getGenericParameterTypes;
+
+// Empty array always returned for iOS.
+- (IOSObjectArray *)getTypeParameters;
+
+// Always false for iOS.
+- (BOOL)isSynthetic;
+
+- (IOSObjectArray *)getParameterAnnotations;
+
+// Returns true if this method has variable arguments.
+- (BOOL)isVarArgs;
+
+// Returns true if this is a bridge method.
+- (BOOL)isBridge;
+
+// Protected methods.
+- (NSString *)internalName;
 
 @end
 

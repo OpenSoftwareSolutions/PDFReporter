@@ -22,7 +22,6 @@
 #ifndef _IOSPrimitiveClass_H_
 #define _IOSPrimitiveClass_H_
 
-#import <Foundation/Foundation.h>
 #import "IOSClass.h"
 
 // An IOSClass instance for primitive Java types, which allow primitives to
@@ -33,7 +32,10 @@
   NSString *type_;
 }
 
-- (id)initWithName:(NSString *)name type:(NSString *)type;
+- (instancetype)initWithName:(NSString *)name type:(NSString *)type;
+
+// For a primitive type, return its associated wrapper class.
+- (IOSClass *)wrapperClass;
 
 @end
 

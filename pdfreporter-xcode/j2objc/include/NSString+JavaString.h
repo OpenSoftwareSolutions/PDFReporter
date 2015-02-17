@@ -22,16 +22,16 @@
 #ifndef _NSString_JavaString_H_
 #define _NSString_JavaString_H_
 
-#import <Foundation/Foundation.h>
-#import "IOSByteArray.h"
-#import "IOSCharArray.h"
-#import "IOSIntArray.h"
 #import "IOSObjectArray.h"
+#import "IOSPrimitiveArray.h"
+#import "J2ObjC_common.h"
+#import "java/io/Serializable.h"
 #import "java/lang/CharSequence.h"
 #import "java/lang/Comparable.h"
 
 @class JavaLangStringBuffer;
 @class JavaLangStringBuilder;
+@class JavaNioCharsetCharset;
 @class JavaUtilLocale;
 @protocol JavaUtilComparator;
 
@@ -39,7 +39,7 @@
 // list is not exhaustive, since methods that can be directly substituted are
 // inlined.  For example, "foo".length() is directly translated to
 // [@"foo" length].
-@interface NSString (JavaString) <JavaLangComparable, JavaLangCharSequence>
+@interface NSString (JavaString) <JavaIoSerializable, JavaLangComparable, JavaLangCharSequence>
 
 // String.valueOf(Object)
 + (NSString *)valueOf:(id<NSObject>)obj;
@@ -70,9 +70,6 @@
 // String.valueOf(long)
 + (NSString *)valueOfLong:(long long int)value;
 
-// String.valueOf(short)
-+ (NSString *)valueOfShort:(short)value;
-
 // String.getChars(int, int, char[], int)
 - (void)getChars:(int)sourceBegin
        sourceEnd:(int)sourceEnd
@@ -98,13 +95,23 @@ destinationBegin:(int)dstBegin;
 
 // String(byte[], String)
 + (NSString *)stringWithBytes:(IOSByteArray *)value
-              charsetName:(NSString *)charset;
+                  charsetName:(NSString *)charsetName;
+
+// String(byte[], Charset)
++ (NSString *)stringWithBytes:(IOSByteArray *)value
+                  charset:(JavaNioCharsetCharset *)charset;
 
 // String(byte[], int, int, String)
 + (NSString *)stringWithBytes:(IOSByteArray *)value
                        offset:(int)offset
                        length:(int)count
-              charsetName:(NSString *)charset;
+              charsetName:(NSString *)charsetName;
+
+// String(byte[], int, int, Charset)
++ (NSString *)stringWithBytes:(IOSByteArray *)value
+                       offset:(int)offset
+                       length:(int)count
+                  charset:(JavaNioCharsetCharset *)charset;
 
 + (NSString *)stringWithBytes:(IOSByteArray *)value
                        offset:(int)offset
@@ -173,13 +180,10 @@ destinationBegin:(int)dstBegin;
 - (IOSCharArray *)toCharArray;
 
 // java.lang.Comparable implementation methods
-- (int)compareToWithId:(id)another;
+- (jint)compareToWithId:(id)another;
 
 // CharSequence.charAt(int)
 - (unichar)charAtWithInt:(int)index;
-
-// CharSequence.toString()
-- (NSString *)sequenceDescription;
 
 // CharSequence.length()
 - (int)sequenceLength;
@@ -189,7 +193,7 @@ destinationBegin:(int)dstBegin;
                                          to:(int)end;
 
 // String.compareToIgnoreCase(String)
-- (int)compareToIgnoreCase:(NSString *)another;
+- (jint)compareToIgnoreCase:(NSString *)another;
 
 // String.replace(char, char)
 - (NSString *)replace:(unichar)oldchar withChar:(unichar)newchar;
@@ -210,7 +214,10 @@ destinationBegin:(int)dstBegin;
 - (IOSByteArray *)getBytes;
 
 // String.getBytes(String)
-- (IOSByteArray *)getBytesWithCharset:(NSString *)charsetName;
+- (IOSByteArray *)getBytesWithCharsetName:(NSString *)charsetName;
+
+// String.getBytes(Charset)
+- (IOSByteArray *)getBytesWithCharset:(JavaNioCharsetCharset *)charset;
 
 - (IOSByteArray *)getBytesWithEncoding:(NSStringEncoding)encoding;
 
@@ -220,8 +227,11 @@ destinationBegin:(int)dstBegin;
                      withDst:(IOSByteArray *)dst
                 withDstBegin:(int)dstBegin;
 
-// String.format(Locale, String, ...)
-+ (NSString *)stringWithFormat:(NSString *)format locale:(id)locale, ...;
+// String.format(String, ...), String.format(Locale, String, ...)
++ (NSString *)formatWithNSString:(NSString *)format withNSObjectArray:(IOSObjectArray *)args;
++ (NSString *)formatWithJavaUtilLocale:(JavaUtilLocale *)locale
+                          withNSString:(NSString *)format
+                     withNSObjectArray:(IOSObjectArray *)args;
 
 // String.startsWith(String, int)
 - (BOOL)hasPrefix:(NSString *)aString offset:(int)offset;
@@ -274,9 +284,49 @@ destinationBegin:(int)dstBegin;
 - (BOOL)contentEqualsStringBuffer:(JavaLangStringBuffer *)sb;
 
 // String.offsetByCodePoints(int, int)
-
-+ (id<JavaUtilComparator>)CASE_INSENSITIVE_ORDER;
+- (int)offsetByCodePoints:(int)index codePointOffset:(int)offset;
 
 @end
+
+FOUNDATION_EXPORT NSString *NSString_copyValueOfWithCharArray_(IOSCharArray *chars);
+FOUNDATION_EXPORT NSString *NSString_copyValueOfWithCharArray_withInt_withInt_(
+    IOSCharArray *chars, jint i, jint j);
+FOUNDATION_EXPORT NSString *NSString_formatWithJavaUtilLocale_withNSString_withNSObjectArray_(
+    JavaUtilLocale *l, NSString *s, IOSObjectArray *objs);
+FOUNDATION_EXPORT NSString *NSString_formatWithNSString_withNSObjectArray_(
+    NSString *s, IOSObjectArray *objs);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithBoolean_(jboolean b);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithChar_(jchar c);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithCharArray_(IOSCharArray *chars);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithCharArray_withInt_withInt_(
+    IOSCharArray *chars, jint i, jint j);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithDouble_(jdouble d);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithFloat_(jfloat f);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithInt_(jint i);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithLong_(jlong l);
+FOUNDATION_EXPORT NSString *NSString_valueOfWithId_(id o);
+
+// Empty class to force category to be loaded.
+@interface JreStringCategoryDummy : NSObject
+@end
+
+// Use the category dummy to initialize static variables for the String class.
+FOUNDATION_EXPORT BOOL NSString_initialized;
+__attribute__((always_inline)) inline void NSString_init() { \
+  if (!__builtin_expect(NSString_initialized, YES)) { \
+    [JreStringCategoryDummy class];
+  }
+}
+
+FOUNDATION_EXPORT id<JavaUtilComparator> NSString_CASE_INSENSITIVE_ORDER_;
+J2OBJC_STATIC_FIELD_GETTER(NSString, CASE_INSENSITIVE_ORDER_, id<JavaUtilComparator>)
+
+FOUNDATION_EXPORT IOSObjectArray *NSString_serialPersistentFields_;
+J2OBJC_STATIC_FIELD_GETTER(NSString, serialPersistentFields_, IOSObjectArray *)
+
+J2OBJC_TYPE_LITERAL_HEADER(NSString)
+
+/** Function that returns String hash values as specified by java.lang.String. */
+FOUNDATION_EXPORT jint javaStringHashCode(NSString *string);
 
 #endif // _NSString_JavaString_H_

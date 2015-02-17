@@ -11,4 +11,5 @@
 
 @interface OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory : NSObject <OrgOssPdfreporterTextFormatFactoryIFormatFactory>
 +(void)registerFactory;
+void OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory_registerFactory();
 @end

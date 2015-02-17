@@ -12,6 +12,7 @@
 #import "org/oss/pdfreporter/sql/factory/DateTimeImpl.h"
 #import "org/oss/pdfreporter/sql/factory/TimestampImpl.h"
 #import "org/oss/pdfreporter/sql/factory/BlobImpl.h"
+#import "IOSPrimitiveArray.h"
 
 @implementation PreparedStatement
 
@@ -47,7 +48,7 @@
 {
     IOSByteArray *byteArray = [value getBytes];
     
-    int count = [byteArray count];
+    int count = [byteArray length];
     char *array = malloc(count);
     
     [byteArray getBytes:array offset:0 length:count];
@@ -62,7 +63,7 @@
     }
 }
 
-- (void)setBooleanWithInt:(int)columnIndex withBOOL:(BOOL)value
+- (void)setBooleanWithInt:(int)columnIndex withBoolean:(BOOL)value
 {
     int result = sqlite3_bind_int(stmt, columnIndex, value);
     if(result != SQLITE_OK)

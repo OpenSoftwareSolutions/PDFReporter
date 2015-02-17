@@ -22,15 +22,27 @@
 #ifndef _JavaObject_H_
 #define _JavaObject_H_
 
-#import <Foundation/Foundation.h>
-
 @class IOSClass;
 
 // A protocol that defines Java Object-compatible methods.
 @protocol JavaObject
 
+// Returns a copy of the object, if it implements java.lang.Cloneable.
+- (id)clone;
+
 // Returns the IOSClass of the receiver.
 - (IOSClass *)getClass;
+
+// Wakes up a waiting thread (if any).
+- (void)notify;
+
+// Wakes up all waiting threads (if any).
+- (void)notifyAll;
+
+// Waits until another thread wakes it, or times out.
+- (void)wait;
+- (void)waitWithLong:(long long)timeout;
+- (void)waitWithLong:(long long)timeout withInt:(int)nanos;
 
 @end
 

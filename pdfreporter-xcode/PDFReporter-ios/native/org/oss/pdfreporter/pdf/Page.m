@@ -16,6 +16,7 @@
 #import "HpdfDocBox.h"
 #import "org/oss/pdfreporter/registry/ApiRegistry.h"
 #import "org/oss/pdfreporter/geometry/Color.h"
+#import "IOSPrimitiveArray.h"
 
 @implementation Page
 
@@ -43,7 +44,7 @@
         if (HPDF_HasDoc(hpdf_doc)) {
             hpdf_page = HPDF_AddPage(hpdf_doc);
             int ori = HPDF_PAGE_PORTRAIT;
-            if(orientation == [OrgOssPdfreporterPdfIDocument_PageOrientationEnum LANDSCAPE]) {
+            if(orientation == OrgOssPdfreporterPdfIDocument_PageOrientationEnum_LANDSCAPE) {
                 ori = HPDF_PAGE_LANDSCAPE;
                 int tmp = width;
                 width = height;
@@ -83,13 +84,13 @@
 }
 
 - (void)setLineDashWithIntArray:(IOSIntArray *)array withInt:(int)phase {
-    HPDF_UINT16 *shortArray = malloc(array.count * sizeof(HPDF_UINT16));
+    HPDF_UINT16 *shortArray = malloc(array.length * sizeof(HPDF_UINT16));
     
-    for(int i=0; i<array.count; i++) {
+    for(int i=0; i<array.length; i++) {
         shortArray[i] = (HPDF_UINT16)[array intAtIndex:i];
     }
     
-    HPDF_Page_SetDash(hpdf_page, shortArray, array.count, phase);
+    HPDF_Page_SetDash(hpdf_page, shortArray, array.length, phase);
     
     free(shortArray);
 }
@@ -206,13 +207,13 @@
 - (void)drawWithOrgOssPdfreporterImageIImage:(id<OrgOssPdfreporterImageIImage>)image withFloat:(float)x withFloat:(float)y withFloat:(float)width withFloat:(float)height withOrgOssPdfreporterPdfIPage_ScaleModeEnum:(OrgOssPdfreporterPdfIPage_ScaleModeEnum *)mode {
     if (!HPDF_HasDoc(hpdf_doc)) @throw [NSException exceptionWithName:@"HPDF_NEW" reason:@"!has doc" userInfo:nil];
     ImageBox *box = [image getPeer];
-    if(mode == [OrgOssPdfreporterPdfIPage_ScaleModeEnum NONE]) {
+    if(mode == OrgOssPdfreporterPdfIPage_ScaleModeEnum_NONE) {
         [self drawCroppedWithOrgOssPdfreporterImageIImage:image withFloat:0 withFloat:0 withFloat:x withFloat:y withFloat:width withFloat:height];
     }
-    else if(mode == [OrgOssPdfreporterPdfIPage_ScaleModeEnum SCALE]) {
+    else if(mode == OrgOssPdfreporterPdfIPage_ScaleModeEnum_SCALE) {
         HPDF_Page_DrawImage(hpdf_page, [box getHpdfImage], x, y, width, height);
     }
-    else if(mode == [OrgOssPdfreporterPdfIPage_ScaleModeEnum SIZE]) {
+    else if(mode == OrgOssPdfreporterPdfIPage_ScaleModeEnum_SIZE) {
         float dWidth = (float)width / [image getWidth];
         float dHeight = (float)height / [image getHeight];
         float scale = dHeight;

@@ -14,7 +14,7 @@
 
 +(void)registerFactory
 {
-    [OrgOssPdfreporterRegistryApiRegistry register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum:[OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum STANDARD] withOrgOssPdfreporterTextFormatFactoryIFormatFactory: [[OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory alloc] init]];
+    [OrgOssPdfreporterRegistryApiRegistry register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum:OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum_STANDARD withOrgOssPdfreporterTextFormatFactoryIFormatFactory: [[OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory alloc] init]];
 }
 
 - (id<OrgOssPdfreporterTextFormatIDateFormat>)newDateFormatWithNSString:(NSString *)pattern
@@ -34,5 +34,10 @@
                                                            withJavaUtilLocale:(JavaUtilLocale *)locale
 {
     return [[FallbackFormater alloc] initWithPattern:pattern];
+}
+
+void OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory_registerFactory()
+{
+    [OrgOssPdfreporterTextFormatFallbackFallbackFormatFactory registerFactory];
 }
 @end

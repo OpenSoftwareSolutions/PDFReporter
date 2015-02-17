@@ -34,7 +34,7 @@
 }
 
 - (void)copyAllPropertiesTo:(id)copy {
-  [super copyAllPropertiesTo:copy];
+//  [super copyAllPropertiesTo:copy];
   Chunk *typedCopy = (Chunk *) copy;
   typedCopy.val = val_;
   typedCopy.mode = mode_;

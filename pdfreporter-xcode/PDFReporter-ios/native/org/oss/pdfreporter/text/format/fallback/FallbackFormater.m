@@ -37,7 +37,7 @@
 
 - (NSString *)formatWithId:(id)obj
 {
-    return [Formatter formatWithNSString:m_pattern withNSObjectArray:[IOSObjectArray arrayWithObjects:(id[]){ obj } count:1 type:[IOSClass classWithClass:[NSObject class]]]];
+    return [Formatter formatWithNSString:m_pattern withNSObjectArray:[IOSObjectArray arrayWithObjects:(id[]){ obj } count:1 type:[IOSClass classForIosName:@"NSObject"]]];
 }
 
 // IDateFormat

@@ -66,7 +66,7 @@
   }
   else if ([param isKindOfClass:[JavaLangLong class]]) {
     cal = [JavaUtilCalendar getInstance];
-    [((JavaUtilCalendar *) nil_chk(cal)) setTimeInMillisWithLongInt:[(JavaLangLong *) param longLongValue]];
+    [((JavaUtilCalendar *) nil_chk(cal)) setTimeInMillisWithLong:[(JavaLangLong *) param longLongValue]];
   }
   else {
     @throw [[JavaLangRuntimeException alloc] initWithNSString:@"%t parameters must be a java.util.Date or a java.util.Calendar"];

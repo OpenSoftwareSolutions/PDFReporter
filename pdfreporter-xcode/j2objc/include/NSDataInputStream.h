@@ -9,8 +9,6 @@
 #ifndef _NSDataInputStream_H_
 #define _NSDataInputStream_H_
 
-#import <Foundation/Foundation.h>
-
 #import "java/io/InputStream.h"
 
 // A concrete subclass of java.io.InputStream that reads from
@@ -19,7 +17,7 @@
 // be mutable) will not be visible.
 @interface NSDataInputStream : JavaIoInputStream
 
-- (id)initWithData:(NSData *)data;
+- (instancetype)initWithData:(NSData *)data;
 + (NSDataInputStream *)streamWithData:(NSData *)data;
 
 @end

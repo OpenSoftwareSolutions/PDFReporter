@@ -15,7 +15,7 @@
 @implementation OrgOssPdfreporterTextFormatFactorySimpleFormatFactory
 
 + (void)registerFactory {
-    [OrgOssPdfreporterRegistryApiRegistry register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum:[OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum SIMPLE] withOrgOssPdfreporterTextFormatFactoryIFormatFactory:[[OrgOssPdfreporterTextFormatFactorySimpleFormatFactory alloc] init]];
+    [OrgOssPdfreporterRegistryApiRegistry register__WithOrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum:OrgOssPdfreporterTextFormatFactoryIFormatFactory_FormatTypeEnum_SIMPLE withOrgOssPdfreporterTextFormatFactoryIFormatFactory:[[OrgOssPdfreporterTextFormatFactorySimpleFormatFactory alloc] init]];
 }
 
 - (id<OrgOssPdfreporterTextFormatIDateFormat>)newDateFormatWithNSString:(NSString *)pattern withJavaUtilLocale:(JavaUtilLocale *)locale
@@ -29,6 +29,12 @@
 
 - (id<OrgOssPdfreporterTextFormatIMessageFormat>)newMessageFormatWithNSString:(NSString *)pattern withJavaUtilLocale:(JavaUtilLocale *)locale {
     @throw [NSException exceptionWithName:@"NotImpl" reason:@"NotImp" userInfo:nil];
+}
+
+
+void OrgOssPdfreporterTextFormatFactorySimpleFormatFactory_registerFactory()
+{
+    [OrgOssPdfreporterTextFormatFactorySimpleFormatFactory registerFactory];
 }
 
 @end
