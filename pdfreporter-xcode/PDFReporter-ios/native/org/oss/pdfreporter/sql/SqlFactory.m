@@ -61,4 +61,10 @@
     return [[OrgOssPdfreporterSqlFactoryBlobImpl alloc] initWithByteArray:bytes];
 }
 
+
+void OrgOssPdfreporterSqlSqlFactory_registerFactory()
+{
+    [OrgOssPdfreporterSqlSqlFactory registerFactory];
+}
+
 @end

@@ -12,7 +12,7 @@
 #import "IOSRealEstateTestProvider.h"
 #include "java/util/logging/Level.h"
 #include "java/util/logging/Logger.h"
-#import <objc/objc-runtime.h>
+//#import <objc/objc-runtime.h>
 
 @implementation AppDelegate
 
@@ -31,39 +31,39 @@
     return YES;
 }
 
-+ (void)replaceLoggerLogImplementation {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class class = [JavaUtilLoggingLogger class];
-        
-        SEL originalSelector = @selector(logWithJavaUtilLoggingLevel:withNSString:);
-        SEL swizzledSelector = @selector(logWithJavaUtilLoggingLevel:withNSString:);
-        
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod([self class], swizzledSelector);
-        
-        BOOL didAddMethod =
-        class_addMethod(class,
-                        originalSelector,
-                        method_getImplementation(swizzledMethod),
-                        method_getTypeEncoding(swizzledMethod));
-        
-        if (didAddMethod) {
-            class_replaceMethod(class,
-                                swizzledSelector,
-                                method_getImplementation(originalMethod),
-                                method_getTypeEncoding(originalMethod));
-        } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
-    });
-}
-
-- (void)logWithJavaUtilLoggingLevel:(JavaUtilLoggingLevel *)logLevel
-                       withNSString:(NSString *)msg
-{
-    NSLog(@"%@", msg);
-}
+//+ (void)replaceLoggerLogImplementation {
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        Class class = [JavaUtilLoggingLogger class];
+//        
+//        SEL originalSelector = @selector(logWithJavaUtilLoggingLevel:withNSString:);
+//        SEL swizzledSelector = @selector(logWithJavaUtilLoggingLevel:withNSString:);
+//        
+//        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+//        Method swizzledMethod = class_getInstanceMethod([self class], swizzledSelector);
+//        
+//        BOOL didAddMethod =
+//        class_addMethod(class,
+//                        originalSelector,
+//                        method_getImplementation(swizzledMethod),
+//                        method_getTypeEncoding(swizzledMethod));
+//        
+//        if (didAddMethod) {
+//            class_replaceMethod(class,
+//                                swizzledSelector,
+//                                method_getImplementation(originalMethod),
+//                                method_getTypeEncoding(originalMethod));
+//        } else {
+//            method_exchangeImplementations(originalMethod, swizzledMethod);
+//        }
+//    });
+//}
+//
+//- (void)logWithJavaUtilLoggingLevel:(JavaUtilLoggingLevel *)logLevel
+//                       withNSString:(NSString *)msg
+//{
+//    NSLog(@"%@", msg);
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
