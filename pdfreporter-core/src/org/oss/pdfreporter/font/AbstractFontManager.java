@@ -38,7 +38,8 @@ public abstract class AbstractFontManager implements IFontManager {
 	}
 
 	private void registerPdfInternalFonts() {
-		for (IFont font : Base14Font.getList(this)) {
+		List<IFont> base14Fonts = Base14Font.getList(this);
+		for (IFont font : base14Fonts) {
 			addFont(new FontKey(font),font);
 		}
 		Set<Entry<String, String>> fontEntrySet = Base14Font.getLogicalFontNames().entrySet();
