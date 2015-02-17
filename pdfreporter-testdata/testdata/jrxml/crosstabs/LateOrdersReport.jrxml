@@ -23,12 +23,13 @@
 			</style>
 		</conditionalStyle>
 	</style>
-	<queryString language="xPath"><![CDATA[/Northwind/Orders[ShippedDate]]]></queryString>
 <!--
+	<queryString language="xPath"><![CDATA[/Northwind/Orders[ShippedDate]]]></queryString>
+-->	
+
 	<queryString>
 		<![CDATA[SELECT OrderId, ShipCountry, Freight, OrderDate, RequiredDate, ShippedDate FROM Orders WHERE ShippedDate IS NOT NULL]]>
 	</queryString>
--->	
 	<field name="OrderId" class="java.lang.Integer">
 		<fieldDescription><![CDATA[OrderID]]></fieldDescription>
 	</field>
