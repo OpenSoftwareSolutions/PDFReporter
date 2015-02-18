@@ -20,7 +20,7 @@
 #ifndef _JavaToIOSInputStreamAdapter_H_
 #define _JavaToIOSInputStreamAdapter_H_
 
-#import <Foundation/Foundation.h>
+#import "J2ObjC_common.h"
 
 @class JavaIoInputStream;
 
@@ -29,7 +29,7 @@
   JavaIoInputStream *delegate_;
 }
 
-- (id)initWithJavaInputStream:(JavaIoInputStream *)javaStream;
+- (instancetype)initWithJavaInputStream:(JavaIoInputStream *)javaStream;
 
 + (JavaToIOSInputStreamAdapter *)fromJavaInputStream:(JavaIoInputStream *)javaStream;
 

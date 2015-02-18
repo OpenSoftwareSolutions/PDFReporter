@@ -22,46 +22,37 @@
 #ifndef _IOSARRAY_H
 #define _IOSARRAY_H
 
-#import <Foundation/Foundation.h>
+#import "J2ObjC_common.h"
+#import "NSObject+JavaObject.h"
+#import "java/io/Serializable.h"
 
 @class IOSClass;
 
 // An abstract class that represents a Java array.  Like a Java array,
 // an IOSArray is fixed-size but its elements are mutable.
-@interface IOSArray : NSObject < NSCopying > {
- @protected
-  NSUInteger size_;
+@interface IOSArray : NSObject < NSCopying, JavaIoSerializable > {
+ @public
+  jint size_;
 }
-
-// Initializes this array with a specified array size.
-- (id)initWithLength:(NSUInteger)length;
-
-+ (id)arrayWithLength:(NSUInteger)length;
 
 // Create an empty multi-dimensional array.
 + (id)arrayWithDimensions:(NSUInteger)dimensionCount
-                  lengths:(const int *)dimensionLengths;
+                  lengths:(const jint *)dimensionLengths;
+// We must set the method family to "none" because as a "new" method family
+// clang will assume the return type to be the same type as the class being
+// called.
++ (id)newArrayWithDimensions:(NSUInteger)dimensionCount
+                     lengths:(const jint *)dimensionLengths
+    __attribute__((objc_method_family(none), ns_returns_retained));
 
 + (id)iosClass;
-+ (id)iosClassWithDimensions:(NSUInteger)dimensions;
 
 // Returns the size of this array.
-- (NSUInteger)count;
+- (jint)length;
+// DEPRECATED: Use length instead.
+- (NSUInteger)count __attribute__((deprecated));
 
-// Verifies that 0 >= index < length, throwing an IndexOutOfBoundsException
-// if index is out of range.
-- (void)checkIndex:(NSUInteger)index;
-
-// Verifies that the specified range fits within the array bounds, throwing
-// an IndexOutOfBoundsException if it is out of bounds.
-- (void)checkRange:(NSRange)range;
-
-// Verifies that the specified range fits within the array bounds after
-// applying the specified offset.  An IndexOutOfBoundsException is
-// thrown if it is out of bounds.
-- (void)checkRange:(NSRange)range withOffset:(NSUInteger)offset;
-
-- (NSString*)descriptionOfElementAtIndex:(NSUInteger)index;
+- (NSString *)descriptionOfElementAtIndex:(jint)index;
 
 // Returns the element type of this array.
 - (IOSClass *)elementType;
@@ -72,25 +63,37 @@
 // Copies a range of elements from this array into another.  This method is
 // only called from java.lang.System.arraycopy(), which verifies that the
 // destination array is the same type as this array.
-- (void) arraycopy:(NSRange)sourceRange
-       destination:(IOSArray *)destination
-            offset:(NSInteger)offset;
+- (void)arraycopy:(jint)offset
+      destination:(IOSArray *)destination
+        dstOffset:(jint)dstOffset
+           length:(jint)length;
+
+- (void *)buffer;
 
 @end
+
+CF_EXTERN_C_BEGIN
+void IOSArray_throwOutOfBounds();
+void IOSArray_throwOutOfBoundsWithMsg(jint size, jint index);
+CF_EXTERN_C_END
 
 // Implement IOSArray |checkIndex| and |checkRange| methods as C functions. This
 // allows IOSArray index and range checks to be completely removed via the
 // J2OBJC_DISABLE_ARRAY_CHECKS macro to improve performance.
-__attribute__ ((unused))
-static inline void IOSArray_checkIndex(IOSArray *array, NSUInteger index) {
-#if !defined(J2OBJC_DISABLE_ARRAY_CHECKS)
-  [array checkIndex:index];
+__attribute__((always_inline)) inline void IOSArray_checkIndex(jint size, jint index) {
+#if !defined(J2OBJC_DISABLE_ARRAY_BOUND_CHECKS)
+  if (__builtin_expect(index < 0 || index >= size, 0)) {
+    IOSArray_throwOutOfBoundsWithMsg(size, index);
+  }
 #endif
 }
-__attribute__ ((unused))
-static inline void IOSArray_checkRange(IOSArray *array, NSRange range) {
-#if !defined(J2OBJC_DISABLE_ARRAY_CHECKS)
-  [array checkRange:range];
+
+__attribute__((always_inline)) inline void IOSArray_checkRange(
+    jint size, jint offset, jint length) {
+#if !defined(J2OBJC_DISABLE_ARRAY_BOUND_CHECKS)
+  if (__builtin_expect(length < 0 || offset < 0 || offset + length > size, 0)) {
+    IOSArray_throwOutOfBounds();
+  }
 #endif
 }
 

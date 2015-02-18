@@ -16,6 +16,7 @@
 		3D31637B181A85D200826501 /* Icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D316378181A85D200826501 /* Icon76.png */; };
 		3D31637C181A85D200826501 /* Icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D316379181A85D200826501 /* Icon120.png */; };
 		3D31637D181A85D200826501 /* Icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D31637A181A85D200826501 /* Icon152.png */; };
+		3D929EFA1A92238C00039533 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D929EF91A92238C00039533 /* libicucore.dylib */; };
 		51525303179AE41F007A838A /* test.script in Resources */ = {isa = PBXBuildFile; fileRef = 51525302179AE41F007A838A /* test.script */; };
 		51525308179AE4E1007A838A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C13165179ADC970059E90D /* libsqlite3.dylib */; };
 		51525310179AE7EE007A838A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5152530F179AE7EE007A838A /* libz.dylib */; };
@@ -164,6 +165,7 @@
 		3D316378181A85D200826501 /* Icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon76.png; sourceTree = SOURCE_ROOT; };
 		3D316379181A85D200826501 /* Icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon120.png; sourceTree = SOURCE_ROOT; };
 		3D31637A181A85D200826501 /* Icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon152.png; sourceTree = SOURCE_ROOT; };
+		3D929EF91A92238C00039533 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		51525302179AE41F007A838A /* test.script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.script; path = PDFReporter/test.script; sourceTree = "<group>"; };
 		51525309179AE504007A838A /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = ../../JasperReportLib/j2objc/lib/libjre_emul.a; sourceTree = "<group>"; };
 		5152530F179AE7EE007A838A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -268,6 +270,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D929EFA1A92238C00039533 /* libicucore.dylib in Frameworks */,
 				2EE145EF17F57ADD002EF172 /* liblibPng.a in Frameworks */,
 				2EE68DA717F176E900C7C1FE /* libPDFReporter-core.a in Frameworks */,
 				2EFDDA5D17F084E100D4580A /* libPDFReporter-extensions.a in Frameworks */,
@@ -416,6 +419,7 @@
 		51C104D6179AB5320059E90D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D929EF91A92238C00039533 /* libicucore.dylib */,
 				2EFDDA5617F084BB00D4580A /* libjre_emul.a */,
 				51CDE15A17C4D1AF00DACDBE /* Objective-ZIP */,
 				517D234517BE3AC9005B901E /* MessageUI.framework */,
@@ -855,6 +859,7 @@
 		51C104FB179AB5320059E90D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReporter/PDFReporter-Prefix.pch";
 				GCC_VERSION = "";

@@ -43,7 +43,7 @@
 
 - (id<OrgOssPdfreporterSqlITimestamp>)newTimestampWithLongInt:(long long int)milliseconds
 {
-    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLongInt:milliseconds];
+    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLong:milliseconds];
 }
 
 - (id<OrgOssPdfreporterSqlIDateTime>)newDateTimeWithJavaUtilDate:(JavaUtilDate *)datetime
@@ -59,6 +59,17 @@
 - (id<OrgOssPdfreporterSqlIBlob>)newBlobWithByteArray:(IOSByteArray *)bytes
 {
     return [[OrgOssPdfreporterSqlFactoryBlobImpl alloc] initWithByteArray:bytes];
+}
+
+- (id<OrgOssPdfreporterSqlITimestamp>)newTimestampWithLong:(jlong)milliseconds
+{
+    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLong:milliseconds];
+}
+
+
+void OrgOssPdfreporterSqlSqlFactory_registerFactory()
+{
+    [OrgOssPdfreporterSqlSqlFactory registerFactory];
 }
 
 @end

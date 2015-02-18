@@ -15,12 +15,12 @@
 			<style backcolor="#E0E0E0"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="xPath"><![CDATA[/Northwind/Orders]]></queryString>
 <!--
+	<queryString language="xPath"><![CDATA[/Northwind/Orders]]></queryString>
+-->	
 	<queryString>
 		<![CDATA[SELECT ShipCountry, Freight, OrderDate FROM Orders]]>
 	</queryString>
--->	
 	<field name="ShipCountry" class="java.lang.String">
 		<fieldDescription><![CDATA[ShipCountry]]></fieldDescription>
 	</field>

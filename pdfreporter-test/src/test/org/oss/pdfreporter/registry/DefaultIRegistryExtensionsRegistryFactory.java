@@ -23,6 +23,8 @@ import org.oss.pdfreporter.geometry.GeometryFactory;
 import org.oss.pdfreporter.image.ImageFactory;
 import org.oss.pdfreporter.net.factory.NetFactory;
 import org.oss.pdfreporter.pdf.PdfFactory;
+import org.oss.pdfreporter.sql.SqlFactory;
+import org.oss.pdfreporter.text.format.factory.DefaultFormatFactory;
 import org.oss.pdfreporter.text.format.factory.SimpleFormatFactory;
 import org.oss.pdfreporter.text.format.fallback.FallbackFormatFactory;
 import org.oss.pdfreporter.xml.parsers.factory.XmlParserFactory;
@@ -55,9 +57,9 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 			XmlParserFactory.registerFactory();
 			NetFactory.registerFactory();
 			SimpleFormatFactory.registerFactory();		
-			// FIXME (13.02.2015, Donat, Open Software Solutions): There is no implementation for DefaultFormatFactory on iOS
-			//DefaultFormatFactory.registerFactory();	
+			DefaultFormatFactory.registerFactory();	
 			FallbackFormatFactory.registerFactory();
+			SqlFactory.registerFactory();
 			BeansFactory.registerFactory();
 			FontFactory.registerFactory();
 			ImageFactory.registerFactory();

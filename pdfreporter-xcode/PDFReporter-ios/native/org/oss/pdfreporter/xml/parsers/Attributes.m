@@ -41,7 +41,6 @@
 }
 - (NSString *)getLocalNameWithInt:(int)index
 {
-#warning TODO: return empty string if namespace processing is not being performed
     if (index >= [[self.attributeDict allKeys] count]) {
         return nil;
     }

@@ -63,19 +63,15 @@
         OrgOssPdfreporterXmlParsersImplElementImpl *node = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] init];
         NSString *nodeName = nodeInfo[@"nodeName"];
         if (nodeName.length > 0) {
-            [node setName:nodeName];
-            [node setType:OrgOssPdfreporterUsesOrgW3cDomNode_ELEMENT_NODE];
+            node = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] initWithOrgOssPdfreporterUsesOrgW3cDomDocument:nil withShort:OrgOssPdfreporterUsesOrgW3cDomNode_ELEMENT_NODE withNSString:nodeName withNSString:nil];
         }
         [nodeList addWithOrgOssPdfreporterUsesOrgW3cDomNode:node];
         
-        OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl *childNodeList = [[OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl alloc] initWithOrgOssPdfreporterUsesOrgW3cDomNode:nil];
-        [node setChildren:childNodeList];
+        OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl *childNodeList = [node getChildNodes];
         
         NSString *nodeContent = nodeInfo[@"nodeContent"];
         if (nodeContent.length > 0) {
-            OrgOssPdfreporterXmlParsersImplElementImpl *textNode = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] init];
-            [textNode setValue:nodeContent];
-            [textNode setType:OrgOssPdfreporterUsesOrgW3cDomNode_TEXT_NODE];
+            OrgOssPdfreporterXmlParsersImplElementImpl *textNode = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] initWithOrgOssPdfreporterUsesOrgW3cDomDocument:nil withShort:OrgOssPdfreporterUsesOrgW3cDomNode_TEXT_NODE withNSString:nil withNSString:nodeContent];
             [childNodeList addWithOrgOssPdfreporterUsesOrgW3cDomNode:textNode];
         }
         
@@ -86,5 +82,35 @@
         
     }];
 }
+
+//+ (void)appendXPathResultList:(NSArray *)xPathResultList toParentNodeList:(OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl *)nodeList
+//{
+//    [xPathResultList enumerateObjectsUsingBlock:^(NSDictionary *nodeInfo, NSUInteger idx, BOOL *stop) {
+//        OrgOssPdfreporterXmlParsersImplElementImpl *node = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] init];
+//        NSString *nodeName = nodeInfo[@"nodeName"];
+//        if (nodeName.length > 0) {
+//            [node setName:nodeName];
+//            [node setType:OrgOssPdfreporterUsesOrgW3cDomNode_ELEMENT_NODE];
+//        }
+//        [nodeList addWithOrgOssPdfreporterUsesOrgW3cDomNode:node];
+//        
+//        OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl *childNodeList = [[OrgOssPdfreporterXmlParsersImplNodeImpl_NodeListImpl alloc] initWithOrgOssPdfreporterUsesOrgW3cDomNode:nil];
+//        [node setChildren:childNodeList];
+//        
+//        NSString *nodeContent = nodeInfo[@"nodeContent"];
+//        if (nodeContent.length > 0) {
+//            OrgOssPdfreporterXmlParsersImplElementImpl *textNode = [[OrgOssPdfreporterXmlParsersImplElementImpl alloc] init];
+//            [textNode setValue:nodeContent];
+//            [textNode setType:OrgOssPdfreporterUsesOrgW3cDomNode_TEXT_NODE];
+//            [childNodeList addWithOrgOssPdfreporterUsesOrgW3cDomNode:textNode];
+//        }
+//        
+//        NSArray *nodeChildArray = nodeInfo[@"nodeChildArray"];
+//        if (nodeChildArray.count > 0) {
+//            [self appendXPathResultList:nodeChildArray toParentNodeList:childNodeList];
+//        }
+//        
+//    }];
+//}
 
 @end

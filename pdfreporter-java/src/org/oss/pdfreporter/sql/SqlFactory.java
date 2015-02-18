@@ -30,6 +30,10 @@ public class SqlFactory extends AbstractSqlFactory {
 		ApiRegistry.register(new SqlFactory(driverClass,connectionPrefix));
 	}
 	
+	public static void registerFactory() {
+		registerFactory("org.hsqldb.jdbcDriver", "jdbc:hsqldb:hsql:");
+	}
+	
 	@Override
 	public IConnection newConnection(String url, String user,
 			String password) throws SQLException {

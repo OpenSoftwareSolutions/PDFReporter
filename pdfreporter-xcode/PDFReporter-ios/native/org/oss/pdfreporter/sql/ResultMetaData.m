@@ -55,10 +55,10 @@
 {
     int type = sqlite3_column_type(mStmt, columnIndex-1);
     switch (type) {
-        case SQLITE_INTEGER: return [OrgOssPdfreporterSqlSqlTypeEnum INTEGER];
-        case SQLITE_FLOAT: return [OrgOssPdfreporterSqlSqlTypeEnum FLOAT];
-        case SQLITE_TEXT: return [OrgOssPdfreporterSqlSqlTypeEnum VARCHAR];
-        case SQLITE_BLOB: return [OrgOssPdfreporterSqlSqlTypeEnum BLOB];
+        case SQLITE_INTEGER: return OrgOssPdfreporterSqlSqlTypeEnum_INTEGER;
+        case SQLITE_FLOAT: return OrgOssPdfreporterSqlSqlTypeEnum_FLOAT;
+        case SQLITE_TEXT: return OrgOssPdfreporterSqlSqlTypeEnum_VARCHAR;
+        case SQLITE_BLOB: return OrgOssPdfreporterSqlSqlTypeEnum_BLOB;
         case SQLITE_NULL: return NULL;
         default:
             return NULL;

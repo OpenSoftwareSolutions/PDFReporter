@@ -19,6 +19,7 @@
 #import "java/util/Date.h"
 #import "java/util/Calendar.h"
 #import "java/util/TimeZone.h"
+#import "IOSPrimitiveArray.h"
 
 #define FORMAT_STRING @"yyyy-MM-dd HH:mm:ss"
 
@@ -152,7 +153,7 @@
     switch (type) {
         case SQLITE_INTEGER: {
             long long milliseconds = sqlite3_column_int64(mStmt, columnIndex-1);
-            return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLongInt:milliseconds];
+            return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLong:milliseconds];
         }
         case SQLITE_TEXT: {
             id<OrgOssPdfreporterSqlIDateTime> dateTime = [self getDateTimeWithInt:columnIndex];
@@ -211,7 +212,7 @@
     const void *data = sqlite3_column_blob(mStmt, columnIndex-1);
     int size = sqlite3_column_bytes(mStmt, columnIndex-1);
     if(data == NULL) return NULL;
-    IOSByteArray *byteArray = [[IOSByteArray alloc] initWithBytes:data count:size];
+    IOSByteArray *byteArray = [IOSByteArray newArrayWithBytes:data count:size];
     return [[OrgOssPdfreporterSqlFactoryBlobImpl alloc] initWithByteArray:byteArray];
 }
 
@@ -234,7 +235,7 @@
             const void *data = sqlite3_column_blob(mStmt, columnIndex-1);
             int size = sqlite3_column_bytes(mStmt, columnIndex-1);
             if(data == NULL) return NULL;
-            IOSByteArray *byteArray = [[IOSByteArray alloc] initWithBytes:data count:size];
+            IOSByteArray *byteArray = [IOSByteArray newArrayWithBytes:data count:size];
             return [[OrgOssPdfreporterSqlFactoryBlobImpl alloc] initWithByteArray:byteArray];
         }
         case SQLITE_NULL: return NULL;

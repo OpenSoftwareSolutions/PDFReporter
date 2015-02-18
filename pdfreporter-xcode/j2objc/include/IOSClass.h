@@ -22,43 +22,60 @@
 #ifndef _IOSClass_H_
 #define _IOSClass_H_
 
-#import <Foundation/Foundation.h>
+#import "IOSReflection.h"
+#import "J2ObjC_common.h"
+#import "java/io/Serializable.h"
+#import "java/lang/reflect/AnnotatedElement.h"
 #import "java/lang/reflect/GenericDeclaration.h"
 #import "java/lang/reflect/Type.h"
 
 @class IOSObjectArray;
-@class JavaLangAnnotationAnnotation;
+@class JavaLangClassLoader;
 @class JavaLangReflectConstructor;
 @class JavaLangReflectField;
 @class JavaLangReflectMethod;
+@protocol JavaLangAnnotationAnnotation;
+@class JavaIoInputStream;
+@class JavaClassMetadata;
+@class JavaNetURL;
 
 // A wrapper class for an Objective-C Class or Protocol,
 // similar in functionality to java.lang.Class.  Its
 // methods are limited to those that can be derived
 // from a Class instance, so instances can be created
 // and released as needed.
-@interface IOSClass : NSObject <JavaLangReflectGenericDeclaration,
-    JavaLangReflectType> {
- @private
-  // Only one of these may be set.
-  Class class_;
-  Protocol *protocol_;
+@interface IOSClass : NSObject <JavaLangReflectAnnotatedElement,
+    JavaLangReflectGenericDeclaration, JavaIoSerializable,
+    JavaLangReflectType, NSCopying> {
 }
 
 @property (readonly) Class objcClass;
 @property (readonly) Protocol *objcProtocol;
 
-+ (IOSClass *)classWithClass:(Class)cls;
-- (id)initWithClass:(Class)cls;
+// IOSClass Getters.
++ (IOSClass *)classForIosName:(NSString *)iosName;
++ (IOSClass *)primitiveClassForChar:(unichar)c;
 
-+ (IOSClass *)classWithProtocol:(Protocol *)protocol;
-- (id)initWithProtocol:(Protocol *)protocol;
+// Primitive class instance getters.
++ (IOSClass *)byteClass;
++ (IOSClass *)charClass;
++ (IOSClass *)doubleClass;
++ (IOSClass *)floatClass;
++ (IOSClass *)intClass;
++ (IOSClass *)longClass;
++ (IOSClass *)shortClass;
++ (IOSClass *)booleanClass;
++ (IOSClass *)voidClass;
 
 // Class.newInstance()
-- (id)newInstance NS_RETURNS_RETAINED;
+- (id)newInstance NS_RETURNS_NOT_RETAINED;
 
 // Class.getSuperclass()
 - (IOSClass *)getSuperclass;
+- (id<JavaLangReflectType>)getGenericSuperclass;
+
+// Class.getDeclaringClass()
+- (IOSClass *)getDeclaringClass;
 
 // Class.isInstance(Object)
 - (BOOL)isInstance:(id)object;
@@ -110,7 +127,7 @@
 + (IOSClass *)forName:(NSString *)className;
 + (IOSClass *)forName:(NSString *)className
            initialize:(BOOL)load
-          classLoader:(id)loader;
+          classLoader:(JavaLangClassLoader *)loader;
 
 // Class.cast(Object)
 - (id)cast:(id)throwable;
@@ -118,17 +135,22 @@
 // Class.getEnclosingClass()
 - (IOSClass *)getEnclosingClass;
 
+// Class.isMemberClass
+- (BOOL)isMemberClass;
+- (BOOL)isLocalClass;
+
 - (BOOL)isArray;
 - (BOOL)isEnum;
 - (BOOL)isInterface;
 - (BOOL)isPrimitive;
+- (BOOL)isAnnotation;
 
 - (IOSObjectArray *)getInterfaces;
 - (IOSObjectArray *)getGenericInterfaces;
 - (IOSObjectArray *)getTypeParameters;
 
-- (JavaLangAnnotationAnnotation *)getAnnotation:(IOSClass *)annotationClass;
-- (BOOL)isAnnotationPresent:(IOSClass *)annotationClass;
+- (id)getAnnotationWithIOSClass:(IOSClass *)annotationClass;
+- (BOOL)isAnnotationPresentWithIOSClass:(IOSClass *)annotationType;
 - (IOSObjectArray *)getAnnotations;
 - (IOSObjectArray *)getDeclaredAnnotations;
 
@@ -148,13 +170,67 @@
 
 - (IOSObjectArray *)getEnumConstants;
 
+// Class.getResource, getResourceAsStream
+- (JavaNetURL *)getResource:(NSString *)name;
+- (JavaIoInputStream *)getResourceAsStream:(NSString *)name;
+
+// Boxing and unboxing (internal)
+- (id)__boxValue:(J2ObjcRawValue *)rawValue;
+- (BOOL)__unboxValue:(id)value toRawValue:(J2ObjcRawValue *)rawValue;
+- (void)__readRawValue:(J2ObjcRawValue *)rawValue fromAddress:(const void *)addr;
+- (void)__writeRawValue:(J2ObjcRawValue *)rawValue toAddress:(const void *)addr;
+- (BOOL)__convertRawValue:(J2ObjcRawValue *)rawValue toType:(IOSClass *)type;
+
 // Internal methods
+- (void)collectMethods:(NSMutableDictionary *)methodMap
+            publicOnly:(BOOL)publicOnly;
+- (JavaLangReflectMethod *)findMethodWithTranslatedName:(NSString *)objcName;
+// Same as getInterfaces, but not a defensive copy.
+- (IOSObjectArray *)getInterfacesInternal;
+- (JavaClassMetadata *)getMetadata;
+- (NSString *)objcName;
 - (NSString *)binaryName;
-+ (IOSClass *)fetchCachedClass:(NSString *)signature;
-+ (IOSClass *)fetchClass:(Class)cls;
-+ (IOSClass *)fetchProtocol:(Protocol *)protocol;
-+ (void)addToCache:(IOSClass *)clazz withSignature:(NSString *)signature;
+// Get the IOSArray subclass that would be used to hold this type.
+- (Class)objcArrayClass;
+- (size_t)getSizeof;
 
 @end
+
+CF_EXTERN_C_BEGIN
+
+// Lookup a IOSClass from its associated ObjC class, protocol or component type.
+IOSClass *IOSClass_fromClass(Class cls);
+IOSClass *IOSClass_fromProtocol(Protocol *protocol);
+IOSClass *IOSClass_arrayOf(IOSClass *componentType);
+// Same as "arrayOf" but allows dimensions to be specified.
+IOSClass *IOSClass_arrayType(IOSClass *componentType, jint dimensions);
+
+// Primitive array type literals.
+#define IOSClass_byteArray(DIM) IOSClass_arrayType([IOSClass byteClass], DIM)
+#define IOSClass_charArray(DIM) IOSClass_arrayType([IOSClass charClass], DIM)
+#define IOSClass_doubleArray(DIM) IOSClass_arrayType([IOSClass doubleClass], DIM)
+#define IOSClass_floatArray(DIM) IOSClass_arrayType([IOSClass floatClass], DIM)
+#define IOSClass_intArray(DIM) IOSClass_arrayType([IOSClass intClass], DIM)
+#define IOSClass_longArray(DIM) IOSClass_arrayType([IOSClass longClass], DIM)
+#define IOSClass_shortArray(DIM) IOSClass_arrayType([IOSClass shortClass], DIM)
+#define IOSClass_booleanArray(DIM) IOSClass_arrayType([IOSClass booleanClass], DIM)
+
+// Internal functions
+NSString *IOSClass_GetTranslatedMethodName(
+    IOSClass *cls, NSString *name, IOSObjectArray *paramTypes);
+
+IOSClass *IOSClass_forNameWithNSString_(NSString *className);
+IOSClass *IOSClass_forNameWithNSString_withBoolean_withJavaLangClassLoader_(
+    NSString *className, BOOL load, JavaLangClassLoader *loader);
+
+// Return value is retained
+IOSObjectArray *IOSClass_NewInterfacesFromProtocolList(Protocol **list, unsigned int count);
+
+CF_EXTERN_C_END
+
+FOUNDATION_EXPORT BOOL IOSClass_initialized;
+J2OBJC_STATIC_INIT(IOSClass)
+
+J2OBJC_TYPE_LITERAL_HEADER(IOSClass)
 
 #endif // _IOSClass_H_

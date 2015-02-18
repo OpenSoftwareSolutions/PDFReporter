@@ -17,6 +17,7 @@
 #import "org/oss/pdfreporter/xml/parsers/XMLErrorHandler.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLParseException.h"
 #import "org/oss/pdfreporter/xml/parsers/XMLEntityResolver.h"
+#import "NSString+JavaString.h"
 
 @implementation LibXmlReaderParser
 
@@ -97,15 +98,15 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
 	return [(__bridge NSString*)ianaCharacterSetName UTF8String];
 }
 
-static int _sg_inputStreamReadCallback (void * context, char * buffer, int len) {
-    NSInputStream *stream = (__bridge NSInputStream *)context;
-    return [stream read:(uint8_t *)buffer maxLength:len];
-}
-static int _sg_inputStreamCloseCallback	(void * context) {
-    NSInputStream *stream = (__bridge NSInputStream *)context;
-    [stream close];
-    return 0;
-}
+//static int _sg_inputStreamReadCallback (void * context, char * buffer, int len) {
+//    NSInputStream *stream = (__bridge NSInputStream *)context;
+//    return [stream read:(uint8_t *)buffer maxLength:len];
+//}
+//static int _sg_inputStreamCloseCallback	(void * context) {
+//    NSInputStream *stream = (__bridge NSInputStream *)context;
+//    [stream close];
+//    return 0;
+//}
 
 xmlParserInputPtr customXmlExternalEntityLoader (const char * URL,
                                                  const char * ID,
@@ -230,7 +231,7 @@ bool wasClosed = NO;
             // text element, CDATA
             value = [NSString stringWithUTF8String:(const char *)xmlTextReaderConstValue(reader)];
             IOSCharArray *charArray = [nil_chk(value) toCharArray];
-            [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray count]];
+            [[self getContentHandler] charactersWithCharArray:charArray withInt:0 withInt:[charArray length]];
             //NSLog(@"Characters - %@", value);
             break;
         }

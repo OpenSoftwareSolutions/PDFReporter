@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.font.IFont.FontDecoration;
@@ -36,10 +38,12 @@ public abstract class AbstractFontManager implements IFontManager {
 	}
 
 	private void registerPdfInternalFonts() {
-		for (IFont font : Base14Font.getList(this)) {
+		List<IFont> base14Fonts = Base14Font.getList(this);
+		for (IFont font : base14Fonts) {
 			addFont(new FontKey(font),font);
 		}
-		for (Map.Entry<String, String> logicalFontEntry : Base14Font.getLogicalFontNames().entrySet()) {
+		Set<Entry<String, String>> fontEntrySet = Base14Font.getLogicalFontNames().entrySet();
+		for (Map.Entry<String, String> logicalFontEntry : fontEntrySet) {
 			String fontName = logicalFontEntry.getValue();
 			String alias = logicalFontEntry.getKey();
 			addFontAlias(fontName, alias, FontStyle.PLAIN);

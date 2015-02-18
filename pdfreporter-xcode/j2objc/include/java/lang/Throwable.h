@@ -22,29 +22,31 @@
 #ifndef _JavaLangThrowable_H_
 #define _JavaLangThrowable_H_
 
-#import <Foundation/Foundation.h>
+#import "JavaObject.h"
 #import "java/io/Serializable.h"
 
 @class JavaIoPrintStream;
 @class JavaIoPrintWriter;
 @class IOSObjectArray;
 
-@interface JavaLangThrowable : NSException < JavaIoSerializable > {
+@interface JavaLangThrowable : NSException < JavaIoSerializable, JavaObject > {
  @private
   JavaLangThrowable *cause;
   NSString *detailMessage;
   IOSObjectArray *stackTrace;
   IOSObjectArray *suppressedExceptions;
+  void **rawCallStack;
+  unsigned rawFrameCount;
 }
-- (id)init;
-- (id)initWithNSString:(NSString *)message;
-- (id)initWithNSString:(NSString *)message
+- (instancetype)init;
+- (instancetype)initWithNSString:(NSString *)message;
+- (instancetype)initWithNSString:(NSString *)message
  withJavaLangThrowable:(JavaLangThrowable *)cause;
-- (id)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
-- (id)initWithNSString:(NSString *)message
- withJavaLangThrowable:(JavaLangThrowable *)cause
-              withBOOL:(BOOL)enableSuppression
-              withBOOL:(BOOL)writeableStackTrace;
+- (instancetype)initWithJavaLangThrowable:(JavaLangThrowable *)cause;
+- (instancetype)initWithNSString:(NSString *)message
+           withJavaLangThrowable:(JavaLangThrowable *)cause
+                     withBoolean:(BOOL)enableSuppression
+                     withBoolean:(BOOL)writeableStackTrace;
 - (JavaLangThrowable *)fillInStackTrace;
 - (JavaLangThrowable *)getCause;
 - (NSString *)getLocalizedMessage;
@@ -66,5 +68,9 @@
 - (void)addSuppressedWithJavaLangThrowable:(JavaLangThrowable *)exception;
 - (IOSObjectArray *)getSuppressed;
 @end
+
+J2OBJC_EMPTY_STATIC_INIT(JavaLangThrowable)
+
+J2OBJC_TYPE_LITERAL_HEADER(JavaLangThrowable)
 
 #endif // _JavaLangThrowable_H_

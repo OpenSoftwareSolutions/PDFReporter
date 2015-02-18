@@ -174,12 +174,16 @@ public class ExporterTest {
 	
 	@Test
 	public void exportOrders() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS);
+// TODO reenable xml datasource for iOS on this report			
+//		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS);
+		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_ORDERS);
 	}
 
 	@Test
 	public void exportLateOrder() throws Exception {
-		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
+		// TODO reenable xml datasource for iOS on this report			
+//		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
+		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_LATE_ORDERS);
 	}
 		
 	@Test

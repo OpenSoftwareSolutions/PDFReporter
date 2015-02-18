@@ -13,4 +13,5 @@
 
 - (id<OrgOssPdfreporterSqlIConnection>)newConnectionWithNSString:(NSString *)parameter;
 + (void)registerFactory;
+void OrgOssPdfreporterSqlSqlFactory_registerFactory();
 @end

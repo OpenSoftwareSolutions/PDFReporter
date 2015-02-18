@@ -22,7 +22,7 @@
     return self;
 }
 
-- (int)measureTextWithNSString:(NSString *)text withInt:(int)width withBOOL:(BOOL)wordwrap {
+- (int)measureTextWithNSString:(NSString *)text withInt:(int)width withBoolean:(BOOL)wordwrap {
     const char *cText = [text UTF8String];
     float calcWidth = ((float)width);
     float realWidth = -1;

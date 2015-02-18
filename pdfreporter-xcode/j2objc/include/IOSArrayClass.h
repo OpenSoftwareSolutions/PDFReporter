@@ -29,10 +29,7 @@
   IOSClass *componentType_;
 }
 
-@property (readonly) IOSClass *componentType;
-
-+ (id)classWithComponentType:(IOSClass *)type;
-- (id)initWithComponentType:(IOSClass *)type;
+- (instancetype)initWithComponentType:(IOSClass *)type;
 
 @end
 

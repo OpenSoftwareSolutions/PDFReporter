@@ -22,24 +22,34 @@
 #ifndef _JavaLangReflectMethod_H_
 #define _JavaLangReflectMethod_H_
 
-#import <Foundation/Foundation.h>
+#import "J2ObjC_common.h"
 #import "java/lang/reflect/ExecutableMember.h"
+#import "java/lang/reflect/GenericDeclaration.h"
+#import "java/lang/reflect/Member.h"
 
 @class IOSClass;
 @class IOSObjectArray;
+@class JavaMethodMetadata;
 
-// A native implementation of java.lang.reflect.Method.  Its methods are 
+// A native implementation of java.lang.reflect.Method.  Its methods are
 // limited to those that can be derived from an Objective-C Method instance,
 // so instances can be created and released as needed.
 @interface JavaLangReflectMethod : ExecutableMember
+    < JavaLangReflectGenericDeclaration, JavaLangReflectMember > {
+  BOOL isStatic_;
+}
 
-+ (id)methodWithSelector:(SEL)aSelector withClass:(IOSClass *)aClass;
-
-// Returns method name.
-- (NSString *)getName;
++ (instancetype)methodWithMethodSignature:(NSMethodSignature *)methodSignature
+                                 selector:(SEL)selector
+                                    class:(IOSClass *)aClass
+                                 isStatic:(BOOL)isStatic
+                                 metadata:(JavaMethodMetadata *)metadata;
 
 // iOS version of Method.getReturnType();
 - (IOSClass *)getReturnType;
+
+// Returns type.
+- (id<JavaLangReflectType>)getGenericReturnType;
 
 // iOS version of Method.invoke().
 //
@@ -50,6 +60,13 @@
 - (NSObject *)invokeWithId:(id)object
                withNSObjectArray:(IOSObjectArray *)arguments;
 
+// Returns default value.
+- (id)getDefaultValue;
+
 @end
+
+J2OBJC_EMPTY_STATIC_INIT(JavaLangReflectMethod)
+
+J2OBJC_TYPE_LITERAL_HEADER(JavaLangReflectMethod)
 
 #endif // _JavaLangReflectMethod_H_
