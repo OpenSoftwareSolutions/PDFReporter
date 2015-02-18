@@ -42,8 +42,8 @@ public abstract class AbstractFontManager implements IFontManager {
 		for (IFont font : base14Fonts) {
 			addFont(new FontKey(font),font);
 		}
-		Set<Entry<String, String>> fontEntrySet = Base14Font.getLogicalFontNames().entrySet();
-		for (Map.Entry<String, String> logicalFontEntry : fontEntrySet) {
+		Map<String, String> fontsByName = Base14Font.getLogicalFontNames();
+		for (Map.Entry<String, String> logicalFontEntry : fontsByName.entrySet()) {
 			String fontName = logicalFontEntry.getValue();
 			String alias = logicalFontEntry.getKey();
 			addFontAlias(fontName, alias, FontStyle.PLAIN);
