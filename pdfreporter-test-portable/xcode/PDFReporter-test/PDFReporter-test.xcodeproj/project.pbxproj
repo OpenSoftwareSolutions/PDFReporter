@@ -40,6 +40,7 @@
 		2ED90B261817EAD1003E3363 /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B1D1817EAD1003E3363 /* ReportExporter.m */; };
 		2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */; };
 		3D929EEE1A9219D000039533 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D929EED1A9219D000039533 /* libicucore.dylib */; };
+		3D99F1FC1A93495D00CA13A6 /* datasource in Resources */ = {isa = PBXBuildFile; fileRef = 3D99F1FB1A93495D00CA13A6 /* datasource */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		2ED90B281817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIRegistryExtensionsRegistryFactory.h; sourceTree = "<group>"; };
 		2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
 		3D929EED1A9219D000039533 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3D99F1FB1A93495D00CA13A6 /* datasource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = datasource; path = "../../../pdfreporter-testdata/datasource"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
 				2ECE5D2617FAC58D0079A30F /* Frameworks */,
 				2ECE5D2517FAC58D0079A30F /* Products */,
+				3D99F1FB1A93495D00CA13A6 /* datasource */,
 				2ECE6DA317FAE45C0079A30F /* testdata */,
 				2ECE6DA117FAE43F0079A30F /* resource */,
 			);
@@ -421,7 +424,7 @@
 		2ECE5D1C17FAC58D0079A30F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = inloop;
 			};
 			buildConfigurationList = 2ECE5D1F17FAC58D0079A30F /* Build configuration list for PBXProject "PDFReporter-test" */;
@@ -511,6 +514,7 @@
 				2ECE5D3A17FAC58D0079A30F /* Images.xcassets in Resources */,
 				2ECE6DB717FAEFC70079A30F /* database.db in Resources */,
 				2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */,
+				3D99F1FC1A93495D00CA13A6 /* datasource in Resources */,
 				2ECE6DA417FAE45C0079A30F /* testdata in Resources */,
 				2ECE6DA217FAE43F0079A30F /* resource in Resources */,
 			);
@@ -585,7 +589,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -624,7 +627,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -656,7 +658,6 @@
 		2ECE5D5117FAC58E0079A30F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -689,7 +690,6 @@
 		2ECE5D5217FAC58E0079A30F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

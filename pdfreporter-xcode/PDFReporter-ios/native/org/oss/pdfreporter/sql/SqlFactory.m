@@ -61,4 +61,15 @@
     return [[OrgOssPdfreporterSqlFactoryBlobImpl alloc] initWithByteArray:bytes];
 }
 
+- (id<OrgOssPdfreporterSqlITimestamp>)newTimestampWithLong:(jlong)milliseconds
+{
+    return [[OrgOssPdfreporterSqlFactoryTimestampImpl alloc] initWithLong:milliseconds];
+}
+
+
+void OrgOssPdfreporterSqlSqlFactory_registerFactory()
+{
+    [OrgOssPdfreporterSqlSqlFactory registerFactory];
+}
+
 @end

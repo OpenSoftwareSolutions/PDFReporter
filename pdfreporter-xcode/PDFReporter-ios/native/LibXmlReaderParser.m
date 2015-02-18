@@ -98,15 +98,15 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
 	return [(__bridge NSString*)ianaCharacterSetName UTF8String];
 }
 
-static int _sg_inputStreamReadCallback (void * context, char * buffer, int len) {
-    NSInputStream *stream = (__bridge NSInputStream *)context;
-    return [stream read:(uint8_t *)buffer maxLength:len];
-}
-static int _sg_inputStreamCloseCallback	(void * context) {
-    NSInputStream *stream = (__bridge NSInputStream *)context;
-    [stream close];
-    return 0;
-}
+//static int _sg_inputStreamReadCallback (void * context, char * buffer, int len) {
+//    NSInputStream *stream = (__bridge NSInputStream *)context;
+//    return [stream read:(uint8_t *)buffer maxLength:len];
+//}
+//static int _sg_inputStreamCloseCallback	(void * context) {
+//    NSInputStream *stream = (__bridge NSInputStream *)context;
+//    [stream close];
+//    return 0;
+//}
 
 xmlParserInputPtr customXmlExternalEntityLoader (const char * URL,
                                                  const char * ID,
