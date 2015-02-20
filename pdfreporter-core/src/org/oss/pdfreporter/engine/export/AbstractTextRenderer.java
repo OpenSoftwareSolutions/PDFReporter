@@ -46,6 +46,7 @@ import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.uses.java.awt.text.AttributedString;
 import org.oss.pdfreporter.uses.java.awt.text.IAttributedCharacterIterator;
 import org.oss.pdfreporter.uses.java.awt.text.ICharacterIterator;
+import com.google.j2objc.annotations.AutoreleasePool;
 
 
 
@@ -296,7 +297,7 @@ public abstract class AbstractTextRenderer
 		StringTokenizer tkzer = new StringTokenizer(allText, "\n", true);
 
 		// text is split into paragraphs, using the newline character as delimiter
-		while(tkzer.hasMoreTokens() && !isMaxHeightReached) 
+		while(@AutoreleasePool tkzer.hasMoreTokens() && !isMaxHeightReached) 
 		{
 			String token = tkzer.nextToken();
 
@@ -326,6 +327,7 @@ public abstract class AbstractTextRenderer
 	/**
 	 * 
 	 */
+	@AutoreleasePool
 	private void renderParagraph(
 			IAttributedCharacterIterator allParagraphs,
 		int lastParagraphStart,
@@ -369,7 +371,7 @@ public abstract class AbstractTextRenderer
 		ILineBreakMeasurer lineMeasurer = fontFactory.newLineBreakMeasurer(new AttributedString(paragraph));//grx.getFontRenderContext()
 
 		// the paragraph is rendered one line at a time
-		while (lineMeasurer.getPosition() < paragraph.getEndIndex() && !isMaxHeightReached)
+		while (@AutoreleasePool lineMeasurer.getPosition() < paragraph.getEndIndex() && !isMaxHeightReached)
 		{
 			boolean lineComplete = false;
 
@@ -384,7 +386,7 @@ public abstract class AbstractTextRenderer
 			TabSegment crtSegment = null;
 
 			// splitting the current line into tab segments
-			while (!lineComplete)
+			while (@AutoreleasePool !lineComplete)
 			{
 				// the current segment limit is either the next tab character or the paragraph end 
 				int tabIndexOrEndIndex = (tabIndexes == null || currentTab >= tabIndexes.size() ? paragraph.getEndIndex() : tabIndexes.get(currentTab) + 1);
