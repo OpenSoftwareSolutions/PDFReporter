@@ -38,7 +38,7 @@ import org.oss.pdfreporter.engine.type.FooterPositionEnum;
 import org.oss.pdfreporter.engine.type.IncrementTypeEnum;
 import org.oss.pdfreporter.engine.type.ResetTypeEnum;
 import org.oss.pdfreporter.engine.type.RunDirectionEnum;
-
+import com.google.j2objc.annotations.AutoreleasePool;
 
 
 /**
@@ -681,7 +681,7 @@ public class JRVerticalFiller extends JRBaseFiller
 		}
 
 		JRFillBand[] detailBands = detailSection.getFillBands();
-		for(int i = 0; i < detailBands.length; i++)
+		for(@AutoreleasePool int i = 0; i < detailBands.length; i++)
 		{
 			JRFillBand detailBand = detailBands[i];
 			
@@ -711,7 +711,7 @@ public class JRVerticalFiller extends JRBaseFiller
 
 		if (detailBands != null)
 		{
-			for(int i = 0; i < detailBands.length; i++)
+			for(@AutoreleasePool int i = 0; i < detailBands.length; i++)
 			{
 				JRFillBand detailBand = detailBands[i];
 						
