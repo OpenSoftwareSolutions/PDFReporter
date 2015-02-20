@@ -326,7 +326,7 @@ public abstract class AbstractTextRenderer
 
 
 	/**
-	 * 
+	 * @AutoreleasePool
 	 */
 	@AutoreleasePool
 	private void renderParagraph(
