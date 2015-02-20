@@ -295,9 +295,9 @@ public abstract class AbstractTextRenderer
 		String lastParagraphText = null;
 
 		StringTokenizer tkzer = new StringTokenizer(allText, "\n", true);
-
+		
 		// text is split into paragraphs, using the newline character as delimiter
-		while(@AutoreleasePool tkzer.hasMoreTokens() && !isMaxHeightReached) 
+		while(tkzer.hasMoreTokens() && !isMaxHeightReached) 
 		{
 			String token = tkzer.nextToken();
 
@@ -315,6 +315,7 @@ public abstract class AbstractTextRenderer
 			}
 
 			tokenPosition += token.length();
+			
 		}
 
 		if (!isMaxHeightReached && lastParagraphStart < allText.length())
@@ -371,7 +372,7 @@ public abstract class AbstractTextRenderer
 		ILineBreakMeasurer lineMeasurer = fontFactory.newLineBreakMeasurer(new AttributedString(paragraph));//grx.getFontRenderContext()
 
 		// the paragraph is rendered one line at a time
-		while (@AutoreleasePool lineMeasurer.getPosition() < paragraph.getEndIndex() && !isMaxHeightReached)
+		while (lineMeasurer.getPosition() < paragraph.getEndIndex() && !isMaxHeightReached)
 		{
 			boolean lineComplete = false;
 
@@ -386,7 +387,7 @@ public abstract class AbstractTextRenderer
 			TabSegment crtSegment = null;
 
 			// splitting the current line into tab segments
-			while (@AutoreleasePool !lineComplete)
+			while (!lineComplete)
 			{
 				// the current segment limit is either the next tab character or the paragraph end 
 				int tabIndexOrEndIndex = (tabIndexes == null || currentTab >= tabIndexes.size() ? paragraph.getEndIndex() : tabIndexes.get(currentTab) + 1);

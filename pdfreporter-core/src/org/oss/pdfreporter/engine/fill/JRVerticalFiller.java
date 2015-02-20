@@ -681,7 +681,7 @@ public class JRVerticalFiller extends JRBaseFiller
 		}
 
 		JRFillBand[] detailBands = detailSection.getFillBands();
-		for(@AutoreleasePool int i = 0; i < detailBands.length; i++)
+		for(int i = 0; i < detailBands.length; i++)
 		{
 			JRFillBand detailBand = detailBands[i];
 			
@@ -711,7 +711,7 @@ public class JRVerticalFiller extends JRBaseFiller
 
 		if (detailBands != null)
 		{
-			for(@AutoreleasePool int i = 0; i < detailBands.length; i++)
+			for(int i = 0; i < detailBands.length; i++)
 			{
 				JRFillBand detailBand = detailBands[i];
 						
@@ -1883,6 +1883,7 @@ public class JRVerticalFiller extends JRBaseFiller
 	/**
 	 *
 	 */
+	@AutoreleasePool 
 	private void fillColumnBreak(
 		byte evalPrevPage,
 		byte evalNextPage
@@ -1964,6 +1965,7 @@ public class JRVerticalFiller extends JRBaseFiller
 	/**
 	 *
 	 */
+	@AutoreleasePool
 	protected SavePoint fillColumnBand(JRFillBand band, byte evaluation) throws JRException
 	{
 		band.evaluate(evaluation);
