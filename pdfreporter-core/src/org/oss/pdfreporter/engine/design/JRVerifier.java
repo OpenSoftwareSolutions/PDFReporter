@@ -1854,8 +1854,7 @@ public class JRVerifier
 
 		try
 		{
-			@SuppressWarnings("unused")
-			Class<?> incrementerFactoryClass = measure.getIncrementerFactoryClass();
+			measure.getIncrementerFactoryClass();
 			// TODO (30.03.2013, Open Software Solutions, Donat): Reactivate JRExtendedIncrementerFactory if needed
 //			if (incrementerFactoryClass != null && !JRExtendedIncrementerFactory.class.isAssignableFrom(incrementerFactoryClass))
 //			{

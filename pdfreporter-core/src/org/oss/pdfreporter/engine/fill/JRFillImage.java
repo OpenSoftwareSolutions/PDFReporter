@@ -510,7 +510,6 @@ public class JRFillImage extends JRFillGraphicElement implements JRImage
 				}
 				else if (source instanceof InputStream)
 				{
-					InputStream is = (InputStream) source;
 					logger.warning("Image from input stream is not supported.");
 				}
 				else if (source instanceof IURL)
