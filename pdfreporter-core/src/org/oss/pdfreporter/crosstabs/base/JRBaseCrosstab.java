@@ -51,6 +51,7 @@ import org.oss.pdfreporter.engine.type.ModeEnum;
 import org.oss.pdfreporter.engine.type.RunDirectionEnum;
 import org.oss.pdfreporter.engine.util.JRStyleResolver;
 import org.oss.pdfreporter.geometry.IColor;
+import com.google.j2objc.annotations.AutoreleasePool;
 
 
 /**
@@ -118,7 +119,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 	{
 		return JRStyleResolver.getMode(this, ModeEnum.TRANSPARENT);
 	}
-	
+	@AutoreleasePool
 	private void copyParameters(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		JRCrosstabParameter[] crossParameters = crosstab.getParameters();
@@ -133,7 +134,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 		
 		parametersMapExpression = factory.getExpression(crosstab.getParametersMapExpression());
 	}
-
+	@AutoreleasePool
 	private void copyVariables(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		JRVariable[] vars = crosstab.getVariables();
@@ -146,7 +147,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 			}
 		}
 	}
-
+	@AutoreleasePool
 	private void copyRowGroups(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		JRCrosstabRowGroup[] crossRowGroups = crosstab.getRowGroups();
@@ -159,7 +160,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 			}
 		}
 	}
-
+	@AutoreleasePool
 	private void copyColumnGroups(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		JRCrosstabColumnGroup[] crossColumnGroups = crosstab.getColumnGroups();
@@ -172,7 +173,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 			}
 		}
 	}
-
+	@AutoreleasePool
 	private void copyMeasures(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		JRCrosstabMeasure[] crossMeasures = crosstab.getMeasures();
@@ -185,7 +186,7 @@ public class JRBaseCrosstab extends JRBaseElement implements JRCrosstab
 			}
 		}
 	}
-
+	@AutoreleasePool
 	private void copyCells(JRCrosstab crosstab, JRBaseObjectFactory factory)
 	{
 		Array2D<? extends JRCrosstabCell> crossCells = crosstab.getCells();

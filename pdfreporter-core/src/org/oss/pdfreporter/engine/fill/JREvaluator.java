@@ -34,6 +34,7 @@ import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpression;
 import org.oss.pdfreporter.engine.JRParameter;
 import org.oss.pdfreporter.engine.JRRuntimeException;
+import com.google.j2objc.annotations.AutoreleasePool;
 import org.oss.pdfreporter.engine.type.WhenResourceMissingTypeEnum;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.text.format.IMessageFormat;
@@ -186,6 +187,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	/**
 	 *
 	 */
+	@AutoreleasePool
 	public Object evaluate(JRExpression expression) throws JRExpressionEvalException
 	{
 		Object value = null;
