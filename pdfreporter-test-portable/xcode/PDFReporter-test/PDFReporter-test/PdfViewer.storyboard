@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EJs-GD-hqZ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="CUq-rF-JTx">
+            <objects>
+                <navigationController id="EJs-GD-hqZ" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9AS-G6-CBR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aXz-Yw-b2N" kind="relationship" relationship="rootViewController" id="yge-uK-YX4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8g-jP-3oq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2677" y="247"/>
+        </scene>
+        <!--PDF Reporter-->
+        <scene sceneID="29q-O6-1Ky">
+            <objects>
+                <viewController id="aXz-Yw-b2N" customClass="PdfListVc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7GC-wi-qtR"/>
+                        <viewControllerLayoutGuide type="bottom" id="chb-xT-X33"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="exR-2g-Cyx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XPr-AI-wmF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pdfCell" textLabel="UJs-d1-wbl" style="IBUITableViewCellStyleDefault" id="pJP-qX-AvX">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pJP-qX-AvX" id="75q-B9-Pg8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UJs-d1-wbl">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aXz-Yw-b2N" id="oRg-jQ-cIv"/>
+                                    <outlet property="delegate" destination="aXz-Yw-b2N" id="Ocb-Lz-XBY"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tau-KO-Gqz">
+                                <rect key="frame" x="150" y="230" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="tau-KO-Gqz" secondAttribute="centerX" id="6N9-kb-bS9"/>
+                            <constraint firstAttribute="trailing" secondItem="XPr-AI-wmF" secondAttribute="trailing" id="9GO-xX-FKD"/>
+                            <constraint firstItem="XPr-AI-wmF" firstAttribute="top" secondItem="exR-2g-Cyx" secondAttribute="topMargin" id="fpp-Vt-aSI"/>
+                            <constraint firstAttribute="centerY" secondItem="tau-KO-Gqz" secondAttribute="centerY" id="gAF-1r-vFi"/>
+                            <constraint firstItem="XPr-AI-wmF" firstAttribute="leading" secondItem="exR-2g-Cyx" secondAttribute="leading" id="l4M-gs-KZB"/>
+                            <constraint firstItem="chb-xT-X33" firstAttribute="top" secondItem="XPr-AI-wmF" secondAttribute="bottom" id="qJ6-iZ-Wcj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="PDF Reporter" id="zjS-bl-nJ8">
+                        <barButtonItem key="rightBarButtonItem" title="Generate" id="GL8-DI-d0b">
+                            <connections>
+                                <action selector="generateAction:" destination="aXz-Yw-b2N" id="rKx-i0-m83"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                    <connections>
+                        <outlet property="loader" destination="tau-KO-Gqz" id="o3t-Pm-HvJ"/>
+                        <outlet property="tableView" destination="XPr-AI-wmF" id="aUs-m7-SgV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mkq-aa-d2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2236" y="247"/>
+        </scene>
+    </scenes>
+</document>

@@ -41,6 +41,9 @@
 		2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */; };
 		3D929EEE1A9219D000039533 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D929EED1A9219D000039533 /* libicucore.dylib */; };
 		3D99F1FC1A93495D00CA13A6 /* datasource in Resources */ = {isa = PBXBuildFile; fileRef = 3D99F1FB1A93495D00CA13A6 /* datasource */; };
+		3D9B0B9A1A972C6E008DCEE8 /* PdfViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */; };
+		3D9B0B9D1A972E6B008DCEE8 /* PdfListVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */; };
+		3D9B0BA01A9735E3008DCEE8 /* TestsLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +170,11 @@
 		2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
 		3D929EED1A9219D000039533 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3D99F1FB1A93495D00CA13A6 /* datasource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = datasource; path = "../../../pdfreporter-testdata/datasource"; sourceTree = "<group>"; };
+		3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PdfViewer.storyboard; sourceTree = "<group>"; };
+		3D9B0B9B1A972E6B008DCEE8 /* PdfListVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfListVc.h; sourceTree = "<group>"; };
+		3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfListVc.m; sourceTree = "<group>"; };
+		3D9B0B9E1A9735E3008DCEE8 /* TestsLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsLauncher.h; sourceTree = "<group>"; };
+		3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsLauncher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +251,11 @@
 				2ECE6DAA17FAE9C40079A30F /* northwind.db */,
 				2ECE5D3617FAC58D0079A30F /* AppDelegate.h */,
 				2ECE5D3717FAC58D0079A30F /* AppDelegate.m */,
+				3D9B0B9B1A972E6B008DCEE8 /* PdfListVc.h */,
+				3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */,
+				3D9B0B9E1A9735E3008DCEE8 /* TestsLauncher.h */,
+				3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */,
+				3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */,
 				2E102648180BE20E006BC2C8 /* IOSRealEstateTestProvider.h */,
 				2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */,
 				2ECE6DA717FAE4EC0079A30F /* IOSExportTestProvider.h */,
@@ -511,6 +524,7 @@
 			files = (
 				2E102647180BE19C006BC2C8 /* realestate.db in Resources */,
 				2ECE5D3217FAC58D0079A30F /* InfoPlist.strings in Resources */,
+				3D9B0B9A1A972C6E008DCEE8 /* PdfViewer.storyboard in Resources */,
 				2ECE5D3A17FAC58D0079A30F /* Images.xcassets in Resources */,
 				2ECE6DB717FAEFC70079A30F /* database.db in Resources */,
 				2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */,
@@ -529,11 +543,13 @@
 			files = (
 				2ED90B1E1817EAD1003E3363 /* Test.m in Sources */,
 				2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */,
+				3D9B0BA01A9735E3008DCEE8 /* TestsLauncher.m in Sources */,
 				2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */,
 				2ED90B261817EAD1003E3363 /* ReportExporter.m in Sources */,
 				2ED90B201817EAD1003E3363 /* PortableTest.m in Sources */,
 				2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
 				2ED90B221817EAD1003E3363 /* JavaTestProvider.m in Sources */,
+				3D9B0B9D1A972E6B008DCEE8 /* PdfListVc.m in Sources */,
 				2ED90B211817EAD1003E3363 /* AndroidTestProvider.m in Sources */,
 				2ED90B241817EAD1003E3363 /* RealestateTest.m in Sources */,
 				2ED90B231817EAD1003E3363 /* TestProviderInterface.m in Sources */,
@@ -683,6 +699,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -715,6 +732,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
