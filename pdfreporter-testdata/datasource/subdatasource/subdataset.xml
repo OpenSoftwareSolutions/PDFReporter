@@ -1,0 +1,43 @@
+<addressbook>
+  <category name="home">
+    <person id="1">
+      <lastname>Davolio</lastname>
+      <firstname>Nancy</firstname>
+      <email>davolio1@sf.net</email>
+      <email>davolio2@sf.net</email>
+      <hobbies>
+              <hobby>Music</hobby>
+              <hobby>Sport</hobby>
+      </hobbies>
+    </person>
+    <person id="2">
+      <lastname>Fuller</lastname>
+      <firstname>Andrew</firstname>
+      <email>af@test.net</email>
+      <email>afullera@fuller.org</email>
+      <hobbies>
+              <hobby>Cinema</hobby>
+              <hobby>Sport</hobby>
+      </hobbies>
+    </person>
+  </category>
+  <category name="work">
+    <person id="3">
+      <lastname>Leverling</lastname>
+      <email>leverling@xyz.it</email>
+    </person>
+    <person id="4">
+      <lastname>Peacock</lastname>
+      <firstname>Margaret</firstname>
+      <email>margaret@foo.org</email>
+      <hobbies>
+              <hobby>Food</hobby>
+              <hobby>Books</hobby>
+      </hobbies>
+    </person>
+  </category>
+  <favorites>
+    <person id="1"/>
+    <person id="3"/>
+  </favorites>
+</addressbook>
