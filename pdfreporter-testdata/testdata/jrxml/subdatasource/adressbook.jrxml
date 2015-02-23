@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with PDFReporter Studio version 5.6.2.final using PDFReporter Library version 5.6.1  -->
-<!-- 2015-02-23T10:19:16 -->
+<!-- 2015-02-23T10:47:59 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="adressbook" language="jeval" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="170bf3a4-d713-42b4-a33e-7582574b162b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="subdataset"/>
 	<queryString language="xPath">
@@ -86,16 +86,16 @@
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/person/email")]]></dataSourceExpression>
-				<subreportExpression><![CDATA["email.jasper"]]></subreportExpression>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource('/person/email')]]></dataSourceExpression>
+				<subreportExpression><![CDATA['email.jasper']]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="0" y="162" width="554" height="50" uuid="e71c4c4b-d6e3-4b23-a874-430670a78844">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/person/hobbies/hobby")]]></dataSourceExpression>
-				<subreportExpression><![CDATA["hobbies.jasper"]]></subreportExpression>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource('/person/hobbies/hobby')]]></dataSourceExpression>
+				<subreportExpression><![CDATA['hobbies.jasper']]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

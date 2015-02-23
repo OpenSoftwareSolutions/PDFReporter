@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with PDFReporter Studio version 5.6.2.final using PDFReporter Library version 5.6.1  -->
-<!-- 2015-02-23T10:20:37 -->
+<!-- 2015-02-23T10:47:07 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hobbies" language="jeval" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="170bf3a4-d713-42b4-a33e-7582574b162b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="subdataset"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="hobby" class="java.lang.String"/>
+	<field name="hobby" class="java.lang.String">
+		<fieldDescription><![CDATA[.]]></fieldDescription>
+	</field>
 	<detail>
 		<band height="50" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
