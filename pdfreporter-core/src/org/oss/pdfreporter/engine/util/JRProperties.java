@@ -234,7 +234,7 @@ public final class JRProperties
 		
 		if (is == null)
 		{
-			throw new JRException("Default properties file not found.");
+			throw new JRException("Default default.jasperreports.properties file not found.");
 		}
 
 		try
