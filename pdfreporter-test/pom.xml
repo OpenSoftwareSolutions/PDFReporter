@@ -14,9 +14,21 @@
   <dependencies>
         <dependency>
             <groupId>com.pdfreporting</groupId>
-            <artifactId>pdfreporter-android</artifactId>
+            <artifactId>pdfreporter-core</artifactId>
             <version>1.1.1</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-java</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        
+        <dependency>
+			<groupId>com.pdfreporting</groupId>
+			<artifactId>droidtext</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>hsqldb</groupId>
