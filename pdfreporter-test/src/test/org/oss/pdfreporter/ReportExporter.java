@@ -11,7 +11,6 @@
 package test.org.oss.pdfreporter;
 
 import java.io.Closeable;
-import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.logging.Level;
@@ -144,7 +143,8 @@ public class ReportExporter {
 		IJsonDataSource jsonDataSource = null;
 		IJsonDataSourceFactory jsonDataSourceFactory = ApiRegistry.getJsonDataSourceFactory();
 		try {
-			File jsonFile = new File(jsonDataFile);
+			InputStream jsonFile = null;
+			jsonFile = FileResourceLoader.getInputStream(jsonDataFile);
 			jsonDataSource = jsonDataSourceFactory.newJsonDataSource(jsonFile);
 
 			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, fillParameters, jsonDataSource);

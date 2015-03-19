@@ -25,6 +25,11 @@ public class JsonDataSourceFactory implements IJsonDataSourceFactory {
 	}
 
 	@Override
+	public IJsonDataSource newJsonDataSource(InputStream jsonStream) throws JRException {
+		return new JsonDataSource(jsonStream, null);
+	}
+
+	@Override
 	public IJsonDataSource newJsonDataSource(InputStream jsonStream, String selectExpression) throws JRException {
 		return new JsonDataSource(jsonStream, selectExpression);
 	}

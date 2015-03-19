@@ -17,6 +17,14 @@ public interface IJsonDataSourceFactory {
 	 * @return
 	 */
 	IJsonDataSource newJsonDataSource(InputStream jsonStream, String selectExpression) throws JRException;
+
+	/**
+	 * @param jsonStream
+	 * @return
+	 * @throws JRException
+	 */
+	IJsonDataSource newJsonDataSource(InputStream jsonStream) throws JRException;
+
 	/**
 	 * @param file
 	 * @return

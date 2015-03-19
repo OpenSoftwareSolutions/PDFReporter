@@ -34,8 +34,8 @@ import test.org.oss.pdfreporter.providers.JavaTestProvider;
 import test.org.oss.pdfreporter.providers.TestProviderInterface;
 
 
+
 public class ExporterTest {
-	private TestProviderInterface testProvider;
 
 	// DRIVERS for Java
 	private static final String HSQLDB_URLPREFIX = "jdbc:hsqldb:hsql://";
