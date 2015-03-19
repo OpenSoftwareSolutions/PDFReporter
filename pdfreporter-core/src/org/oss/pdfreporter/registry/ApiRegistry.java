@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -13,6 +13,7 @@ package org.oss.pdfreporter.registry;
 import org.oss.pdfreporter.font.factory.IFontFactory;
 import org.oss.pdfreporter.geometry.factory.IGeometryFactory;
 import org.oss.pdfreporter.image.factory.IImageFactory;
+import org.oss.pdfreporter.json.factory.IJsonDataSourceFactory;
 import org.oss.pdfreporter.pdf.factory.IPdfFactory;
 import org.oss.pdfreporter.sql.factory.ISqlFactory;
 import org.oss.pdfreporter.text.format.factory.IFormatFactory;
@@ -24,10 +25,11 @@ public class ApiRegistry {
 	private static IFontFactory fontFactory = null;
 	private static IGeometryFactory geometryFactory = null;
 	private static ISqlFactory sqlFactory = null;
+	private static IJsonDataSourceFactory jsonDataSourceFactory = null;
 	private static Session session = null;
 	private static IFormatFactory defaultFormatFactory, simpleFormatFactory;
 	private static IFormatFactory standardFormatFactory;
-	
+
 	public static void initSession() {
 		dispose();
 		ApiRegistry.session = new Session();
@@ -36,6 +38,7 @@ public class ApiRegistry {
 		setSession(fontFactory);
 		setSession(geometryFactory);
 		setSession(sqlFactory);
+		setSession(jsonDataSourceFactory);
 	}
 
 	private static void setSession(Object factory) {
@@ -43,16 +46,28 @@ public class ApiRegistry {
 			((ISessionCapable)factory).setSession(ApiRegistry.session);
 		}
 	}
-	
+
 	public static void dispose() {
 		if (ApiRegistry.session!=null) {
 			ApiRegistry.session.dispose();
 			ApiRegistry.session = null;
 		}
 	}
-	
+
+	public static IJsonDataSourceFactory getJsonDataSourceFactory() {
+		if (jsonDataSourceFactory != null) {
+			return jsonDataSourceFactory;
+		}
+		throw new RuntimeException("No jsonDataSourceFactory registred.");
+	}
+
+	public static void register(IJsonDataSourceFactory jsonDataSourceFactory) {
+		ApiRegistry.jsonDataSourceFactory = jsonDataSourceFactory;
+		setSession(jsonDataSourceFactory);
+	}
+
 	public static IPdfFactory getPdfFactory() {
-		if (pdfFactory!=null) {			
+		if (pdfFactory!=null) {
 			return pdfFactory;
 		}
 		throw new RuntimeException("No IPdfFactory registred.");
@@ -61,9 +76,10 @@ public class ApiRegistry {
 		ApiRegistry.pdfFactory = pdfFactory;
 		setSession(pdfFactory);
 	}
+
 	public static IImageFactory getImageFactory() {
 		if (imageFactory!=null) {
-			return imageFactory;			
+			return imageFactory;
 		}
 		throw new RuntimeException("No IImageFactory registred.");
 	}
@@ -72,7 +88,7 @@ public class ApiRegistry {
 		setSession(imageFactory);
 	}
 	public static IFontFactory getFontFactory() {
-		if (fontFactory!=null) {			
+		if (fontFactory!=null) {
 			return fontFactory;
 		}
 		throw new RuntimeException("No IFontFactory registred.");
@@ -82,7 +98,7 @@ public class ApiRegistry {
 		setSession(fontFactory);
 	}
 	public static IGeometryFactory getGeometryFactory() {
-		if (geometryFactory!=null) {			
+		if (geometryFactory!=null) {
 			return geometryFactory;
 		}
 		throw new RuntimeException("No IGeometryFactory registred.");
@@ -91,22 +107,22 @@ public class ApiRegistry {
 		ApiRegistry.geometryFactory = geometryFactory;
 		setSession(geometryFactory);
 	}
-	
+
 	public static ISqlFactory getSqlFactory() {
-		if (sqlFactory!=null) {			
+		if (sqlFactory!=null) {
 			return sqlFactory;
 		}
 		throw new RuntimeException("No ISqlFactory registred.");
 	}
-	
+
 	public static void register(ISqlFactory sqlFactory) {
 		ApiRegistry.sqlFactory = sqlFactory;
 		setSession(sqlFactory);
 	}
-	
+
 	public static void register(FormatType type, IFormatFactory factory) {
 		if (type==FormatType.DEFAULT) {
-			ApiRegistry.defaultFormatFactory = factory;			
+			ApiRegistry.defaultFormatFactory = factory;
 		} else if (type==FormatType.SIMPLE) {
 			ApiRegistry.simpleFormatFactory = factory;
 		} else {
@@ -116,5 +132,5 @@ public class ApiRegistry {
 	public static IFormatFactory getIFormatFactory(FormatType type) {
 		return type==FormatType.DEFAULT ? ApiRegistry.defaultFormatFactory : type==FormatType.SIMPLE ? ApiRegistry.simpleFormatFactory : ApiRegistry.standardFormatFactory;
 	}
-	
+
 }
