@@ -25,6 +25,7 @@ import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JRParameter;
 import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
+import org.oss.pdfreporter.engine.query.JsonQueryExecuterFactory;
 import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
@@ -53,6 +54,10 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_ORDERS = "OrdersReport.jrxml";
 	private static final String DESIGN_REPORT_LATE_ORDERS = "LateOrdersReport.jrxml";
 
+	//JSON
+	private static final String DESIGN_REPORT_JSON_ORDERS = "JsonOrdersReport.jrxml";
+	private static final String DESIGN_REPORT_JSON_CUSTOMERS = "JsonCustomersReport.jrxml";
+
 	private static final String DESIGN_REPORT_IMAGE = "ImagesReport.jrxml";
 	private static final String DESIGN_REPORT_SHAPES = "ShapesReport.jrxml";
 	private static final String DESIGN_REPORT_PARAGRAPH = "ParagraphsReport.jrxml";
@@ -79,8 +84,8 @@ public class ExporterTest {
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
 	private static final String XPATH_DATA_CDBOOKLET = "/CDBooklets";
 
-
-
+	// JSON DATA
+	private static final String JSON_DATA_NORTHWIND = "northwind.json";
 
 	private static final String XML_DATA_NORTHWIND = "northwind.xml";
 	private static final String XPATH_DATA_NORTHWIND_ORDERS = "/Northwind/Orders";
@@ -159,7 +164,7 @@ public class ExporterTest {
 		getExporter("crosstabs","extra-fonts").exportSqlReport(DESIGN_REPORT_PRODUCTS);
 	}
 
-// TODO Fix PDF ERROR generates no pages
+// FIXME PDF ERROR generates no pages
 //	@Test
 //	public void exportHorizontal() throws Exception {
 //		getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
@@ -238,6 +243,9 @@ public class ExporterTest {
 		getExporter("cdbooklet","extra-fonts").exportReport(DESIGN_REPORT_CDBOOCKLET, XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
 	}
 
+	/*
+	 * TODO (18.03.2015, Magnus, OSS): complete implementation on i18n in java and extracted from pdfreporter-core
+	 * */
 	@Test
 	public void exportI18n() throws Exception {
 		Locale locale = chooseLocale();
@@ -247,8 +255,28 @@ public class ExporterTest {
 			parameters.put(JRParameter.REPORT_LOCALE, locale);
 			getExporter("i18n").exportReportWithParameters(DESIGN_REPORT_I18N, parameters);
 		}
-
 	}
+
+	/*
+	 * FIXME (18.03.2015, Magnus, OSS): set up the test parameter correct (impl is fine)
+	 * FIXME the correct path to jsonDataFile
+	 * */
+	@Test
+	public void exportJsonDataSource() throws Exception {
+
+		ReportExporter exporter = getExporter("jsondatasource"); // initialize Repository
+
+		JasperReport subreport = SubreportUtil.loadSubreport("JsonOrdersReport.jasper");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("JsonOrdersReport", subreport);
+		params.put(JsonQueryExecuterFactory.JSON_DATE_PATTERN, "yyyy-MM-dd");
+		params.put(JsonQueryExecuterFactory.JSON_NUMBER_PATTERN, "#,##0.##");
+		params.put(JsonQueryExecuterFactory.JSON_LOCALE, Locale.ENGLISH);
+		params.put(JRParameter.REPORT_LOCALE, Locale.US);
+		exporter.exportJsonReport(DESIGN_REPORT_JSON_CUSTOMERS, JSON_DATA_NORTHWIND, params);
+	}
+
 
 
 ///////////// BEGIN NOT SUPPORTED FEATURES /////////////////
