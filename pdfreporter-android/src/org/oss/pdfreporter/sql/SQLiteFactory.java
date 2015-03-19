@@ -8,7 +8,7 @@
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
-package org.oss.pdfreporter.android.sql;
+package org.oss.pdfreporter.sql;
 
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.sql.IConnection;

@@ -1,4 +1,4 @@
-package org.oss.pdfreporter.android.sql;
+package org.oss.pdfreporter.sql;
 
 import org.oss.pdfreporter.sql.IResultMetaData;
 import org.oss.pdfreporter.sql.SQLException;

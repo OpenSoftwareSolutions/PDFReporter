@@ -2,16 +2,29 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pdfreporting</groupId>
   <artifactId>pdfreporter-android</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <parent>
         <groupId>com.pdfreporting</groupId>
         <artifactId>pdfreporter-application</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
   </parent>
   
+   <properties>
+    <!-- at test time this will be overridden with snapshot version -->
+    <it-plugin.version>4.0.0</it-plugin.version>
+  </properties>
+  
   <dependencies>
+  
+	  <dependency>
+	      <groupId>com.google.android</groupId>
+	      <artifactId>android</artifactId>
+	      <version>4.1.1.4</version>
+	      <scope>provided</scope>
+	    </dependency>
+  
         <dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>pdfreporter-core</artifactId>
@@ -42,6 +55,19 @@
         </excludes>
       </resource>
     </resources>
+    
+   <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.simpligility.maven.plugins</groupId>
+
+          <artifactId>android-maven-plugin</artifactId>
+          <version>${it-plugin.version}</version>
+          <extensions>true</extensions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -51,6 +77,18 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>com.simpligility.maven.plugins</groupId>
+
+        <artifactId>android-maven-plugin</artifactId>
+        <configuration>
+          <sdk>
+            <platform>21</platform>
+          </sdk>
+        </configuration>
+      </plugin>
+      
     </plugins>
   </build>
 </project>

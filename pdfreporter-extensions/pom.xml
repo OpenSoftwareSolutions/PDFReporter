@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pdfreporting</groupId>
   <artifactId>pdfreporter-extensions</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <parent>
         <groupId>com.pdfreporting</groupId>
         <artifactId>pdfreporter-application</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
   </parent>
   <build>

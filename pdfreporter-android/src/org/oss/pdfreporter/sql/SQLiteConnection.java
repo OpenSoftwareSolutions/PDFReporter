@@ -1,4 +1,4 @@
-package org.oss.pdfreporter.android.sql;
+package org.oss.pdfreporter.sql;
 
 import java.io.IOException;
 
