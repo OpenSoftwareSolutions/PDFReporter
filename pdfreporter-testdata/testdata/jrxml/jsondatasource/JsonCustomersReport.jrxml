@@ -68,7 +68,7 @@
 					<subreportParameterExpression>$F{CustomerID}</subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="net.sf.jasperreports.json.source">
-					<subreportParameterExpression><![CDATA["datasource/northwind-json-data/northwind.json"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["northwind.json"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA["JsonOrdersReport.jasper"]]></subreportExpression>
 			</subreport>
