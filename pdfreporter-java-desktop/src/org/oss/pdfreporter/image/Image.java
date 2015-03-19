@@ -10,9 +10,6 @@
  ******************************************************************************/
 package org.oss.pdfreporter.image;
 
-import org.oss.pdfreporter.image.IImage;
-import org.oss.pdfreporter.image.IImageManager;
-
 
 public class Image implements IImage {
 	private final ImageManager imageManager;
