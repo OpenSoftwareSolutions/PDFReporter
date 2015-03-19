@@ -67,7 +67,7 @@ import org.oss.pdfreporter.uses.java.util.UUID;
 
 /**
  * Implementation of {@link org.oss.pdfreporter.engine.JRDataset JRDataset} to be used for report desing.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JRDesignDataset.java 5337 2012-05-04 09:15:58Z lucianc $
  */
@@ -80,23 +80,23 @@ public class JRDesignDataset extends JRBaseDataset
 	public static final String PROPERTY_FILTER_EXPRESSION = "filterExpression";
 
 	public static final String PROPERTY_GROUPS = "groups";
-	
+
 	public static final String PROPERTY_NAME = "name";
-	
+
 	public static final String PROPERTY_SCRIPTLETS = "scriptlets";
-	
+
 	public static final String PROPERTY_PARAMETERS = "parameters";
-	
+
 	public static final String PROPERTY_QUERY = "query";
-	
+
 	public static final String PROPERTY_RESOURCE_BUNDLE = "resourceBundle";
-	
+
 	public static final String PROPERTY_SCRIPTLET_CLASS = "scriptletClass";
-	
+
 	public static final String PROPERTY_SORT_FIELDS = "sortFields";
-	
+
 	public static final String PROPERTY_VARIABLES = "variables";
-	
+
 	private boolean ownUUID;
 
 	/**
@@ -150,26 +150,30 @@ public class JRDesignDataset extends JRBaseDataset
 		}
 	}
 	*/
-	
+
 	// TODO: Daniel (19.4.2013) - Removed, unused
 	//private PropertyChangeListener queryLanguageChangeListener = new QueryLanguageChangeListener();
-	
-	
+
+
 	/**
 	 * An array containing the built-in parameters that can be found and used in any report dataset.
 	 */
 	@SuppressWarnings("deprecation")
-	private static final Object[] BUILT_IN_PARAMETERS = new Object[] { 
-		JRParameter.REPORT_CONTEXT, ReportContext.class, 
-		JRParameter.REPORT_PARAMETERS_MAP, java.util.Map.class, 
-		JRParameter.JASPER_REPORT, JasperReport.class, 
+	private static final Object[] BUILT_IN_PARAMETERS = new Object[] {
+		JRParameter.REPORT_CONTEXT, ReportContext.class,
+		JRParameter.REPORT_PARAMETERS_MAP, java.util.Map.class,
+		JRParameter.JASPER_REPORT, JasperReport.class,
 		JRParameter.REPORT_CONNECTION, IConnection.class,
-		JRParameter.REPORT_MAX_COUNT, Integer.class, 
-		JRParameter.REPORT_DATA_SOURCE, JRDataSource.class, 
-		JRParameter.REPORT_LOCALE, Locale.class, 
+		JRParameter.REPORT_MAX_COUNT, Integer.class,
+		JRParameter.REPORT_DATA_SOURCE, JRDataSource.class,
+		JRParameter.REPORT_LOCALE, Locale.class,
+
+		// TODO magnus(15.03.2015) : activate resource boundle
+		// IResourceBundle und in Java die Impl.
+
 //		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
-		JRParameter.REPORT_TIME_ZONE, TimeZone.class, 
-		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class, 
+		JRParameter.REPORT_TIME_ZONE, TimeZone.class,
+		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class,
 		// TODO: Daniel (19.4.2013) Removed
 		//JRParameter.REPORT_CLASS_LOADER, ClassLoader.class,
 		JRParameter.REPORT_FILE_RESOLVER, FileResolver.class,
@@ -179,33 +183,33 @@ public class JRDesignDataset extends JRBaseDataset
 		};
 
 
-	
+
 	/**
 	 * An array containing the built-in parameters that can be found and used in any report/main dataset.
 	 */
-	private static final Object[] BUILT_IN_PARAMETERS_MAIN = new Object[] { 
-		JRParameter.REPORT_VIRTUALIZER, JRVirtualizer.class, 
+	private static final Object[] BUILT_IN_PARAMETERS_MAIN = new Object[] {
+		JRParameter.REPORT_VIRTUALIZER, JRVirtualizer.class,
 		JRParameter.IS_IGNORE_PAGINATION, Boolean.class };
 
-	
+
 	/**
 	 * Create a dataset.
-	 * 
+	 *
 	 * @param isMain whether this is the main dataset of the report or a sub dataset
 	 * @see org.oss.pdfreporter.engine.JRDataset#isMainDataset()
 	 */
 	public JRDesignDataset(boolean isMain)
 	{
 		super(isMain);
-		
+
 		addBuiltinParameters(BUILT_IN_PARAMETERS);
-		
+
 		if (isMain)
 		{
 			addBuiltinParameters(BUILT_IN_PARAMETERS_MAIN);
 		}
 
-		try 
+		try
 		{
 			addVariable(createPageNumberVariable());
 			addVariable(createColumnNumberVariable());
@@ -303,7 +307,7 @@ public class JRDesignDataset extends JRBaseDataset
 		{
 			JRDesignParameter parameter = new JRDesignParameter();
 			parameter.setName((String) parametersArray[i++]);
-			
+
 			Object parameterType = parametersArray[i];
 			if (parameterType instanceof Class<?>)
 			{
@@ -315,11 +319,11 @@ public class JRDesignDataset extends JRBaseDataset
 			}
 			else
 			{
-				throw new JRRuntimeException("Unknown builtin parameter type " + parameterType 
+				throw new JRRuntimeException("Unknown builtin parameter type " + parameterType
 						+ " of class " + parameterType.getClass().getName()
 						+ ". Expecint java.lang.Class or java.lang.String");
 			}
-			
+
 			parameter.setSystemDefined(true);
 			try
 			{
@@ -351,10 +355,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return variable;
 	}
 
-	
+
 	/**
 	 * Sets the unique identifier for the report.
-	 * 
+	 *
 	 * @param uuid the identifier
 	 */
 	public void setUUID(UUID uuid)
@@ -362,13 +366,13 @@ public class JRDesignDataset extends JRBaseDataset
 		this.uuid = uuid;
 		this.ownUUID = uuid != null;
 	}
-	
+
 	/**
 	 * Determines whether the report has an existing unique identifier.
-	 * 
+	 *
 	 * Note that when no existing identifier is set, {@link #getUUID()} would generate and return
 	 * an identifier.
-	 * 
+	 *
 	 * @return whether the report has an externally set unique identifier
 	 * @see #setUUID(UUID)
 	 */
@@ -376,7 +380,7 @@ public class JRDesignDataset extends JRBaseDataset
 	{
 		return ownUUID;
 	}
-	
+
 	/**
 	 * Sets the name of the dataset.
 	 * @param name the name of the dataset
@@ -389,8 +393,8 @@ public class JRDesignDataset extends JRBaseDataset
 		getEventSupport().firePropertyChange(PROPERTY_NAME, old, this.name);
 	}
 
-	
-	
+
+
 	public JRScriptlet[] getScriptlets()
 	{
 		JRScriptlet[] scriptletsArray = new JRScriptlet[scriptletsList.size()];
@@ -400,10 +404,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return scriptletsArray;
 	}
 
-	
+
 	/**
 	 * Returns the list of scriptlets, excluding the scriptletClass one.
-	 * 
+	 *
 	 * @return list of {@link JRScriptlet JRScriptlet} objects
 	 */
 	public List<JRScriptlet> getScriptletsList()
@@ -411,10 +415,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return scriptletsList;
 	}
 
-	
+
 	/**
 	 * Returns the map of scriptlets, excluding the scriptletClass one, indexed by name.
-	 * 
+	 *
 	 * @return {@link JRScriptlet JRScriptlet} objects indexed by name
 	 */
 	public Map<String, JRScriptlet> getScriptletsMap()
@@ -422,7 +426,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return scriptletsMap;
 	}
 
-	
+
 	/**
 	 * Adds a scriptlet to the dataset.
 	 * @param scriptlet the scriptlet to add
@@ -434,7 +438,7 @@ public class JRDesignDataset extends JRBaseDataset
 		addScriptlet(scriptletsList.size(), scriptlet);
 	}
 
-	
+
 	/**
 	 * Inserts a scriptlet at the specified position into the dataset.
 	 * @param index the scriptlet position
@@ -450,7 +454,7 @@ public class JRDesignDataset extends JRBaseDataset
 		}
 
 		JRDesignParameter scriptletParameter = new JRDesignParameter();
-		scriptletParameter.setName(scriptlet.getName() 
+		scriptletParameter.setName(scriptlet.getName()
 				+ JRScriptlet.SCRIPTLET_PARAMETER_NAME_SUFFIX);
 		scriptletParameter.setValueClassName(scriptlet.getValueClassName());
 		scriptletParameter.setSystemDefined(true);
@@ -460,14 +464,14 @@ public class JRDesignDataset extends JRBaseDataset
 
 		scriptletsList.add(index, scriptlet);
 		scriptletsMap.put(scriptlet.getName(), scriptlet);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_SCRIPTLETS, scriptlet, index);
 	}
 
-	
+
 	/**
 	 * Removes a scriptlet from the dataset.
-	 * 
+	 *
 	 * @param scriptletName the scriptlet name
 	 * @return the removed scriptlet, or <code>null</code> if the scriptlet was not found
 	 */
@@ -476,10 +480,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeScriptlet(scriptletsMap.get(scriptletName));
 	}
 
-	
+
 	/**
 	 * Removes a scriptlet from the dataset.
-	 * 
+	 *
 	 * @param scriptlet the scriptlet to be removed
 	 * @return the scriptlet to be removed
 	 */
@@ -487,7 +491,7 @@ public class JRDesignDataset extends JRBaseDataset
 	{
 		if (scriptlet != null)
 		{
-			removeParameter(scriptlet.getName() 
+			removeParameter(scriptlet.getName()
 					+ JRScriptlet.SCRIPTLET_PARAMETER_NAME_SUFFIX);
 			int idx = scriptletsList.indexOf(scriptlet);
 			if (idx >= 0)
@@ -501,7 +505,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return scriptlet;
 	}
 
-	
+
 	public JRParameter[] getParameters()
 	{
 		JRParameter[] parametersArray = new JRParameter[parametersList.size()];
@@ -511,10 +515,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return parametersArray;
 	}
 
-	
+
 	/**
 	 * Returns the list of parameters, including build-in ones.
-	 * 
+	 *
 	 * @return list of {@link JRParameter JRParameter} objects
 	 */
 	public List<JRParameter> getParametersList()
@@ -522,10 +526,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return parametersList;
 	}
 
-	
+
 	/**
 	 * Returns the map of parameters, including build-in ones, indexed by name.
-	 * 
+	 *
 	 * @return {@link JRParameter JRParameter} objects indexed by name
 	 */
 	public Map<String, JRParameter> getParametersMap()
@@ -533,7 +537,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return parametersMap;
 	}
 
-	
+
 	/**
 	 * Adds a parameter to the dataset.
 	 * @param parameter the parameter to add
@@ -545,7 +549,7 @@ public class JRDesignDataset extends JRBaseDataset
 		addParameter(parametersList.size(), parameter);
 	}
 
-	
+
 	/**
 	 * Inserts a parameter at the specified position into the dataset.
 	 * @param index the parameter position
@@ -562,14 +566,14 @@ public class JRDesignDataset extends JRBaseDataset
 
 		parametersList.add(index, parameter);
 		parametersMap.put(parameter.getName(), parameter);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_PARAMETERS, parameter, index);
 	}
 
-	
+
 	/**
 	 * Removes a parameter from the dataset.
-	 * 
+	 *
 	 * @param parameterName the parameter name
 	 * @return the removed parameter, or <code>null</code> if the parameter was not found
 	 */
@@ -578,10 +582,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeParameter(parametersMap.get(parameterName));
 	}
 
-	
+
 	/**
 	 * Removes a parameter from the dataset.
-	 * 
+	 *
 	 * @param parameter the parameter to be removed
 	 * @return the parameter to be removed
 	 */
@@ -601,10 +605,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return parameter;
 	}
 
-	
+
 	/**
 	 * Sets the dataset query.
-	 * 
+	 *
 	 * @param query the query
 	 * @see org.oss.pdfreporter.engine.JRDataset#getQuery()
 	 */
@@ -642,7 +646,7 @@ public class JRDesignDataset extends JRBaseDataset
 
 	/**
 	 * Returns the list of fields.
-	 * 
+	 *
 	 * @return list of {@link JRField JRField} objects
 	 */
 	public List<JRField> getFieldsList()
@@ -650,10 +654,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return fieldsList;
 	}
 
-	
+
 	/**
 	 * Returns the map of fields indexed by name.
-	 * 
+	 *
 	 * @return {@link JRField JRField} objects indexed by name
 	 */
 	public Map<String, JRField> getFieldsMap()
@@ -661,7 +665,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return fieldsMap;
 	}
 
-	
+
 	/**
 	 * Adds a field to the dataset.
 	 * @param field the field to add
@@ -673,7 +677,7 @@ public class JRDesignDataset extends JRBaseDataset
 		addField(fieldsList.size(), field);
 	}
 
-	
+
 	/**
 	 * Inserts a field at the specified position into the dataset.
 	 * @param index the field position
@@ -690,14 +694,14 @@ public class JRDesignDataset extends JRBaseDataset
 
 		fieldsList.add(index, field);
 		fieldsMap.put(field.getName(), field);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_FIELDS, field, index);
 	}
 
-	
+
 	/**
 	 * Removes a field from the dataset.
-	 * 
+	 *
 	 * @param fieldName the field name
 	 * @return the removed field, or <code>null</code> if the field was not found
 	 */
@@ -706,10 +710,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeField(fieldsMap.get(fieldName));
 	}
 
-	
+
 	/**
 	 * Removes a field from the dataset.
-	 * 
+	 *
 	 * @param field the field to be removed
 	 * @return the field to be removed
 	 */
@@ -722,7 +726,7 @@ public class JRDesignDataset extends JRBaseDataset
 			{
 				fieldsList.remove(idx);
 				fieldsMap.remove(field.getName());
-				
+
 				getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_FIELDS, field, idx);
 			}
 		}
@@ -730,7 +734,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return field;
 	}
 
-	
+
 	public JRSortField[] getSortFields()
 	{
 		JRSortField[] sortFieldsArray = new JRSortField[sortFieldsList.size()];
@@ -743,7 +747,7 @@ public class JRDesignDataset extends JRBaseDataset
 
 	/**
 	 * Returns the list of sort fields.
-	 * 
+	 *
 	 * @return list of {@link JRSortField JRSortField} objects
 	 */
 	public List<JRSortField> getSortFieldsList()
@@ -751,7 +755,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return sortFieldsList;
 	}
 
-	
+
 	/**
 	 * Adds a sort field to the dataset.
 	 * @param sortField the sort field to add
@@ -763,7 +767,7 @@ public class JRDesignDataset extends JRBaseDataset
 		addSortField(sortFieldsList.size(), sortField);
 	}
 
-	
+
 	/**
 	 * Inserts a sort field at specified position into the dataset.
 	 * @param index the sort field position
@@ -781,14 +785,14 @@ public class JRDesignDataset extends JRBaseDataset
 
 		sortFieldsList.add(index, sortField);
 		sortFieldsMap.put(sortFieldKey, sortField);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_SORT_FIELDS, sortField, index);
 	}
 
-	
+
 	/**
 	 * Removes a sort field from the dataset.
-	 * 
+	 *
 	 * @param fieldName the field name
 	 * @return the removed sort field, or <code>null</code> if the sort field was not found
 	 * @deprecated To be removed.
@@ -798,10 +802,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeSortField(sortFieldsMap.get(getSortFieldKey(new JRDesignSortField(fieldName, SortFieldTypeEnum.FIELD, SortOrderEnum.ASCENDING))));
 	}
 
-	
+
 	/**
 	 * Removes a sort field from the dataset.
-	 * 
+	 *
 	 * @param sortField the sort field to be removed
 	 * @return the sort field to be removed
 	 */
@@ -821,7 +825,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return sortField;
 	}
 
-	
+
 	public JRVariable[] getVariables()
 	{
 		JRVariable[] variablesArray = new JRVariable[variablesList.size()];
@@ -831,22 +835,22 @@ public class JRDesignDataset extends JRBaseDataset
 		return variablesArray;
 	}
 
-	
+
 	/**
 	 * Returns the list of variables, including build-in ones.
-	 * 
+	 *
 	 * @return list of {@link JRVariable JRVariable} objects
 	 */
-	
+
 	public List<JRVariable> getVariablesList()
 	{
 		return variablesList;
 	}
 
-	
+
 	/**
 	 * Returns the map of variable, including build-in ones, indexed by name.
-	 * 
+	 *
 	 * @return {@link JRVariable JRVariable} objects indexed by name
 	 */
 	public Map<String, JRVariable> getVariablesMap()
@@ -854,7 +858,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return variablesMap;
 	}
 
-	
+
 	/**
 	 * Adds a variable to the dataset.
 	 * @param variable the variable to add
@@ -865,8 +869,8 @@ public class JRDesignDataset extends JRBaseDataset
 	{
 		addVariable(variablesList.size(), variable, false);
 	}
-	
-	
+
+
 	/**
 	 * Inserts a variable at specified position into the dataset.
 	 * @param index the variable position
@@ -878,11 +882,11 @@ public class JRDesignDataset extends JRBaseDataset
 	{
 		addVariable(index, variable, variable.isSystemDefined());
 	}
-	
-	
+
+
 	/**
 	 * Adds a variable to the dataset.
-	 * 
+	 *
 	 * @param variable the variable to add
 	 * @param system whether the variable should be added before user defined variables
 	 * or at the end of the variables list
@@ -892,11 +896,11 @@ public class JRDesignDataset extends JRBaseDataset
 	{
 		addVariable(variablesList.size(), variable, system);
 	}
-	
-	
+
+
 	/**
 	 * Inserts a variable at specified position into the dataset.
-	 * 
+	 *
 	 * @param index the variable position
 	 * @param variable the variable to insert
 	 * @param system whether the variable should be inserted before user defined variables
@@ -930,16 +934,16 @@ public class JRDesignDataset extends JRBaseDataset
 		{
 			variablesList.add(index, variable);
 		}
-		
+
 		variablesMap.put(variable.getName(), variable);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_VARIABLES, variable, index);
 	}
 
-	
+
 	/**
 	 * Removes a variable from the dataset.
-	 * 
+	 *
 	 * @param variableName the variable name
 	 * @return the removed variable, or <code>null</code> if the variable was not found
 	 */
@@ -948,10 +952,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeVariable(variablesMap.get(variableName));
 	}
 
-	
+
 	/**
 	 * Removes a variable from the dataset.
-	 * 
+	 *
 	 * @param variable the variable to be removed
 	 * @return the variable to be removed
 	 */
@@ -971,7 +975,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return variable;
 	}
 
-	
+
 	public JRGroup[] getGroups()
 	{
 		JRGroup[] groupsArray = new JRGroup[groupsList.size()];
@@ -981,10 +985,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return groupsArray;
 	}
 
-	
+
 	/**
 	 * Returns the list of groups.
-	 * 
+	 *
 	 * @return list of {@link JRGroup JRGroup} objects
 	 */
 	public List<JRGroup> getGroupsList()
@@ -992,10 +996,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return groupsList;
 	}
 
-	
+
 	/**
 	 * Returns the map of groups indexed by name.
-	 * 
+	 *
 	 * @return {@link JRGroup JRGroup} objects indexed by name
 	 */
 	public Map<String, JRGroup> getGroupsMap()
@@ -1003,7 +1007,7 @@ public class JRDesignDataset extends JRBaseDataset
 		return groupsMap;
 	}
 
-	
+
 	/**
 	 * Adds a group to the dataset.
 	 * @param group the group to add
@@ -1015,7 +1019,7 @@ public class JRDesignDataset extends JRBaseDataset
 		addGroup(groupsList.size(), group);
 	}
 
-	
+
 	/**
 	 * Inserts a group at the specified position into the dataset.
 	 * @param index the group position
@@ -1052,15 +1056,15 @@ public class JRDesignDataset extends JRBaseDataset
 
 		groupsList.add(index, group);
 		groupsMap.put(group.getName(), group);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_GROUPS, group, index);
 	}
 
-	
-	
+
+
 	/**
 	 * Removes a group from the dataset.
-	 * 
+	 *
 	 * @param groupName the group name
 	 * @return the removed group, or <code>null</code> if the group was not found
 	 */
@@ -1069,10 +1073,10 @@ public class JRDesignDataset extends JRBaseDataset
 		return removeGroup(groupsMap.get(groupName));
 	}
 
-	
+
 	/**
 	 * Removes a group from the dataset.
-	 * 
+	 *
 	 * @param group the group to be removed
 	 * @return the group to be removed
 	 */
@@ -1092,11 +1096,11 @@ public class JRDesignDataset extends JRBaseDataset
 
 		return group;
 	}
-	
-	
+
+
 	/**
 	 * Sets the base name of resource bundle to be used by the dataset.
-	 * 
+	 *
 	 * @param resourceBundle the resource bundle base name
 	 */
 	public void setResourceBundle(String resourceBundle)
@@ -1105,8 +1109,8 @@ public class JRDesignDataset extends JRBaseDataset
 		this.resourceBundle = resourceBundle;
 		getEventSupport().firePropertyChange(PROPERTY_RESOURCE_BUNDLE, old, this.resourceBundle);
 	}
-	
-	
+
+
 	protected void queryLanguageChanged(String oldLanguage, String newLanguage)
 	{
 		try
@@ -1138,7 +1142,7 @@ public class JRDesignDataset extends JRBaseDataset
 		}
 	}
 
-	
+
 	private void sortSystemParamsFirst()
 	{
 		Collections.sort(parametersList, new Comparator<JRParameter>()
@@ -1149,7 +1153,7 @@ public class JRDesignDataset extends JRBaseDataset
 //						JRParameter p2 = (JRParameter) o2;
 						boolean s1 = p1.isSystemDefined();
 						boolean s2 = p2.isSystemDefined();
-						
+
 						return s1 ? (s2 ? 0 : -1) : (s2 ? 1 : 0);
 					}
 				});
@@ -1167,11 +1171,11 @@ public class JRDesignDataset extends JRBaseDataset
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Adds/sets a property value.
-	 * 
+	 *
 	 * @param propName the name of the property
 	 * @param value the value of the property
 	 */
@@ -1180,14 +1184,14 @@ public class JRDesignDataset extends JRBaseDataset
 		//TODO event
 		getPropertiesMap().setProperty(propName, value);
 	}
-	
-	
+
+
 	/**
 	 * Sets the dataset filter expression.
 	 * <p>
 	 * The expression value class should be <code>java.lang.Boolean</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param expression the boolean expression to use as filter expression
 	 * @see JRDataset#getFilterExpression()
 	 */
@@ -1200,22 +1204,22 @@ public class JRDesignDataset extends JRBaseDataset
 
 
 	/**
-	 * 
+	 *
 	 */
 	private String getSortFieldKey(JRSortField sortField)
 	{
 		return sortField.getName() + "|" + sortField.getType().getName();
 	}
 
-	
+
 	//TODO: Daniel (19.4.2013) - Not needed, removed
 //	/**
-//	 * 
+//	 *
 //	 */
 //	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException
 //	{
 //		in.defaultReadObject();
-//		
+//
 //		if (sortFieldsMap == null)
 //		{
 //			sortFieldsMap = new HashMap<String, JRSortField>();
@@ -1227,12 +1231,12 @@ public class JRDesignDataset extends JRBaseDataset
 //	}
 
 	/**
-	 * 
+	 *
 	 */
-	public Object clone() 
+	public Object clone()
 	{
 		JRDesignDataset clone = (JRDesignDataset)super.clone();
-		
+
 		if (parametersList != null)
 		{
 			clone.parametersList = new ArrayList<JRParameter>(parametersList.size());
@@ -1244,7 +1248,7 @@ public class JRDesignDataset extends JRBaseDataset
 				clone.parametersMap.put(parameter.getName(), parameter);
 			}
 		}
-		
+
 		if (fieldsList != null)
 		{
 			clone.fieldsList = new ArrayList<JRField>(fieldsList.size());
@@ -1256,7 +1260,7 @@ public class JRDesignDataset extends JRBaseDataset
 				clone.fieldsMap.put(field.getName(), field);
 			}
 		}
-		
+
 		if (sortFieldsList != null)
 		{
 			clone.sortFieldsList = new ArrayList<JRSortField>(sortFieldsList.size());
@@ -1268,7 +1272,7 @@ public class JRDesignDataset extends JRBaseDataset
 				clone.sortFieldsMap.put(getSortFieldKey(sortField), sortField);
 			}
 		}
-		
+
 		if (variablesList != null)
 		{
 			clone.variablesList = new ArrayList<JRVariable>(variablesList.size());
@@ -1280,7 +1284,7 @@ public class JRDesignDataset extends JRBaseDataset
 				clone.variablesMap.put(variable.getName(), variable);
 			}
 		}
-		
+
 		if (groupsList != null)
 		{
 			clone.groupsList = new ArrayList<JRGroup>(groupsList.size());
@@ -1292,8 +1296,8 @@ public class JRDesignDataset extends JRBaseDataset
 				clone.groupsMap.put(group.getName(), group);
 			}
 		}
-		
+
 		return clone;
 	}
-	
+
 }
