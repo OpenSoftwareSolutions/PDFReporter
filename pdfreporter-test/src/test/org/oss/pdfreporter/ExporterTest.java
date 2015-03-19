@@ -92,6 +92,8 @@ public class ExporterTest {
 	private static final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = "/Northwind/Orders[ShippedDate]";
 
 
+	private TestProviderInterface testProvider;
+	
 	public ExporterTest() {
 		this(true, new JavaTestProvider());
 	}
