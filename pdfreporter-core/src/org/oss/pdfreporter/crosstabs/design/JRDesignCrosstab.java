@@ -75,40 +75,40 @@ import org.oss.pdfreporter.uses.org.apache.commons.collections.SequencedHashMap;
 
 /**
  * Design-time {@link org.oss.pdfreporter.crosstabs.JRCrosstab crosstab} implementation.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JRDesignCrosstab.java 5180 2012-03-29 13:23:12Z teodord $
  */
 public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 {
 	private final static Logger logger = Logger.getLogger(JRDesignCrosstab.class.getName());
-	
+
 	private static final long serialVersionUID = JRConstants.SERIAL_VERSION_UID;
-	
+
 	public static final String PROPERTY_COLUMN_BREAK_OFFSET = "columnBreakOffset";
-	
+
 	public static final String PROPERTY_DATASET = "dataset";
-	
+
 	public static final String PROPERTY_HEADER_CELL = "headerCell";
-	
+
 	public static final String PROPERTY_PARAMETERS_MAP_EXPRESSION = "parametersMapExpression";
-	
+
 	public static final String PROPERTY_REPEAT_COLUMN_HEADERS = "repeatColumnHeaders";
-	
+
 	public static final String PROPERTY_REPEAT_ROW_HEADERS = "repeatRowHeaders";
-	
+
 	public static final String PROPERTY_WHEN_NO_DATA_CELL = "whenNoDataCell";
-	
+
 	public static final String PROPERTY_CELLS = "cells";
-	
+
 	public static final String PROPERTY_ROW_GROUPS = "rowGroups";
-	
+
 	public static final String PROPERTY_COLUMN_GROUPS = "columnGroups";
-	
+
 	public static final String PROPERTY_MEASURES = "measures";
-	
+
 	public static final String PROPERTY_PARAMETERS = "parameters";
-	
+
 	public static final String PROPERTY_IGNORE_WIDTH = "ignoreWidth";
 
 	protected List<JRCrosstabParameter> parametersList;
@@ -133,7 +133,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	protected JRDesignCellContents headerCell;
 	protected Boolean ignoreWidth;
 	protected JRLineBox lineBox;
-	
+
 	// TODO: Daniel (19.4.2013) - Removed, unused
 	/*
 	private class MeasureClassChangeListener implements PropertyChangeListener, Serializable
@@ -149,35 +149,38 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 
 	// TODO: Daniel (19.4.2013) - Removed, unused
 	//private PropertyChangeListener measureClassChangeListener = new MeasureClassChangeListener();
-	
+
 	@SuppressWarnings("deprecation")
-	private static final Object[] BUILT_IN_PARAMETERS = new Object[] { 
-		JRParameter.REPORT_CONTEXT, ReportContext.class, 
-		JRParameter.REPORT_PARAMETERS_MAP, java.util.Map.class, 
-		JRParameter.REPORT_LOCALE, Locale.class, 
+	private static final Object[] BUILT_IN_PARAMETERS = new Object[] {
+		JRParameter.REPORT_CONTEXT, ReportContext.class,
+		JRParameter.REPORT_PARAMETERS_MAP, java.util.Map.class,
+		JRParameter.REPORT_LOCALE, Locale.class,
+
+		// TODO magnus (15.03.2015): activate Resource boundle
+
 //		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
-		JRParameter.REPORT_TIME_ZONE, TimeZone.class, 
-		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class, 
+		JRParameter.REPORT_TIME_ZONE, TimeZone.class,
+		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class,
 		JRParameter.REPORT_FILE_RESOLVER, FileResolver.class
 		// TODO: Daniel (19.4.2013) - Removed, deprecated and contains classes that can't be translated
 		//JRParameter.REPORT_CLASS_LOADER, ClassLoader.class,
 		//JRParameter.REPORT_FILE_RESOLVER, FileResolver.class};
-	};	
-	
-	private static final Object[] BUILT_IN_VARIABLES = new Object[] { 
-		JRCrosstab.VARIABLE_ROW_COUNT, Integer.class, 
+	};
+
+	private static final Object[] BUILT_IN_VARIABLES = new Object[] {
+		JRCrosstab.VARIABLE_ROW_COUNT, Integer.class,
 		JRCrosstab.VARIABLE_COLUMN_COUNT, Integer.class};
 
-	
+
 	/**
 	 * Creates a new crosstab.
-	 * 
+	 *
 	 * @param defaultStyleProvider default style provider
 	 */
 	public JRDesignCrosstab(JRDefaultStyleProvider defaultStyleProvider)
 	{
 		super(defaultStyleProvider);
-		
+
 		parametersList = new ArrayList<JRCrosstabParameter>();
 		parametersMap = new HashMap<String, JRCrosstabParameter>();
 		rowGroupsMap = new HashMap<String, Integer>();
@@ -186,15 +189,15 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		columnGroups = new ArrayList<JRCrosstabColumnGroup>();
 		measuresMap = new HashMap<String, Integer>();
 		measures = new ArrayList<JRCrosstabMeasure>();
-		
+
 		cellsMap = new HashMap<Pair<String,String>,JRCrosstabCell>();
 		cellsList = new ArrayList<JRCrosstabCell>();
-		
+
 		addBuiltinParameters();
-		
+
 		variablesList = new SequencedHashMap();
 		addBuiltinVariables();
-		
+
 		dataset = new JRDesignCrosstabDataset();
 		lineBox = new JRBaseLineBox(this);
 	}
@@ -230,7 +233,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			addVariable(variable);
 		}
 	}
-	
+
 	/**
 	 * Creates a new crosstab.
 	 */
@@ -238,8 +241,8 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		this(null);
 	}
-	
-	
+
+
 	/**
 	 * The ID of the crosstab is only generated at compile time.
 	 */
@@ -253,10 +256,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		return dataset;
 	}
 
-	
+
 	/**
 	 * Returns the crosstab dataset object to be used for report designing.
-	 * 
+	 *
 	 * @return the crosstab dataset design object
 	 */
 	public JRDesignCrosstabDataset getDesignDataset()
@@ -298,10 +301,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		visitor.visitCrosstab(this);
 	}
 
-	
+
 	/**
 	 * Sets the crosstab input dataset.
-	 * 
+	 *
 	 * @param dataset the dataset
 	 * @see JRCrosstab#getDataset()
 	 */
@@ -311,13 +314,13 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		this.dataset = dataset;
 		getEventSupport().firePropertyChange(PROPERTY_DATASET, old, this.dataset);
 	}
-	
-	
+
+
 	/**
 	 * Adds a row group.
 	 * <p>
 	 * This group will be a sub group of the last row group, if any.
-	 * 
+	 *
 	 * @param group the group
 	 * @throws JRException
 	 * @see JRCrosstab#getRowGroups()
@@ -331,22 +334,22 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		rowGroupsMap.put(groupName, Integer.valueOf(rowGroups.size()));
 		rowGroups.add(group);
-		
+
 		addRowGroupVars(group);
-		
+
 		setParent(group);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_ROW_GROUPS, group, rowGroups.size() - 1);
 	}
-	
+
 	/**
 	 * Adds a row group.
 	 * <p>
 	 * This group will be a sub group of the last row group, if any.
-	 * 
+	 *
 	 * @param group the group
 	 * @param index position
 	 * @throws JRException
@@ -361,27 +364,27 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		rowGroupsMap.put(groupName, Integer.valueOf(rowGroups.size()));
 		rowGroups.add(index, group);
-		
+
 		addRowGroupVars(group);
-		
+
 		setParent(group);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_ROW_GROUPS, group, index);
 	}
 
-	
+
 	protected void addRowGroupVars(JRDesignCrosstabRowGroup rowGroup)
 	{
 		addVariable(rowGroup.getVariable());
-		
+
 		for (Iterator<JRCrosstabMeasure> measureIt = measures.iterator(); measureIt.hasNext();)
 		{
 			JRCrosstabMeasure measure = measureIt.next();
 			addTotalVar(measure, rowGroup, null);
-			
+
 			for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 			{
 				JRCrosstabColumnGroup colGroup = colIt.next();
@@ -389,13 +392,13 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Adds a column group.
 	 * <p>
 	 * This group will be a sub group of the last column group, if any.
-	 * 
+	 *
 	 * @param group the group
 	 * @throws JRException
 	 * @see JRCrosstab#getColumnGroups()
@@ -409,22 +412,22 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		columnGroupsMap.put(groupName, Integer.valueOf(columnGroups.size()));
 		columnGroups.add(group);
-		
+
 		addColGroupVars(group);
-		
+
 		setParent(group);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_COLUMN_GROUPS, group, columnGroups.size() - 1);
 	}
-	
+
 	/**
 	 * Adds a column group.
 	 * <p>
 	 * This group will be a sub group of the last column group, if any.
-	 * 
+	 *
 	 * @param group the group
 	 * @throws JRException
 	 * @see JRCrosstab#getColumnGroups()
@@ -438,22 +441,22 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		columnGroupsMap.put(groupName, Integer.valueOf(columnGroups.size()));
 		columnGroups.add(index, group);
-		
+
 		addColGroupVars(group);
-		
+
 		setParent(group);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_COLUMN_GROUPS, group, index);
 	}
-	
-	
+
+
 	protected void addColGroupVars(JRDesignCrosstabColumnGroup colGroup)
 	{
 		addVariable(colGroup.getVariable());
-		
+
 		for (Iterator<JRCrosstabMeasure> measureIt = measures.iterator(); measureIt.hasNext();)
 		{
 			JRCrosstabMeasure measure = measureIt.next();
@@ -469,7 +472,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 
 	/**
 	 * Adds a measure to the crosstab.
-	 * 
+	 *
 	 * @param measure the measure
 	 * @throws JRException
 	 * @see JRCrosstab#getMeasures()
@@ -483,21 +486,21 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		// TODO: Daniel (19.4.2013) - Removed, unused
 		//measure.addPropertyChangeListener(JRDesignCrosstabMeasure.PROPERTY_VALUE_CLASS, measureClassChangeListener);
-		
+
 		measuresMap.put(measureName, Integer.valueOf(measures.size()));
 		measures.add(measure);
-		
+
 		addMeasureVars(measure);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_MEASURES, measure, measures.size() - 1);
 	}
-	
+
 	/**
 	 * Adds a measure to the crosstab.
-	 * 
+	 *
 	 * @param measure the measure
 	 * @throws JRException
 	 * @see JRCrosstab#getMeasures()
@@ -511,33 +514,33 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			throw new JRException("A group or measure having the same name already exists in the crosstab.");
 		}
-		
+
 		// TODO: Daniel (19.4.2013) - Removed, unused
 		//measure.addPropertyChangeListener(JRDesignCrosstabMeasure.PROPERTY_VALUE_CLASS, measureClassChangeListener);
-		
+
 		measuresMap.put(measureName, Integer.valueOf(measures.size()));
 		measures.add(index, measure);
-		
+
 		addMeasureVars(measure);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_MEASURES, measure, index);
 	}
 
 	protected void addMeasureVars(JRDesignCrosstabMeasure measure)
 	{
 		addVariable(measure.getVariable());
-		
+
 		for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 		{
 			JRCrosstabColumnGroup colGroup = colIt.next();
 			addTotalVar(measure, null, colGroup);
 		}
-		
+
 		for (Iterator<JRCrosstabRowGroup> rowIt = rowGroups.iterator(); rowIt.hasNext();)
 		{
 			JRCrosstabRowGroup rowGroup = rowIt.next();
 			addTotalVar(measure, rowGroup, null);
-			
+
 			for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 			{
 				JRCrosstabColumnGroup colGroup = colIt.next();
@@ -564,7 +567,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		removeVariable(varName);
 	}
 
-	
+
 	public static String getTotalVariableName(JRCrosstabMeasure measure, JRCrosstabRowGroup rowGroup, JRCrosstabColumnGroup colGroup)
 	{
 		StringBuffer name = new StringBuffer();
@@ -586,25 +589,25 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 
 	/**
 	 * Removes a row group.
-	 * 
+	 *
 	 * @param groupName the group name
 	 * @return the removed group
 	 */
 	public JRCrosstabRowGroup removeRowGroup(String groupName)
 	{
 		JRCrosstabRowGroup removed = null;
-		
+
 		Integer idx = rowGroupsMap.remove(groupName);
 		if (idx != null)
 		{
 			removed = rowGroups.remove(idx.intValue());
-			
+
 			for (ListIterator<JRCrosstabRowGroup> it = rowGroups.listIterator(idx.intValue()); it.hasNext();)
 			{
 				JRCrosstabRowGroup group = it.next();
 				rowGroupsMap.put(group.getName(), Integer.valueOf(it.previousIndex()));
 			}
-			
+
 			for (Iterator<JRCrosstabCell> it = cellsList.iterator(); it.hasNext();)
 			{
 				JRCrosstabCell cell = it.next();
@@ -616,24 +619,24 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 					getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_CELLS, cell, -1);
 				}
 			}
-			
+
 			removeRowGroupVars(removed);
-			
+
 			getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_ROW_GROUPS, removed, idx.intValue());
 		}
-		
+
 		return removed;
 	}
 
 	protected void removeRowGroupVars(JRCrosstabRowGroup rowGroup)
 	{
 		removeVariable(rowGroup.getVariable());
-		
+
 		for (Iterator<JRCrosstabMeasure> measureIt = measures.iterator(); measureIt.hasNext();)
 		{
 			JRCrosstabMeasure measure = measureIt.next();
 			removeTotalVar(measure, rowGroup, null);
-			
+
 			for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 			{
 				JRCrosstabColumnGroup colGroup = colIt.next();
@@ -645,7 +648,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 
 	/**
 	 * Removes a row group.
-	 * 
+	 *
 	 * @param group the group to be removed
 	 * @return the removed group
 	 */
@@ -653,29 +656,29 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return removeRowGroup(group.getName());
 	}
-	
-	
+
+
 	/**
 	 * Removes a column group.
-	 * 
+	 *
 	 * @param groupName the group name
 	 * @return the removed group
 	 */
 	public JRCrosstabColumnGroup removeColumnGroup(String groupName)
 	{
 		JRCrosstabColumnGroup removed = null;
-		
+
 		Integer idx = columnGroupsMap.remove(groupName);
 		if (idx != null)
 		{
 			removed = columnGroups.remove(idx.intValue());
-			
+
 			for (ListIterator<JRCrosstabColumnGroup> it = columnGroups.listIterator(idx.intValue()); it.hasNext();)
 			{
 				JRCrosstabColumnGroup group = it.next();
 				columnGroupsMap.put(group.getName(), Integer.valueOf(it.previousIndex()));
 			}
-			
+
 			for (Iterator<JRCrosstabCell> it = cellsList.iterator(); it.hasNext();)
 			{
 				JRCrosstabCell cell = it.next();
@@ -687,20 +690,20 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 					getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_CELLS, cell, -1);
 				}
 			}
-			
+
 			removeColGroupVars(removed);
-			
+
 			getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_COLUMN_GROUPS, removed, idx.intValue());
 		}
-		
+
 		return removed;
 	}
 
-	
+
 	protected void removeColGroupVars(JRCrosstabColumnGroup colGroup)
 	{
 		removeVariable(colGroup.getVariable());
-		
+
 		for (Iterator<JRCrosstabMeasure> measureIt = measures.iterator(); measureIt.hasNext();)
 		{
 			JRCrosstabMeasure measure = measureIt.next();
@@ -713,11 +716,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Removes a column group.
-	 * 
+	 *
 	 * @param group the group
 	 * @return the removed group
 	 */
@@ -725,55 +728,55 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return removeColumnGroup(group.getName());
 	}
-	
-	
+
+
 	/**
 	 * Removes a measure.
-	 * 
+	 *
 	 * @param measureName the measure name
 	 * @return the removed measure
 	 */
 	public JRCrosstabMeasure removeMeasure(String measureName)
 	{
 		JRDesignCrosstabMeasure removed = null;
-		
+
 		Integer idx = measuresMap.remove(measureName);
 		if (idx != null)
 		{
 			removed = (JRDesignCrosstabMeasure) measures.remove(idx.intValue());
-			
+
 			for (ListIterator<JRCrosstabMeasure> it = measures.listIterator(idx.intValue()); it.hasNext();)
 			{
 				JRCrosstabMeasure group = it.next();
 				measuresMap.put(group.getName(), Integer.valueOf(it.previousIndex()));
 			}
-			
+
 			removeMeasureVars(removed);
-			
+
 			// TODO: Daniel (19.4.2013) - Removed, unused
 			//removed.removePropertyChangeListener(JRDesignCrosstabMeasure.PROPERTY_VALUE_CLASS, measureClassChangeListener);
-			
+
 			getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_MEASURES, removed, idx.intValue());
 		}
-		
+
 		return removed;
 	}
 
 	protected void removeMeasureVars(JRDesignCrosstabMeasure measure)
 	{
 		removeVariable(measure.getVariable());
-		
+
 		for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 		{
 			JRCrosstabColumnGroup colGroup = colIt.next();
 			removeTotalVar(measure, null, colGroup);
 		}
-		
+
 		for (Iterator<JRCrosstabRowGroup> rowIt = rowGroups.iterator(); rowIt.hasNext();)
 		{
 			JRCrosstabRowGroup rowGroup = rowIt.next();
 			removeTotalVar(measure, rowGroup, null);
-			
+
 			for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 			{
 				JRCrosstabColumnGroup colGroup = colIt.next();
@@ -781,11 +784,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Removes a measure.
-	 * 
+	 *
 	 * @param measure the measure
 	 * @return the removed measure
 	 */
@@ -799,10 +802,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		return repeatColumnHeaders;
 	}
 
-	
+
 	/**
 	 * Sets the repeat column headers flag.
-	 * 
+	 *
 	 * @param repeatColumnHeaders whether to repeat the column headers on row breaks
 	 * @see JRCrosstab#isRepeatColumnHeaders()
 	 */
@@ -818,10 +821,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		return repeatRowHeaders;
 	}
 
-	
+
 	/**
 	 * Sets the repeat row headers flag.
-	 * 
+	 *
 	 * @param repeatRowHeaders whether to repeat the row headers on column breaks
 	 * @see JRCrosstab#isRepeatRowHeaders()
 	 */
@@ -837,10 +840,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		return crossCells;
 	}
 
-	
+
 	/**
 	 * Returns the data cells list.
-	 * 
+	 *
 	 * @return the data cells list
 	 * @see #addCell(JRDesignCrosstabCell)
 	 */
@@ -848,12 +851,12 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return cellsList;
 	}
-	
-	
+
+
 	/**
 	 * Returns the crosstab cells indexed by corresponding row total group/
 	 * column total group {@link Pair pairs}.
-	 * 
+	 *
 	 * @return the crosstab cells indexed by row/column total groups
 	 * @see JRCrosstabCell#getRowTotalGroup()
 	 * @see JRCrosstabCell#getColumnTotalGroup()
@@ -862,70 +865,70 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return cellsMap;
 	}
-	
+
 	/**
 	 * Adds a data cell to the crosstab.
-	 * 
+	 *
 	 * @param cell the cell
 	 * @throws JRException
 	 * @see JRCrosstab#getCells()
 	 */
 	public void addCell(JRDesignCrosstabCell cell) throws JRException
 	{
-		String rowTotalGroup = cell.getRowTotalGroup();		
+		String rowTotalGroup = cell.getRowTotalGroup();
 		if (rowTotalGroup != null && !rowGroupsMap.containsKey(rowTotalGroup))
 		{
 			throw new JRException("Row group " + rowTotalGroup + " does not exist.");
 		}
-		
+
 		String columnTotalGroup = cell.getColumnTotalGroup();
 		if (columnTotalGroup != null && !columnGroupsMap.containsKey(columnTotalGroup))
 		{
 			throw new JRException("Row group " + columnTotalGroup + " does not exist.");
 		}
-		
+
 		Pair<String,String> cellKey = new Pair<String,String>(rowTotalGroup, columnTotalGroup);
 		if (cellsMap.containsKey(cellKey))
 		{
 			throw new JRException("Duplicate cell in crosstab.");
 		}
-		
+
 		cellsMap.put(cellKey, cell);
 		cellsList.add(cell);
-		
+
 		setCellOrigin(cell.getContents(),
 				new JRCrosstabOrigin(this, JRCrosstabOrigin.TYPE_DATA_CELL,
 						rowTotalGroup, columnTotalGroup));
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_CELLS, cell, cellsList.size() - 1);
 	}
-	
-	
+
+
 	/**
 	 * Removes a data cell.
-	 * 
-	 * @param rowTotalGroup the cell's total row group 
+	 *
+	 * @param rowTotalGroup the cell's total row group
 	 * @param columnTotalGroup the cell's total column group
 	 * @return the removed cell
 	 */
 	public JRCrosstabCell removeCell(String rowTotalGroup, String columnTotalGroup)
 	{
 		Object cellKey = new Pair<String,String>(rowTotalGroup, columnTotalGroup);
-		
+
 		JRCrosstabCell cell = cellsMap.remove(cellKey);
 		if (cell != null)
 		{
 			cellsList.remove(cell);
 			getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_CELLS, cell, -1);
 		}
-		
+
 		return cell;
 	}
-	
-	
+
+
 	/**
 	 * Removes a data cell.
-	 * 
+	 *
 	 * @param cell the cell to be removed
 	 * @return the removed cell
 	 */
@@ -933,7 +936,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return removeCell(cell.getRowTotalGroup(), cell.getColumnTotalGroup());
 	}
-	
+
 
 	public JRCrosstabParameter[] getParameters()
 	{
@@ -941,22 +944,22 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		parametersList.toArray(parameters);
 		return parameters;
 	}
-	
-	
+
+
 	/**
 	 * Returns the paremeters list.
-	 * 
+	 *
 	 * @return the paremeters list
 	 */
 	public List<JRCrosstabParameter> getParametersList()
 	{
 		return parametersList;
 	}
-	
-	
+
+
 	/**
 	 * Returns the parameters indexed by names.
-	 * 
+	 *
 	 * @return the parameters indexed by names
 	 */
 	public Map<String, JRCrosstabParameter> getParametersMap()
@@ -968,11 +971,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return parametersMapExpression;
 	}
-	
-	
+
+
 	/**
 	 * Adds a parameter to the crosstab.
-	 * 
+	 *
 	 * @param parameter the parameter
 	 * @throws JRException
 	 * @see JRCrosstab#getMeasures()
@@ -986,16 +989,16 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				throw new JRException("Duplicate declaration of parameter : " + parameter.getName());
 			}
 		}
-		
+
 		parametersMap.put(parameter.getName(), parameter);
 		parametersList.add(parameter);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_PARAMETERS, parameter, parametersList.size() - 1);
 	}
-	
+
 	/**
 	 * Adds a parameter to the crosstab.
-	 * 
+	 *
 	 * @param parameter the parameter
 	 * @throws JRException
 	 * @see JRCrosstab#getMeasures()
@@ -1009,24 +1012,24 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				throw new JRException("Duplicate declaration of parameter : " + parameter.getName());
 			}
 		}
-		
+
 		parametersMap.put(parameter.getName(), parameter);
 		parametersList.add(index, parameter);
-		
+
 		getEventSupport().fireCollectionElementAddedEvent(PROPERTY_PARAMETERS, parameter, index);
 	}
-	
-	
+
+
 	/**
 	 * Removes a parameter.
-	 * 
+	 *
 	 * @param parameterName the name of the parameter to be removed
 	 * @return the removed parameter
 	 */
 	public JRCrosstabParameter removeParameter(String parameterName)
 	{
 		JRCrosstabParameter param = parametersMap.remove(parameterName);
-		
+
 		if (param != null)
 		{
 			int idx = parametersList.indexOf(param);
@@ -1036,14 +1039,14 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			}
 			getEventSupport().fireCollectionElementRemovedEvent(PROPERTY_PARAMETERS, param, idx);
 		}
-		
+
 		return param;
 	}
-	
-	
+
+
 	/**
 	 * Removes a parameter.
-	 * 
+	 *
 	 * @param parameter the parameter to be removed
 	 * @return the removed parameter
 	 */
@@ -1051,11 +1054,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return removeParameter(parameter.getName());
 	}
-	
-	
+
+
 	/**
 	 * Sets the parameters map expression.
-	 * 
+	 *
 	 * @param expression the parameters map expression
 	 * @see JRCrosstab#getParametersMapExpression()
 	 */
@@ -1065,27 +1068,27 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		this.parametersMapExpression = expression;
 		getEventSupport().firePropertyChange(PROPERTY_PARAMETERS_MAP_EXPRESSION, old, this.parametersMapExpression);
 	}
-	
-	
+
+
 	/**
 	 * Returns the variables of this crosstab indexed by name.
-	 * 
+	 *
 	 * @return the variables of this crosstab indexed by name
 	 */
 	public Map<String, JRVariable> getVariablesMap()
 	{
 		JRVariable[] variables = getVariables();
 		Map<String, JRVariable> variablesMap = new HashMap<String, JRVariable>();
-		
+
 		for (int i = 0; i < variables.length; i++)
 		{
 			variablesMap.put(variables[i].getName(), variables[i]);
 		}
-		
+
 		return variablesMap;
 	}
-	
-	
+
+
 	/**
 	 * Returns the list of variables created for this crosstab.
 	 * @return the list of variables created for this crosstab
@@ -1101,17 +1104,17 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		variablesList.values().toArray(variables);
 		return variables;
 	}
-	
+
 
 	public int getColumnBreakOffset()
 	{
 		return columnBreakOffset;
 	}
 
-	
+
 	/**
 	 * Sets the column break offset.
-	 * 
+	 *
 	 * @param columnBreakOffset the offset
 	 * @see JRCrosstab#getColumnBreakOffset()
 	 */
@@ -1122,7 +1125,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		getEventSupport().firePropertyChange(PROPERTY_COLUMN_BREAK_OFFSET, old, this.columnBreakOffset);
 	}
 
-	
+
 	/**
 	 * Performs all the calculations required for report compilation.
 	 */
@@ -1130,11 +1133,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		setGroupVariablesClass(rowGroups);
 		setGroupVariablesClass(columnGroups);
-		
+
 		calculateSizes();
 	}
 
-	
+
 	protected <T> void setGroupVariablesClass(List<T> groups)
 	{
 		for (Iterator<T> it = groups.iterator(); it.hasNext();)
@@ -1155,12 +1158,12 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	protected void calculateSizes()
 	{
 		setWhenNoDataCellSize();
-		
+
 		createCellMatrix();
-		
+
 		int rowHeadersWidth = calculateRowHeadersSizes();
 		int colHeadersHeight = calculateColumnHeadersSizes();
-		
+
 		if (headerCell != null)
 		{
 			headerCell.setWidth(rowHeadersWidth);
@@ -1185,10 +1188,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			JRDesignCrosstabCell crosstabCell = (JRDesignCrosstabCell) it.next();
 			JRDesignCellContents contents = (JRDesignCellContents) crosstabCell.getContents();
-			
+
 			String rowTotalGroup = crosstabCell.getRowTotalGroup();
 			int rowGroupIndex = rowTotalGroup == null ? rowGroups.size() : (rowGroupsMap.get(rowTotalGroup)).intValue();
-			
+
 			Integer cellWidth = crosstabCell.getWidth();
 			if (cellWidth != null)
 			{
@@ -1205,7 +1208,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 
 			crossCells.set(rowGroupIndex, columnGroupIndex, crosstabCell);
 		}
-		
+
 		inheritCells();
 	}
 
@@ -1227,13 +1230,13 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			{
 				boolean used = (i == rowGroups.size() || getRowGroup(i).hasTotal()) &&
 					(j == columnGroups.size() || getColumnGroup(j).hasTotal());
-				
+
 				if (used)
 				{
 					if (crossCells.get(i, j) == null)
 					{
 						inheritCell(i, j);
-						
+
 						if (crossCells.get(i, j) == null)
 						{
 							crossCells.set(i, j, emptyCell(i, j));
@@ -1270,9 +1273,9 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	protected void inheritCellSize(int i, int j)
 	{
 		JRDesignCrosstabCell cell = crossCells.get(i, j);
-		
+
 		JRDesignCellContents contents = (JRDesignCellContents) cell.getContents();
-		
+
 		if (contents.getWidth() == JRCellContents.NOT_CALCULATED)
 		{
 			if (i < rowGroups.size())
@@ -1295,7 +1298,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				}
 			}
 		}
-		
+
 		if (contents.getHeight() == JRCellContents.NOT_CALCULATED)
 		{
 			if (j < columnGroups.size())
@@ -1319,11 +1322,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		}
 	}
 
-	
+
 	protected void inheritCell(int i, int j)
 	{
 		JRDesignCrosstabCell inheritedCell = null;
-		
+
 		if (j < columnGroups.size())
 		{
 			JRDesignCrosstabCell colCell = crossCells.get(rowGroups.size(), j);
@@ -1341,7 +1344,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				}
 			}
 		}
-		
+
 		if (inheritedCell == null && i < rowGroups.size())
 		{
 			JRDesignCrosstabCell rowCell = crossCells.get(i, columnGroups.size());
@@ -1359,7 +1362,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				}
 			}
 		}
-		
+
 		crossCells.set(i, j, inheritedCell);
 	}
 
@@ -1371,7 +1374,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			JRDesignCrosstabRowGroup group = (JRDesignCrosstabRowGroup) rowGroups.get(i);
 
 			widthSum += group.getWidth();
-			
+
 			JRDesignCrosstabCell cell = crossCells.get(i + 1,columnGroups.size());
 			if (cell != null)
 			{
@@ -1433,10 +1436,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		return whenNoDataCell;
 	}
 
-	
+
 	/**
 	 * Sets the "No data" cell.
-	 * 
+	 *
 	 * @param whenNoDataCell the cell
 	 * @see JRCrosstab#getWhenNoDataCell()
 	 */
@@ -1448,13 +1451,13 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		getEventSupport().firePropertyChange(PROPERTY_WHEN_NO_DATA_CELL, old, this.whenNoDataCell);
 	}
 
-	
+
 	public JRElement getElementByKey(String elementKey)
 	{
 		return JRBaseCrosstab.getElementByKey(this, elementKey);
 	}
-	
-	
+
+
 	public ModeEnum getModeValue()
 	{
 		return JRStyleResolver.getMode(this, ModeEnum.TRANSPARENT);
@@ -1464,11 +1467,11 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		return headerCell;
 	}
-	
-	
+
+
 	/**
 	 * Sets the crosstab header cell (this cell will be rendered at the upper-left corder of the crosstab).
-	 * 
+	 *
 	 * @param headerCell the cell
 	 * @see JRCrosstab#getHeaderCell()
 	 */
@@ -1480,7 +1483,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		getEventSupport().firePropertyChange(PROPERTY_HEADER_CELL, old, this.headerCell);
 	}
 
-	
+
 	protected void measureClassChanged(JRDesignCrosstabMeasure measure, String valueClassName)
 	{
 		for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
@@ -1488,12 +1491,12 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			JRCrosstabColumnGroup colGroup = colIt.next();
 			setTotalVarClass(measure, null, colGroup, valueClassName);
 		}
-		
+
 		for (Iterator<JRCrosstabRowGroup> rowIt = rowGroups.iterator(); rowIt.hasNext();)
 		{
 			JRCrosstabRowGroup rowGroup = rowIt.next();
 			setTotalVarClass(measure, rowGroup, null, valueClassName);
-			
+
 			for (Iterator<JRCrosstabColumnGroup> colIt = columnGroups.iterator(); colIt.hasNext();)
 			{
 				JRCrosstabColumnGroup colGroup = colIt.next();
@@ -1501,7 +1504,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			}
 		}
 	}
-	
+
 	protected void setTotalVarClass(JRCrosstabMeasure measure, JRCrosstabRowGroup rowGroup, JRCrosstabColumnGroup colGroup, String valueClassName)
 	{
 		JRDesignVariable variable = getVariable(getTotalVariableName(measure, rowGroup, colGroup));
@@ -1522,13 +1525,13 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		variablesList.remove(varName);
 	}
-	
+
 	private JRDesignVariable getVariable(String varName)
 	{
 		return (JRDesignVariable) variablesList.get(varName);
 	}
-	
-	
+
+
 	/**
 	 *
 	 */
@@ -1554,7 +1557,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			setCellOrigin((JRDesignCellContents) cell, origin);
 		}
 	}
-	
+
 	protected void setCellOrigin(JRDesignCellContents cell, JRCrosstabOrigin origin)
 	{
 		if (cell != null)
@@ -1562,7 +1565,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			cell.setOrigin(origin);
 		}
 	}
-	
+
 	protected void setParent(JRDesignCrosstabGroup group)
 	{
 		if (group != null)
@@ -1570,14 +1573,14 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 			group.setParent(this);
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
-	public Object clone() 
+	public Object clone()
 	{
 		JRDesignCrosstab clone = (JRDesignCrosstab)super.clone();
-		
+
 		if (parametersList != null)
 		{
 			clone.parametersList = new ArrayList<JRCrosstabParameter>(parametersList.size());
@@ -1589,51 +1592,51 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				clone.parametersMap.put(parameter.getName(), parameter);
 			}
 		}
-		
+
 		clone.parametersMapExpression = JRCloneUtils.nullSafeClone(parametersMapExpression);
 		clone.dataset = JRCloneUtils.nullSafeClone(dataset);
 		clone.lineBox = lineBox.clone(clone);
-		
+
 		// keep group and measure cloned variables to reuse the clone instances
 		// in the variables list
 		Map<JRVariable,JRVariable> clonedVariables = new HashMap<JRVariable,JRVariable>();
-		
+
 		if (rowGroups != null)
 		{
 			clone.rowGroups = new ArrayList<JRCrosstabRowGroup>(rowGroups.size());
 			clone.rowGroupsMap = new HashMap<String, Integer>(rowGroups.size());
 			for(int i = 0; i < rowGroups.size(); i++)
 			{
-				JRDesignCrosstabRowGroup group = 
+				JRDesignCrosstabRowGroup group =
 					(JRDesignCrosstabRowGroup) rowGroups.get(i);
-				JRDesignCrosstabRowGroup groupClone = 
+				JRDesignCrosstabRowGroup groupClone =
 					(JRDesignCrosstabRowGroup) group.clone(clone);
 				clone.rowGroups.add(groupClone);
 				clone.rowGroupsMap.put(groupClone.getName(), Integer.valueOf(i));
 
 				adjustCrosstabReference(clone, (JRDesignCellContents) groupClone.getTotalHeader());
 				adjustCrosstabReference(clone, (JRDesignCellContents) groupClone.getHeader());
-				
+
 				if (group.designVariable != null)
 				{
 					clonedVariables.put(group.designVariable, groupClone.designVariable);
 				}
 			}
 		}
-		
+
 		if (columnGroups != null)
 		{
 			clone.columnGroups = new ArrayList<JRCrosstabColumnGroup>(columnGroups.size());
 			clone.columnGroupsMap = new HashMap<String, Integer>(columnGroups.size());
 			for(int i = 0; i < columnGroups.size(); i++)
 			{
-				JRDesignCrosstabColumnGroup group = 
+				JRDesignCrosstabColumnGroup group =
 					(JRDesignCrosstabColumnGroup) columnGroups.get(i);
-				JRDesignCrosstabColumnGroup groupClone = 
+				JRDesignCrosstabColumnGroup groupClone =
 					(JRDesignCrosstabColumnGroup) group.clone(clone);
 				clone.columnGroups.add(groupClone);
 				clone.columnGroupsMap.put(groupClone.getName(), Integer.valueOf(i));
-				
+
 				adjustCrosstabReference(clone,(JRDesignCellContents) groupClone.getTotalHeader());
 				adjustCrosstabReference(clone,(JRDesignCellContents) groupClone.getHeader());
 
@@ -1643,27 +1646,27 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				}
 			}
 		}
-		
+
 		if (measures != null)
 		{
 			clone.measures = new ArrayList<JRCrosstabMeasure>(measures.size());
 			clone.measuresMap = new HashMap<String,Integer>(measures.size());
 			for(int i = 0; i < measures.size(); i++)
 			{
-				JRDesignCrosstabMeasure measure = 
+				JRDesignCrosstabMeasure measure =
 					(JRDesignCrosstabMeasure) measures.get(i);
 				JRDesignCrosstabMeasure clonedMeasure = JRCloneUtils.nullSafeClone(measure);
 				clone.measures.add(clonedMeasure);
 				clone.measuresMap.put(clonedMeasure.getName(), Integer.valueOf(i));
-				
+
 				if (clonedMeasure.designVariable != null)
 				{
-					clonedVariables.put(measure.designVariable, 
+					clonedVariables.put(measure.designVariable,
 							clonedMeasure.designVariable);
 				}
 			}
 		}
-		
+
 		if (variablesList != null)
 		{
 			clone.variablesList = new SequencedHashMap(variablesList.size());
@@ -1676,7 +1679,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				clone.variablesList.put(variableClone.getName(), variableClone);
 			}
 		}
-		
+
 		if (cellsList != null)
 		{
 			clone.cellsList = new ArrayList<JRCrosstabCell>(cellsList.size());
@@ -1689,10 +1692,10 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				clone.cellsMap.put(new Pair<String,String>(cell.getRowTotalGroup(), cell.getColumnTotalGroup()), cell);
 			}
 		}
-		
+
 		// clone not preprocessed
 		clone.crossCells = null;
-		
+
 		clone.whenNoDataCell = JRCloneUtils.nullSafeClone(whenNoDataCell);
 		adjustCrosstabReference(clone, clone.whenNoDataCell);
 		clone.headerCell = JRCloneUtils.nullSafeClone(headerCell);
@@ -1712,7 +1715,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		{
 			return;
 		}
-		
+
 		contents.setOrigin(
 			new JRCrosstabOrigin(
 				clone,
@@ -1722,32 +1725,32 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 				)
 			);
 	}
-	
+
 	public List<JRCrosstabRowGroup> getRowGroupsList()
 	{
 		return rowGroups;
 	}
-	
+
 	public Map<String, Integer> getRowGroupIndicesMap()
 	{
 		return rowGroupsMap;
 	}
-	
+
 	public List<JRCrosstabColumnGroup> getColumnGroupsList()
 	{
 		return columnGroups;
 	}
-	
+
 	public Map<String, Integer> getColumnGroupIndicesMap()
 	{
 		return columnGroupsMap;
 	}
-	
+
 	public List<JRCrosstabMeasure> getMesuresList()
 	{
 		return measures;
 	}
-	
+
 	public Map<String, Integer> getMeasureIndicesMap()
 	{
 		return measuresMap;
@@ -1762,7 +1765,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 	{
 		Object old = this.ignoreWidth;
 		this.ignoreWidth = ignoreWidth;
-		getEventSupport().firePropertyChange(PROPERTY_IGNORE_WIDTH, 
+		getEventSupport().firePropertyChange(PROPERTY_IGNORE_WIDTH,
 				old, this.ignoreWidth);
 	}
 
@@ -1790,7 +1793,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 //	 * @deprecated
 //	 */
 //	private byte runDirection;
-//	
+//
 //	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
 //	{
 //		in.defaultReadObject();
@@ -1799,12 +1802,12 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 //		{
 //			runDirectionValue = RunDirectionEnum.getByValue(runDirection);
 //		}
-//		
+//
 //		if (lineBox == null)
 //		{
 //			lineBox = new JRBaseLineBox(this);
 //		}
 //	}
 
-	
+
 }
