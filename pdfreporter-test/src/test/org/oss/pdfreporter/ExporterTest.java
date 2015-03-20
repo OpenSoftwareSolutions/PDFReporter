@@ -93,7 +93,7 @@ public class ExporterTest {
 
 
 	private TestProviderInterface testProvider;
-	
+
 	public ExporterTest() {
 		this(true, new JavaTestProvider());
 	}
@@ -260,14 +260,11 @@ public class ExporterTest {
 	}
 
 	/*
-	 * FIXME (18.03.2015, Magnus, OSS): set up the test parameter correct (impl is fine)
-	 * FIXME the correct path to jsonDataFile
 	 * */
 	@Test
 	public void exportJsonDataSource() throws Exception {
 
-		ReportExporter exporter = getExporter("jsondatasource"); // initialize Repository
-
+		ReportExporter exporter = getExporter("jsondatasource","extra-fonts"); // initialize Repository
 		JasperReport subreport = SubreportUtil.loadSubreport("JsonOrdersReport.jasper");
 
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -276,7 +273,7 @@ public class ExporterTest {
 		params.put(JsonQueryExecuterFactory.JSON_NUMBER_PATTERN, "#,##0.##");
 		params.put(JsonQueryExecuterFactory.JSON_LOCALE, Locale.ENGLISH);
 		params.put(JRParameter.REPORT_LOCALE, Locale.US);
-		exporter.exportJsonReport(DESIGN_REPORT_JSON_CUSTOMERS, JSON_DATA_NORTHWIND, params);
+		exporter.exportJsonReport(DESIGN_REPORT_JSON_CUSTOMERS, params);
 	}
 
 

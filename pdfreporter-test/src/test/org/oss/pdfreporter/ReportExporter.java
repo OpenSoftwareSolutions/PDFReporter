@@ -28,7 +28,6 @@ import org.oss.pdfreporter.engine.data.JRXmlDataSource;
 import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.json.IJsonDataSource;
-import org.oss.pdfreporter.json.factory.IJsonDataSourceFactory;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.sql.IConnection;
@@ -80,10 +79,10 @@ public class ReportExporter {
 		ApiRegistry.dispose();
 	}
 
-	public void exportJsonReport(String reportFileName, String jsonDataFile, Map<String,Object> fillParameters) throws Exception{
+	public void exportJsonReport(String reportFileName, Map<String,Object> fillParameters) throws Exception{
 		JasperDesign design = loadReport(reportFileName);
 		JasperReport report = compileReport(design);
-		exportJsonReport(report,jsonDataFile, fillParameters,null);
+		exportJsonReport(report,null, fillParameters,null);
 		ApiRegistry.dispose();
 	}
 
@@ -141,13 +140,12 @@ public class ReportExporter {
 
 	public void exportJsonReport(JasperReport compiledReport, String jsonDataFile, Map<String,Object> fillParameters, Map<JRExporterParameter, Object> exporterParameters) throws Exception {
 		IJsonDataSource jsonDataSource = null;
-		IJsonDataSourceFactory jsonDataSourceFactory = ApiRegistry.getJsonDataSourceFactory();
 		try {
-			InputStream jsonFile = null;
-			jsonFile = FileResourceLoader.getInputStream(jsonDataFile);
-			jsonDataSource = jsonDataSourceFactory.newJsonDataSource(jsonFile);
+			JasperPrint printReport = null;
+			if(jsonDataFile == null){
+				printReport = JasperFillManager.fillReport(compiledReport, fillParameters);
+			}
 
-			JasperPrint printReport = JasperFillManager.fillReport(compiledReport, fillParameters, jsonDataSource);
 			String pathToPdfFile = pdfOutputFolder + "/" + printReport.getName() + ".pdf";
             JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile,exporterParameters);
 		} finally {
