@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
         ListView list = (ListView) findViewById(R.id.listView1);
         list.setAdapter(mReportAdapter);
 
+
         list.setOnItemClickListener(new OnItemClickListener() {
 
             @Override

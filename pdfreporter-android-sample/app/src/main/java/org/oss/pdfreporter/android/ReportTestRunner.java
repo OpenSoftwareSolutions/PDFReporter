@@ -98,8 +98,8 @@ public class ReportTestRunner {
         return mContext.getExternalFilesDir(null).toString();
     }
 
-    private ReportExporter getExporter(String reportFolder) {
-        return getExporter(reportFolder, null);
+    private String getDatabasePath() {
+        return getRootFolder() + RepositoryManager.PATH_DELIMITER + "data.db";
     }
 
     public String exportReport(String identifier) throws Exception{
@@ -140,7 +140,7 @@ public class ReportTestRunner {
         return null;
     }
 
-    private ReportExporter getExporter(String reportFolder, String extraFolder) {
+    private PdfReporter getExporter(String jrxmlPath, String reportFolder, String extraFolder) {
 
         //path to root folder with all reports
         final String rootFolder = getRootFolder();
@@ -154,59 +154,61 @@ public class ReportTestRunner {
         }
         repo.addExtraReportFolder(resourceFolder);
 
-        return new ReportExporter(getOuputPdfFolder(), getRootFolder() + RepositoryManager.PATH_DELIMITER + "data.db");
+        PdfReporter reporter = new PdfReporter(jrxmlPath, getOuputPdfFolder(), getFilenameFromJrxml(jrxmlPath));
+        return  reporter;
     }
 
     private String exportFonts() throws Exception {
-        return getExporter("fonts", "extra-fonts").exportReport(DESIGN_REPORT_FONTS);
+        return getExporter(DESIGN_REPORT_FONTS, "fonts", "extra-fonts").exportFromXml(null, null);
     }
 
     private String exportShippment() throws Exception {
-        return getExporter("crosstabs", "extra-fonts").exportSqlReport(DESIGN_REPORT_SHIPMENTS);
+        return getExporter(DESIGN_REPORT_SHIPMENTS, "crosstabs", "extra-fonts").exportSqlReport(getDatabasePath(), null, null);
     }
 
     private String exportMasterReport() throws Exception {
-        ReportExporter exporter = getExporter("subreports", "extra-fonts"); // initialize Repository
+        PdfReporter exporter = getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts"); // initialize Repository
         JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ProductsSubreport", subreport);
-        return exporter.exportSqlReport(DESIGN_REPORT_MASTER, parameters);
+        exporter.setFillParameters(parameters);
+        return exporter.exportSqlReport(getDatabasePath(), null, null);
     }
 
     private String exportProducts() throws Exception {
-        return getExporter("crosstabs", "extra-fonts").exportSqlReport(DESIGN_REPORT_PRODUCTS);
+        return getExporter(DESIGN_REPORT_PRODUCTS, "crosstabs", "extra-fonts").exportSqlReport(getDatabasePath(), null, null);
     }
 
     private String exportStretch() throws Exception {
-        return getExporter("stretch").exportReport(DESIGN_REPORT_STRETCH);
+        return getExporter(DESIGN_REPORT_STRETCH, "stretch", null).exportFromXml(null, null);
     }
 
     private String exportTabular() throws Exception {
-        return getExporter("tabular", "extra-fonts").exportReport(DESIGN_REPORT_TABULAR);
+        return getExporter(DESIGN_REPORT_TABULAR, "tabular", "extra-fonts").exportFromXml(null, null);
     }
 
     private String exportOrders() throws Exception {
-        return getExporter("crosstabs", "extra-fonts").exportReport(DESIGN_REPORT_ORDERS, getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS);
+        return getExporter(DESIGN_REPORT_ORDERS, "crosstabs", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS);
     }
 
     private String exportLateOrder() throws Exception {
-        return getExporter("crosstabs", "extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS, getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
+        return getExporter(DESIGN_REPORT_LATE_ORDERS, "crosstabs", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
     }
 
     private String exportImages() throws Exception {
-        return getExporter("images").exportReport(DESIGN_REPORT_IMAGE);
+        return getExporter(DESIGN_REPORT_IMAGE, "images", null).exportFromXml(null, null);
     }
 
     private String exportLandscape() throws Exception {
-        return getExporter("landscape").exportReport(DESIGN_REPORT_LANDSCAPE);
+        return getExporter(DESIGN_REPORT_LANDSCAPE, "landscape", null).exportFromXml(null, null);
     }
 
     private String exportShapes() throws Exception {
-        return getExporter("shapes").exportReport(DESIGN_REPORT_SHAPES);
+        return getExporter(DESIGN_REPORT_SHAPES, "shapes", null).exportFromXml(null, null);
     }
 
     private String exportRotation() throws Exception {
-        return getExporter("misc").exportReport(DESIGN_REPORT_ROTATION);
+        return getExporter(DESIGN_REPORT_ROTATION, "misc", null).exportFromXml(null, null);
     }
 
     private String exportEncrypt() throws Exception {
@@ -216,18 +218,25 @@ public class ReportTestRunner {
         parameters.put(JRPdfExporterParameter.USER_PASSWORD, "jasper");
         parameters.put(JRPdfExporterParameter.OWNER_PASSWORD, "reports");
         parameters.put(JRPdfExporterParameter.PERMISSIONS, IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT);
-        return getExporter("misc").exportReport(DESIGN_REPORT_PDFCRYPT, parameters);
+
+        PdfReporter reporter =  getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null);
+        reporter.setExportParameters(parameters);
+        return reporter.exportFromXml(null, null);
     }
 
     private String exportParagraph() throws Exception {
-        return getExporter("text", "extra-fonts").exportReport(DESIGN_REPORT_PARAGRAPH);
+        return getExporter(DESIGN_REPORT_PARAGRAPH, "text", "extra-fonts").exportFromXml(null, null);
     }
 
     private String exportStyledText() throws Exception {
-        return getExporter("text", "extra-fonts").exportReport(DESIGN_REPORT_STYLEDTEXT);
+        return getExporter(DESIGN_REPORT_STYLEDTEXT, "text", "extra-fonts").exportFromXml(null, null);
     }
 
     private String exportCDBooklet() throws Exception {
-        return getExporter("cdbooklet", "extra-fonts").exportReport(DESIGN_REPORT_CDBOOCKLET, getResourcesFolder() + "/" + XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
+        return getExporter(DESIGN_REPORT_CDBOOCKLET, "cdbooklet", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
+    }
+
+    private String getFilenameFromJrxml(String jrxml) {
+        return jrxml.replace(".jrxml", "");
     }
 }
