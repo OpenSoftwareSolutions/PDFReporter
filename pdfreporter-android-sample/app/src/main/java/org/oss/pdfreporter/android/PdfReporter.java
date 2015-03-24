@@ -13,8 +13,6 @@ package org.oss.pdfreporter.android;
 import java.io.Closeable;
 import java.io.InputStream;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.oss.pdfreporter.engine.JRDataSource;
 import org.oss.pdfreporter.engine.JREmptyDataSource;
@@ -29,16 +27,16 @@ import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.FileResourceLoader;
+import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.sql.IConnection;
-import org.oss.pdfreporter.sql.SQLiteFactory;
 import org.oss.pdfreporter.sql.factory.ISqlFactory;
 
 
 public class PdfReporter {
 
-    private String mPdfOutputFolder;
-    private String mPdfOutputName;
-    private String mJrxmlFilePath;
+    private final String mPdfOutputFolder;
+    private final String mPdfOutputName;
+    private final String mJrxmlFilePath;
     private Map<JRExporterParameter, Object> mExportParameters;
     private Map<String,Object> mFillParameters;
 
@@ -56,12 +54,20 @@ public class PdfReporter {
         mFillParameters = fillParameters;
     }
 
-    public String exportFromXml(String xmlDataFile, String xmlXpath) throws Exception{
+    public static RepositoryManager getRepositoryManager() {
+        return RepositoryManager.getInstance();
+    }
+
+    public String exportWithoutDataSource() throws Exception{
+        return exportFromXml(null, null);
+    }
+
+    public String exportFromXml(String xmlDataFile, String xmlXpath) throws Exception {
         ApiRegistry.initSession();
 
         try {
             JasperDesign design = loadReport(mJrxmlFilePath);
-            JasperReport report = compileReport(design);
+            JasperReport report = JasperCompileManager.compileReport(design);
             return exportReport(report, xmlDataFile, xmlXpath);
         } finally {
             ApiRegistry.dispose();
@@ -75,7 +81,7 @@ public class PdfReporter {
         try {
 
             JasperDesign design = loadReport(mJrxmlFilePath);
-            JasperReport report = compileReport(design);
+            JasperReport report = JasperCompileManager.compileReport(design);
 
             ISqlFactory sqlFactory = ApiRegistry.getSqlFactory();
 
@@ -119,10 +125,6 @@ public class PdfReporter {
         } finally {
             close(isReport);
         }
-    }
-
-    public JasperReport compileReport(JasperDesign design) throws Exception {
-        return JasperCompileManager.compileReport(design);
     }
 
     private void close(Closeable stream) throws Exception {

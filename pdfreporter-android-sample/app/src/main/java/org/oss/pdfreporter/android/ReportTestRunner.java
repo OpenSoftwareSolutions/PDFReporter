@@ -146,7 +146,7 @@ public class ReportTestRunner {
         final String rootFolder = getRootFolder();
         final String resourceFolder = getResourcesFolder();
 
-        RepositoryManager repo = RepositoryManager.getInstance();
+        RepositoryManager repo = PdfReporter.getRepositoryManager();
         repo.setDefaultResourceFolder(resourceFolder);
         repo.setDefaulReportFolder(rootFolder + RepositoryManager.PATH_DELIMITER + "jrxml" + RepositoryManager.PATH_DELIMITER + reportFolder);
         if (null != extraFolder) {
@@ -159,7 +159,7 @@ public class ReportTestRunner {
     }
 
     private String exportFonts() throws Exception {
-        return getExporter(DESIGN_REPORT_FONTS, "fonts", "extra-fonts").exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_FONTS, "fonts", "extra-fonts").exportWithoutDataSource();
     }
 
     private String exportShippment() throws Exception {
@@ -168,9 +168,11 @@ public class ReportTestRunner {
 
     private String exportMasterReport() throws Exception {
         PdfReporter exporter = getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts"); // initialize Repository
+
         JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ProductsSubreport", subreport);
+
         exporter.setFillParameters(parameters);
         return exporter.exportSqlReport(getDatabasePath(), null, null);
     }
@@ -180,11 +182,11 @@ public class ReportTestRunner {
     }
 
     private String exportStretch() throws Exception {
-        return getExporter(DESIGN_REPORT_STRETCH, "stretch", null).exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_STRETCH, "stretch", null).exportWithoutDataSource();
     }
 
     private String exportTabular() throws Exception {
-        return getExporter(DESIGN_REPORT_TABULAR, "tabular", "extra-fonts").exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_TABULAR, "tabular", "extra-fonts").exportWithoutDataSource();
     }
 
     private String exportOrders() throws Exception {
@@ -196,19 +198,19 @@ public class ReportTestRunner {
     }
 
     private String exportImages() throws Exception {
-        return getExporter(DESIGN_REPORT_IMAGE, "images", null).exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_IMAGE, "images", null).exportWithoutDataSource();
     }
 
     private String exportLandscape() throws Exception {
-        return getExporter(DESIGN_REPORT_LANDSCAPE, "landscape", null).exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_LANDSCAPE, "landscape", null).exportWithoutDataSource();
     }
 
     private String exportShapes() throws Exception {
-        return getExporter(DESIGN_REPORT_SHAPES, "shapes", null).exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_SHAPES, "shapes", null).exportWithoutDataSource();
     }
 
     private String exportRotation() throws Exception {
-        return getExporter(DESIGN_REPORT_ROTATION, "misc", null).exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_ROTATION, "misc", null).exportWithoutDataSource();
     }
 
     private String exportEncrypt() throws Exception {
@@ -221,15 +223,15 @@ public class ReportTestRunner {
 
         PdfReporter reporter =  getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null);
         reporter.setExportParameters(parameters);
-        return reporter.exportFromXml(null, null);
+        return reporter.exportWithoutDataSource();
     }
 
     private String exportParagraph() throws Exception {
-        return getExporter(DESIGN_REPORT_PARAGRAPH, "text", "extra-fonts").exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_PARAGRAPH, "text", "extra-fonts").exportWithoutDataSource();
     }
 
     private String exportStyledText() throws Exception {
-        return getExporter(DESIGN_REPORT_STYLEDTEXT, "text", "extra-fonts").exportFromXml(null, null);
+        return getExporter(DESIGN_REPORT_STYLEDTEXT, "text", "extra-fonts").exportWithoutDataSource();
     }
 
     private String exportCDBooklet() throws Exception {
