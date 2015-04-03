@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -23,6 +24,7 @@ import org.oss.pdfreporter.compilers.jeval.functions.BooleanConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.Conditional;
 import org.oss.pdfreporter.compilers.jeval.functions.CurrentDate;
 import org.oss.pdfreporter.compilers.jeval.functions.DateStringConverter;
+import org.oss.pdfreporter.compilers.jeval.functions.DisplayName;
 import org.oss.pdfreporter.compilers.jeval.functions.DoubleStringConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.IntegerStringConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.IsNull;
@@ -46,7 +48,7 @@ public class JEvalExpression  {
 	private final Evaluator valueEvaluator;
 	private final Evaluator oldValueEvaluator;
 	private String expression;
-	
+
 	@SuppressWarnings("unchecked")
 	public JEvalExpression() {
 		this.variables = new HashMap<String, IVariable>();
@@ -61,8 +63,9 @@ public class JEvalExpression  {
 		putFunction(new NullValue());
 		putFunction(new IsNull());
 		putFunction(new Message());
+		putFunction(new DisplayName());
 		this.valueEvaluator = new Evaluator();
-// TODO (05.09.2013, OSS, Donat) Change to double quoted expression		
+// TODO (05.09.2013, OSS, Donat) Change to double quoted expression
 //		this.valueEvaluator.setQuoteCharacter(EvaluationConstants.DOUBLE_QUOTE);
 		this.valueEvaluator.setVariableResolver(new ValueResolver());
 		this.valueEvaluator.getFunctions().putAll(userFunctions);
@@ -71,8 +74,8 @@ public class JEvalExpression  {
 		this.oldValueEvaluator.setVariableResolver(new OldValueResolver());
 		this.oldValueEvaluator.getFunctions().putAll(userFunctions);
 	}
-	
-	
+
+
 	private void putFunction(Function function) {
 		userFunctions.put(function.getName(), function);
 	}
@@ -83,7 +86,7 @@ public class JEvalExpression  {
 		expression.parse(chunks);
 		return expression;
 	}
-	
+
 	public void parse(List<IExpressionChunk> chunks) throws ExpressionParseException  {
 		this.expression = buildExpression(chunks);
 		try {
@@ -93,7 +96,7 @@ public class JEvalExpression  {
 			throw new ExpressionParseException("Cannot parse '" + expression + "', error: " + e.getMessage());
 		}
 	}
-		
+
 	public String getExpression() {
 		return expression;
 	}
@@ -101,22 +104,22 @@ public class JEvalExpression  {
 	public IVariable getVariable(String name) {
 		return variables.get(getKey(ExpresionType.TYPE_VARIABLE,name));
 	}
-	
+
 	public IVariable getParameter(String name) {
 		return variables.get(getKey(ExpresionType.TYPE_PARAMETER,name));
 	}
-	
+
 	public IVariable getField(String name) {
 		return variables.get(getKey(ExpresionType.TYPE_FIELD,name));
 	}
-	
+
 	private String buildExpression(List<IExpressionChunk> chunks) {
 		StringBuffer sb = new StringBuffer();
 		String name;
 		IVariable variable;
 		for (IExpressionChunk chunk : chunks) {
 			switch (chunk.getType()) {
-			case TYPE_FIELD: 
+			case TYPE_FIELD:
 			case TYPE_PARAMETER:
 			case TYPE_VARIABLE:
 				name = getKey(chunk.getType(),chunk.getText());
@@ -149,7 +152,7 @@ public class JEvalExpression  {
 			return "T_" + name;
 		}
 	}
-	
+
 
 	public String evaluateValue() throws ExpressionEvaluationException {
 		try {
@@ -167,7 +170,7 @@ public class JEvalExpression  {
 		}
 	}
 
-	
+
 	private class ValueResolver implements VariableResolver {
 		@Override
 		public String resolveVariable(String variableName)
@@ -179,7 +182,7 @@ public class JEvalExpression  {
 			}
 		}
 	}
-	
+
 	private class OldValueResolver implements VariableResolver {
 		@Override
 		public String resolveVariable(String variableName)
@@ -198,6 +201,8 @@ public class JEvalExpression  {
 		} else if (value == null) {
 			return NullValue.QUOTED_NULL;
 		} else if (value instanceof String) {
+			return EvaluationConstants.SINGLE_QUOTE + value.toString() + EvaluationConstants.SINGLE_QUOTE;
+		} else if (value instanceof Locale) {
 			return EvaluationConstants.SINGLE_QUOTE + value.toString() + EvaluationConstants.SINGLE_QUOTE;
 		} else if (value instanceof Double){
 			return BigDecimal.valueOf((Double)value).toPlainString();
