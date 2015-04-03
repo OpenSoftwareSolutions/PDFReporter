@@ -34,27 +34,24 @@ import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpression;
 import org.oss.pdfreporter.engine.JRParameter;
 import org.oss.pdfreporter.engine.JRRuntimeException;
-import com.google.j2objc.annotations.AutoreleasePool;
 import org.oss.pdfreporter.engine.type.WhenResourceMissingTypeEnum;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.text.format.IMessageFormat;
 import org.oss.pdfreporter.text.format.factory.IFormatFactory.FormatType;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
 
 /**
  * Base class for the dynamically generated expression evaluator classes.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JREvaluator.java 5180 2012-03-29 13:23:12Z teodord $
  */
 public abstract class JREvaluator implements DatasetExpressionEvaluator
 {
 	private static final Logger logger = Logger.getLogger(JREvaluator.class.getName());
-	/**
-	 * The resource bundle parameter.
-	 */
-	private IJRFillParameter resourceBundle;
-	
+
 	/**
 	 * The resource missing type.
 	 */
@@ -64,7 +61,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	 * The report Locale used when parsing the bundle message.
 	 */
 	private IJRFillParameter locale;
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -75,7 +72,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Initializes the evaluator by setting the parameter, field and variable objects.
-	 * 
+	 *
 	 * @param parametersMap the parameters indexed by name
 	 * @param fieldsMap the fields indexed by name
 	 * @param variablesMap the variables indexed by name
@@ -83,25 +80,24 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	 * @throws JRException
 	 */
 	public void init(
-			Map<String, IJRFillParameter> parametersMap, 
-			Map<String, JRFillField> fieldsMap, 
-			Map<String, JRFillVariable> variablesMap, 
+			Map<String, IJRFillParameter> parametersMap,
+			Map<String, JRFillField> fieldsMap,
+			Map<String, JRFillVariable> variablesMap,
 			WhenResourceMissingTypeEnum resourceMissingType
 			) throws JRException
 	{
 		this.whenResourceMissingType = resourceMissingType;
-		this.resourceBundle = parametersMap.get(JRParameter.REPORT_RESOURCE_BUNDLE);
 		this.locale = parametersMap.get(JRParameter.REPORT_LOCALE);
 		customizedInit(parametersMap, fieldsMap, variablesMap);
 	}
 
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Constructs a message using a pattern with one parameter.
-	 * 
+	 *
 	 * @param pattern the message pattern
 	 * @param arg0 the message parameter
 	 * @return the constructed message
@@ -114,7 +110,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Constructs a message using a pattern with two parameters.
-	 * 
+	 *
 	 * @param pattern the message pattern
 	 * @param arg0 the first message parameter
 	 * @param arg1 the second message parameter
@@ -126,10 +122,10 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 		return getMessageFormat(pattern).format(new Object[] { arg0, arg1 });
 	}
 
-	
+
 	/**
 	 * Constructs a message using a pattern with three parameters.
-	 * 
+	 *
 	 * @param pattern the message pattern
 	 * @param arg0 the first message parameter
 	 * @param arg1 the second message parameter
@@ -144,7 +140,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Constructs a message using a pattern with an Object array parameter.
-	 * 
+	 *
 	 * @param pattern the message pattern
 	 * @param args the parameter Object array
 	 * @return the constructed message
@@ -153,34 +149,6 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	public String msg(String pattern, Object[] args)
 	{
 		return getMessageFormat(pattern).format(args);
-	}
-	
-	/**
-	 * Returns a string for a given key from the resource bundle associated with the evaluator.
-	 * 
-	 * @param key the key
-	 * @return the string for the given key
-	 * @see IResourceBundle#getString(java.lang.String)
-	 */
-	public String str(String key)
-	{
-		String str = null;
-		// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed 
-		// TODO (29.04.2013, Donat, Open Software Solutions): Revisit ResourceBundle, extract platform independent concept for translatable Strings  
-//		try
-//		{
-//			str = ((ResourceBundle) resourceBundle.getValue()).getString(key);
-//		}
-//		catch (NullPointerException e) //NOPMD
-//		{
-//			str = handleMissingResource(key, e);
-//		}
-//		catch (MissingResourceException e)
-//		{
-//			str = handleMissingResource(key, e);
-//		}
-
-		return str;
 	}
 
 
@@ -191,7 +159,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	public Object evaluate(JRExpression expression) throws JRExpressionEvalException
 	{
 		Object value = null;
-		
+
 		if (expression != null)
 		{
 			try
@@ -217,16 +185,16 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 //				throw e;
 //			}
 			// we have to catch Throwable because there is no way we could modify the signature
-			// of the evaluate method, without breaking backward compatibility of compiled report templates 
+			// of the evaluate method, without breaking backward compatibility of compiled report templates
 			catch (Throwable e) //NOPMD
 			{
 				throw new JRExpressionEvalException(expression, e);
 			}
 		}
-		
+
 		return value;
 	}
-	
+
 
 	/**
 	 *
@@ -234,7 +202,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	public Object evaluateOld(JRExpression expression) throws JRExpressionEvalException
 	{
 		Object value = null;
-		
+
 		if (expression != null)
 		{
 			try
@@ -251,13 +219,13 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 //				throw e;
 //			}
 			// we have to catch Throwable because there is no way we could modify the signature
-			// of the evaluate method, without breaking backward compatibility of compiled report templates 
+			// of the evaluate method, without breaking backward compatibility of compiled report templates
 			catch (Throwable e) //NOPMD
 			{
 				throw new JRExpressionEvalException(expression, e);
 			}
 		}
-		
+
 		return value;
 	}
 
@@ -268,7 +236,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 	public Object evaluateEstimated(JRExpression expression) throws JRExpressionEvalException
 	{
 		Object value = null;
-		
+
 		if (expression != null)
 		{
 			try
@@ -285,20 +253,20 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 //				throw e;
 //			}
 			// we have to catch Throwable because there is no way we could modify the signature
-			// of the evaluate method, without breaking backward compatibility of compiled report templates 
+			// of the evaluate method, without breaking backward compatibility of compiled report templates
 			catch (Throwable e) //NOPMD
 			{
 				throw new JRExpressionEvalException(expression, e);
 			}
 		}
-		
+
 		return value;
 	}
 
-	
+
 	/**
 	 * Handles the case when a resource is missing.
-	 * 
+	 *
 	 * @param key
 	 *            the resource key
 	 * @param e
@@ -340,22 +308,22 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Initializes the parameters, fields and variables of the evaluator.
-	 * 
+	 *
 	 * @param parametersMap the parameters indexed by name
 	 * @param fieldsMap the fields indexed by name
 	 * @param variablesMap the variables indexed by name
 	 * @throws JRException
 	 */
 	protected abstract void customizedInit(
-			Map<String, IJRFillParameter> parametersMap, 
-			Map<String, JRFillField> fieldsMap, 
+			Map<String, IJRFillParameter> parametersMap,
+			Map<String, JRFillField> fieldsMap,
 			Map<String, JRFillVariable> variablesMap
 			) throws JRException;
 
 
 	/**
 	 * Evaluates an expression using current fields and variables values.
-	 * 
+	 *
 	 * @param id the expression id
 	 * @return the result of the evaluation
 	 * @throws Throwable
@@ -368,7 +336,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Evaluates an expression using old fields and variables values.
-	 * 
+	 *
 	 * @param id the expression id
 	 * @return the result of the evaluation
 	 * @throws Throwable
@@ -381,7 +349,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 	/**
 	 * Evaluates an expression using estimated variables values.
-	 * 
+	 *
 	 * @param id the expression id
 	 * @return the result of the evaluation
 	 * @throws Throwable
@@ -392,7 +360,7 @@ public abstract class JREvaluator implements DatasetExpressionEvaluator
 
 
 	/**
-	 * 
+	 *
 	 */
 	private IMessageFormat getMessageFormat(String pattern)
 	{
