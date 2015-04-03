@@ -1,0 +1,24 @@
+
+pdfreporter-test Change Log
+
+==========================================================
+
+pdfreporter-test			 					03.04.2015
+----------------------------------------------------------
+New Tests
+- JSON support
+- i18n support
+
+New launch config
+- launch-config/ExporterTest-Java-Dekstop
+
+Bugs
+
+
+Open Issues
+- messages with parameter are not yet supported in the multi langauge (i18n)
+
+Diverses
+- pdfreporter-test depends on pdfreporter-java-shared (shared classes with Android)
+  and on pdfreporter-extension and pdfreporter-core. The pdfreporter-test is the test project
+  for "pdfreporter-java-desktop"
