@@ -24,6 +24,7 @@
 package org.oss.pdfreporter.engine.component;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import org.oss.pdfreporter.engine.JRComponentElement;
@@ -42,31 +43,31 @@ import org.oss.pdfreporter.engine.type.EvaluationTimeEnum;
 /**
  * A fill context provides access to data and functionality related to a
  * report component fill.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: FillContext.java 5766 2012-11-01 16:39:01Z lucianc $
  */
 public interface FillContext extends IJRFillExpressionEvaluator
 {
-	
+
 	/**
 	 * Returns the component element that wraps the component.
-	 * 
+	 *
 	 * @return the current component element
 	 */
 	JRComponentElement getComponentElement();
 
 	/**
 	 * Returns the fill element Id associated to the component element.
-	 * 
+	 *
 	 * @return the Id of the component fill element
 	 * @see JRPrintElement#getSourceElementId()
 	 */
 	int getElementSourceId();
-	
+
 	/**
 	 * Evaluates an expression in the main report dataset.
-	 * 
+	 *
 	 * @param expression the expression to evaluate
 	 * @param evaluation the evaluation type; usually directly passed from
 	 * {@link FillComponent#evaluate(byte)}
@@ -74,17 +75,17 @@ public interface FillContext extends IJRFillExpressionEvaluator
 	 * @throws JRException
 	 */
 	Object evaluate(JRExpression expression, byte evaluation) throws JRException;
-	
+
 	/**
 	 * Returns the default style provider for the generated report.
-	 * 
+	 *
 	 * @return the default style provider of the generated report
 	 */
 	JRDefaultStyleProvider getDefaultStyleProvider();
-	
+
 	/**
 	 * Returns the origin of the current component element.
-	 * 
+	 *
 	 * @return the origin of the component element
 	 */
 	JROrigin getElementOrigin();
@@ -92,21 +93,21 @@ public interface FillContext extends IJRFillExpressionEvaluator
 	/**
 	 * Returns the position on the vertical axis where the component element
 	 * starts printing.
-	 * 
+	 *
 	 * @return the position on the vertical axis of the component element
 	 */
 	int getElementPrintY();
-	
+
 	/**
 	 * Returns the current style of the component element.
-	 * 
+	 *
 	 * @return the current style of the component element
 	 */
 	JRStyle getElementStyle();
-	
+
 	/**
 	 * Registers a delayed evaluation for a print element.
-	 * 
+	 *
 	 * @param printElement the print element
 	 * @param evaluationTime the delayed evaluation time; one of
 	 * <ul>
@@ -120,30 +121,29 @@ public interface FillContext extends IJRFillExpressionEvaluator
 	 * <code>evaluationTime</code> is {@link EvaluationTimeEnum#GROUP}
 	 * @see FillComponent#evaluateDelayedElement(JRPrintElement, byte)
 	 */
-	void registerDelayedEvaluation(JRPrintElement printElement, 
+	void registerDelayedEvaluation(JRPrintElement printElement,
 			EvaluationTimeEnum evaluationTime, String evaluationGroup);
 
 	/**
 	 * Returns the resource bundle used for the current report.
-	 * 
+	 *
 	 * @return the report resource bundle
 	 * @see net.sf.jasperreports.engine.JRReport#getResourceBundle()
 	 * @see net.sf.jasperreports.engine.JRParameter#REPORT_RESOURCE_BUNDLE
 	 */
-	// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed 
-//	ResourceBundle getReportResourceBundle();
-	
+	ResourceBundle getReportResourceBundle();
+
 	/**
 	 * Returns the locale used to fill the current report.
-	 * 
+	 *
 	 * @return the report locale
 	 * @see org.oss.pdfreporter.engine.JRParameter#REPORT_LOCALE
 	 */
 	Locale getReportLocale();
-	
+
 	/**
 	 * Returns the time zone used to fill the current report.
-	 * 
+	 *
 	 * @return the report time zone
 	 * @see org.oss.pdfreporter.engine.JRParameter#REPORT_TIME_ZONE
 	 */
@@ -151,12 +151,12 @@ public interface FillContext extends IJRFillExpressionEvaluator
 
 	/**
 	 * Returns the filler object.
-	 * 
+	 *
 	 * @return the filler object
 	 */
 	IJRBaseFiller getFiller();
-	
+
 	FillContainerContext getFillContainerContext();
-	
+
 	//TODO access to params/fields/vars?
 }
