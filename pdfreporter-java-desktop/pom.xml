@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pdfreporting</groupId>
   <artifactId>pdfreporter-java-desktop</artifactId>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>1.1.3-SNAPSHOT</version>
   <packaging>jar</packaging>
   <parent>
         <groupId>com.pdfreporting</groupId>
         <artifactId>pdfreporter-application</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
   </parent>
   
@@ -15,13 +15,13 @@
         <dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>pdfreporter-core</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
+            <version>1.1.3-SNAPSHOT</version>
         </dependency>
         
         <dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>pdfreporter-java-shared</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
+            <version>1.1.3-SNAPSHOT</version>
         </dependency>
 		
 		<dependency>
