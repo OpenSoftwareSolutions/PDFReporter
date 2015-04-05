@@ -10,8 +10,11 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.jeval;
 
+import java.util.ResourceBundle;
+
 import org.oss.pdfreporter.compilers.AbstractExpressionElement;
 import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
+import org.oss.pdfreporter.engine.JRParameter;
 import org.oss.pdfreporter.engine.JRValueParameter;
 
 
@@ -28,7 +31,9 @@ public class ExpressionRessource extends AbstractExpressionElement implements IV
 
 	@Override
 	public Object getValue() {
-		return getParameter().getValue();
+		JRValueParameter parameter = getParameter();
+		ResourceBundle resourceBundle = (ResourceBundle) parameter.getValue();
+		return resourceBundle.getString(getName());
 	}
 
 
@@ -39,7 +44,7 @@ public class ExpressionRessource extends AbstractExpressionElement implements IV
 
 	@Override
 	public ExpresionType getType() {
-		return ExpresionType.TYPE_RESOURCE;
+		return ExpresionType.TYPE_VARIABLE;
 	}
 
 	@Override
@@ -48,12 +53,12 @@ public class ExpressionRessource extends AbstractExpressionElement implements IV
 	}
 
 	private JRValueParameter getParameter() {
-		return data.getParameter(getName());
+		return data.getParameter(JRParameter.REPORT_RESOURCE_BUNDLE);
 	}
 
 	@Override
 	public String toString() {
-		return "ExpressionParameter [name=" + name + "]";
+		return "ExpressionResource [name=" + name + "]";
 	}
 
 }

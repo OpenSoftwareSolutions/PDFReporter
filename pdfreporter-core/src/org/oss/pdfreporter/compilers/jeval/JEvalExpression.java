@@ -29,6 +29,7 @@ import org.oss.pdfreporter.compilers.jeval.functions.DoubleStringConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.IntegerStringConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.IsNull;
 import org.oss.pdfreporter.compilers.jeval.functions.Message;
+import org.oss.pdfreporter.compilers.jeval.functions.MessageWithArg;
 import org.oss.pdfreporter.compilers.jeval.functions.NullValue;
 import org.oss.pdfreporter.compilers.jeval.functions.TruncateDateTo;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
@@ -64,6 +65,7 @@ public class JEvalExpression  {
 		putFunction(new IsNull());
 		putFunction(new Message());
 		putFunction(new DisplayName());
+		putFunction(new MessageWithArg());
 		this.valueEvaluator = new Evaluator();
 // TODO (05.09.2013, OSS, Donat) Change to double quoted expression
 //		this.valueEvaluator.setQuoteCharacter(EvaluationConstants.DOUBLE_QUOTE);
