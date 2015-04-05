@@ -15,7 +15,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
@@ -248,7 +247,6 @@ public class ExporterTest {
 	}
 
 	/*
-	 * TODO (18.03.2015, Magnus, OSS): complete implementation on i18n in java and extracted from pdfreporter-core
 	 * */
 	@Test
 	public void exportI18n() throws Exception {
