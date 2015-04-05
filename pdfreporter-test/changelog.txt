@@ -1,5 +1,18 @@
 
 pdfreporter-test Change Log
+==========================================================
+
+pdfreporter-test			 					05.04.2015
+----------------------------------------------------------
+New Tests
+- i18n support
+	- messages with parameter are supported in the multi langauge (i18n)
+
+Bugs
+
+
+Open Issues
+
 
 ==========================================================
 

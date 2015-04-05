@@ -1,5 +1,17 @@
 
 pdfreporter-core Change Log
+==========================================================
+
+pdfreporter-core 								05.04.2015
+----------------------------------------------------------
+Features
+- messages with parameter are supported in the multi langauge (i18n)
+
+Bugs
+
+
+Open Issues
+- the expression language needs to be integrated to the pdfreporter-core
 
 ==========================================================
 
