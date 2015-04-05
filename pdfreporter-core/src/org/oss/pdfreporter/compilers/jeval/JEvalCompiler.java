@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -35,11 +35,9 @@ public class JEvalCompiler extends JRAbstractCompiler {
 	private static final Logger logger = Logger.getLogger(JEvalCompiler.class.getName());
 	private final static Map<String,JREvaluator> evaluators = new HashMap<String, JREvaluator>();
 	// TODO (21.04.2013, Donat, Open Software Solutions): Add facility to build from xml instead of compiling
-	// TODO (21.04.2013, Donat, Open Software Solutions): Add support for the JREvaluator str() and msg() function
-	// TODO (21.04.2013, Donat, Open Software Solutions): Add support or replacement for java.text.MessageFormat
-	
-	
-	
+
+
+
 
 
 	public JEvalCompiler(JasperReportsContext jasperReportsContext,
@@ -63,14 +61,14 @@ public class JEvalCompiler extends JRAbstractCompiler {
 	protected void checkLanguage(String language) throws JRException {
 		if (!JRReport.LANGUAGE_JEVAL.equals(language))
 		{
-			throw 
+			throw
 				new JRException(
-					"Language \"" + language 
+					"Language \"" + language
 					+ "\" not supported by this report compiler.\n"
 					+ "Expecting \"objectivec\" instead."
 					);
 		}
-		
+
 	}
 
 	@Override
@@ -89,7 +87,7 @@ public class JEvalCompiler extends JRAbstractCompiler {
 			File tempDirFile) throws JRException {
 		for (JRCompilationUnit unit : units) {
 			// just set the compilation unit name as compile data. Later we can retrieve the Evaluator by this name
-			unit.setCompileData(new DummyCompileData()); 
+			unit.setCompileData(new DummyCompileData());
 		}
 		return null; // no error
 	}
@@ -98,7 +96,7 @@ public class JEvalCompiler extends JRAbstractCompiler {
 	protected String getSourceFileName(String unitName) {
 		return null;
 	}
-	
+
 	private static class DummyCompileData implements Serializable {
 		private static final long serialVersionUID = 1L;
 	}
