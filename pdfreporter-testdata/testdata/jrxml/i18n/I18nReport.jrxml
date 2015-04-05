@@ -41,10 +41,7 @@
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$R{text.message}]]></textFieldExpression>
-				<!--
-				<textFieldExpression><![CDATA[msg($R{text.message}, $P{number})]]></textFieldExpression>
-				-->
+				<textFieldExpression><![CDATA[message($R{text.message}, $P{number})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="full,short" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="20" y="175" width="530" height="28" forecolor="#0000FF"/>
