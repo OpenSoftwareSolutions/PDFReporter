@@ -1,0 +1,20 @@
+
+pdfreporter-java-desktop Change Log
+
+==========================================================
+
+pdfreporter-java-desktop 1.x.x 					xx.04.2015
+----------------------------------------------------------
+Features
+- JSON support
+- i18n support
+
+Bugs
+
+
+Open Issues
+- messages with parameter are not yet supported in the multi langauge (i18n)
+
+Diverses
+- pdfreporter-java-desktop depends on pdfreporter-java-shared (shared classes with Android)
+  and on pdfreporter-extension and pdfreporter-core.

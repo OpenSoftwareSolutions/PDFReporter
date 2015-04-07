@@ -33,6 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -98,7 +99,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 	private final static Logger logger = Logger.getLogger(JRBaseFiller.class.getName());
 	private long time = System.currentTimeMillis();
-	
+
 	protected final Map<Integer, JRFillElement> fillElements = new HashMap<Integer, JRFillElement>();
 	protected final int fillerId;
 
@@ -113,7 +114,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	private JRStyledTextParser styledTextParser = JRStyledTextParser.getInstance();
 
 	private FillListener fillListener;
-	
+
 	/**
 	 *
 	 */
@@ -164,7 +165,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	protected WhenResourceMissingTypeEnum whenResourceMissingType = WhenResourceMissingTypeEnum.NULL;
 
 	protected JRFillReportTemplate[] reportTemplates;
-	
+
 	protected List<JRTemplate> templates;
 
 	protected JRStyle defaultStyle;
@@ -237,7 +238,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	private Thread fillingThread;
 
 	protected JRCalculator calculator;
-	
+
 	protected JRAbstractScriptlet scriptlet;
 
 	/**
@@ -267,7 +268,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	private JRSubreportRunner subreportRunner;
 
 	protected SavePoint keepTogetherSavePoint;
-	
+
 
 	/**
 	 *
@@ -293,9 +294,9 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 *
 	 */
 	protected JRBaseFiller(
-		JasperReportsContext jasperReportsContext, 
-		JasperReport jasperReport, 
-		JREvaluator initEvaluator, 
+		JasperReportsContext jasperReportsContext,
+		JasperReport jasperReport,
+		JREvaluator initEvaluator,
 		JRFillSubreport parentElement
 		) throws JRException
 	{
@@ -306,16 +307,16 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 *
 	 */
 	protected JRBaseFiller(
-		JasperReportsContext jasperReportsContext, 
-		JasperReport jasperReport, 
-		DatasetExpressionEvaluator initEvaluator, 
+		JasperReportsContext jasperReportsContext,
+		JasperReport jasperReport,
+		DatasetExpressionEvaluator initEvaluator,
 		JRFillSubreport parentElement
 		) throws JRException
 	{
 		JRGraphEnvInitializer.initializeGraphEnv();
 
 		setJasperReportsContext(jasperReportsContext);
-		
+
 		this.jasperReport = jasperReport;
 
 		/*   */
@@ -333,7 +334,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		{
 			fillContext = parentFiller.fillContext;
 		}
-		
+
 		this.fillerId = fillContext.generatedFillerId();
 
 		/*   */
@@ -358,10 +359,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		whenResourceMissingType = jasperReport.getWhenResourceMissingTypeValue();
 
 		jasperPrint = new JasperPrint();
-		
-		getPropertiesUtil().transferProperties(jasperReport, jasperPrint, 
+
+		getPropertiesUtil().transferProperties(jasperReport, jasperPrint,
 				JasperPrint.PROPERTIES_PRINT_TRANSFER_PREFIX);
-		
+
 		if (initEvaluator == null)
 		{
 			calculator = JRFillDataset.createCalculator(jasperReportsContext, jasperReport, jasperReport.getMainDataset());
@@ -380,19 +381,19 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 		createDatasets();
 		mainDataset = factory.getDataset(jasperReport.getMainDataset());
-		
+
 		if (parentFiller == null)
 		{
 			FillDatasetPosition masterFillPosition = new FillDatasetPosition(null);
 			mainDataset.setFillPosition(masterFillPosition);
 		}
-		
+
 		groups = mainDataset.groups;
 
 		createReportTemplates(factory);
 
 		String reportName = factory.getFiller().isSubreport() ? factory.getFiller().getJasperReport().getName() : null;
-		
+
 		background = factory.getBand(jasperReport.getBackground());
 		if (background != missingFillBand)
 		{
@@ -403,7 +404,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		title = factory.getBand(jasperReport.getTitle());
 		if (title != missingFillBand)
 		{
@@ -425,7 +426,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		columnHeader = factory.getBand(jasperReport.getColumnHeader());
 		if (columnHeader != missingFillBand)
 		{
@@ -436,7 +437,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		detailSection = factory.getSection(jasperReport.getDetailSection());
 		if (detailSection != missingFillSection)
 		{
@@ -447,7 +448,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		columnFooter = factory.getBand(jasperReport.getColumnFooter());
 		if (columnFooter != missingFillBand)
 		{
@@ -458,7 +459,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		pageFooter = factory.getBand(jasperReport.getPageFooter());
 		if (pageFooter != missingFillBand)
 		{
@@ -469,7 +470,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		lastPageFooter = factory.getBand(jasperReport.getLastPageFooter());
 		if (lastPageFooter != missingFillBand)
 		{
@@ -480,7 +481,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		summary = factory.getBand(jasperReport.getSummary());
 		if (summary != missingFillBand && summary.isEmpty())
 		{
@@ -495,7 +496,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					)
 				);
 		}
-		
+
 		noData = factory.getBand(jasperReport.getNoData());
 		if (noData != missingFillBand)
 		{
@@ -530,10 +531,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		return mainDataset.parametersMap;
 	}
 
-	
+
 	/**
 	 * Returns the map of parameter values.
-	 * 
+	 *
 	 * @return the map of parameter values
 	 */
 	public Map<String,Object> getParameterValuesMap()
@@ -702,14 +703,14 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 	/**
 	 * Returns the number of generated master print pages.
-	 * 
+	 *
 	 * @return the number of generated master print pages
 	 */
 	public int getCurrentPageCount()
 	{
 		return getMasterFiller().jasperPrint.getPages().size();
 	}
-	
+
 	/**
 	 *
 	 */
@@ -731,7 +732,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		return parentElement != null && parentElement.isRunToBottom() != null
 				&& parentElement.isRunToBottom().booleanValue();
 	}
-	
+
 	/**
 	 *
 	 */
@@ -754,13 +755,13 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		{
 			setInterrupted(true);
 		}
-		
+
 		if (isInterrupted())
 		{
 			throw new JRFillInterruptedException();
 		}
 	}
-	
+
 	/**
 	 *
 	 */
@@ -782,10 +783,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 */
 	protected abstract void setPageHeight(int pageHeight);
 
-	
+
 	/**
 	 * Adds a fill lister to be notified by events that occur during the fill.
-	 * 
+	 *
 	 * @param fillListener the listener to add
 	 */
 	public void addFillListener(FillListener fillListener)
@@ -834,14 +835,14 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	public JasperPrint fill(Map<String,Object> parameterValues) throws JRException
 	{
 		setParametersToContext(parameterValues);
-		
+
 		if (parameterValues == null)
 		{
 			parameterValues = new HashMap<String,Object>();
 		}
 
 		fillingThread = Thread.currentThread();
-		
+
 		boolean success = false;
 		try
 		{
@@ -899,7 +900,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		{
 			mainDataset.closeDatasource();
 			mainDataset.disposeParameterContributors();
-			
+
 			if (success && parentFiller == null)
 			{
 				// commit the cached data
@@ -910,7 +911,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 			{
 				parentFiller.unregisterSubfiller(this);
 			}
-			
+
 			if (fillContext.isUsingVirtualizer())
 			{
 				// removing the listener
@@ -921,7 +922,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 			//kill the subreport filler threads
 			killSubfillerThreads();
-			
+
 			if (parentFiller == null)
 			{
 				fillContext.dispose();
@@ -937,12 +938,12 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 			setJasperReportsContext(localContext);
 		}
 	}
-		
+
 	public void addPrintStyle(JRStyle style) throws JRException
 	{
 		jasperPrint.addStyle(style, true);
 	}
-	
+
 	protected static interface DefaultStyleListener
 	{
 		void defaultStyleSet(JRStyle style);
@@ -1048,11 +1049,11 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		return templates;
 	}
-	
+
 	protected List<JRStyle> collectTemplateStyles() throws JRException
 	{
 		collectTemplates();
-		
+
 		List<JRStyle> externalStyles = new ArrayList<JRStyle>();
 		HashSet<String> loadedLocations = new HashSet<String>();
 		for (JRTemplate template : templates)
@@ -1067,11 +1068,11 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		HashSet<String> parentLocations = new HashSet<String>();
 		collectStyles(template, externalStyles, loadedLocations, parentLocations);
 	}
-	
-	protected void collectStyles(JRTemplate template, List<JRStyle> externalStyles, 
+
+	protected void collectStyles(JRTemplate template, List<JRStyle> externalStyles,
 			Set<String> loadedLocations, Set<String> templateParentLocations) throws JRException
 	{
-		collectIncludedTemplates(template, externalStyles, 
+		collectIncludedTemplates(template, externalStyles,
 				loadedLocations, templateParentLocations);
 
 		JRStyle[] templateStyles = template.getStyles();
@@ -1091,7 +1092,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		}
 	}
 
-	protected void collectIncludedTemplates(JRTemplate template, List<JRStyle> externalStyles, 
+	protected void collectIncludedTemplates(JRTemplate template, List<JRStyle> externalStyles,
 			Set<String> loadedLocations, Set<String> templateParentLocations) throws JRException
 	{
 		JRTemplateReference[] includedTemplates = template.getIncludedTemplates();
@@ -1104,18 +1105,18 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 				if (!templateParentLocations.add(location))
 				{
-					throw new JRRuntimeException("Circular dependency found for template at location " 
+					throw new JRRuntimeException("Circular dependency found for template at location "
 							+ location);
 				}
-				
+
 				if (loadedLocations.add(location))
 				{
 					//template not yet loaded
 					JRTemplate includedTemplate = JRFillReportTemplate.loadTemplate(
 							location, this);
-					collectStyles(includedTemplate, externalStyles, 
+					collectStyles(includedTemplate, externalStyles,
 							loadedLocations, templateParentLocations);
-					
+
 				}
 			}
 		}
@@ -1179,7 +1180,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 	private void createBoundElementMaps(JREvaluationTime evaluationTime)
 	{
-		LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> boundElementsMap = 
+		LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> boundElementsMap =
 				new LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>>();
 		boundElements.put(evaluationTime, boundElementsMap);
 	}
@@ -1226,7 +1227,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		mainDataset.initDatasource();
 
 		this.scriptlet = mainDataset.delegateScriptlet;
-		
+
 		if (!isSubreport())
 		{
 			fillContext.setMasterFormatFactory(getFormatFactory());
@@ -1245,10 +1246,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				// this allows setting a separate listener, and guarantees that
 				// the current subreport page is not externalized.
 				virtualizationContext = new JRVirtualizationContext(fillContext.getVirtualizationContext());//FIXME lucianc clear this context from the virtualizer
-				
+
 				// setting per subreport page size
 				setVirtualPageSize(parameterValues);
-				
+
 				virtualizationListener = new ElementEvaluationVirtualizationListener(this);
 				virtualizationContext.addListener(virtualizationListener);
 			}
@@ -1261,21 +1262,21 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 			{
 				return;
 			}
-			
+
 			fillContext.setUsingVirtualizer(true);
-			
+
 			virtualizationContext = fillContext.getVirtualizationContext();
 			virtualizationContext.setVirtualizer(virtualizer);
-			
+
 			setVirtualPageSize(parameterValues);
-			
+
 			virtualizationListener = new ElementEvaluationVirtualizationListener(this);
 			virtualizationContext.addListener(virtualizationListener);
-			
+
 			JRVirtualizationContext.register(virtualizationContext, jasperPrint);
 		}
 	}
-	
+
 	protected void lockVirtualizationContext()
 	{
 		if (virtualizationContext != null)
@@ -1283,7 +1284,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 			virtualizationContext.lock();
 		}
 	}
-	
+
 	protected void unlockVirtualizationContext()
 	{
 		if (virtualizationContext != null)
@@ -1307,7 +1308,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				virtualPageSize = JRPropertiesUtil.asInteger(pageSizeProp);
 			}
 		}
-		
+
 		if (virtualPageSize != null)
 		{
 			// override the default
@@ -1392,14 +1393,16 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		return mainDataset.timeZone;
 	}
 
-
 	/**
 	 * Returns the report resource bundle.
 	 *
 	 * @return the report resource bundle
+	 * // TODO (29.04.2013, Donat, Open Software Solutions AG): Notice ResourceBundle support was removed
 	 */
-	// TODO (29.04.2013, Donat, Open Software Solutions AG): Notice ResourceBundle support was removed 
-
+	protected ResourceBundle getResourceBundle()
+	{
+		return mainDataset.resourceBundle;
+	}
 
 	/**
 	 * Returns the report format factory.
@@ -1419,7 +1422,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		return getDateFormat(pattern, null);
 	}
-	
+
 	protected IFormat getDateFormat(String pattern, TimeZone timeZone)
 	{
 		Locale lc = getLocale();
@@ -1510,9 +1513,9 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	 */
 	protected boolean next() throws JRException
 	{
-		if (logger.isLoggable(Level.FINEST)) {			
+		if (logger.isLoggable(Level.FINEST)) {
 			long now = System.currentTimeMillis();
-			if (now - time > 100) {			
+			if (now - time > 100) {
 				logger.finest("Time fill Progress: " + String.format("%1$TM:%1$TS.%1$TL", now - time));
 				time = now;
 			}
@@ -1523,12 +1526,12 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	protected void resolveBoundElements(JREvaluationTime evaluationTime, byte evaluation) throws JRException
 	{
 		LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> pagesMap = boundElements.get(evaluationTime);
-		
+
 		boolean hasEntry;
 		do
 		{
 			checkInterrupted();
-			
+
 			// locking once per page so that we don't hold the lock for too long
 			// (that would prevent async exporters from getting page data during a long resolve)
 			lockVirtualizationContext();
@@ -1543,7 +1546,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					{
 						Map.Entry<PageKey, LinkedMap<Object, EvaluationBoundAction>> pageEntry = pagesIt.next();
 						int pageIdx = pageEntry.getKey().index;
-						
+
 						LinkedMap<Object, EvaluationBoundAction> boundElementsMap = pageEntry.getValue();
 						// execute the actions
 						while (!boundElementsMap.isEmpty())
@@ -1551,10 +1554,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 							EvaluationBoundAction action = boundElementsMap.pop();
 							action.execute(evaluation, evaluationTime);
 						}
-						
+
 						// remove the entry from the pages map
 						pagesIt.remove();
-						
+
 						// call the listener to signal that the page has been modified
 						if (fillListener != null)
 						{
@@ -1657,10 +1660,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		return mainDataset.getVariableValue(variableName);
 	}
-	
+
 	/**
 	 * Returns the value of a parameter.
-	 * 
+	 *
 	 * @param parameterName the parameter name
 	 * @return the parameter value
 	 */
@@ -1706,7 +1709,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	public void cancelFill() throws JRException
 	{
 		fillContext.markCanceled();
-		
+
 		if (fillContext.cancelRunningQuery())
 		{
 		}
@@ -1848,7 +1851,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 	/**
 	 * Returns the top-level (master) filler object.
-	 * 
+	 *
 	 * @return the master filler object
 	 */
 	public JRBaseFiller getMasterFiller()
@@ -1867,7 +1870,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	}
 
 
-	protected void addBoundElement(JRFillElement element, JRPrintElement printElement, 
+	protected void addBoundElement(JRFillElement element, JRPrintElement printElement,
 			EvaluationTimeEnum evaluationType, String groupName, JRFillBand band)
 	{
 		JRFillGroup group = groupName == null ? null : getGroup(groupName);
@@ -1882,10 +1885,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 
 	protected void addBoundElement(JRFillElement element, JRPrintElement printElement, JREvaluationTime evaluationTime)
 	{
-		
+
 		// get the pages map for the evaluation
 		LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> pagesMap = boundElements.get(evaluationTime);
-		
+
 		lockVirtualizationContext();
 		try
 		{
@@ -1893,7 +1896,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 			{
 				// the key contains the page and its index; the index is only stored so that we have it in resolveBoundElements
 				PageKey pageKey = new PageKey(printPage, jasperPrint.getPages().size() - 1);
-				
+
 				// get the actions map for the current page, creating if it does not yet exist
 				LinkedMap<Object, EvaluationBoundAction> boundElementsMap = pagesMap.get(pageKey);
 				if (boundElementsMap == null)
@@ -1901,7 +1904,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					boundElementsMap = new LinkedMap<Object, EvaluationBoundAction>();
 					pagesMap.put(pageKey, boundElementsMap);
 				}
-				
+
 				// add the delayed element action to the map
 				boundElementsMap.add(printElement, new ElementEvaluationAction(element, printElement));
 			}
@@ -1916,7 +1919,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		PageKey subreportKey = new PageKey(subreportPage);
 		PageKey parentKey = new PageKey(parentFiller.printPage);
-		
+
 		// move all delayed elements from the subreport page to the master page
 		moveBoundActions(subreportKey, parentKey);
 	}
@@ -1939,7 +1942,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 							masterMap = new LinkedMap<Object, EvaluationBoundAction>();
 							map.put(parentKey, masterMap);
 						}
-						
+
 						masterMap.addAll(subreportMap);
 					}
 				}
@@ -1949,7 +1952,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				unlockVirtualizationContext();
 			}
 		}
-		
+
 		if (subfillers != null)//recursive
 		{
 			for (JRBaseFiller subfiller : subfillers.values())
@@ -1986,7 +1989,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				unlockVirtualizationContext();
 			}
 		}
-		
+
 		if (subfillers != null)
 		{
 			for (JRBaseFiller subfiller : subfillers.values())
@@ -2016,7 +2019,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				}
 			}
 		}
-		
+
 		if (group == null)
 		{
 			throw new JRRuntimeException("No such group " + groupName);
@@ -2079,25 +2082,25 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 		else if (newSavePoint != null)
 		{
 			// check to see if the new save point is on the same page/column as the previous one
-			
+
 			if (
 				savePoint.page == newSavePoint.page
 				&& savePoint.columnIndex == newSavePoint.columnIndex
 				)
 			{
-				// if the new save point is on the same page/column, 
-				// we just move the marker on the existing save point 
+				// if the new save point is on the same page/column,
+				// we just move the marker on the existing save point
 				savePoint.saveHeightOffset(newSavePoint.heightOffset);
 			}
 			else
 			{
-				// page/column break occurred, so the move operation 
+				// page/column break occurred, so the move operation
 				// must be performed on the previous save point
 				savePoint.moveSavePointContent();
 				savePoint = newSavePoint;
 			}
 		}
-		
+
 		return savePoint;
 	}
 
@@ -2108,7 +2111,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	protected boolean moveKeepTogetherSavePointContent()
 	{
 		boolean moved = false;
-		
+
 		if (keepTogetherSavePoint != null)
 		{
 			if (keepTogetherSavePoint.page == getCurrentPage())
@@ -2118,13 +2121,13 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				if (!keepTogetherSavePoint.isNewColumn)
 				{
 					keepTogetherSavePoint.addContent(
-						printPage, 
+						printPage,
 						columnSpacing + columnWidth,
 						offsetY - keepTogetherSavePoint.startOffsetY
 						);
 
 					offsetY = offsetY + keepTogetherSavePoint.endOffsetY - keepTogetherSavePoint.startOffsetY;
-					
+
 					moved = true;
 				}
 			}
@@ -2135,7 +2138,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 				if (!keepTogetherSavePoint.isNewPage)
 				{
 					keepTogetherSavePoint.addContent(
-							printPage, 
+							printPage,
 							(columnIndex - keepTogetherSavePoint.columnIndex) * (columnSpacing + columnWidth),
 							offsetY - keepTogetherSavePoint.startOffsetY
 							);
@@ -2145,10 +2148,10 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 					moved = true;
 				}
 			}
-			
+
 			keepTogetherSavePoint = null;
 		}
-		
+
 		return moved;
 	}
 
@@ -2156,7 +2159,7 @@ public abstract class JRBaseFiller implements IJRBaseFiller, JRDefaultStyleProvi
 	{
 		return fillContext;
 	}
-	
+
 	protected int getFillerId()
 	{
 		return fillerId;
@@ -2177,13 +2180,13 @@ class PageKey
 {
 	final JRPrintPage page;
 	final int index;
-	
+
 	public PageKey(JRPrintPage page, int index)
 	{
 		this.page = page;
 		this.index = index;
 	}
-	
+
 	public PageKey(JRPrintPage page)
 	{
 		this(page, 0);
@@ -2202,7 +2205,7 @@ class PageKey
 		{
 			return false;
 		}
-		
+
 		return page.equals(((PageKey) obj).page);
 	}
 }
@@ -2220,7 +2223,7 @@ class ElementEvaluationAction implements EvaluationBoundAction
 		this.element = element;
 		this.printElement = printElement;
 	}
-	
+
 	public void execute(byte evaluation, JREvaluationTime evaluationTime) throws JRException
 	{
 		element.resolveElement(printElement, evaluation, evaluationTime);
@@ -2236,13 +2239,13 @@ class ElementEvaluationAction implements EvaluationBoundAction
 }
 
 /**
- * Virtualization listener that looks for elements with delayed evaluations 
+ * Virtualization listener that looks for elements with delayed evaluations
  * and saves/restores the evaluations and externalization/internalization.
  */
 class ElementEvaluationVirtualizationListener implements VirtualizationListener<VirtualElementsData>
 {
 	private final JRBaseFiller mainFiller;
-	
+
 	public ElementEvaluationVirtualizationListener(JRBaseFiller filler)
 	{
 		this.mainFiller = filler;
@@ -2267,23 +2270,23 @@ class ElementEvaluationVirtualizationListener implements VirtualizationListener<
 		JRVirtualPrintPage page = ((VirtualizablePageElements) object).getPage();// ugly but needed for now
 		PageKey pageKey = new PageKey(page);
 		VirtualElementsData virtualData = object.getVirtualData();
-		
-		for (Map.Entry<JREvaluationTime, LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>>> boundMapEntry : 
+
+		for (Map.Entry<JREvaluationTime, LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>>> boundMapEntry :
 			filler.boundElements.entrySet())
 		{
 			final JREvaluationTime evaluationTime = boundMapEntry.getKey();
 			LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> map = boundMapEntry.getValue();
-			
+
 			synchronized (map)
 			{
 				final LinkedMap<Object, EvaluationBoundAction> actionsMap = map.get(pageKey);
-				
+
 				if (actionsMap != null && !actionsMap.isEmpty())
 				{
 					// collection delayed evaluations for elements that are about to be externalized.
 					// the evaluations store the ID of the fill elements in order to serialize the data.
 					final Map<JRPrintElement, Integer> elementEvaluations = new LinkedHashMap<JRPrintElement, Integer>();
-					
+
 					// FIXME optimize for pages with a single virtual block
 					// create a deep element visitor
 					PrintElementVisitor<Void> visitor = new UniformPrintElementVisitor<Void>(true)
@@ -2297,28 +2300,28 @@ class ElementEvaluationVirtualizationListener implements VirtualizationListener<
 							if (action != null)
 							{
 								elementEvaluations.put(element, action.element.elementId);
-								
+
 							}
 						}
 					};
-					
+
 					for (JRPrintElement element : virtualData.getElements())
 					{
 						element.accept(visitor, null);
 					}
-					
+
 					if (!elementEvaluations.isEmpty())
 					{
 						// save the evaluations in the virtual data
 						virtualData.setElementEvaluations(filler.fillerId, evaluationTime, elementEvaluations);
-						
+
 						// add an action for the page so that it gets devirtualized on resolveBoundElements
 						actionsMap.add(null, new VirtualizedPageEvaluationAction(object));
 					}
 				}
 			}
 		}
-		
+
 		if (filler.subfillers != null)//recursive
 		{
 			for (JRBaseFiller subfiller : filler.subfillers.values())
@@ -2327,7 +2330,7 @@ class ElementEvaluationVirtualizationListener implements VirtualizationListener<
 			}
 		}
 	}
-	
+
 	public void afterInternalization(JRVirtualizable<VirtualElementsData> object)
 	{
 		JRVirtualizationContext virtualizationContext = object.getContext();
@@ -2347,17 +2350,17 @@ class ElementEvaluationVirtualizationListener implements VirtualizationListener<
 		JRVirtualPrintPage page = ((VirtualizablePageElements) object).getPage();// ugly but needed for now
 		PageKey pageKey = new PageKey(page);
 		VirtualElementsData elementsData = object.getVirtualData();
-		
-		for (Map.Entry<JREvaluationTime, LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>>> boundMapEntry : 
+
+		for (Map.Entry<JREvaluationTime, LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>>> boundMapEntry :
 			filler.boundElements.entrySet())
 		{
 			JREvaluationTime evaluationTime = boundMapEntry.getKey();
 			LinkedHashMap<PageKey, LinkedMap<Object, EvaluationBoundAction>> map = boundMapEntry.getValue();
-			
+
 			synchronized (map)
 			{
 				LinkedMap<Object, EvaluationBoundAction> actionsMap = map.get(pageKey);
-				
+
 				// get the delayed evaluations from the devirtualized data and add it back
 				// to the filler delayed evaluation maps.
 				Map<JRPrintElement, Integer> elementEvaluations = elementsData.getElementEvaluations(filler.fillerId, evaluationTime);
@@ -2368,19 +2371,19 @@ class ElementEvaluationVirtualizationListener implements VirtualizationListener<
 						JRPrintElement element = entry.getKey();
 						int fillElementId = entry.getValue();
 						JRFillElement fillElement = filler.fillElements.get(fillElementId);
-						
+
 						if (fillElement == null)
 						{
 							throw new JRRuntimeException("Fill element with id " + fillElementId + " not found");
 						}
-						
+
 						// add first so that it will be executed immediately
 						actionsMap.addFirst(element, new ElementEvaluationAction(fillElement, element));
 					}
 				}
 			}
 		}
-		
+
 		if (filler.subfillers != null)//recursive
 		{
 			for (JRBaseFiller subfiller : filler.subfillers.values())
@@ -2410,5 +2413,5 @@ class VirtualizedPageEvaluationAction implements EvaluationBoundAction
 		// this forces devirtualization and queues the element evaluations via setElementEvaluationsToPage
 		object.ensureVirtualData();
 	}
-	
+
 }

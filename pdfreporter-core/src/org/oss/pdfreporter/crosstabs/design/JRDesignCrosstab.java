@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 import java.util.logging.Logger;
 
@@ -155,10 +156,7 @@ public class JRDesignCrosstab extends JRDesignElement implements JRCrosstab
 		JRParameter.REPORT_CONTEXT, ReportContext.class,
 		JRParameter.REPORT_PARAMETERS_MAP, java.util.Map.class,
 		JRParameter.REPORT_LOCALE, Locale.class,
-
-		// TODO magnus (15.03.2015): activate Resource boundle
-
-//		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
+		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
 		JRParameter.REPORT_TIME_ZONE, TimeZone.class,
 		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class,
 		JRParameter.REPORT_FILE_RESOLVER, FileResolver.class

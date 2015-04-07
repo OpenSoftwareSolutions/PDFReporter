@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -77,6 +78,7 @@ import org.oss.pdfreporter.engine.type.ResetTypeEnum;
 import org.oss.pdfreporter.engine.type.WhenResourceMissingTypeEnum;
 import org.oss.pdfreporter.engine.util.DigestUtils;
 import org.oss.pdfreporter.engine.util.JRQueryExecuterUtils;
+import org.oss.pdfreporter.engine.util.JRResourcesUtil;
 import org.oss.pdfreporter.engine.util.MD5Digest;
 import org.oss.pdfreporter.sql.IConnection;
 import org.oss.pdfreporter.uses.java.util.UUID;
@@ -88,35 +90,35 @@ import org.oss.pdfreporter.uses.java.util.UUID;
  */
 public class JRFillDataset implements JRDataset, DatasetFillContext
 {
-	
+
 	/**
 	 * The filler that created this object.
 	 */
 	private final JRBaseFiller filler;
-	
+
 	/**
 	 *
 	 */
 	private JasperReportsContext jasperReportsContext;
-	
+
 	/**
 	 * The template dataset.
 	 */
 	private final JRDataset parent;
-	
+
 	/**
 	 * Whether this is the main dataset of the report.
 	 */
 	private final boolean isMain;
-	
+
 	/**
 	 * The dataset query.
 	 */
 	protected JRQuery query;
-	
+
 	private boolean useDatasourceParamValue;
 	private boolean useConnectionParamValue;
-	
+
 	/**
 	 * The dataset parameters.
 	 */
@@ -131,22 +133,22 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	 * The dataset fields.
 	 */
 	protected JRFillField[] fields;
-	
+
 	/**
 	 * The dataset fields indexed by name.
 	 */
 	protected Map<String,JRFillField> fieldsMap;
-	
+
 	/**
 	 * The dataset variables.
 	 */
 	protected JRFillVariable[] variables;
-	
+
 	/**
 	 * The dataset variables indexed by name.
 	 */
 	protected Map<String,JRFillVariable> variablesMap;
-	
+
 	/**
 	 * Set of {@link VariableCalculationReq VariableCalculationReq} objects.
 	 */
@@ -156,7 +158,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	 * The element datasets.
 	 */
 	protected JRFillElementDataset[] elementDatasets;
-	
+
 	/**
 	 * Used to save the original element datasets when
 	 * {@link #filterElementDatasets(JRFillElementDataset) filterElementDatasets} is called.
@@ -172,12 +174,12 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	 * The resource bundle base name.
 	 */
 	protected String resourceBundleBaseName;
-	
+
 	/**
 	 * The resource missing handle type.
 	 */
 	protected WhenResourceMissingTypeEnum whenResourceMissingType;
-	
+
 	/**
 	 * The scriptlet class name.
 	 */
@@ -188,22 +190,27 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	 *
 	 */
 	protected JRAbstractScriptlet delegateScriptlet = new JRFillDatasetScriptlet(this);
-	
+
 	/**
-	 * The data source. 
+	 * The data source.
 	 */
 	protected JRDataSource dataSource;
-	
+
 	/**
 	 * The {@link Locale Locale} to be used by the dataset.
 	 */
 	protected Locale locale;
-	
+
+	/**
+	 * The loaded resource bundle.
+	 */
+	protected ResourceBundle resourceBundle;
+
 	/**
 	 * The {@link TimeZone TimeZone} to be used by the dataset.
 	 */
 	protected TimeZone timeZone;
-	
+
 	/**
 	 * The cursor used when iterating the data source.
 	 */
@@ -221,22 +228,22 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	private JRQueryExecuter queryExecuter;
 	private List<ParameterContributor> parameterContributors;
-	
+
 	protected DatasetFilter filter;
 
 	protected FillDatasetPosition fillPosition;
 	protected DatasetRecorder dataRecorder;
-	
+
 	private Map<Integer, CacheRecordIndexCallback> cacheRecordIndexCallbacks;
 	private boolean cacheSkipped;
 	private CachedDataset cachedDataset;
 	private boolean sortedDataSource;
-	
+
 	private boolean ended;
 	private Integer cacheRecordCount;
 	private Integer previousCacheRecordIndex;
 	private Integer currentCacheRecordIndex;
-	
+
 	/**
 	 * Creates a fill dataset object.
 	 * @param filler the filler
@@ -246,27 +253,27 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	public JRFillDataset(JRBaseFiller filler, JRDataset dataset, JRFillObjectFactory factory)
 	{
 		factory.put(dataset, this);
-		
+
 		this.filler = filler;
 		this.parent = dataset;
 		this.isMain = dataset.isMainDataset();
-		
+
 		scriptletClassName = dataset.getScriptletClass();
 		resourceBundleBaseName = dataset.getResourceBundle();
 		whenResourceMissingType = dataset.getWhenResourceMissingTypeValue();
-		
+
 		query = dataset.getQuery();
-		
+
 		setParameters(dataset, factory);
 
 		setFields(dataset, factory);
-		
+
 		setVariables(dataset, factory);
-		
+
 		setGroups(dataset, factory);
 	}
 
-	
+
 	private void setParameters(JRDataset dataset, JRFillObjectFactory factory)
 	{
 		JRParameter[] jrParameters = dataset.getParameters();
@@ -313,8 +320,8 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			setVariables(variableList);
 		}
 	}
-	
-	
+
+
 	private JRFillVariable addVariable(JRVariable parentVariable, List<JRFillVariable> variableList, JRFillObjectFactory factory)
 	{
 		JRFillVariable variable = factory.getVariable(parentVariable);
@@ -390,7 +397,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		helper.setCalculation(CalculationEnum.NOTHING);
 		helper.setSystemDefined(true);
 		helper.setExpression(variable.getExpression());
-		
+
 		return helper;
 	}
 
@@ -446,7 +453,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Initializes the calculator.
-	 * 
+	 *
 	 * @throws JRException
 	 */
 	public void initCalculator() throws JRException
@@ -469,16 +476,16 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Creates the scriptlets.
-	 * 
+	 *
 	 * @return the scriptlets list
 	 * @throws JRException
 	 */
 	protected List<JRAbstractScriptlet> createScriptlets(Map<String,Object> parameterValues) throws JRException
 	{
 		ScriptletFactoryContext context = new ScriptletFactoryContext(getJasperReportsContext(), this, parameterValues);
-		
+
 		scriptlets = new ArrayList<JRAbstractScriptlet>();
-		
+
 		List<ScriptletFactory> factories = getJasperReportsContext().getExtensions(ScriptletFactory.class);
 		for (Iterator<ScriptletFactory> it = factories.iterator(); it.hasNext();)
 		{
@@ -489,7 +496,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 				scriptlets.addAll(tmpScriptlets);
 			}
 		}
-		
+
 		if (scriptlets.size() == 0)
 		{
 			scriptlets.add(0, new JRDefaultScriptlet());
@@ -499,7 +506,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	}
 	/**
 	 * Initializes the element datasets.
-	 * 
+	 *
 	 * @param factory the fill object factory used by the filler
 	 */
 	protected void initElementDatasets(JRFillObjectFactory factory)
@@ -512,7 +519,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	 * Filters the element datasets, leaving only one.
 	 * <p>
 	 * This method is used when a dataset is instantiated by a chart or crosstab.
-	 * 
+	 *
 	 * @param elementDataset the element dataset that should remain
 	 */
 	protected void filterElementDatasets(JRFillElementDataset elementDataset)
@@ -520,8 +527,8 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		origElementDatasets = elementDatasets;
 		elementDatasets = new JRFillElementDataset[]{elementDataset};
 	}
-	
-	
+
+
 	/**
 	 * Restores the original element datasets.
 	 * <p>
@@ -535,27 +542,43 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			origElementDatasets = null;
 		}
 	}
-	
+
+	/**
+	 * Loads the resource bundle corresponding to the resource bundle base name and locale.
+	 */
+	protected ResourceBundle loadResourceBundle()
+	{
+		ResourceBundle loadedBundle;
+		if (resourceBundleBaseName == null)
+		{
+			loadedBundle = null;
+		}
+		else
+		{
+			loadedBundle = JRResourcesUtil.loadResourceBundle(resourceBundleBaseName, locale);//FIXMECONTEXT check how to pass class loader here
+		}
+		return loadedBundle;
+	}
 
 
 
 	/**
 	 * Reads built-in parameter values from the value map.
-	 * 
+	 *
 	 * @param parameterValues the parameter values
-	 * @throws JRException 
+	 * @throws JRException
 	 */
 	public void setParameterValues(Map<String,Object> parameterValues) throws JRException
 	{
 		parameterValues.put(JRParameter.REPORT_PARAMETERS_MAP, parameterValues);
-		
+
 		if (filler != null)
 		{
 			// the only case when this filler is null is when called from JRParameterDefaultValuesEvaluator
 			// and that utility method already sets the report object in the map
 			parameterValues.put(JRParameter.JASPER_REPORT, filler.getJasperReport());
 		}
-		
+
 		reportMaxCount = (Integer) parameterValues.get(JRParameter.REPORT_MAX_COUNT);
 
 		locale = (Locale) parameterValues.get(JRParameter.REPORT_LOCALE);
@@ -564,55 +587,54 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			locale = Locale.getDefault();
 			parameterValues.put(JRParameter.REPORT_LOCALE, locale);
 		}
-		
-		// TODO (29.04.2013, Donat, Open Software Solutions AG): Notice ResourceBundle support was removed 
-//		resourceBundle = (ResourceBundle) parameterValues.get(JRParameter.REPORT_RESOURCE_BUNDLE);
-//		if (resourceBundle == null)
-//		{
-//			resourceBundle = loadResourceBundle();
-//			if (resourceBundle != null)
-//			{
-//				parameterValues.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
-//			}
-//		}
-		
+
+		resourceBundle = (ResourceBundle) parameterValues.get(JRParameter.REPORT_RESOURCE_BUNDLE);
+		if (resourceBundle == null)
+		{
+			resourceBundle = loadResourceBundle();
+			if (resourceBundle != null)
+			{
+				parameterValues.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
+			}
+		}
+
 		timeZone = (TimeZone) parameterValues.get(JRParameter.REPORT_TIME_ZONE);
 		if (timeZone == null)
 		{
 			timeZone = TimeZone.getDefault();
 			parameterValues.put(JRParameter.REPORT_TIME_ZONE, timeZone);
 		}
-		
+
 		scriptlets = createScriptlets(parameterValues);
 		delegateScriptlet.setData(parametersMap, fieldsMap, variablesMap, groups);//FIXMESCRIPTLET use some context
-		
+
 		contributeParameters(parameterValues);
-		
+
 		filter = (DatasetFilter) parameterValues.get(JRParameter.FILTER);
 
 		// initializing cache because we need the cached parameter values
 		cacheInit();
-		
+
 		setFillParameterValues(parameterValues);
-		
+
 		// after we have the parameter values, init cache recording
 		cacheInitRecording();
-		
+
 		// initialize the filter
 		if (filter != null)
 		{
 			filter.init(this);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Initializes the data source which will be used by this dataset.
-	 * 
+	 *
 	 * If the dataset includes a query, this involves invoking the appropriate
 	 * query executer to execute the query and create a data source from the
 	 * results.
-	 * 
+	 *
 	 * @throws JRException
 	 */
 	public void initDatasource() throws JRException
@@ -625,7 +647,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			// get the cached data source
 			dataSource = cachedDataset.getDataSource();
 		}
-		
+
 		if (dataSource == null)
 		{
 			dataSource = (JRDataSource) getParameterValue(JRParameter.REPORT_DATA_SOURCE);
@@ -650,7 +672,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		{
 			// add default attributes
 			fillPosition.addAttribute("datasetUUID", getUUID());
-			
+
 			if (query != null)
 			{
 				MD5Digest queryMD5 = DigestUtils.instance().md5(query.getText());
@@ -666,27 +688,27 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	public void setCacheSkipped(boolean cacheSkipped)
 	{
 		this.cacheSkipped = cacheSkipped;
-		
+
 	}
-	
+
 	protected void cacheInit() throws DataSnapshotException
 	{
 		// resetting
 		cachedDataset = null;
 		dataRecorder = null;
-		
+
 		if (fillPosition == null)
 		{
 			return;
 		}
-		
+
 		if (filler != null)
 		{
 			// try to load a cached data snapshot
 			cacheInitSnapshot();
 		}
 	}
-	
+
 	protected void cacheInitSnapshot() throws DataSnapshotException
 	{
 		if (cacheSkipped)
@@ -703,7 +725,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			{
 				throw new DataSnapshotException("No snapshot data found for position " + fillPosition);
 			}
-			
+
 		}
 	}
 
@@ -719,13 +741,13 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			// we have a cache dataset, nothing to do
 			return;
 		}
-		
+
 		if (filler == null)
 		{
 			// not a regular report fill, nothing to do
 			return;
 		}
-		
+
 		// if no cached data snapshot, initialize data recording
 		DataRecorder cacheRecorder = filler.fillContext.getDataRecorder();
 		if (cacheRecorder != null && cacheRecorder.isEnabled())
@@ -742,12 +764,12 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 				{
 					cacheRecorder.disablePersistence();
 				}
-				
+
 				// populating the cache
 				dataRecorder = cacheRecorder.createRecorder();
 				// this will also remove existing data on rewind
 				dataRecorder.start(parent.getFields());
-				
+
 				// storing persisted parameter values
 				for (JRFillParameter parameter : parameters)
 				{
@@ -756,14 +778,14 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 						boolean includedInCache = isIncludedInDataCache(parameter);
 						if (includedInCache)
 						{
-							
+
 							Object value = parameter.getValue();
 							// we store nulls as well
 							dataRecorder.addParameter(parameter.getName(), value);
 						}
 					}
 				}
-				
+
 				cacheRecordIndexCallbacks = new HashMap<Integer, CacheRecordIndexCallback>();
 			}
 			else
@@ -776,7 +798,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	protected boolean isIncludedInDataCache(JRFillParameter parameter)
 	{
-		String includedProp = JRPropertiesUtil.getOwnProperty(parameter, DataCacheHandler.PROPERTY_INCLUDED); 
+		String includedProp = JRPropertiesUtil.getOwnProperty(parameter, DataCacheHandler.PROPERTY_INCLUDED);
 		return JRPropertiesUtil.asBoolean(includedProp);
 	}
 
@@ -797,7 +819,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 					values[i] = fields[i].getValue();
 				}
 			}
-			
+
 			dataRecorder.addRecord(values);
 		}
 	}
@@ -828,14 +850,14 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 							fieldValues = new Object[fields.length];
 							System.arraycopy(recordValues, 0, fieldValues, 0, fields.length);
 						}
-						
+
 						// add the record to the data snapshot
 						dataRecorder.addRecord(fieldValues);
-						
+
 						// current unsorted index
 						++recordIndex;
 						int originalIndex = sortRecord.getRecordIndex() + 1;
-						
+
 						// call delayed record index callbacks
 						CacheRecordIndexCallback recordIndexCallback = cacheRecordIndexCallbacks.get(originalIndex);
 						if (recordIndexCallback != null)
@@ -845,7 +867,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 					}
 				}
 			}
-			
+
 			Object recorded = dataRecorder.end();
 			if (recorded != null)
 			{
@@ -857,7 +879,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Sets the parameter values from the values map.
-	 * 
+	 *
 	 * @param parameterValues the values map
 	 * @throws JRException
 	 */
@@ -869,7 +891,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			{
 				JRFillParameter parameter = parameters[i];
 				String paramName = parameter.getName();
-				
+
 				Object value = null;
 				if (parameterValues.containsKey(paramName))
 				{
@@ -884,10 +906,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 						if (!cachedDataset.hasParameter(paramName))
 						{
 							// cached data is invalid
-							throw new DataSnapshotException("A value for parameter " + paramName 
+							throw new DataSnapshotException("A value for parameter " + paramName
 									+ " was not found in the data snapshot");
 						}
-						
+
 						value = cachedDataset.getParameterValue(paramName);
 					}
 					else
@@ -906,7 +928,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 
 	/**
-	 * 
+	 *
 	 */
 	public void contributeParameters(Map<String,Object> parameterValues) throws JRException
 	{
@@ -924,16 +946,16 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		this.jasperReportsContext = jasperReportsContext;
 	}
-	
+
 	protected JasperReportsContext getJasperReportsContext()
 	{
 		return filler == null
 				? (jasperReportsContext == null ? DefaultJasperReportsContext.getInstance() : jasperReportsContext)
 				: filler.getJasperReportsContext();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	public void disposeParameterContributors()
 	{
@@ -946,7 +968,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		}
 	}
 
-	
+
 	/**
 	 *
 	 */
@@ -970,10 +992,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		return allContributors;
 	}
 
-	
+
 	/**
 	 * Returns the map of parameter values.
-	 * 
+	 *
 	 * @return the map of parameter values
 	 */
 	protected Map<String,Object> getParameterValuesMap()
@@ -981,10 +1003,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		IJRFillParameter paramValuesParameter = parametersMap.get(JRParameter.REPORT_PARAMETERS_MAP);
 		return (Map<String,Object>) paramValuesParameter.getValue();
 	}
-	
+
 	/**
 	 * Creates the data source from a connection.
-	 * 
+	 *
 	 * @return the data source to be used
 	 * @throws JRException
 	 */
@@ -1000,7 +1022,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			QueryExecuterFactory queryExecuterFactory = JRQueryExecuterUtils.getInstance(getJasperReportsContext()).getExecuterFactory(query.getLanguage());
 			queryExecuter = queryExecuterFactory.createQueryExecuter(getJasperReportsContext(), parent, parametersMap);
 			filler.fillContext.setRunningQueryExecuter(queryExecuter);
-			
+
 			return queryExecuter.createDatasource();
 		}
 		finally
@@ -1016,17 +1038,17 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		useConnectionParamValue = false;
 	}
 
-	
+
 	/**
 	 * Sets the data source to be used.
-	 * 
+	 *
 	 * @param parameterValues the parameter values
 	 * @param ds the data source
 	 */
 	public void setDatasourceParameterValue(Map<String,Object> parameterValues, JRDataSource ds)
 	{
 		useDatasourceParamValue = true;
-		
+
 		if (ds != null)
 		{
 			parameterValues.put(JRParameter.REPORT_DATA_SOURCE, ds);
@@ -1036,25 +1058,25 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Sets the JDBC connection to be used.
-	 * 
+	 *
 	 * @param parameterValues the parameter values
 	 * @param conn the connection
 	 */
 	public void setConnectionParameterValue(Map<String,Object> parameterValues, IConnection conn)
 	{
 		useConnectionParamValue = true;
-		
+
 		if (conn != null)
 		{
 			parameterValues.put(JRParameter.REPORT_CONNECTION, conn);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Closes the data source used by this dataset if this data source was
 	 * obtained via a query executer.
-	 * 
+	 *
 	 * @see JRQueryExecuter#close()
 	 */
 	public void closeDatasource()
@@ -1078,7 +1100,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		}
 	}
 
-	
+
 	/**
 	 * Starts the iteration on the data source.
 	 */
@@ -1087,16 +1109,16 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		// resetting the variables is required for cases such as sort fields which
 		// iterate and calculate variables.
 		resetVariables();
-		
+
 		reportCount = 0;
 		ended = false;
-		
+
 		cacheRecordCount = 0;
 		previousCacheRecordIndex = 0;
 		currentCacheRecordIndex = 0;
 	}
 
-	
+
 	protected void resetVariables()
 	{
 		if (variables != null)
@@ -1111,7 +1133,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Moves to the next record in the data source.
-	 * 
+	 *
 	 * @return <code>true</code> if the data source was not exhausted
 	 * @throws JRException
 	 */
@@ -1123,7 +1145,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 
 	/**
 	 * Moves to the next record in the data source.
-	 * 
+	 *
 	 * @param sorting whether the method is called as part of the data sorting phase
 	 * @return <code>true</code> if the data source was not exhausted
 	 * @throws JRException
@@ -1144,12 +1166,12 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 					setOldValues();
 
 					calculator.estimateVariables();
-					
+
 					// filters are applied after sorting to support top-N reports
 					if (!sorting)
 					{
 						includeRow = true;
-						
+
 						// evaluate the filter expression
 						JRExpression filterExpression = getFilterExpression();
 						if (filterExpression != null)
@@ -1162,7 +1184,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 						if (includeRow)
 						{
 							advanceCacheRecordIndexes();
-							
+
 							if (sortedDataSource)
 							{
 								// mark the record as filtered in the sorted data source
@@ -1176,7 +1198,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 								// sorted data source cache records at the end because they compute original indexes.
 								cacheRecord();
 							}
-							
+
 							if (filter != null)
 							{
 								includeRow = filter.matches(EvaluationType.ESTIMATED);
@@ -1191,13 +1213,13 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 				}
 			}
 			while(hasNext && !includeRow);
-			
+
 			if (hasNext)
 			{
 				reportCount = reportCount + 1;
 			}
 		}
-		
+
 		if (!hasNext)
 		{
 			ended = true;
@@ -1210,7 +1232,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		cacheRecordCount = cacheRecordCount + 1;
 		previousCacheRecordIndex = currentCacheRecordIndex;
-		
+
 		// if we're using a cached data source, return the original record index
 		// this covers both sorting a cached data source and filtering a cached data source
 		if (cachedDataset != null)
@@ -1263,7 +1285,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 				field.setOldValue(field.getPreviousOldValue());
 			}
 		}
-		
+
 		if (variables != null && variables.length > 0)
 		{
 			for (int i = 0; i < variables.length; i++)
@@ -1289,10 +1311,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		}
 		return hasNext;
 	}
-	
+
 	/**
 	 * Sets the value of a parameter.
-	 * 
+	 *
 	 * @param parameterName the parameter name
 	 * @param value the value
 	 * @throws JRException
@@ -1305,11 +1327,11 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			setParameter(parameter, value);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Sets the value of the parameter.
-	 * 
+	 *
 	 * @param parameter the parameter
 	 * @param value the value
 	 * @throws JRException
@@ -1325,10 +1347,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 //			else
 //			{
 //				throw new JRException(
-//					"Incompatible " 
-//					+ value.getClass().getName() 
-//					+ " value assigned to parameter " 
-//					+ parameter.getName() 
+//					"Incompatible "
+//					+ value.getClass().getName()
+//					+ " value assigned to parameter "
+//					+ parameter.getName()
 //					+ " in the " + getName() + " dataset."
 //					);
 //			}
@@ -1339,10 +1361,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 //		}
 	}
 
-	
+
 	/**
 	 * Returns the value of a variable.
-	 * 
+	 *
 	 * @param variableName the variable name
 	 * @return the variable value
 	 */
@@ -1365,10 +1387,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		return variablesMap.get(variableName);
 	}
-	
+
 	/**
 	 * Returns the value of a parameter.
-	 * 
+	 *
 	 * @param parameterName the parameter name
 	 * @return the parameter value
 	 */
@@ -1377,10 +1399,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		return getParameterValue(parameterName, false);
 	}
 
-	
+
 	/**
 	 * Returns the value of a parameter.
-	 * 
+	 *
 	 * @param parameterName the parameter name
 	 * @param ignoreMissing if set, <code>null</code> will be returned for inexisting parameters
 	 * @return the parameter value
@@ -1395,7 +1417,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			{
 				throw new JRRuntimeException("No such parameter " + parameterName);
 			}
-			
+
 			// look into REPORT_PARAMETERS_MAP
 			Map<String, Object> valuesMap = getParameterValuesMap();
 			value = valuesMap == null ? null : valuesMap.get(parameterName);
@@ -1407,10 +1429,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		return value;
 	}
 
-	
+
 	/**
 	 * Returns the value of a field.
-	 * 
+	 *
 	 * @param fieldName the field name
 	 * @return the field value
 	 */
@@ -1418,7 +1440,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		return getFieldValue(fieldName, EvaluationType.DEFAULT);
 	}
-	
+
 	public Object getFieldValue(String fieldName, EvaluationType evaluation)
 	{
 		JRFillField field = fieldsMap.get(fieldName);
@@ -1428,12 +1450,12 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		}
 		return field.getValue(evaluation.getType());
 	}
-	
+
 	public JRFillField getFillField(String fieldName)
 	{
 		return fieldsMap.get(fieldName);
 	}
-	
+
 	/**
 	 * Class used to hold expression calculation  requirements.
 	 */
@@ -1466,11 +1488,11 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			return 31 * calculation.getValue() + variableName.hashCode();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Adds a variable calculation requirement.
-	 * 
+	 *
 	 * @param variableName the variable name
 	 * @param calculation the required calculation
 	 */
@@ -1484,10 +1506,10 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		variableCalculationReqs.add(new VariableCalculationReq(variableName, calculation));
 	}
 
-	
+
 	/**
 	 * Checks if there are variable calculation requirements and creates the required variables.
-	 * 
+	 *
 	 * @param factory the fill object factory
 	 */
 	protected void checkVariableCalculationReqs(JRFillObjectFactory factory)
@@ -1506,7 +1528,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		}
 	}
 
-	
+
 	private void checkVariableCalculationReq(JRFillVariable variable, List<JRFillVariable> variableList, JRFillObjectFactory factory)
 	{
 		if (hasVariableCalculationReq(variable, CalculationEnum.AVERAGE) || hasVariableCalculationReq(variable, CalculationEnum.VARIANCE))
@@ -1553,7 +1575,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		variableList.add(variable);
 	}
 
-	
+
 	private boolean hasVariableCalculationReq(JRVariable var, CalculationEnum calculation)
 	{
 		return variableCalculationReqs.contains(new VariableCalculationReq(var.getName(), calculation));
@@ -1637,7 +1659,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		this.whenResourceMissingType = whenResourceMissingType;
 	}
 
-	
+
 	public boolean hasProperties()
 	{
 		return parent.hasProperties();
@@ -1649,7 +1671,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 		return parent.getPropertiesMap();
 	}
 
-	
+
 	public JRPropertiesHolder getParentProperties()
 	{
 		// report properties propagate to subdatasets
@@ -1661,11 +1683,11 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		return parent.getFilterExpression();
 	}
-	
+
 	/**
 	 *
 	 */
-	public Object clone() 
+	public Object clone()
 	{
 		throw new UnsupportedOperationException();
 	}
@@ -1681,7 +1703,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		return calculator.evaluate(expression, evaluation);
 	}
-	
+
 	public Locale getLocale()
 	{
 		return locale;
@@ -1691,19 +1713,19 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 	{
 		return fillPosition;
 	}
-	
+
 	protected static interface CacheRecordIndexCallback
 	{
 		void cacheRecordIndexAvailable(Integer recordIndex);
 	}
-	
+
 	protected static class FillDatasetPositionRecordIndexCallback implements CacheRecordIndexCallback
 	{
 		protected static void setRecordIndex(FillDatasetPosition position, Integer recordIndex)
 		{
 			position.addAttribute("rowIndex", recordIndex);
 		}
-		
+
 		private final FillDatasetPosition position;
 
 		public FillDatasetPositionRecordIndexCallback(FillDatasetPosition position)
@@ -1717,7 +1739,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			setRecordIndex(position, recordIndex);
 		}
 	}
-	
+
 	protected static class CacheRecordIndexChainedCallback implements CacheRecordIndexCallback
 	{
 		private final CacheRecordIndexCallback first;
@@ -1737,7 +1759,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			second.cacheRecordIndexAvailable(recordIndex);
 		}
 	}
-	
+
 	protected void addCacheRecordIndexCallback(int recordIndex, CacheRecordIndexCallback callback)
 	{
 		CacheRecordIndexCallback existingCallback = cacheRecordIndexCallbacks.get(recordIndex);
@@ -1752,7 +1774,7 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			cacheRecordIndexCallbacks.put(recordIndex, chainedCallback);
 		}
 	}
-	
+
 	public void setCacheRecordIndex(FillDatasetPosition position, byte evaluationType)
 	{
 		int recordIndex;
@@ -1765,14 +1787,14 @@ public class JRFillDataset implements JRDataset, DatasetFillContext
 			recordIndex = currentCacheRecordIndex;
 			break;
 		}
-		
+
 		if (sortedDataSource && dataRecorder != null)
 		{
 			// when recording a sorted data source, the record indexes are computed at the end
 			// and we need to store a callback
 			FillDatasetPositionRecordIndexCallback callback = new FillDatasetPositionRecordIndexCallback(position);
 			addCacheRecordIndexCallback(recordIndex, callback);
-			
+
 		}
 		else
 		{

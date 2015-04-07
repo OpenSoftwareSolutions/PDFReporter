@@ -24,6 +24,7 @@
 package org.oss.pdfreporter.engine.fill;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import org.oss.pdfreporter.engine.JRComponentElement;
@@ -46,7 +47,7 @@ import org.oss.pdfreporter.engine.type.EvaluationTimeEnum;
 
 /**
  * A {@link JRComponentElement} which is used during report fill.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JRFillComponentElement.java 5766 2012-11-01 16:39:01Z lucianc $
  */
@@ -55,12 +56,12 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 
 	private FillComponent fillComponent;
 	private boolean filling;
-	
+
 	public JRFillComponentElement(JRBaseFiller filler, JRComponentElement element,
 			JRFillObjectFactory factory)
 	{
 		super(filler, element, factory);
-		
+
 		ComponentKey componentKey = element.getComponentKey();
 		ComponentManager manager = (ComponentManager) ComponentsEnvironment.getInstance(filler.getJasperReportsContext()).getManager(componentKey);
 		fillComponent = manager.getComponentFillFactory(filler.getJasperReportsContext()).toFillComponent(element.getComponent(), factory);
@@ -71,7 +72,7 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 			JRFillCloneFactory factory)
 	{
 		super(element, factory);
-		
+
 		ComponentKey componentKey = element.getComponentKey();
 		ComponentManager manager = (ComponentManager) ComponentsEnvironment.getInstance(filler.getJasperReportsContext()).getManager(componentKey);
 		fillComponent = manager.getComponentFillFactory(filler.getJasperReportsContext()).cloneFillComponent(element.fillComponent, factory);
@@ -87,26 +88,26 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 		{
 			fillComponent.evaluate(evaluation);
 		}
-		
+
 		filling = false;
 	}
-	
+
 	protected boolean prepare(int availableHeight, boolean isOverflow)
 			throws JRException
 	{
 		boolean willOverflow = false;
 
 		super.prepare(availableHeight, isOverflow);
-		
+
 		if (!isToPrint())
 		{
 			return willOverflow;
 		}
-		
+
 		boolean isToPrint = true;
 		boolean isReprinted = false;
 
-		if (!filling 
+		if (!filling
 				&& isOverflow && isAlreadyPrinted() && !isPrintWhenDetailOverflows())
 		{
 			isToPrint = false;
@@ -127,19 +128,19 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 		if (isToPrint)
 		{
 			FillPrepareResult result = fillComponent.prepare(availableHeight - getRelativeY());
-			
+
 			isToPrint = result.isToPrint();
 			willOverflow = result.willOverflow();
 			setStretchHeight(result.getStretchHeight());
-			
+
 			// if the component will overflow, set the filling flag to true
 			// to know next time that the component is continuing
 			filling = willOverflow;
 		}
-		
+
 		setToPrint(isToPrint);
 		setReprinted(isReprinted);
-		
+
 		return willOverflow;
 	}
 
@@ -154,12 +155,12 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 		return null;
 	}
 
-	protected void resolveElement (JRPrintElement element, byte evaluation, 
+	protected void resolveElement (JRPrintElement element, byte evaluation,
 			JREvaluationTime evaluationTime) throws JRException
 	{
 		performDelayedEvaluation(element, evaluation);
 	}
-	
+
 	protected void resolveElement(JRPrintElement element, byte evaluation)
 			throws JRException
 	{
@@ -196,7 +197,7 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 	{
 		return ((JRComponentElement) parent).getComponentKey();
 	}
-	
+
 	public Object evaluate(JRExpression expression, byte evaluation)
 			throws JRException
 	{
@@ -233,10 +234,10 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 		return getStyle();
 	}
 
-	public void registerDelayedEvaluation(JRPrintElement printElement, 
+	public void registerDelayedEvaluation(JRPrintElement printElement,
 			EvaluationTimeEnum evaluationTime, String evaluationGroup)
 	{
-		filler.addBoundElement(this, printElement, 
+		filler.addBoundElement(this, printElement,
 				evaluationTime, evaluationGroup, band);
 	}
 
@@ -245,10 +246,10 @@ public class JRFillComponentElement extends JRFillElement implements JRComponent
 		return filler.getLocale();
 	}
 
-//	public ResourceBundle getReportResourceBundle()
-//	{
-//		return filler.getResourceBundle();
-//	}
+	public ResourceBundle getReportResourceBundle()
+	{
+		return filler.getResourceBundle();
+	}
 
 	public TimeZone getReportTimezone()
 	{

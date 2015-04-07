@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
 
@@ -246,7 +247,6 @@ public class ExporterTest {
 	}
 
 	/*
-	 * TODO (18.03.2015, Magnus, OSS): complete implementation on i18n in java and extracted from pdfreporter-core
 	 * */
 	@Test
 	public void exportI18n() throws Exception {
@@ -255,6 +255,8 @@ public class ExporterTest {
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("number", new Double(1234567 + Math.random()));
 			parameters.put(JRParameter.REPORT_LOCALE, locale);
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("test.org.oss.pdfreporter.resourcebundle.i18n", locale);
+			parameters.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
 			getExporter("i18n").exportReportWithParameters(DESIGN_REPORT_I18N, parameters);
 		}
 	}

@@ -30,6 +30,7 @@ import org.oss.pdfreporter.engine.JRPropertiesMap;
 import org.oss.pdfreporter.engine.query.DefaultQueryExecuterFactoryBundle;
 import org.oss.pdfreporter.engine.query.JRQueryExecuterFactoryBundle;
 import org.oss.pdfreporter.engine.util.MessageProviderFactory;
+import org.oss.pdfreporter.engine.util.ResourceBundleMessageProviderFactory;
 
 
 
@@ -40,11 +41,11 @@ import org.oss.pdfreporter.engine.util.MessageProviderFactory;
 public class DefaultExtensionsRegistryFactory implements ExtensionsRegistryFactory
 {
 
-	private static final ExtensionsRegistry defaultExtensionsRegistry = 
+	private static final ExtensionsRegistry defaultExtensionsRegistry =
 		new ExtensionsRegistry()
 		{
 			@SuppressWarnings("unchecked")
-			public <T> List<T> getExtensions(Class<T> extensionType) 
+			public <T> List<T> getExtensions(Class<T> extensionType)
 			{
 				if (JRQueryExecuterFactoryBundle.class.equals(extensionType))
 				{
@@ -52,14 +53,13 @@ public class DefaultExtensionsRegistryFactory implements ExtensionsRegistryFacto
 				}
 				else if (MessageProviderFactory.class.equals(extensionType))
 				{
-					// TODO (29.04.2013, Donat, Open Software Solutions): Notice ResourceBundle support was removed ResourceBundleMessageProviderFactory
-					throw new RuntimeException("ResourceBundle support was removed.");
+					return (List<T>) Collections.singletonList((Object) new ResourceBundleMessageProviderFactory());
 				}
 				return null;
 			}
 		};
-	
-	public ExtensionsRegistry createRegistry(String registryId, JRPropertiesMap properties) 
+
+	public ExtensionsRegistry createRegistry(String registryId, JRPropertiesMap properties)
 	{
 		return defaultExtensionsRegistry;
 	}

@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import org.oss.pdfreporter.engine.DatasetFilter;
@@ -167,11 +168,7 @@ public class JRDesignDataset extends JRBaseDataset
 		JRParameter.REPORT_MAX_COUNT, Integer.class,
 		JRParameter.REPORT_DATA_SOURCE, JRDataSource.class,
 		JRParameter.REPORT_LOCALE, Locale.class,
-
-		// TODO magnus(15.03.2015) : activate resource boundle
-		// IResourceBundle und in Java die Impl.
-
-//		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
+		JRParameter.REPORT_RESOURCE_BUNDLE, ResourceBundle.class,
 		JRParameter.REPORT_TIME_ZONE, TimeZone.class,
 		JRParameter.REPORT_FORMAT_FACTORY, IFormatFactory.class,
 		// TODO: Daniel (19.4.2013) Removed

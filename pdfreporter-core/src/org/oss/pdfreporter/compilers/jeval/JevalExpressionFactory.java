@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -22,22 +22,22 @@ public class JevalExpressionFactory {
 	private static final Logger logger = Logger.getLogger(JevalExpressionFactory.class.getName());
 	private StringBuilder rawExpression;
 	private final IDataHolder dataholder;
-	
+
 	private JevalExpressionFactory(IDataHolder dataholder) {
 		this.dataholder = dataholder;
 	}
-	
+
 	public static IExpressionElement buildExpression(IDataHolder dataholder, JRExpressionChunk[] chunks, int expressionId) throws JRException {
 		return new JevalExpressionFactory(dataholder).build(chunks, expressionId);
 	}
-	
+
 	private IExpressionElement build(JRExpressionChunk[] chunks, int expressionId) throws JRException {
 		ResultCast result = new ResultCast();
 		ChunkBuilder expressionBuilder = new ChunkBuilder();
 		rawExpression  = new StringBuilder();
 		try {
 			for (JRExpressionChunk designChunk : chunks) {
-				
+
 				String chunkText = designChunk.getText();
 
 				if (chunkText == null) {
@@ -49,7 +49,7 @@ public class JevalExpressionFactory {
 						if (ResultCast.isCast(chunkText)) {
 							result = ResultCast.parseCast(chunkText);
 							expressionBuilder.addText(ResultCast.getNext(chunkText));
-						} else {							
+						} else {
 							expressionBuilder.addText(chunkText);
 						}
 						break;
@@ -71,12 +71,12 @@ public class JevalExpressionFactory {
 					}
 					case JRExpressionChunk.TYPE_RESOURCE: {
 						appendRawResource(chunkText);
-						expressionBuilder.addResource(chunkText);
+						expressionBuilder.addVariable(new ExpressionRessource(dataholder, chunkText));
 						break;
 					}
 				}
-			}			
-			
+			}
+
 			result.setExpression(JEvalExpression.newInstance(expressionBuilder.getChunkList()));
 			logger.finest("Compiled expression " + expressionId + " - " + rawExpression.toString());
 			return result;
@@ -84,9 +84,9 @@ public class JevalExpressionFactory {
 			logger.log(Level.SEVERE, "Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
 			throw new JRException("Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
 		}
-		
+
 	}
-	
+
 	private void appendRawParameter(String chunkText) {
 		rawExpression.append("$P{");
 		rawExpression.append(chunkText);
@@ -103,10 +103,10 @@ public class JevalExpressionFactory {
 		rawExpression.append("}");
 	}
 	private void appendRawResource(String chunkText) {
-		rawExpression.append("str{");
+		rawExpression.append("$R{");
 		rawExpression.append(chunkText);
 		rawExpression.append("}");
 	}
-	
+
 
 }

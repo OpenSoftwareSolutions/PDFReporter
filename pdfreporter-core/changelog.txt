@@ -1,0 +1,30 @@
+
+pdfreporter-core Change Log
+==========================================================
+
+pdfreporter-core 								05.04.2015
+----------------------------------------------------------
+Features
+- messages with parameter are supported in the multi langauge (i18n)
+
+Bugs
+
+
+Open Issues
+- the expression language needs to be integrated to the pdfreporter-core
+
+==========================================================
+
+pdfreporter-core 								03.04.2015
+----------------------------------------------------------
+Features
+- JSON support (also for Android) - Interface extracted for iOS
+- i18n support (multi language support for all platforms, Android & iOS)
+- new expression language, jshuntingyard, in pdfreporter-extension
+
+Bugs
+
+
+Open Issues
+- messages with parameter are not yet supported in the multi langauge (i18n)
+- the expression language needs to be integrated to the pdfreporter-core
