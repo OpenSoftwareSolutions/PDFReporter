@@ -42,6 +42,13 @@ public interface JasperReportsContext//FIXMECONTEXT extends ExtensionsRegistry
 	 static final String COMPILER_XML_VALIDATION = JRPropertiesUtil.PROPERTY_PREFIX + "compiler.xml.validation";
 	 
 	/**
+	 * Whether XInclude is supported by the XmlParser (this is currently not supported on Android).
+	 * <p>
+	 * Defaults to <code>true</code>.
+	 */
+	static final String COMPILER_XML_XINCLUDEAWARE = JRPropertiesUtil.PROPERTY_PREFIX + "compiler.xml.xincludeaware";
+	 
+	/**
 	 * Validation flag used by the XML exporter.
 	 * <p>
 	 * Defaults to <code>true</code>.

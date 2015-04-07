@@ -39,6 +39,7 @@ public class ApiRegistry {
 		setSession(geometryFactory);
 		setSession(sqlFactory);
 		setSession(jsonDataSourceFactory);
+		setSession(fontFactory);
 	}
 
 	private static void setSession(Object factory) {

@@ -7,12 +7,14 @@ import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.pdf.IDocument;
+import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ReportTestRunner {
@@ -35,6 +37,7 @@ public class ReportTestRunner {
     private static final String DESIGN_REPORT_LANDSCAPE = "LandscapeReport.jrxml";
     private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
     private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
+    private static final String DESIGN_REPORT_JSON = "JsonCustomersReport.jrxml";
 
     //data source
     private static final String XML_DATA_NORTHWIND = "northwind.xml";
@@ -83,6 +86,7 @@ public class ReportTestRunner {
         list.add(new ReportPlist(DESIGN_REPORT_PARAGRAPH, "Paragraph"));
         list.add(new ReportPlist(DESIGN_REPORT_STYLEDTEXT, "Styled text"));
         list.add(new ReportPlist(DESIGN_REPORT_CDBOOCKLET, "CD Booklet (XML)"));
+        list.add(new ReportPlist(DESIGN_REPORT_JSON, "JSON Report"));
         return list;
     }
 
@@ -135,12 +139,15 @@ public class ReportTestRunner {
             return exportStyledText();
         } else if (identifier.equals(DESIGN_REPORT_CDBOOCKLET)) {
             return exportCDBooklet();
+        } else if (identifier.equals(DESIGN_REPORT_JSON)) {
+            return exportJsonDataSource();
         }
 
         return null;
     }
 
     private PdfReporter getExporter(String jrxmlPath, String reportFolder, String extraFolder) {
+        ApiRegistry.initSession();
 
         //path to root folder with all reports
         final String rootFolder = getRootFolder();
@@ -168,12 +175,7 @@ public class ReportTestRunner {
 
     private String exportMasterReport() throws Exception {
         PdfReporter exporter = getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts"); // initialize Repository
-
-        JasperReport subreport = SubreportUtil.loadSubreport("ProductReport.jasper");
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("ProductsSubreport", subreport);
-
-        exporter.setFillParameters(parameters);
+        exporter.addSubreport("ProductsSubreport", "ProductReport.jasper");
         return exporter.exportSqlReport(getDatabasePath(), null, null);
     }
 
@@ -214,15 +216,8 @@ public class ReportTestRunner {
     }
 
     private String exportEncrypt() throws Exception {
-        Map<JRExporterParameter, Object> parameters = new HashMap<>();
-        parameters.put(JRPdfExporterParameter.IS_ENCRYPTED, Boolean.TRUE);
-        parameters.put(JRPdfExporterParameter.IS_128_BIT_KEY, Boolean.TRUE);
-        parameters.put(JRPdfExporterParameter.USER_PASSWORD, "jasper");
-        parameters.put(JRPdfExporterParameter.OWNER_PASSWORD, "reports");
-        parameters.put(JRPdfExporterParameter.PERMISSIONS, IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT);
-
         PdfReporter reporter =  getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null);
-        reporter.setExportParameters(parameters);
+        reporter.addEncryption(true, "jasper", "reports", IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT);
         return reporter.exportWithoutDataSource();
     }
 
@@ -240,5 +235,12 @@ public class ReportTestRunner {
 
     private String getFilenameFromJrxml(String jrxml) {
         return jrxml.replace(".jrxml", "");
+    }
+
+    private String exportJsonDataSource() throws Exception{
+        PdfReporter reporter = getExporter(DESIGN_REPORT_JSON, "jsondatasource","extra-fonts"); // initialize Repository
+        reporter.addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper");
+        reporter.addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US);
+        return reporter.exportJsonReport();
     }
 }

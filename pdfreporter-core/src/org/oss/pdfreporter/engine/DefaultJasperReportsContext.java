@@ -135,6 +135,7 @@ public class DefaultJasperReportsContext implements JasperReportsContext
 	{
 		loadSystemProperty("jasper.reports.compiler.class", JRCompiler.COMPILER_CLASS);
 		loadSystemProperty("jasper.reports.compile.xml.validation", COMPILER_XML_VALIDATION);
+		loadSystemProperty("jasper.reports.compile.xml.xincludeaware", COMPILER_XML_XINCLUDEAWARE);
 		loadSystemProperty("jasper.reports.export.xml.validation", EXPORT_XML_VALIDATION);
 		loadSystemProperty("jasper.reports.compile.keep.java.file", JRCompiler.COMPILER_KEEP_JAVA_FILE);
 		loadSystemProperty("jasper.reports.compile.temp", JRCompiler.COMPILER_TEMP_DIR);
