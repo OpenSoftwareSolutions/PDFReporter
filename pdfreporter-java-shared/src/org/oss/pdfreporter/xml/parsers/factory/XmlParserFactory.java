@@ -16,6 +16,9 @@ import java.io.Reader;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.oss.pdfreporter.engine.DefaultJasperReportsContext;
+import org.oss.pdfreporter.engine.JRPropertiesUtil;
+import org.oss.pdfreporter.engine.JasperReportsContext;
 import org.oss.pdfreporter.registry.IRegistry;
 import org.oss.pdfreporter.xml.parsers.IContentHandler;
 import org.oss.pdfreporter.xml.parsers.IDocumentBuilderFactory;
@@ -99,7 +102,10 @@ public class XmlParserFactory implements IXmlParserFactory {
         if (xmlParserFactory == null) {
         	xmlParserFactory = SAXParserFactory.newInstance();
         	xmlParserFactory.setNamespaceAware(namespaceAware);
-        	xmlParserFactory.setXIncludeAware(xincludeAware);
+        	// setting XIncludeAwara will throw an unsupported exception on Android
+        	if (JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getBooleanProperty(JasperReportsContext.COMPILER_XML_XINCLUDEAWARE)) {
+            	xmlParserFactory.setXIncludeAware(xincludeAware);
+        	};
         	xmlParserFactory.setValidating(validating);
         }
         return (xmlParserFactory);
@@ -109,7 +115,9 @@ public class XmlParserFactory implements IXmlParserFactory {
     	if (documentBuilderFactory==null) {
     		documentBuilderFactory = DocumentBuilderFactory.newInstance();
     		documentBuilderFactory.setNamespaceAware(namespaceAware);
-    		documentBuilderFactory.setXIncludeAware(xincludeAware);
+    		if (JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getBooleanProperty(JasperReportsContext.COMPILER_XML_XINCLUDEAWARE)) {
+        		documentBuilderFactory.setXIncludeAware(xincludeAware);	
+    		}
     		documentBuilderFactory.setValidating(validating);
     	}
     	return (documentBuilderFactory);
