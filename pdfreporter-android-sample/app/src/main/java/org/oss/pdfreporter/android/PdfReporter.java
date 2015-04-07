@@ -49,6 +49,8 @@ public class PdfReporter {
     private final String mJrxmlFilePath;
     private Map<JRExporterParameter, Object> mExportParameters = new HashMap<>();
     private Map<String,Object> mFillParameters = new HashMap<>();
+    private String mSubreportName;
+    private String mSubreportLocation;
 
     public PdfReporter(String jrxmlFilePath, String outputFolder, String outputPdfName) {
         mPdfOutputFolder = outputFolder;
@@ -73,7 +75,7 @@ public class PdfReporter {
     }
 
     public String exportFromXml(String xmlDataFile, String xmlXpath) throws Exception {
-
+        ApiRegistry.initSession();
         try {
             JasperDesign design = loadReport(mJrxmlFilePath);
             JasperReport report = JasperCompileManager.compileReport(design);
@@ -84,7 +86,7 @@ public class PdfReporter {
     }
 
     public String exportSqlReport(String databasePath, String username, String password) throws Exception {
-
+        ApiRegistry.initSession();
         IConnection sqlDataSource = null;
         try {
 
@@ -94,6 +96,7 @@ public class PdfReporter {
             ISqlFactory sqlFactory = ApiRegistry.getSqlFactory();
 
             sqlDataSource = sqlFactory.newConnection(databasePath, username, password);
+            processSubreport();
             JasperPrint printReport = JasperFillManager.fillReport(report, mFillParameters, sqlDataSource);
             String pathToPdfFile = mPdfOutputFolder + "/" + mPdfOutputName + ".pdf";
             JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile, mExportParameters);
@@ -105,6 +108,7 @@ public class PdfReporter {
     }
 
     private String exportReport(JasperReport compiledReport, String xmlDataFile, String xmlXpath) throws Exception {
+        ApiRegistry.initSession();
         JRDataSource dataSource = null;
         InputStream isXmlData = null;
         try {
@@ -116,6 +120,7 @@ public class PdfReporter {
                 xmlDataSource.setDatePattern("yyyy-MM-dd");
                 dataSource = xmlDataSource;
             }
+            processSubreport();
             JasperPrint printReport = JasperFillManager.fillReport(compiledReport, null, dataSource);
             String pathToPdfFile = mPdfOutputFolder + "/" + printReport.getName() + ".pdf";
             JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile, mExportParameters);
@@ -126,6 +131,7 @@ public class PdfReporter {
     }
 
     public String exportJsonReport() throws Exception{
+        ApiRegistry.initSession();
         JasperDesign design = loadReport(mJrxmlFilePath);
         JasperReport report = JasperCompileManager.compileReport(design);
         String pdfPath = exportJsonReport(report, null);
@@ -138,6 +144,7 @@ public class PdfReporter {
         IJsonDataSource jsonDataSource = null;
         try {
             JasperPrint printReport = null;
+            processSubreport();
             if(jsonDataFile == null){
                 printReport = JasperFillManager.fillReport(compiledReport, mFillParameters);
             }
@@ -151,8 +158,15 @@ public class PdfReporter {
     }
 
     public void addSubreport(String subreportName, String location) throws JRException {
-        JasperReport subreport = SubreportUtil.loadSubreport(location);
-        mFillParameters.put(subreportName, subreport);
+        mSubreportName = subreportName;
+        mSubreportLocation = location;
+    }
+
+    private void processSubreport() throws JRException{
+        if (mSubreportLocation != null && mSubreportName != null) {
+            JasperReport subreport = SubreportUtil.loadSubreport(mSubreportLocation);
+            mFillParameters.put(mSubreportName, subreport);
+        }
     }
 
     /**

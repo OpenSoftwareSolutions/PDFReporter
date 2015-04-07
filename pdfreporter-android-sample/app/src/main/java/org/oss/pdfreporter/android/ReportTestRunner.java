@@ -147,8 +147,6 @@ public class ReportTestRunner {
     }
 
     private PdfReporter getExporter(String jrxmlPath, String reportFolder, String extraFolder) {
-        ApiRegistry.initSession();
-
         //path to root folder with all reports
         final String rootFolder = getRootFolder();
         final String resourceFolder = getResourcesFolder();
