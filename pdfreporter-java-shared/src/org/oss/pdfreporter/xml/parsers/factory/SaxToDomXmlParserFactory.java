@@ -51,6 +51,11 @@ public class SaxToDomXmlParserFactory implements IXmlParserFactory {
 		// not intended to create
 	}
 	
+	
+	protected boolean isXIncludeSupported() {
+		return true;
+	}
+	
 	@Override
 	public void setNamespaceAware(boolean aware) {
 		this.namespaceAware = aware;
@@ -90,7 +95,7 @@ public class SaxToDomXmlParserFactory implements IXmlParserFactory {
 	@Override
 	public IXmlParser newXmlParser(IInputSource input, IContentHandler handeler) throws ParserConfigurationException {
 		try {
-			return new XmlParser(getXmlParserFactory().newSAXParser(),input,handeler);
+			return new XmlParser(getXmlParserFactory().newSAXParser(), input, handeler, isXIncludeSupported());
 		} catch (Exception e) {
 			throw new ParserConfigurationException(e);
 		}
@@ -100,7 +105,9 @@ public class SaxToDomXmlParserFactory implements IXmlParserFactory {
         if (xmlParserFactory == null) {
         	xmlParserFactory = SAXParserFactory.newInstance();
         	xmlParserFactory.setNamespaceAware(namespaceAware);
-        	xmlParserFactory.setXIncludeAware(xincludeAware);
+        	if (isXIncludeSupported()) {
+            	xmlParserFactory.setXIncludeAware(xincludeAware);	
+        	}
         	xmlParserFactory.setValidating(validating);
         }
         return (xmlParserFactory);
@@ -110,7 +117,9 @@ public class SaxToDomXmlParserFactory implements IXmlParserFactory {
     	if (documentBuilderFactory==null) {
     		documentBuilderFactory = new DocumentBuilderFactory();
     		documentBuilderFactory.setNamespaceAware(namespaceAware);
-    		documentBuilderFactory.setXIncludeAware(xincludeAware);
+    		if (isXIncludeSupported()) {
+        		documentBuilderFactory.setXIncludeAware(xincludeAware);	
+    		}
     		documentBuilderFactory.setValidating(validating);
     	}
     	return (documentBuilderFactory);

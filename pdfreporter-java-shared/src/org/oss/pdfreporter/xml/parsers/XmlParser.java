@@ -12,9 +12,6 @@ package org.oss.pdfreporter.xml.parsers;
 
 import javax.xml.parsers.SAXParser;
 
-import org.oss.pdfreporter.engine.DefaultJasperReportsContext;
-import org.oss.pdfreporter.engine.JRPropertiesUtil;
-import org.oss.pdfreporter.engine.JasperReportsContext;
 import org.oss.pdfreporter.xml.parsers.AbstractXmlParser;
 import org.oss.pdfreporter.xml.parsers.IContentHandler;
 import org.oss.pdfreporter.xml.parsers.IInputSource;
@@ -36,20 +33,13 @@ public class XmlParser extends AbstractXmlParser {
 
 	private final XMLReader reader;
 	
-	public XmlParser(SAXParser parser, IInputSource input, IContentHandler handler) throws ParserConfigurationException {
-		super(input,handler,parser.isValidating(),parser.isNamespaceAware(), isXIncludeAware(parser));
+	public XmlParser(SAXParser parser, IInputSource input, IContentHandler handler, boolean xIncludeSupported) throws ParserConfigurationException {
+		super(input,handler,parser.isValidating(),parser.isNamespaceAware(), xIncludeSupported ? parser.isXIncludeAware() : false);
 		try {
 			this.reader = parser.getXMLReader();
 		} catch (SAXException e) {
 			throw new ParserConfigurationException(e);
 		}
-	}
-	
-	private static boolean isXIncludeAware(SAXParser parser) {
-		if (JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getBooleanProperty(JasperReportsContext.COMPILER_XML_XINCLUDEAWARE)) {
-			return parser.isXIncludeAware();
-		}
-		return false;
 	}
 
 	@Override

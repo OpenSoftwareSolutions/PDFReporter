@@ -10,19 +10,34 @@
  ******************************************************************************/
 package org.oss.pdfreporter.factory;
 
+import org.oss.pdfreporter.beans.factory.BeansFactory;
 import org.oss.pdfreporter.font.FontFactory;
 import org.oss.pdfreporter.geometry.GeometryFactory;
 import org.oss.pdfreporter.image.ImageFactory;
+import org.oss.pdfreporter.json.factory.JsonDataSourceFactory;
+import org.oss.pdfreporter.net.factory.NetFactory;
 import org.oss.pdfreporter.pdf.PdfFactory;
 import org.oss.pdfreporter.registry.ApiRegistry;
+import org.oss.pdfreporter.sql.SQLiteFactory;
+import org.oss.pdfreporter.text.format.factory.DefaultFormatFactory;
+import org.oss.pdfreporter.text.format.factory.SimpleFormatFactory;
+import org.oss.pdfreporter.text.format.fallback.FallbackFormatFactory;
+import org.oss.pdfreporter.xml.parsers.factory.AndroidXmlParserFactory;
 
 public class FactoryManager {
 	public static void registerFactories() {
-		ApiRegistry.initSession();
-		PdfFactory.registerFactory();
-		FontFactory.registerFactory();
 		GeometryFactory.registerFactory();
+		AndroidXmlParserFactory.registerFactory();
+		JsonDataSourceFactory.registerFactory();
+		NetFactory.registerFactory();
+		SimpleFormatFactory.registerFactory();		
+		DefaultFormatFactory.registerFactory();	
+		FallbackFormatFactory.registerFactory();
+		BeansFactory.registerFactory();
+		FontFactory.registerFactory();
 		ImageFactory.registerFactory();
+		PdfFactory.registerFactory();
+		SQLiteFactory.registerFactory();
 	}
 	
 	public static void dispose() {

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.oss.pdfreporter.factory.FactoryManager;
 import org.oss.pdfreporter.json.factory.JsonDataSourceFactory;
 import org.oss.pdfreporter.sql.SQLiteFactory;
 import org.oss.pdfreporter.beans.factory.BeansFactory;
@@ -55,18 +56,7 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 	synchronized private void initializeIRegistry() {
 		if (!isInitialized) {
 			Logger.getLogger("").setLevel(Level.FINEST);
-			GeometryFactory.registerFactory();
-			XmlParserFactory.registerFactory();
-			JsonDataSourceFactory.registerFactory();
-			NetFactory.registerFactory();
-			SimpleFormatFactory.registerFactory();		
-			DefaultFormatFactory.registerFactory();	
-			FallbackFormatFactory.registerFactory();
-			BeansFactory.registerFactory();
-			FontFactory.registerFactory();
-			ImageFactory.registerFactory();
-			PdfFactory.registerFactory();
-			SQLiteFactory.registerFactory();
+			FactoryManager.registerFactories();
 			isInitialized = true;
 			logger.info("Initialized IRegistry");
 		}

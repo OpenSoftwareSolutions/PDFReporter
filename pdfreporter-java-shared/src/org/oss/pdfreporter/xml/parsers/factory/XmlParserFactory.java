@@ -49,8 +49,12 @@ public class XmlParserFactory implements IXmlParserFactory {
 		IRegistry.register(new XmlParserFactory());
 	}
 
-	private XmlParserFactory() {
+	protected XmlParserFactory() {
 		// not intended to create
+	}
+	
+	protected boolean isXIncludeSupported() {
+		return true;
 	}
 	
 	@Override
@@ -92,7 +96,7 @@ public class XmlParserFactory implements IXmlParserFactory {
 	@Override
 	public IXmlParser newXmlParser(IInputSource input, IContentHandler handeler) throws ParserConfigurationException {
 		try {
-			return new XmlParser(getXmlParserFactory().newSAXParser(),input,handeler);
+			return new XmlParser(getXmlParserFactory().newSAXParser(), input, handeler, isXIncludeSupported());
 		} catch (Exception e) {
 			throw new ParserConfigurationException(e);
 		}
@@ -103,7 +107,7 @@ public class XmlParserFactory implements IXmlParserFactory {
         	xmlParserFactory = SAXParserFactory.newInstance();
         	xmlParserFactory.setNamespaceAware(namespaceAware);
         	// setting XIncludeAwara will throw an unsupported exception on Android
-        	if (JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getBooleanProperty(JasperReportsContext.COMPILER_XML_XINCLUDEAWARE)) {
+        	if (isXIncludeSupported()) {
             	xmlParserFactory.setXIncludeAware(xincludeAware);
         	};
         	xmlParserFactory.setValidating(validating);
@@ -115,7 +119,7 @@ public class XmlParserFactory implements IXmlParserFactory {
     	if (documentBuilderFactory==null) {
     		documentBuilderFactory = DocumentBuilderFactory.newInstance();
     		documentBuilderFactory.setNamespaceAware(namespaceAware);
-    		if (JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance()).getBooleanProperty(JasperReportsContext.COMPILER_XML_XINCLUDEAWARE)) {
+    		if (isXIncludeSupported()) {
         		documentBuilderFactory.setXIncludeAware(xincludeAware);	
     		}
     		documentBuilderFactory.setValidating(validating);
