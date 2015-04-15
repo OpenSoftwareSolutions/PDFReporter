@@ -30,8 +30,13 @@ public class MessageWithArg implements Function {
 	public FunctionResult execute(Evaluator evaluator, String arguments) throws FunctionException {
 		Object[] params = arguments.split(",");
 		String text = (String)params[0];
+		// if lenght is equal to 2 we just have the leading and ending quotes.
+		if(text.length() == 2){
+			text = "";
+		} else {
+			text = text.substring(1, text.length() - 2);
+		}
 		// trail leading and ending single quote.
-		text = text.substring(1, text.length() - 2);
 		Object[] args = Arrays.copyOfRange(params, 1, params.length);
 		String result = MessageFormat.format(text, args);
 		return new FunctionResult(result, FunctionConstants.FUNCTION_RESULT_TYPE_STRING);
