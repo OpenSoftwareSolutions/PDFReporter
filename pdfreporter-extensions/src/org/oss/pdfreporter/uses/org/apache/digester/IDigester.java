@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2013 Open Software Solutions GmbH
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -85,7 +85,7 @@ public interface IDigester {
 	 * @see CallMethodRule
 	 */
 	void addCallMethod(String pattern, String methodName, int paramCount);
-	
+
 	/**
      * Add an "call method" rule for a method which accepts no arguments.
      *
@@ -125,9 +125,9 @@ public interface IDigester {
      * @param creationFactory Previously instantiated ObjectCreationFactory
      *  to be utilized
      * @see FactoryCreateRule
-     */	
-	public void addFactoryCreate(String pattern,  IObjectCreationFactory creationFactory);	
-	
+     */
+	public void addFactoryCreate(String pattern,  IObjectCreationFactory creationFactory);
+
 	/**
 	 * Add a "factory create" rule for the specified parameters.
 	 * Exceptions thrown during the object creation process will be propagated.
@@ -159,7 +159,7 @@ public interface IDigester {
 	 * @see SetNextRule
 	 */
 	void addSetNext(String pattern, String methodName, String paramType);
-	
+
 	 /**
      * Add a "set next" rule for the specified parameters.
      *
@@ -169,12 +169,35 @@ public interface IDigester {
      */
     public void addSetNext(String pattern, String methodName);
 
+
+    /**
+     * Add a "set properties" rule with overridden parameters.
+     * See {@link SetPropertiesRule#SetPropertiesRule(String [] attributeNames, String [] propertyNames)}
+     *
+     * @param pattern Element matching pattern
+     * @param attributeNames names of attributes with custom mappings
+     * @param propertyNames property names these attributes map to
+     * @see SetPropertiesRule
+     */
+    public void addSetProperties(
+                                String pattern,
+                                String [] attributeNames,
+                                String [] propertyNames);
+
+    /**
+     * Add a "set properties" rule for the specified parameters.
+     *
+     * @param pattern Element matching pattern
+     * @see SetPropertiesRule
+     */
+    public void addSetProperties(String pattern);
+
 	/**
 	 * Clear the current contents of the default object stack, the param stack,
-	 * all named stacks, and other internal variables. 
+	 * all named stacks, and other internal variables.
 	 * <p>
 	 * Calling this method <i>might</i> allow another document of the same type
-	 * to be correctly parsed. However this method was not intended for this 
+	 * to be correctly parsed. However this method was not intended for this
 	 * purpose (just to tidy up memory usage). In general, a separate Digester
 	 * object should be created for each document to be parsed.
 	 * <p>
@@ -215,7 +238,7 @@ public interface IDigester {
 	 */
 	void push(Object object);
 
-	
+
     /**
      * Process notification of the end of an XML element being reached.
      *
@@ -229,21 +252,21 @@ public interface IDigester {
      * @exception XMLParseException if a parsing error is to be reported
      */
 	void endElement(String namespaceURI, String localName,  String qName) throws XMLParseException;
-	
+
     /**
      * Set the entity resolver for this Digester.
      *
-     * @param resolver The new entity resolver 
+     * @param resolver The new entity resolver
      */
 	void setXmlEntityResolver(XMLEntityResolver resolver);
-	
+
     /**
      * Set the error handler for this Digester.
      *
      * @param errorHandler The new error handler
      */
 	void setErrorHandler(XMLErrorHandler errorHandler);
-	
+
 	/**
      * Set the validating parser flag.  This must be called before
      * <code>parse()</code> is called the first time.
@@ -251,7 +274,7 @@ public interface IDigester {
      * @param validating The new validating parser flag.
      */
 	 void setValidating(boolean validating);
-	 
+
 	/**
 	 * Sets a flag indicating whether the requested feature is supported by the
 	 * underlying implementation of <code>org.xml.sax.XMLReader</code>. See <a
@@ -260,18 +283,18 @@ public interface IDigester {
 	 * effective, this method must be called <strong>before</strong> the
 	 * <code>getParser()</code> method is called for the first time, either
 	 * directly or indirectly.
-	 * 
+	 *
 	 * @param feature
 	 *            Name of the feature to set the status for
 	 * @param value
 	 *            The new value for this feature
-	 * 
+	 *
 	 * @exception XMLParseException
 	 *                if a parser configuration error occurs
 	 */
 	public void setFeature(String feature, boolean value)
-			throws XMLParseException;	    
-	    
+			throws XMLParseException;
+
 	/**
 	 * Return the <code>Rules</code> implementation object containing our rules
 	 * collection and associated matching policy. If none has been established,
@@ -282,7 +305,7 @@ public interface IDigester {
 	/**
 	 * Set the <code>Rules</code> implementation object containing our rules
 	 * collection and associated matching policy.
-	 * 
+	 *
 	 * @param rules
 	 *            New Rules implementation
 	 */
@@ -297,12 +320,12 @@ public interface IDigester {
 	 * <p>
 	 * Push a new object onto the top of the parameters stack.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * The parameters stack is used to store <code>CallMethodRule</code>
 	 * parameters. See {@link #params}.
 	 * </p>
-	 * 
+	 *
 	 * @param object
 	 *            The new object
 	 */
@@ -313,7 +336,7 @@ public interface IDigester {
 	 * Pop the top object off of the parameters stack, and return it. If there
 	 * are no objects on the stack, return <code>null</code>.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * The parameters stack is used to store <code>CallMethodRule</code>
 	 * parameters. See {@link #params}.
@@ -326,11 +349,14 @@ public interface IDigester {
 	 * Return the top object on the parameters stack without removing it. If
 	 * there are no objects on the stack, return <code>null</code>.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * The parameters stack is used to store <code>CallMethodRule</code>
 	 * parameters. See {@link #params}.
 	 * </p>
 	 */
 	Object peekParams();
+
+	void setDelegator(IDigester delegator);
+	IDigester getDelegator();
 }
