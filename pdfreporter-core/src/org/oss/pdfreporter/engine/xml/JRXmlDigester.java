@@ -24,7 +24,7 @@
 
 /*
  * Contributors:
- * Artur Biesiadowski - abies@users.sourceforge.net 
+ * Artur Biesiadowski - abies@users.sourceforge.net
  */
 package org.oss.pdfreporter.engine.xml;
 
@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.oss.pdfreporter.exception.NotImplementedException;
 import org.oss.pdfreporter.registry.IRegistry;
 import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.uses.org.apache.digester.DelegatingAbstractDigester;
@@ -60,7 +61,7 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 
 	private String lastNamespacePrefix;
 	private Object lastPopped;
-	
+
 	/**
 	 *
 	 */
@@ -68,7 +69,8 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 	{
 		super(digester);
 		this.delegate = digester;
-		
+		digester.setDelegator(this);
+
 		initInternalResources();
 		setXmlEntityResolver(this);
 	}
@@ -77,28 +79,28 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 	private void initInternalResources()
 	{
 		internalEntityResources = new HashMap<String,String>();
-		
-		internalEntityResources.put(JRXmlConstants.JASPERREPORT_SYSTEM_ID, 
+
+		internalEntityResources.put(JRXmlConstants.JASPERREPORT_SYSTEM_ID,
 				JRXmlConstants.JASPERREPORT_DTD);
-		internalEntityResources.put(JRXmlConstants.JASPERPRINT_SYSTEM_ID, 
+		internalEntityResources.put(JRXmlConstants.JASPERPRINT_SYSTEM_ID,
 				JRXmlConstants.JASPERPRINT_DTD);
-		internalEntityResources.put(JRXmlConstants.JASPERTEMPLATE_SYSTEM_ID, 
+		internalEntityResources.put(JRXmlConstants.JASPERTEMPLATE_SYSTEM_ID,
 				JRXmlConstants.JASPERTEMPLATE_DTD);
-		internalEntityResources.put(JRXmlConstants.JASPERREPORT_XSD_SYSTEM_ID, 
+		internalEntityResources.put(JRXmlConstants.JASPERREPORT_XSD_SYSTEM_ID,
 				JRXmlConstants.JASPERREPORT_XSD_RESOURCE);
-		internalEntityResources.put(JRXmlConstants.JASPERPRINT_XSD_SYSTEM_ID, 
-				JRXmlConstants.JASPERPRINT_XSD_RESOURCE);		
+		internalEntityResources.put(JRXmlConstants.JASPERPRINT_XSD_SYSTEM_ID,
+				JRXmlConstants.JASPERPRINT_XSD_RESOURCE);
 	}
 
 
 	/**
 	 * Adds a mapping of an entity system ID to an internal/classloader resource
 	 * name.
-	 * 
+	 *
 	 * <p>
 	 * This mapping is used by {@link #resolveEntity(String, String)} to
 	 * resolve a system ID to a classloader resource.
-	 * 
+	 *
 	 * @param systemId the system ID
 	 * @param resource the resource name
 	 */
@@ -121,7 +123,7 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 		if (systemId != null)
 		{
 			String resource = internalEntityResources.get(systemId);
-			
+
 			if (resource == null)
 			{
 				// TODO (25.04.2013, Donat, Open Software Solutions): Implement IInputSource with systemId
@@ -129,7 +131,7 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 			}
 
 			InputStream is = FileResourceLoader.getInputStream(resource);
-			
+
 			if (is != null)
 			{
 				inputSource = IRegistry.getIXmlParserFactory().newInputSource(is);
@@ -144,7 +146,7 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 			throws XMLParseException
 	{
 		lastNamespacePrefix = getNamespacePrefix(qName);
-		
+
 		delegate.endElement(namespaceURI, localName, qName);
 	}
 
@@ -169,7 +171,7 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 		}
 		return prefix;
 	}
-	
+
 	public String getLastNamespacePrefix()
 	{
 		return lastNamespacePrefix;
@@ -183,23 +185,23 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 		lastPopped = delegate.pop();
 		return lastPopped;
 	}
-	
+
 	/**
 	 * Clears the last popped object.
-	 * 
+	 *
 	 * @see #lastPopped()
 	 */
 	public void clearLastPopped()
 	{
 		lastPopped = null;
 	}
-	
+
 	/**
 	 * Returns the previously popped object.
-	 * 
-	 * This method can be used by rules that need to know the object was added and 
+	 *
+	 * This method can be used by rules that need to know the object was added and
 	 * popped to the stack by an inner element.
-	 * 
+	 *
 	 * @return the previously popped object
 	 */
 	public Object lastPopped()
@@ -207,5 +209,18 @@ public class JRXmlDigester extends DelegatingAbstractDigester implements XMLEnti
 		return lastPopped;
 	}
 
-	
+
+	@Override
+	public void setDelegator(IDigester delegator) {
+		throw new NotImplementedException("This implementation is not intended to offer this feature");
+
+	}
+
+
+	@Override
+	public IDigester getDelegator() {
+		throw new NotImplementedException("This implementation is not intended to offer this feature");
+	}
+
+
 }

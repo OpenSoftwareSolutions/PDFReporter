@@ -92,14 +92,16 @@ public interface JRVisitor
 
 	/**
 	 * Visits a component wrapper element.
-	 * 
+	 *
 	 * @param componentElement the element to visit
 	 */
 	public void visitComponentElement(JRComponentElement componentElement);
 
 	/**
+	 * TODO (08.04.2015, magnus): generic element not supported
+	 *
 	 * Visits a generic report element.
-	 * 
+	 *
 	 * @param element the element to visit
 	 */
 	public void visitGenericElement(JRGenericElement element);
