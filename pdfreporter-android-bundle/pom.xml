@@ -49,7 +49,7 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-		
+
 		<dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>pdfreporter-android</artifactId>
@@ -61,7 +61,7 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-		
+
 		<dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>droidtext</artifactId>
@@ -73,10 +73,21 @@
 			<version>1.0.0</version>
             <classifier>sources</classifier>
         </dependency>
+        <dependency>
+        	<groupId>com.pdfreporting</groupId>
+        	<artifactId>pdfreporter-java-shared</artifactId>
+        	<version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-java-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
-          
+
 			<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.3</version>
@@ -132,7 +143,7 @@
                                          windowtitle="${project.name} API">
                                     <doctitle>
                                         <![CDATA[<h1>${project.name} API v${project.version}</h1>]]></doctitle>
-            
+
                                     <classpath refid="maven.dependency.classpath"/>
                                 </javadoc>
                                 <jar destfile="${project.build.directory}/${project.build.finalName}-javadoc.jar"
