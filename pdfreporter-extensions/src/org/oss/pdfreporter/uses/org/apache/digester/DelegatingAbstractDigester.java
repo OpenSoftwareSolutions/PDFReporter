@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2013 Open Software Solutions GmbH
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,11 +25,24 @@ import org.oss.pdfreporter.xml.parsers.XMLParseException;
 
 
 public abstract class DelegatingAbstractDigester implements IDigester {
+
+
 	private final IDigester delegate;
 
 	public DelegatingAbstractDigester(IDigester delegate) {
 		super();
 		this.delegate = delegate;
+	}
+
+	@Override
+	public void addSetProperties(String pattern) {
+		delegate.addSetProperties(pattern);
+	}
+
+	@Override
+	public void addSetProperties(String pattern, String[] attributeNames, String[] propertyNames) {
+		delegate.addSetProperties(pattern, attributeNames, propertyNames);
+
 	}
 
 	@Override
@@ -46,7 +59,7 @@ public abstract class DelegatingAbstractDigester implements IDigester {
 	public String getMatch() {
 		return delegate.getMatch();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return delegate.getCount();
@@ -201,5 +214,5 @@ public abstract class DelegatingAbstractDigester implements IDigester {
 	@Override
 	public Object peekParams() {
 		return delegate.peekParams();
-	}	
+	}
 }

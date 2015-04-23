@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -21,16 +21,26 @@ import org.oss.pdfreporter.exception.ConversionException;
 
 
 public class BeanUtils implements IBeansUtils {
-	
+
 	@Override
 	public void setProperty(Object top, String propertyName, Object value) {
 		if (top != null) {
 			try {
 				// TODO (19.4.2013, Donat, Open Software Solutions) add support for
 				// properties declared on superclasses
-				Field field = top.getClass().getDeclaredField(propertyName);
-				field.setAccessible(true);
-				field.set(top, value);
+				if (hasProperty(top,propertyName)) {
+					Field field = top.getClass().getDeclaredField(propertyName);
+
+					field.setAccessible(true);
+					Class clazz = field.getType();
+					if (clazz == value.getClass()) {
+						field.set(top, value);
+					} else if (clazz==int.class || clazz==Integer.class) {
+						field.set(top, Integer.parseInt((String)value));
+					} else {
+						throw new IllegalArgumentException("Typ= " + clazz.getSimpleName() + " is not supported");
+					}
+				}
 			} catch (Exception e) {
 				throw new ConversionException("Cannot set Property " + propertyName + " on Object "
 						+ top, e);

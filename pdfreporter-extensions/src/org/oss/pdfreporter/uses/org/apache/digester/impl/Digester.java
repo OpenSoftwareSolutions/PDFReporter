@@ -26,9 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.registry.IRegistry;
+import org.oss.pdfreporter.uses.org.apache.digester.IDigester;
 import org.oss.pdfreporter.uses.org.apache.digester.IObjectCreationFactory;
 import org.oss.pdfreporter.uses.org.apache.digester.IRule;
 import org.oss.pdfreporter.uses.org.apache.digester.IRules;
+import org.oss.pdfreporter.uses.org.apache.digester.SetPropertiesRule;
 import org.oss.pdfreporter.xml.parsers.IAttributes;
 import org.oss.pdfreporter.xml.parsers.IContentHandler;
 import org.oss.pdfreporter.xml.parsers.IInputSource;
@@ -42,8 +44,11 @@ import org.oss.pdfreporter.xml.parsers.factory.IXmlParserFactory;
 
 public class Digester extends NotImplementedDigester implements IContentHandler {
 
+
+
 	private final static Logger logger = Logger.getLogger(Digester.class.getName());
-	
+
+	private IDigester delegator;
     /**
      * The object stack being constructed.
      */
@@ -58,18 +63,18 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
      * in the input is entered, the matching rules are pushed onto this
      * stack. After the end tag is reached, the matches are popped again.
      * The depth of is stack is therefore exactly the same as the current
-     * "nesting" level of the input xml. 
+     * "nesting" level of the input xml.
      *
      * @since 1.6
      */
     private final Stack<List<IRule>> matches;
-    
+
     /**
      * The "root" element of the stack (in other words, the last object
      * that was popped.
      */
     private Object root;
-    
+
     /**
      * The parameters stack being utilized by CallMethodRule and
      * CallParamRule rules.
@@ -77,18 +82,18 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
      * @since 2.0
      */
     private final Stack<Object> params;
-    
+
     /**
      * The body text of the current element.
      */
-    private StringBuffer bodyText; 
+    private StringBuffer bodyText;
 
 
     /**
      * The stack of body text string buffers for surrounding elements.
      */
     private final Stack<StringBuffer> bodyTexts;
-    
+
     /**
      * The <code>Rules</code> implementation containing our collection of
      * <code>Rule</code> instances and associated matching policy.  If not
@@ -96,20 +101,20 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
      * will be provided.
      */
     private IRules rules = null;
-    
+
     /**
      * XML error handler
      * errorHandler
      */
     private XMLErrorHandler errorHandler = null;
-    
-    
+
+
     /**
      * XML entity resolver
      * resolver
      */
     private XMLEntityResolver resolver = null;
-	
+
 	public Digester() {
 		this.stack = new Stack<Object>();
 		this.match = "";
@@ -123,8 +128,8 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
 	public IXmlParserFactory getXMLParserFactory() {
 		return IRegistry.getIXmlParserFactory();
 	}
-	
-	
+
+
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName,
 			IAttributes list) throws XMLParseException {
@@ -139,7 +144,7 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
         }
         bodyText = new StringBuffer();
 
-        // the actual element name is either in localName or qName, depending 
+        // the actual element name is either in localName or qName, depending
         // on whether the parser is namespace aware
         String name = localName;
         if ((name == null) || (name.length() < 1)) {
@@ -206,7 +211,7 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
             logger.finest("  match='" + match + "'");
         }
 
-        // the actual element name is either in localName or qName, depending 
+        // the actual element name is either in localName or qName, depending
         // on whether the parser is namespace aware
         String name = localName;
         if ((name == null) || (name.length() < 1)) {
@@ -272,10 +277,10 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
         } else {
             match = "";
         }
-		
+
 	}
 
-	
+
 	@Override
 	public Object peek() {
         try {
@@ -368,7 +373,7 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
 		parser.parse();
 		return root;
 	}
-	
+
 	@Override
 	public IRules getRules() {
         if (this.rules == null) {
@@ -458,6 +463,22 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
 	}
 
 	@Override
+	public void addSetProperties(String pattern, String[] attributeNames,
+			String[] propertyNames) {
+		addRule(pattern,
+                new SetPropertiesRule(attributeNames, propertyNames));
+
+	}
+
+	@Override
+	public void addSetProperties(String pattern) {
+		addRule(pattern,
+                new SetPropertiesRule());
+
+
+	}
+
+	@Override
 	public void pushParams(Object object) {
 	        params.push(object);
 	}
@@ -480,8 +501,8 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
             return (null);
         }
 	}
-	
-	
+
+
 	@Override
 	public String getMatch() {
 		return match;
@@ -512,6 +533,14 @@ public class Digester extends NotImplementedDigester implements IContentHandler 
         }
         return new XMLParseException(e.getMessage(), e);
     }
+
+	public IDigester getDelegator() {
+		return delegator;
+	}
+
+	public void setDelegator(IDigester delegator) {
+		this.delegator = delegator;
+	}
 
 
 }

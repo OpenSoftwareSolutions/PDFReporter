@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -15,4 +15,6 @@ import org.oss.pdfreporter.engine.JRDefaultStyleProvider;
 public interface IJRBaseFiller extends JRDefaultStyleProvider{
 
 	public abstract IJRFillContext getFillContext();
+
+	public abstract int getCurrentPageCount();
 }

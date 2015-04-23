@@ -69,17 +69,17 @@ public class ExporterTest {
 	private static final String DESIGN_REPORT_ROTATION = "RotationReport.jrxml";
 	private static final String DESIGN_REPORT_PDFCRYPT = "PdfEncryptReport.jrxml";
 	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
-//	private static final String DESIGN_REPORT_HORIZONTAL = "HorizontalReport.jrxml";
+	private static final String DESIGN_REPORT_HORIZONTAL = "HorizontalReport.jrxml";
 	private static final String DESIGN_REPORT_LANDSCAPE = "LandscapeReport.jrxml";
 	private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
 	private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
 
 // Tests that are not supported in PDFReporter see comments at the end of unit tests for details
-//	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
-//	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
+	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
+	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
 //	private static final String DESIGN_REPORT_NOPAGEBREAK = "NoPageBreakReport.jrxml";
 //	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
-//	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
+	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
 
 	// XML DATA
 	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
@@ -168,10 +168,10 @@ public class ExporterTest {
 	}
 
 // FIXME PDF ERROR generates no pages
-//	@Test
-//	public void exportHorizontal() throws Exception {
-//		getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
-//	}
+	//@Test
+	//public void exportHorizontal() throws Exception {
+		//getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
+	//}
 
 
 
@@ -225,8 +225,8 @@ public class ExporterTest {
 		Map<JRExporterParameter,Object> parameters = new HashMap<JRExporterParameter,Object>();
 		parameters.put(JRPdfExporterParameter.IS_ENCRYPTED, Boolean.TRUE);
 		parameters.put(JRPdfExporterParameter.IS_128_BIT_KEY, Boolean.TRUE);
-		parameters.put(JRPdfExporterParameter.USER_PASSWORD, "jasper");
-		parameters.put(JRPdfExporterParameter.OWNER_PASSWORD, "reports");
+		parameters.put(JRPdfExporterParameter.USER_PASSWORD, "pdfreporter");
+		parameters.put(JRPdfExporterParameter.OWNER_PASSWORD, "oss");
 		parameters.put(JRPdfExporterParameter.PERMISSIONS, IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT );
 		getExporter("misc").exportReport(DESIGN_REPORT_PDFCRYPT, parameters);
 	}
@@ -279,16 +279,27 @@ public class ExporterTest {
 	}
 
 
+	@Test
+	public void exportHorizontalList() throws Exception {
+		getExporter("list", "extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTALLIST);
+	}
+
+	@Test
+	public void exportList() throws Exception {
+		getExporter("list", "extra-fonts").exportSqlReport(DESIGN_REPORT_LIST);
+	}
+
+	//@Test FIXME
+	//public void exportTemplates() throws Exception {
+		//getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
+	//}
 
 ///////////// BEGIN NOT SUPPORTED FEATURES /////////////////
 
 	/**
 	 * Our Digester does not support addRuleSet and setFeature @see {@link NotImplementedDigester}
 	 *
-		@Test
-		public void exportTemplates() throws Exception {
-			getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
-		}
+
 	*
 	* running above reports results in NotImplementedException
 	*/
@@ -297,16 +308,6 @@ public class ExporterTest {
 	/**
 	 * Components are not supported in initial release, for the tests below code from the original
 	 * source package net.sf.jasperreports.components.list is required.
-	 *
-		@Test
-		public void exportHoprizontalList() throws Exception {
-			getExporter("list").exportSqlReport(DESIGN_REPORT_HORIZONTALLIST);
-		}
-
-		@Test
-		public void exportList() throws Exception {
-			getExporter("list").exportSqlReport(DESIGN_REPORT_LIST);
-		}
 
 		@Test
 		public void exportTable() throws Exception {

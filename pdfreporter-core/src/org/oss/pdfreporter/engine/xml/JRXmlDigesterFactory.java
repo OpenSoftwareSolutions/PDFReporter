@@ -107,13 +107,13 @@ public final class JRXmlDigesterFactory
 	/**
 	 * Configures the given digester for parsing jasperreport xml report definition files.
 	 */
-	public static void configureDigester(IDigester digester) 
+	public static void configureDigester(IDigester digester)
 	{
-		
+
 		digester.setErrorHandler(new ErrorHandlerImpl());
-		
+
 		digester.setNamespaceAware(true);
-		
+
 		digester.setRuleNamespaceURI(JRXmlConstants.JASPERREPORTS_NAMESPACE);
 
 		/*   */
@@ -122,7 +122,7 @@ public final class JRXmlDigesterFactory
 
 		/*   */
 		digester.addRule("*/property", new JRPropertyDigesterRule());
-		
+
 		String propertyExpressionPattern = "*/" + JRXmlConstants.ELEMENT_propertyExpression;
 		digester.addFactoryCreate(propertyExpressionPattern, JRPropertyExpressionFactory.class.getName());
 		digester.addSetNext(propertyExpressionPattern, "addPropertyExpression", JRPropertyExpression.class.getName());
@@ -372,7 +372,7 @@ public final class JRXmlDigesterFactory
 		digester.addCallMethod("*/subreport/subreportParameter/subreportParameterExpression", "setText", 0);
 
 		/*   */
-		// TODO (29.04.2013, Donat, Open Software Solutions): Notice java.sql.Connection support removed		
+		// TODO (29.04.2013, Donat, Open Software Solutions): Notice java.sql.Connection support removed
 		digester.addFactoryCreate("*/connectionExpression", JRExpressionFactory.ConnectionExpressionFactory.class.getName());
 		digester.addSetNext("*/connectionExpression", "setConnectionExpression", JRExpression.class.getName());
 		digester.addCallMethod("*/connectionExpression", "setText", 0);
@@ -393,7 +393,7 @@ public final class JRXmlDigesterFactory
 
 		// TODO (13.06.2013, Donat, Open Software Solutions): Remove when reenabling Charting
 		addPreDatasetRules(digester);
-		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
+		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting
 //		addChartRules(digester);
 
 		addDatasetRules(digester);
@@ -401,12 +401,12 @@ public final class JRXmlDigesterFactory
 		addCrosstabRules(digester);
 
 		addFrameRules(digester);
-		
+
 		addComponentRules(digester);
-		
+
 		addGenericElementRules(digester);
-		
-		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
+
+		// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting
 ///		addMultiAxisDataRules(digester);
 	}
 
@@ -415,30 +415,30 @@ public final class JRXmlDigesterFactory
 	{
 		digester.addFactoryCreate("*/componentElement", JRComponentElementFactory.class.getName());
 		digester.addSetNext("*/componentElement", "addElement", JRDesignElement.class.getName());
-		
+
 		Collection<ComponentsBundle> components = ComponentsEnvironment.getComponentBundles();
 		for (Iterator<ComponentsBundle> it = components.iterator(); it.hasNext();)
 		{
 			ComponentsBundle componentsBundle = it.next();
 			ComponentsXmlParser xmlParser = componentsBundle.getXmlParser();
 			digester.setRuleNamespaceURI(xmlParser.getNamespace());
-			
+
 			XmlDigesterConfigurer configurer = xmlParser.getDigesterConfigurer();
 			if (configurer != null)
 			{
 				configurer.configureDigester(digester);
 			}
-			
+
 			digester.setRuleNamespaceURI(xmlParser.getNamespace());
-			for (Iterator<String> namesIt = componentsBundle.getComponentNames().iterator(); 
+			for (Iterator<String> namesIt = componentsBundle.getComponentNames().iterator();
 					namesIt.hasNext();)
 			{
 				String componentName = namesIt.next();
-				digester.addRule("*/componentElement/" + componentName, 
+				digester.addRule("*/componentElement/" + componentName,
 						JRComponentRule.newInstance());
 			}
 		}
-		
+
 		digester.setRuleNamespaceURI(JRXmlConstants.JASPERREPORTS_NAMESPACE);
 	}
 
@@ -458,7 +458,7 @@ public final class JRXmlDigesterFactory
 	/**
 	 *
 	 */
-	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart reactivate digester rules for charting		
+	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart reactivate digester rules for charting
 //	private static void addChartRules(Digester digester)
 //	{
 //		digester.addFactoryCreate("*/dataset", JRElementDatasetFactory.class.getName());
@@ -1048,7 +1048,7 @@ public final class JRXmlDigesterFactory
 //		digester.addSetNext("*/stackedAreaChart", "addElement", JRDesignElement.class.getName());
 //		digester.addFactoryCreate("*/stackedAreaChart/areaPlot", JRAreaPlotFactory.class.getName());
 //
-//		// gantt charts 
+//		// gantt charts
 //		digester.addFactoryCreate("*/ganttChart", JRGanttChartFactory.class.getName());
 //		digester.addSetNext("*/ganttChart", "addElement", JRDesignElement.class.getName());
 //		digester.addFactoryCreate("*/ganttChart/barPlot", JRBarPlotFactory.class.getName());
@@ -1089,7 +1089,7 @@ public final class JRXmlDigesterFactory
 		digester.addSetNext(datasetIncrementWhenExpressionPath, "setIncrementWhenExpression", JRExpression.class.getName());
 		digester.addCallMethod(datasetIncrementWhenExpressionPath, "setText", 0);
 	}
-	
+
 
 	private static void addDatasetRules(IDigester digester)
 	{
@@ -1152,9 +1152,9 @@ public final class JRXmlDigesterFactory
 		digester.addSetNext("*/bucket/bucketExpression", "setExpression", JRDesignExpression.class.getName());
 		digester.addCallMethod("*/bucket/bucketExpression", "setText", 0);
 
-		String orderByPattern = bucketPattern 
+		String orderByPattern = bucketPattern
 				+ "/" + JRCrosstabBucketFactory.ELEMENT_orderByExpression;
-		digester.addFactoryCreate(orderByPattern, 
+		digester.addFactoryCreate(orderByPattern,
 				new JRExpressionFactory.ArbitraryExpressionFactory(Object.class));
 		digester.addSetNext(orderByPattern, "setOrderByExpression", JRExpression.class.getName());
 		digester.addCallMethod(orderByPattern, "setText", 0);
@@ -1207,87 +1207,87 @@ public final class JRXmlDigesterFactory
 	protected static void addGenericElementRules(IDigester digester)
 	{
 		String genericElementPattern = "*/" + JRXmlConstants.ELEMENT_genericElement;
-		digester.addFactoryCreate(genericElementPattern, 
+		digester.addFactoryCreate(genericElementPattern,
 				JRGenericElementFactory.class);
-		digester.addSetNext(genericElementPattern, "addElement", 
+		digester.addSetNext(genericElementPattern, "addElement",
 				JRDesignElement.class.getName());
-		
-		String genericElementTypePattern = genericElementPattern + "/" 
+
+		String genericElementTypePattern = genericElementPattern + "/"
 			+ JRXmlConstants.ELEMENT_genericElementType;
-		digester.addFactoryCreate(genericElementTypePattern, 
+		digester.addFactoryCreate(genericElementTypePattern,
 				JRGenericElementTypeFactory.class);
-		digester.addSetNext(genericElementTypePattern, "setGenericType", 
+		digester.addSetNext(genericElementTypePattern, "setGenericType",
 				JRGenericElementType.class.getName());
-		
+
 		String genericElementParameterPattern = genericElementPattern + "/"
 			+ JRXmlConstants.ELEMENT_genericElementParameter;
-		digester.addFactoryCreate(genericElementParameterPattern, 
+		digester.addFactoryCreate(genericElementParameterPattern,
 				JRGenericElementParameterFactory.class);
-		digester.addSetNext(genericElementParameterPattern, "addParameter", 
+		digester.addSetNext(genericElementParameterPattern, "addParameter",
 				JRGenericElementParameter.class.getName());
-		
+
 		String genericElementParameterExpressionPattern = genericElementParameterPattern + "/"
 			+ JRXmlConstants.ELEMENT_genericElementParameter_valueExpression;
-		digester.addFactoryCreate(genericElementParameterExpressionPattern, 
+		digester.addFactoryCreate(genericElementParameterExpressionPattern,
 				JRExpressionFactory.ArbitraryExpressionFactory.class);
-		digester.addSetNext(genericElementParameterExpressionPattern, 
+		digester.addSetNext(genericElementParameterExpressionPattern,
 				"setValueExpression", JRExpression.class.getName());
 		digester.addCallMethod(genericElementParameterExpressionPattern, "setText", 0);
 	}
 
 
-	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting		
+	// TODO (21.03.2013, Donat, Open Software Solutions): Refactoring JFreeChart uncomment addChartRules for charting
 ///	private static void addMultiAxisDataRules(Digester digester)
 //	{
 //		String dataPattern = "*/" + JRXmlConstants.ELEMENT_multiAxisData;
 //		digester.addObjectCreate(dataPattern, DesignMultiAxisData.class);
 //		digester.addSetNext(dataPattern, "setMultiAxisData");// TODO lucianc move to containing element
-//		
+//
 //		String datasetPattern = dataPattern + "/" + JRXmlConstants.ELEMENT_multiAxisDataset;
 //		digester.addObjectCreate(datasetPattern, DesignMultiAxisDataset.class);
 //		digester.addSetNext(datasetPattern, "setDataset");
-//		
+//
 //		String dataAxisPattern = dataPattern + "/" + JRXmlConstants.ELEMENT_dataAxis;
 //		digester.addObjectCreate(dataAxisPattern, DesignDataAxis.class);
 //		digester.addRule(dataAxisPattern, new XmlConstantPropertyRule(JRXmlConstants.ATTRIBUTE_axis, Axis.values()));
 //		digester.addSetNext(dataAxisPattern, "addDataAxis");
-//		
+//
 //		String axisLevelPattern = dataAxisPattern + "/" + JRXmlConstants.ELEMENT_axisLevel;
 //		digester.addObjectCreate(axisLevelPattern, DesignDataAxisLevel.class);
 //		digester.addSetProperties(axisLevelPattern);
 //		digester.addSetNext(axisLevelPattern, "addLevel");
-//		addExpressionRules(digester, axisLevelPattern + "/" + JRXmlConstants.ELEMENT_labelExpression, 
+//		addExpressionRules(digester, axisLevelPattern + "/" + JRXmlConstants.ELEMENT_labelExpression,
 //				"setLabelExpression");
-//		
+//
 //		String bucketPattern = axisLevelPattern + "/" + JRXmlConstants.ELEMENT_axisLevelBucket;
 //		digester.addObjectCreate(bucketPattern, DesignDataLevelBucket.class);
-//		digester.addSetProperties(bucketPattern, 
-//				new String[]{JRXmlConstants.ATTRIBUTE_class, JRXmlConstants.ATTRIBUTE_order}, 
+//		digester.addSetProperties(bucketPattern,
+//				new String[]{JRXmlConstants.ATTRIBUTE_class, JRXmlConstants.ATTRIBUTE_order},
 //				new String[]{"valueClassName"});
 //		digester.addRule(bucketPattern, new XmlConstantPropertyRule(JRXmlConstants.ATTRIBUTE_order, SortOrderEnum.values()));
 //		digester.addSetNext(bucketPattern, "setBucket");
-//		
+//
 //		addExpressionRules(digester, bucketPattern + "/" + JRCrosstabBucketFactory.ELEMENT_bucketExpression, "setExpression");
 //		addExpressionRules(digester, bucketPattern + "/" + JRCrosstabBucketFactory.ELEMENT_comparatorExpression, "setComparatorExpression");
-//		
+//
 //		String bucketExpressionPattern = bucketPattern + "/" + JRXmlConstants.ELEMENT_bucketProperty;
 //		digester.addObjectCreate(bucketExpressionPattern, DesignDataLevelBucketProperty.class);
 //		digester.addSetProperties(bucketExpressionPattern);
-//		digester.addSetNext(bucketExpressionPattern, "addBucketProperty");		
+//		digester.addSetNext(bucketExpressionPattern, "addBucketProperty");
 //		addExpressionRules(digester, bucketExpressionPattern, "setExpression");
-//		
+//
 //		String measurePattern = dataPattern + "/" + JRXmlConstants.ELEMENT_multiAxisMeasure;
 //		digester.addObjectCreate(measurePattern, DesignDataMeasure.class);
 //		digester.addSetNext(measurePattern, "addMeasure");
-//		digester.addSetProperties(measurePattern, 
-//				new String[]{JRXmlConstants.ATTRIBUTE_class, JRXmlConstants.ATTRIBUTE_incrementerFactoryClass, 
-//						JRXmlConstants.ATTRIBUTE_calculation}, 
+//		digester.addSetProperties(measurePattern,
+//				new String[]{JRXmlConstants.ATTRIBUTE_class, JRXmlConstants.ATTRIBUTE_incrementerFactoryClass,
+//						JRXmlConstants.ATTRIBUTE_calculation},
 //				new String[]{"valueClassName", "incrementerFactoryClassName"});
 //		digester.addRule(measurePattern, new XmlConstantPropertyRule(
 //				JRXmlConstants.ATTRIBUTE_calculation, CalculationEnum.values()));
-//		addExpressionRules(digester, measurePattern + "/" + JRXmlConstants.ELEMENT_labelExpression, 
+//		addExpressionRules(digester, measurePattern + "/" + JRXmlConstants.ELEMENT_labelExpression,
 //				"setLabelExpression");
-//		addExpressionRules(digester, measurePattern + "/" + JRXmlConstants.ELEMENT_valueExpression, 
+//		addExpressionRules(digester, measurePattern + "/" + JRXmlConstants.ELEMENT_valueExpression,
 //				"setValueExpression");
 //	}
 
@@ -1299,25 +1299,25 @@ public final class JRXmlDigesterFactory
 		digester.addSetNext(expressionPattern, setterMethod,
 				JRExpression.class.getName());
 	}
-	
+
 	/**
 	 * Creates a new instance of digester. The created digester is ready for
 	 * parsing report definition files.
-	 * @throws XMLParseException 
+	 * @throws XMLParseException
 	 */
 	public static JRXmlDigester createDigester() throws XMLParseException
 	{
 		JRXmlDigester digester = new JRXmlDigester(IRegistry.getIDigesterFactory().newDigester());
-		
+
 		//normally not required because schemaSource is set, but keeping to be safe
 		setComponentsInternalEntityResources(digester);
-		
+
 		configureDigester(digester);
 		return digester;
 	}
 
 
-	
+
 	protected static void setComponentsInternalEntityResources(JRXmlDigester digester)
 	{
 		Collection<ComponentsBundle> components = ComponentsEnvironment.getComponentBundles();
@@ -1328,7 +1328,7 @@ public final class JRXmlDigesterFactory
 			String schemaResource = xmlParser.getInternalSchemaResource();
 			if (schemaResource != null)
 			{
-				digester.addInternalEntityResource(xmlParser.getPublicSchemaLocation(), 
+				digester.addInternalEntityResource(xmlParser.getPublicSchemaLocation(),
 						schemaResource);
 			}
 		}

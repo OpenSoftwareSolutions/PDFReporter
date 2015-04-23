@@ -1,3 +1,17 @@
+pdfreporter-core Change Log
+==========================================================
+
+pdfreporter-core 								15.04.2015
+----------------------------------------------------------
+Features
+- components support
+- implementation Lists (as Component)
+
+Bugs
+
+
+Open Issues
+- the expression language needs to be integrated to the pdfreporter-core
 
 pdfreporter-core Change Log
 ==========================================================

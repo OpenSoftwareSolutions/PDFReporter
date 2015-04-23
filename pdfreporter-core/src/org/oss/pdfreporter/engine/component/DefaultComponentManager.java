@@ -27,16 +27,17 @@ import org.oss.pdfreporter.engine.JasperReportsContext;
 
 /**
  * A default {@link IComponentManager component manager} implementation.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: DefaultComponentManager.java 5781 2012-11-05 13:43:56Z teodord $
  */
-public class DefaultComponentManager implements IComponentManager
+public class DefaultComponentManager implements ComponentManager
 {
 
 	private ComponentCompiler componentCompiler;
+	private ComponentFillFactory componentFillFactory;
 
-	
+
 	public ComponentCompiler getComponentCompiler(JasperReportsContext jasperReportsContext)
 	{
 		return componentCompiler;
@@ -44,7 +45,7 @@ public class DefaultComponentManager implements IComponentManager
 
 	/**
 	 * Sets the component compiler implementation.
-	 * 
+	 *
 	 * @param componentCompiler the component compiler
 	 * @see #getComponentCompiler(JasperReportsContext)
 	 */
@@ -53,5 +54,19 @@ public class DefaultComponentManager implements IComponentManager
 		this.componentCompiler = componentCompiler;
 	}
 
-	
+	/**
+	 * Sets the fill component factory implementation.
+	 *
+	 * @param fillFactory the fill component factory
+	 * @see #getComponentFillFactory(JasperReportsContext)
+	 */
+	public void setComponentFillFactory(ComponentFillFactory fillFactory)
+	{
+		this.componentFillFactory = fillFactory;
+	}
+
+	public ComponentFillFactory getComponentFillFactory(JasperReportsContext jasperReportsContext)
+	{
+		return componentFillFactory;
+	}
 }

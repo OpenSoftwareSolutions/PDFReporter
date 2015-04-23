@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.pdfreporting</groupId>
     <artifactId>pdfreporter-android-bundle</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
+    <version>1.1.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>PDFReporting android bundle library</name>
 
 	<parent>
         <groupId>com.pdfreporting</groupId>
         <artifactId>pdfreporter-application</artifactId>
-        <version>1.1.3-SNAPSHOT</version>
+        <version>1.1.4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <dependencies>
@@ -49,7 +49,7 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-		
+
 		<dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>pdfreporter-android</artifactId>
@@ -61,7 +61,7 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-		
+
 		<dependency>
             <groupId>com.pdfreporting</groupId>
             <artifactId>droidtext</artifactId>
@@ -73,10 +73,21 @@
 			<version>1.0.0</version>
             <classifier>sources</classifier>
         </dependency>
+        <dependency>
+        	<groupId>com.pdfreporting</groupId>
+        	<artifactId>pdfreporter-java-shared</artifactId>
+        	<version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pdfreporting</groupId>
+            <artifactId>pdfreporter-java-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
-          
+
 			<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.3</version>
@@ -132,7 +143,7 @@
                                          windowtitle="${project.name} API">
                                     <doctitle>
                                         <![CDATA[<h1>${project.name} API v${project.version}</h1>]]></doctitle>
-            
+
                                     <classpath refid="maven.dependency.classpath"/>
                                 </javadoc>
                                 <jar destfile="${project.build.directory}/${project.build.finalName}-javadoc.jar"
@@ -226,4 +237,9 @@
         	</plugins>
         </pluginManagement>
     </build>
+    <organization>
+    	<name>Open Software Solutions GmbH</name>
+    </organization>
+    <description>The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the PDFReporter Studio where you can visualize your data.</description>
+    <url>http://www.pdfreporting.com</url>
 </project>

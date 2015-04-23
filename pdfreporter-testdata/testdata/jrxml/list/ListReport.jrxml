@@ -11,7 +11,7 @@
 	<style name="Sans_Small" isDefault="false" fontName="DejaVu Sans" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<style name="ListRow"  mode="Opaque" backcolor="#fbf1da">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[Boolean.valueOf($V{REPORT_COUNT}.intValue() %2 == 0)]]></conditionExpression>
+			<conditionExpression><![CDATA[(boolean)$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
 			<style backcolor="#e9f4b2"/>
 		</conditionalStyle>
 	</style>
@@ -83,7 +83,7 @@
 							<textField isStretchWithOverflow="true">
 								<reportElement positionType="Float" x="20" y="2" width="110" height="10" style="Sans_Small"/>
 								<textElement/>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{FirstName} + " " + $F{LastName}]]></textFieldExpression>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{FirstName} + ' ' + $F{LastName}]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true">
 								<reportElement positionType="Float" x="135" y="2" width="105" height="10" style="Sans_Small"/>
@@ -105,12 +105,12 @@
 			<textField>
 				<reportElement x="200" y="20" width="80" height="15"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER}) + " of"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA['Page ' + '$V{PAGE_NUMBER}' + ' of']]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="280" y="20" width="75" height="15"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + String.valueOf($V{PAGE_NUMBER})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[' ' + '$V{PAGE_NUMBER}']]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

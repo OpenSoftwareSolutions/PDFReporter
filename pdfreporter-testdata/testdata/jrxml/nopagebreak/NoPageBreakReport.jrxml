@@ -70,8 +70,8 @@
 			</line>
 			<textField>
 				<reportElement x="0" y="4" width="515" height="15" style="Sans_Bold"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + String.valueOf($V{ShipCountryNumber}) + ". " + String.valueOf($F{ShipCountry})]]></textFieldExpression>
-				<anchorNameExpression><![CDATA["ShipCountryGroup_" + $V{ShipCountryNumber}]]></anchorNameExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA['  ' + '$V{ShipCountryNumber}' + '. ' + '$F{ShipCountry}']]></textFieldExpression>
+				<anchorNameExpression><![CDATA['ShipCountryGroup_' + $V{ShipCountryNumber}]]></anchorNameExpression>
 			</textField>
 		</band>
 		</groupHeader>
@@ -172,8 +172,8 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement x="175" y="20" width="165" height="15" style="Sans_Italic"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["There were " + 
-					String.valueOf($V{REPORT_COUNT}) + 
+				<textFieldExpression class="java.lang.String"><![CDATA["There were " +
+					String.valueOf($V{REPORT_COUNT}) +
 					" orders on this report."]]></textFieldExpression>
 			</textField>
 			<rectangle>

@@ -33,7 +33,7 @@ import org.oss.pdfreporter.uses.org.apache.digester.AbstractRule;
 /**
  * A digester rule that links a {@link Component} object with its parent
  * {@link JRDesignComponentElement}.
- * 
+ *
  * <p>
  * This rules also sets the {@link ComponentKey component type key} on the
  * component element via
@@ -41,18 +41,18 @@ import org.oss.pdfreporter.uses.org.apache.digester.AbstractRule;
  * The component type key is created based on information from the XML
  * component node; the node namespace is used as component type namespace
  * and the node name is used as component name.
- * 
+ *
  * @author Lucian Chirita (lucianc@users.sourceforge.net)
  * @version $Id: JRComponentRule.java 4595 2011-09-08 15:55:10Z teodord $
  */
 public class JRComponentRule extends AbstractRule
 {
-	
+
 	public static JRComponentRule newInstance()
 	{
 		return new JRComponentRule();
 	}
-	
+
 	public void end(String namespace, String name) throws JRException
 	{
 		Object top = getDigester().peek();
@@ -64,10 +64,10 @@ public class JRComponentRule extends AbstractRule
 
 		Component component = (Component) top;
 		JRDesignComponentElement componentElement = (JRDesignComponentElement) getDigester().peek(1);
-		String namespacePrefix = ((JRXmlDigester) getDigester()).getLastNamespacePrefix();
+		String namespacePrefix = ((JRXmlDigester) getDigester().getDelegator()).getLastNamespacePrefix();
 		ComponentKey componentKey = new ComponentKey(namespace, namespacePrefix, name);
 		componentElement.setComponentKey(componentKey);
 		componentElement.setComponent(component);
 	}
-	
+
 }
