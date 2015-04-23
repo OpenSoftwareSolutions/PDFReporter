@@ -152,6 +152,7 @@ public class ReportTestRunner {
         final String resourceFolder = getResourcesFolder();
 
         RepositoryManager repo = PdfReporter.getRepositoryManager();
+        repo.reset();
         repo.setDefaultResourceFolder(resourceFolder);
         repo.setDefaulReportFolder(rootFolder + RepositoryManager.PATH_DELIMITER + "jrxml" + RepositoryManager.PATH_DELIMITER + reportFolder);
         if (null != extraFolder) {
