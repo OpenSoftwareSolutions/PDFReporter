@@ -52,6 +52,22 @@ public class PdfReporter {
     private String mSubreportName;
     private String mSubreportLocation;
 
+    private boolean mXmlReport;
+    private boolean mSqlReport;
+    private boolean mJsonReport;
+
+    //xml report
+    private String mXmlDataFile;
+    private String mXmlXPath;
+
+    //sql report
+    private String mSqlPath;
+    private String mSqlUsername;
+    private String mSqlPassword;
+
+    //json report
+    private String mJsonDataFile;
+
     public PdfReporter(String jrxmlFilePath, String outputFolder, String outputPdfName) {
         mPdfOutputFolder = outputFolder;
         mPdfOutputName = outputPdfName;
@@ -70,11 +86,59 @@ public class PdfReporter {
         return RepositoryManager.getInstance();
     }
 
-    public String exportWithoutDataSource() throws Exception{
+    private String exportWithoutDataSource() throws Exception{
         return exportFromXml(null, null);
     }
 
-    public String exportFromXml(String xmlDataFile, String xmlXpath) throws Exception {
+    public PdfReporter setXmlSource(String xmlDataFile, String xmlXpath) {
+        if (mSqlReport || mJsonReport) {
+            throw new RuntimeException("Can't change report type, data source already set");
+        }
+        mXmlReport = true;
+
+        this.mXmlDataFile = xmlDataFile;
+        this.mXmlXPath = xmlXpath;
+
+        return this;
+    }
+
+    public PdfReporter setSqlSource(String databasePath, String username, String password) {
+        if (mXmlReport || mJsonReport) {
+            throw new RuntimeException("Can't change report type, data source already set");
+        }
+        mSqlReport = true;
+
+        this.mSqlPath = databasePath;
+        this.mSqlUsername = username;
+        this.mSqlPassword = password;
+
+        return this;
+    }
+
+    public PdfReporter setJsonSource(String jsonDataFile) {
+        if (mXmlReport || mSqlReport) {
+            throw new RuntimeException("Can't change report type, data source already set");
+        }
+        mJsonReport = true;
+
+        mJsonDataFile = jsonDataFile;
+
+        return this;
+    }
+
+    public String exportPdf() throws Exception {
+        if (mXmlReport) {
+            return exportFromXml(mXmlDataFile, mXmlXPath);
+        } else if (mSqlReport) {
+            return exportSqlReport(mSqlPath, mSqlUsername, mSqlPassword);
+        } else  if (mJsonReport) {
+            return exportJsonReport();
+        } else {
+            return exportWithoutDataSource();
+        }
+    }
+
+    private String exportFromXml(String xmlDataFile, String xmlXpath) throws Exception {
         ApiRegistry.initSession();
         try {
             JasperDesign design = loadReport(mJrxmlFilePath);
@@ -85,7 +149,7 @@ public class PdfReporter {
         }
     }
 
-    public String exportSqlReport(String databasePath, String username, String password) throws Exception {
+    private String exportSqlReport(String databasePath, String username, String password) throws Exception {
         ApiRegistry.initSession();
         IConnection sqlDataSource = null;
         try {
@@ -121,32 +185,28 @@ public class PdfReporter {
                 dataSource = xmlDataSource;
             }
             processSubreport();
-            JasperPrint printReport = JasperFillManager.fillReport(compiledReport, null, dataSource);
+            JasperPrint printReport = JasperFillManager.fillReport(compiledReport, mFillParameters, dataSource);
             String pathToPdfFile = mPdfOutputFolder + "/" + printReport.getName() + ".pdf";
             JasperExportManager.exportReportToPdfFile(printReport, pathToPdfFile, mExportParameters);
             return pathToPdfFile;
         } finally {
             close(isXmlData);
+            ApiRegistry.dispose();
         }
     }
 
-    public String exportJsonReport() throws Exception{
+    private String exportJsonReport() throws Exception {
         ApiRegistry.initSession();
-        JasperDesign design = loadReport(mJrxmlFilePath);
-        JasperReport report = JasperCompileManager.compileReport(design);
-        String pdfPath = exportJsonReport(report, null);
-        ApiRegistry.dispose();
-        return pdfPath;
-    }
-
-    public String exportJsonReport(JasperReport compiledReport, String jsonDataFile) throws Exception {
-
         IJsonDataSource jsonDataSource = null;
         try {
+
+            JasperDesign design = loadReport(mJrxmlFilePath);
+            JasperReport report = JasperCompileManager.compileReport(design);
+
             JasperPrint printReport = null;
             processSubreport();
-            if(jsonDataFile == null){
-                printReport = JasperFillManager.fillReport(compiledReport, mFillParameters);
+            if(mJsonDataFile == null){
+                printReport = JasperFillManager.fillReport(report, mFillParameters);
             }
 
             String pathToPdfFile = mPdfOutputFolder + "/" + printReport.getName() + ".pdf";
@@ -154,12 +214,15 @@ public class PdfReporter {
             return pathToPdfFile;
         } finally {
             close(jsonDataSource);
+            ApiRegistry.dispose();
         }
     }
 
-    public void addSubreport(String subreportName, String location) throws JRException {
+    public PdfReporter addSubreport(String subreportName, String location) throws JRException {
         mSubreportName = subreportName;
         mSubreportLocation = location;
+
+        return this;
     }
 
     private void processSubreport() throws JRException{
@@ -176,19 +239,23 @@ public class PdfReporter {
      * @param ownerPassword {@link JRPdfExporterParameter#OWNER_PASSWORD}
      * @param permissions {@link JRPdfExporterParameter#PERMISSIONS}
      */
-    public void addEncryption(boolean is128bitKey, String userPassword, String ownerPassword, int permissions) {
+    public PdfReporter addEncryption(boolean is128bitKey, String userPassword, String ownerPassword, int permissions) {
         mExportParameters.put(JRPdfExporterParameter.IS_ENCRYPTED, Boolean.TRUE);
         mExportParameters.put(JRPdfExporterParameter.IS_128_BIT_KEY, is128bitKey ? Boolean.TRUE : Boolean.FALSE);
         mExportParameters.put(JRPdfExporterParameter.USER_PASSWORD, userPassword);
         mExportParameters.put(JRPdfExporterParameter.OWNER_PASSWORD, ownerPassword);
         mExportParameters.put(JRPdfExporterParameter.PERMISSIONS, permissions);
+
+        return this;
     }
 
-    public void addJSONParams(String datePattern, String numberPattern, Locale jsonLocale, Locale country) {
+    public PdfReporter addJSONParams(String datePattern, String numberPattern, Locale jsonLocale, Locale country) {
         mFillParameters.put(JsonQueryExecuterFactory.JSON_DATE_PATTERN, datePattern);
         mFillParameters.put(JsonQueryExecuterFactory.JSON_NUMBER_PATTERN,numberPattern);
         mFillParameters.put(JsonQueryExecuterFactory.JSON_LOCALE, jsonLocale);
         mFillParameters.put(JRParameter.REPORT_LOCALE, country);
+
+        return this;
     }
 
     public void addMultiLanguageSupport(String classPath, Locale locale) {

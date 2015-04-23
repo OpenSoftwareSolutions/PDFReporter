@@ -164,71 +164,70 @@ public class ReportTestRunner {
     }
 
     private String exportFonts() throws Exception {
-        return getExporter(DESIGN_REPORT_FONTS, "fonts", "extra-fonts").exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_FONTS, "fonts", "extra-fonts").exportPdf();
     }
 
     private String exportShippment() throws Exception {
-        return getExporter(DESIGN_REPORT_SHIPMENTS, "crosstabs", "extra-fonts").exportSqlReport(getDatabasePath(), null, null);
+        return getExporter(DESIGN_REPORT_SHIPMENTS, "crosstabs", "extra-fonts").setSqlSource(getDatabasePath(), null, null).exportPdf();
     }
 
     private String exportMasterReport() throws Exception {
-        PdfReporter exporter = getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts"); // initialize Repository
-        exporter.addSubreport("ProductsSubreport", "ProductReport.jasper");
-        return exporter.exportSqlReport(getDatabasePath(), null, null);
+        return getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts")
+                .addSubreport("ProductsSubreport", "ProductReport.jasper")
+                .setSqlSource(getDatabasePath(), null, null)
+                .exportPdf();
     }
 
     private String exportProducts() throws Exception {
-        return getExporter(DESIGN_REPORT_PRODUCTS, "crosstabs", "extra-fonts").exportSqlReport(getDatabasePath(), null, null);
+        return getExporter(DESIGN_REPORT_PRODUCTS, "crosstabs", "extra-fonts").setSqlSource(getDatabasePath(), null, null).exportPdf();
     }
 
     private String exportStretch() throws Exception {
-        return getExporter(DESIGN_REPORT_STRETCH, "stretch", null).exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_STRETCH, "stretch", null).exportPdf();
     }
 
     private String exportTabular() throws Exception {
-        return getExporter(DESIGN_REPORT_TABULAR, "tabular", "extra-fonts").exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_TABULAR, "tabular", "extra-fonts").exportPdf();
     }
 
     private String exportOrders() throws Exception {
-        return getExporter(DESIGN_REPORT_ORDERS, "crosstabs", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS);
+        return getExporter(DESIGN_REPORT_ORDERS, "crosstabs", "extra-fonts").setXmlSource(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS).exportPdf();
     }
 
     private String exportLateOrder() throws Exception {
-        return getExporter(DESIGN_REPORT_LATE_ORDERS, "crosstabs", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
+        return getExporter(DESIGN_REPORT_LATE_ORDERS, "crosstabs", "extra-fonts").setXmlSource(getResourcesFolder() + "/" + XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL).exportPdf();
     }
 
     private String exportImages() throws Exception {
-        return getExporter(DESIGN_REPORT_IMAGE, "images", null).exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_IMAGE, "images", null).exportPdf();
     }
 
     private String exportLandscape() throws Exception {
-        return getExporter(DESIGN_REPORT_LANDSCAPE, "landscape", null).exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_LANDSCAPE, "landscape", null).exportPdf();
     }
 
     private String exportShapes() throws Exception {
-        return getExporter(DESIGN_REPORT_SHAPES, "shapes", null).exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_SHAPES, "shapes", null).exportPdf();
     }
 
     private String exportRotation() throws Exception {
-        return getExporter(DESIGN_REPORT_ROTATION, "misc", null).exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_ROTATION, "misc", null).exportPdf();
     }
 
     private String exportEncrypt() throws Exception {
-        PdfReporter reporter =  getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null);
-        reporter.addEncryption(true, "jasper", "reports", IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT);
-        return reporter.exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null).addEncryption(true, "jasper", "reports", IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT).exportPdf();
     }
 
     private String exportParagraph() throws Exception {
-        return getExporter(DESIGN_REPORT_PARAGRAPH, "text", "extra-fonts").exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_PARAGRAPH, "text", "extra-fonts").exportPdf();
     }
 
     private String exportStyledText() throws Exception {
-        return getExporter(DESIGN_REPORT_STYLEDTEXT, "text", "extra-fonts").exportWithoutDataSource();
+        return getExporter(DESIGN_REPORT_STYLEDTEXT, "text", "extra-fonts").exportPdf();
     }
 
     private String exportCDBooklet() throws Exception {
-        return getExporter(DESIGN_REPORT_CDBOOCKLET, "cdbooklet", "extra-fonts").exportFromXml(getResourcesFolder() + "/" + XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET);
+        return getExporter(DESIGN_REPORT_CDBOOCKLET, "cdbooklet", "extra-fonts").setXmlSource(getResourcesFolder() + "/" + XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET).exportPdf();
     }
 
     private String getFilenameFromJrxml(String jrxml) {
@@ -236,9 +235,9 @@ public class ReportTestRunner {
     }
 
     private String exportJsonDataSource() throws Exception{
-        PdfReporter reporter = getExporter(DESIGN_REPORT_JSON, "jsondatasource","extra-fonts"); // initialize Repository
-        reporter.addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper");
-        reporter.addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US);
-        return reporter.exportJsonReport();
+        return getExporter(DESIGN_REPORT_JSON, "jsondatasource","extra-fonts")
+                .addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper")
+                .addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
+                .exportPdf();
     }
 }
