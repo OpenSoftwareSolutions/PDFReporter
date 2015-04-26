@@ -36,6 +36,7 @@
 		3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */; };
 		3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */; };
 		3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DD1A517B230068C812 /* XPathQuery.m */; };
+		3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */; };
 		3D99E6551A93427A00CA13A6 /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E62C1A93427A00CA13A6 /* BeanUtils.m */; };
 		3D99E6561A93427A00CA13A6 /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E62F1A93427A00CA13A6 /* BeansFactory.m */; };
 		3D99E6571A93427A00CA13A6 /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6321A93427A00CA13A6 /* FontFactory.m */; };
@@ -645,6 +646,7 @@
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
 				3D99E65E1A93427A00CA13A6 /* Color.m in Sources */,
 				2EE681A417F16F6100C7C1FE /* Page.m in Sources */,
+				3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
 				3D99E6641A93427A00CA13A6 /* NetFactory.m in Sources */,
 				2EE6819D17F16F6100C7C1FE /* FontMetrics.m in Sources */,
 				3D99E6551A93427A00CA13A6 /* BeanUtils.m in Sources */,

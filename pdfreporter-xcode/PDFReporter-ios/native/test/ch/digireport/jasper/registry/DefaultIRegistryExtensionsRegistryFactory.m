@@ -21,7 +21,8 @@
 #include "org/oss/pdfreporter/text/format/factory/SimpleFormatFactory.h"
 #include "org/oss/pdfreporter/text/format/fallback/FallbackFormatFactory.h"
 #include "org/oss/pdfreporter/xml/parsers/factory/XmlParserFactory.h"
-#include "test/org/oss/pdfreporter/registry/DefaultIRegistryExtensionsRegistryFactory.h"
+//#include "test/org/oss/pdfreporter/registry/DefaultIRegistryExtensionsRegistryFactory.h"
+#include "test/ch/digireport/jasper/registry/DefaultIRegistryExtensionsRegistryFactory.h"
 
 __attribute__((unused)) static void TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_initializeIRegistry(TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory *self);
 
