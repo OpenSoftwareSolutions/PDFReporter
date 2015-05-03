@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
@@ -29,9 +29,9 @@ import org.oss.pdfreporter.sql.factory.ISqlFactory;
 public class ResultSet implements IResultSet {
 
 	private final static ISqlFactory TYPE_FACTORY = new TypeFactory();
-	
+
 	private final java.sql.ResultSet delegate;
-	
+
 	ResultSet(java.sql.ResultSet delegate) {
 		super();
 		this.delegate = delegate;
@@ -189,7 +189,7 @@ public class ResultSet implements IResultSet {
 			throw new SQLException(e);
 		}
 	}
-	
+
 	@Override
 	public void close() throws IOException {
 		try {
@@ -198,7 +198,7 @@ public class ResultSet implements IResultSet {
 			throw new IOException(e);
 		}
 	}
-	
+
 	@Override
 	public boolean wasNull() throws SQLException {
 		try {
@@ -207,11 +207,11 @@ public class ResultSet implements IResultSet {
 			throw new SQLException(e);
 		}
 	}
-	
+
 	/**
 	 * Helper class to create data types.
 	 * @author donatmuller, 2013, last change 2:54:11 AM
-	 * 
+	 *
 	 */
 	private static class TypeFactory extends AbstractSqlFactory {
 		@Override
@@ -219,9 +219,15 @@ public class ResultSet implements IResultSet {
 				String password) throws SQLException {
 			return null;
 		}
+
+		@Override
+		public IConnection createConnection(String jdbcUrl, String user,
+				String password) throws SQLException {
+			return null;
+		}
 	}
 
 
 
-	
+
 }
