@@ -3,6 +3,7 @@ package org.oss.pdfreporter.android;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.oss.pdfreporter.PdfReporter;
 import org.oss.pdfreporter.engine.JRExporterParameter;
 import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
@@ -161,6 +162,7 @@ public class ReportTestRunner {
         repo.addExtraReportFolder(resourceFolder);
 
         PdfReporter reporter = new PdfReporter(jrxmlPath, getOuputPdfFolder(), getFilenameFromJrxml(jrxmlPath));
+
         return  reporter;
     }
 

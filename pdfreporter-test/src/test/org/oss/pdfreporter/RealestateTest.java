@@ -14,6 +14,7 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 import org.junit.Test;
+import org.oss.pdfreporter.PdfReporter;
 import org.oss.pdfreporter.repo.RepositoryManager;
 
 import test.org.oss.pdfreporter.providers.JavaTestProvider;
@@ -81,30 +82,42 @@ public class RealestateTest {
 
 	@Test
 	public void exportRealEstateChecklistMoveInDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE);
+		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE);
+		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateDefectDe() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_DE);
+		getExporter(DESIGN_REPORT_REALESTATE_DEFECT_DE, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveInEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN);
+		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN);
+		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateDefectEn() throws Exception {
-		getExporter("digireport-realestate-checklist-v0","extra-fonts").exportSqlReport(DESIGN_REPORT_REALESTATE_DEFECT_EN);
+		getExporter(DESIGN_REPORT_REALESTATE_DEFECT_EN, "digireport-realestate-checklist-v0","extra-fonts")
+			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.exportPdf();
 	}
 
-	private ReportExporter getExporter(String reportFolder, String extraFolder) {
+	private PdfReporter getExporter(String jrxml, String reportFolder, String extraFolder) {
 		RepositoryManager repo = RepositoryManager.getInstance();
 		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
 		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + RepositoryManager.PATH_DELIMITER + reportFolder));
@@ -113,7 +126,7 @@ public class RealestateTest {
 		}
 		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 
-		return new ReportExporter(outputPath(PDF_OUTPUT_FOLDER), testProvider.databasePath());
+		return new PdfReporter(jrxml, outputPath(PDF_OUTPUT_FOLDER), ExporterTest.getFilenameFromJrxml(jrxml));
 	}
 
 	public String inputPath(String path) {

@@ -8,7 +8,7 @@
  * Contributors:
  *     Open Software Solutions GmbH - initial API and implementation
  ******************************************************************************/
-package org.oss.pdfreporter.android;
+package org.oss.pdfreporter;
 
 import java.io.Closeable;
 import java.io.InputStream;
@@ -28,12 +28,12 @@ import org.oss.pdfreporter.engine.JasperFillManager;
 import org.oss.pdfreporter.engine.JasperPrint;
 import org.oss.pdfreporter.engine.JasperReport;
 import org.oss.pdfreporter.engine.data.JRXmlDataSource;
+import org.oss.pdfreporter.engine.data.JsonDataSource;
 import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.engine.query.JsonQueryExecuterFactory;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.json.IJsonDataSource;
-import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.repo.FileResourceLoader;
 import org.oss.pdfreporter.repo.RepositoryManager;
@@ -47,8 +47,8 @@ public class PdfReporter {
     private final String mPdfOutputFolder;
     private final String mPdfOutputName;
     private final String mJrxmlFilePath;
-    private Map<JRExporterParameter, Object> mExportParameters = new HashMap<>();
-    private Map<String,Object> mFillParameters = new HashMap<>();
+    private Map<JRExporterParameter, Object> mExportParameters = new HashMap<JRExporterParameter, Object>();
+    private Map<String,Object> mFillParameters = new HashMap<String,Object>();
     private String mSubreportName;
     private String mSubreportLocation;
 
@@ -67,6 +67,7 @@ public class PdfReporter {
 
     //json report
     private String mJsonDataFile;
+    private String mJsonExpression;
 
     public PdfReporter(String jrxmlFilePath, String outputFolder, String outputPdfName) {
         mPdfOutputFolder = outputFolder;
@@ -116,12 +117,17 @@ public class PdfReporter {
     }
 
     public PdfReporter setJsonSource(String jsonDataFile) {
+        return setJsonSource(jsonDataFile, null);
+    }
+
+    public PdfReporter setJsonSource(String jsonDataFile, String selectExpression) {
         if (mXmlReport || mSqlReport) {
             throw new RuntimeException("Can't change report type, data source already set");
         }
         mJsonReport = true;
 
         mJsonDataFile = jsonDataFile;
+        mJsonExpression = selectExpression;
 
         return this;
     }
@@ -207,6 +213,11 @@ public class PdfReporter {
             processSubreport();
             if(mJsonDataFile == null){
                 printReport = JasperFillManager.fillReport(report, mFillParameters);
+            } else {
+
+                InputStream jsonData = FileResourceLoader.getInputStream(mJsonDataFile);
+                jsonDataSource = new JsonDataSource(jsonData, mJsonExpression);
+                printReport = JasperFillManager.fillReport(report, mFillParameters, jsonDataSource);
             }
 
             String pathToPdfFile = mPdfOutputFolder + "/" + printReport.getName() + ".pdf";
@@ -258,11 +269,16 @@ public class PdfReporter {
         return this;
     }
 
-    public void addMultiLanguageSupport(String classPath, Locale locale) {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put(JRParameter.REPORT_LOCALE, locale);
+    public PdfReporter newResourceBundle(String classPath, Locale locale) {
+        mFillParameters.put(JRParameter.REPORT_LOCALE, locale);
         ResourceBundle resourceBundle = ResourceBundle.getBundle(classPath, locale);
-        parameters.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
+        mFillParameters.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
+        return this;
+    }
+    
+    public PdfReporter addFillParameter(String key, Object value) {
+    	mFillParameters.put(key, value);
+    	return this;
     }
 
     private JasperDesign loadReport(String reportFileName) throws Exception {
