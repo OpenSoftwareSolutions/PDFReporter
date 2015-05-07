@@ -348,7 +348,7 @@ public class ExporterTest {
 ///////////// END NOT SUPPORTED FEATURES /////////////////
 
 	private PdfReporter getExporter(String jrxml, String reportFolder) {
-		return getExporter(reportFolder, reportFolder, null);
+		return getExporter(jrxml, reportFolder, null);
 	}
 
 	private PdfReporter getExporter(String jrxml, String reportFolder, String extraFolder) {
