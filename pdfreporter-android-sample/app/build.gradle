@@ -29,5 +29,5 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.pdfreporting:pdfreporter-android:1.1.5-SNAPSHOT'
+    compile 'com.pdfreporting:pdfreporter-android:1.2.0-SNAPSHOT'
 }
