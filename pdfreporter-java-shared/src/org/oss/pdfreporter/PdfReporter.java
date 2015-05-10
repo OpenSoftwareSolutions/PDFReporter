@@ -115,6 +115,15 @@ public class PdfReporter {
 
         return this;
     }
+    
+    /**
+     * Use this in case your JSON datasource is defined as a property (net.sf.jasperreports.json.source)
+     *  inside the JRXML file.
+     * @return
+     */
+    public PdfReporter setJsonSource() {
+        return setJsonSource(null, null);
+    }
 
     public PdfReporter setJsonSource(String jsonDataFile) {
         return setJsonSource(jsonDataFile, null);

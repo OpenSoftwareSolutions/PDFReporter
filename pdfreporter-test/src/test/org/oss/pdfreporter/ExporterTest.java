@@ -276,6 +276,7 @@ public class ExporterTest {
 		getExporter(DESIGN_REPORT_JSON_CUSTOMERS, "jsondatasource","extra-fonts")
         	.addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper")
         	.addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
+        	.setJsonSource()
         	.exportPdf();
 	}
 

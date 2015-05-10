@@ -241,6 +241,7 @@ public class ReportTestRunner {
         return getExporter(DESIGN_REPORT_JSON, "jsondatasource","extra-fonts")
                 .addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper")
                 .addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
+                .setJsonSource()
                 .exportPdf();
     }
 }
