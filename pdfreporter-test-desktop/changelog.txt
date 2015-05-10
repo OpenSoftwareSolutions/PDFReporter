@@ -1,0 +1,14 @@
+
+pdfreporter-test Change Log
+==========================================================
+
+pdfreporter-test-desktop	 					10.05.2015
+----------------------------------------------------------
+New Tests
+
+new project
+
+Bugs
+
+
+Open Issues

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 Open Software Solutions GmbH.
+ * Copyright (c) 2015 Open Software Solutions GmbH.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
@@ -83,37 +83,37 @@ public class RealestateTest {
 	@Test
 	public void exportRealEstateChecklistMoveInDe() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_DE, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutDe() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_DE, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateDefectDe() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_DEFECT_DE, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveInEn() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_IN_EN, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateChecklistMoveOutEn() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_CHEKLIST_OUT_EN, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 	@Test
 	public void exportRealEstateDefectEn() throws Exception {
 		getExporter(DESIGN_REPORT_REALESTATE_DEFECT_EN, "digireport-realestate-checklist-v0","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), ExporterTest.SQL_USERNAME, ExporterTest.SQL_PASSWORD)
+			.setSqlSource(testProvider.databasePath(), DesktopExporterTest.SQL_USERNAME, DesktopExporterTest.SQL_PASSWORD)
 			.exportPdf();
 	}
 
@@ -126,7 +126,7 @@ public class RealestateTest {
 		}
 		repo.addExtraReportFolder(inputPath(XML_DATASOURCE_FOLDER));
 
-		return new PdfReporter(jrxml, outputPath(PDF_OUTPUT_FOLDER), ExporterTest.getFilenameFromJrxml(jrxml));
+		return new PdfReporter(jrxml, outputPath(PDF_OUTPUT_FOLDER), DesktopExporterTest.getFilenameFromJrxml(jrxml));
 	}
 
 	public String inputPath(String path) {

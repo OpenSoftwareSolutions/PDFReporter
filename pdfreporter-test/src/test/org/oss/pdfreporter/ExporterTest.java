@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 Open Software Solutions GmbH.
+ * Copyright (c) 2015 Open Software Solutions GmbH.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,7 @@ package test.org.oss.pdfreporter;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
 
@@ -23,75 +24,72 @@ import org.oss.pdfreporter.PdfReporter;
 import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.RepositoryManager;
 
-import test.org.oss.pdfreporter.providers.JavaTestProvider;
 import test.org.oss.pdfreporter.providers.TestProviderInterface;
 
 
 
-public class ExporterTest {
+public abstract class ExporterTest {
+
+
+	private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test");
 
 	// DRIVERS for Java
-	private static final String HSQLDB_URLPREFIX = "jdbc:hsqldb:hsql://";
-	private static final String HSQLDB_JDBC_DRIVER = "org.hsqldb.jdbcDriver";
+	private static final String HSQLDB_URLPREFIX = resourceBundle.getString("HSQLDB_URLPREFIX");
+	private static final String HSQLDB_JDBC_DRIVER = resourceBundle.getString("HSQLDB_JDBC_DRIVER");
 
 	// FOLDERS
-	private static final String JRXML_RESOURCE_FOLDER = "resource";
-	private static final String JRXML_REPORT_FOLDER = "testdata/jrxml";
-	private static final String XML_DATASOURCE_FOLDER = "datasource";
-	private static final String PDF_OUTPUT_FOLDER = "testdata/pdf/java";
+	private static final String JRXML_RESOURCE_FOLDER = resourceBundle.getString("JRXML_RESOURCE_FOLDER");
+	private static final String JRXML_REPORT_FOLDER = resourceBundle.getString("JRXML_REPORT_FOLDER");
+	private static final String XML_DATASOURCE_FOLDER = resourceBundle.getString("XML_DATASOURCE_FOLDER");
+	private static final String PDF_OUTPUT_FOLDER = resourceBundle.getString("PDF_OUTPUT_FOLDER");
 
 	// DESIGN REPORTS
-	private static final String DESIGN_REPORT_FONTS = "FontsReport.jrxml";
-	private static final String DESIGN_REPORT_SHIPMENTS = "ShipmentsReport.jrxml";
-	private static final String DESIGN_REPORT_PRODUCTS = "ProductsReport.jrxml";
-	private static final String DESIGN_REPORT_ORDERS = "OrdersReport.jrxml";
-	private static final String DESIGN_REPORT_LATE_ORDERS = "LateOrdersReport.jrxml";
+	private static final String DESIGN_REPORT_FONTS = resourceBundle.getString("DESIGN_REPORT_FONTS");
+	private static final String DESIGN_REPORT_SHIPMENTS = resourceBundle.getString("DESIGN_REPORT_SHIPMENTS");
+	private static final String DESIGN_REPORT_PRODUCTS = resourceBundle.getString("DESIGN_REPORT_PRODUCTS");
+	private static final String DESIGN_REPORT_ORDERS = resourceBundle.getString("DESIGN_REPORT_ORDERS");
+	private static final String DESIGN_REPORT_LATE_ORDERS = resourceBundle.getString("DESIGN_REPORT_LATE_ORDERS");
 
 	//JSON
-	private static final String DESIGN_REPORT_JSON_ORDERS = "JsonOrdersReport.jrxml";
-	private static final String DESIGN_REPORT_JSON_CUSTOMERS = "JsonCustomersReport.jrxml";
+	private static final String DESIGN_REPORT_JSON_ORDERS = resourceBundle.getString("DESIGN_REPORT_JSON_ORDERS");
+	private static final String DESIGN_REPORT_JSON_CUSTOMERS = resourceBundle.getString("DESIGN_REPORT_JSON_CUSTOMERS");
 
-	private static final String DESIGN_REPORT_IMAGE = "ImagesReport.jrxml";
-	private static final String DESIGN_REPORT_SHAPES = "ShapesReport.jrxml";
-	private static final String DESIGN_REPORT_PARAGRAPH = "ParagraphsReport.jrxml";
-	private static final String DESIGN_REPORT_STYLEDTEXT = "StyledTextReport.jrxml";
-	private static final String DESIGN_REPORT_I18N = "I18nReport.jrxml";
-	private static final String DESIGN_REPORT_CDBOOCKLET = "CDBooklet.jrxml";
-//	private static final String DESIGN_REPORT_JASPER = "FirstJasper.jrxml";
-	private static final String DESIGN_REPORT_ROTATION = "RotationReport.jrxml";
-	private static final String DESIGN_REPORT_PDFCRYPT = "PdfEncryptReport.jrxml";
-	private static final String DESIGN_REPORT_MASTER = "MasterReport.jrxml";
-	private static final String DESIGN_REPORT_HORIZONTAL = "HorizontalReport.jrxml";
-	private static final String DESIGN_REPORT_LANDSCAPE = "LandscapeReport.jrxml";
-	private static final String DESIGN_REPORT_STRETCH = "StretchReport.jrxml";
-	private static final String DESIGN_REPORT_TABULAR = "TabularReport.jrxml";
+	private static final String DESIGN_REPORT_IMAGE = resourceBundle.getString("DESIGN_REPORT_IMAGE");
+	private static final String DESIGN_REPORT_SHAPES = resourceBundle.getString("DESIGN_REPORT_SHAPES");
+	private static final String DESIGN_REPORT_PARAGRAPH = resourceBundle.getString("DESIGN_REPORT_PARAGRAPH");
+	private static final String DESIGN_REPORT_STYLEDTEXT = resourceBundle.getString("DESIGN_REPORT_STYLEDTEXT");
+	private static final String DESIGN_REPORT_I18N = resourceBundle.getString("DESIGN_REPORT_I18N");
+	private static final String DESIGN_REPORT_CDBOOCKLET = resourceBundle.getString("DESIGN_REPORT_CDBOOCKLET");
+//	private static final String DESIGN_REPORT_JASPER = resourceBundle.getString("DESIGN_REPORT_JASPER");
+	private static final String DESIGN_REPORT_ROTATION = resourceBundle.getString("DESIGN_REPORT_ROTATION");
+	private static final String DESIGN_REPORT_PDFCRYPT = resourceBundle.getString("DESIGN_REPORT_PDFCRYPT");
+	private static final String DESIGN_REPORT_MASTER = resourceBundle.getString("DESIGN_REPORT_MASTER");
+	private static final String DESIGN_REPORT_HORIZONTAL = resourceBundle.getString("DESIGN_REPORT_HORIZONTAL");
+	private static final String DESIGN_REPORT_LANDSCAPE = resourceBundle.getString("DESIGN_REPORT_LANDSCAPE");
+	private static final String DESIGN_REPORT_STRETCH = resourceBundle.getString("DESIGN_REPORT_STRETCH");
+	private static final String DESIGN_REPORT_TABULAR = resourceBundle.getString("DESIGN_REPORT_TABULAR");
 
-// Tests that are not supported in PDFReporter see comments at the end of unit tests for details
-	private static final String DESIGN_REPORT_LIST = "ListReport.jrxml";
-	private static final String DESIGN_REPORT_HORIZONTALLIST = "HorizontalListReport.jrxml";
-//	private static final String DESIGN_REPORT_NOPAGEBREAK = "NoPageBreakReport.jrxml";
-//	private static final String DESIGN_REPORT_TABLE = "TableReport.jrxml";
-	private static final String DESIGN_REPORT_TEMPLATES = "StylesReport.jrxml";
+	private static final String DESIGN_REPORT_LIST = resourceBundle.getString("DESIGN_REPORT_LIST");
+	private static final String DESIGN_REPORT_HORIZONTALLIST = resourceBundle.getString("DESIGN_REPORT_HORIZONTALLIST");
+//	private static final String DESIGN_REPORT_NOPAGEBREAK = resourceBundle.getString("DESIGN_REPORT_NOPAGEBREAK");
+//	private static final String DESIGN_REPORT_TABLE = resourceBundle.getString("DESIGN_REPORT_TABLE");
+	private static final String DESIGN_REPORT_TEMPLATES = resourceBundle.getString("DESIGN_REPORT_TEMPLATES");
 
 	// XML DATA
-	private static final String XML_DATA_CDBOOKLET = "CDBooklets.xml";
-	private static final String XPATH_DATA_CDBOOKLET = "/CDBooklets";
+	private static final String XML_DATA_CDBOOKLET = resourceBundle.getString("XML_DATA_CDBOOKLET");
+	private static final String XPATH_DATA_CDBOOKLET = resourceBundle.getString("XPATH_DATA_CDBOOKLET");
 
 	// JSON DATA
-	private static final String JSON_DATA_NORTHWIND = "northwind.json";
+	private static final String JSON_DATA_NORTHWIND = resourceBundle.getString("JSON_DATA_NORTHWIND");
 
-	private static final String XML_DATA_NORTHWIND = "northwind.xml";
-	private static final String XPATH_DATA_NORTHWIND_ORDERS = "/Northwind/Orders";
-	private static final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = "/Northwind/Orders[ShippedDate]";
+	private static final String XML_DATA_NORTHWIND = resourceBundle.getString("XML_DATA_NORTHWIND");
+	private static final String XPATH_DATA_NORTHWIND_ORDERS = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS");
+	private static final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL");
 
-	public static final String SQL_USERNAME = "sa";
-	public static final String SQL_PASSWORD = "";
+	public static final String SQL_USERNAME = resourceBundle.getString("SQL_USERNAME");
+	public static final String SQL_PASSWORD = resourceBundle.getString("SQL_PASSWORD");
 
 	private TestProviderInterface testProvider;
-
-	public ExporterTest() {
-		this(true, new JavaTestProvider());
-	}
 
 	protected ExporterTest(boolean initJava, TestProviderInterface testProvider) {
 		this.testProvider = testProvider;
