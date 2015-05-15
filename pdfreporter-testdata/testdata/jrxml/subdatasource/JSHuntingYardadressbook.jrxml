@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with PDFReporter Studio version 5.6.2.final using PDFReporter Library version 5.6.1  -->
+<!-- 2015-02-23T10:47:59 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="adressbook" language="jshuntingyard" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="170bf3a4-d713-42b4-a33e-7582574b162b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="subdataset"/>
+	<queryString language="xPath">
+		<![CDATA[/addressbook/category]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[person/@id]]></fieldDescription>
+	</field>
+	<field name="lastname" class="java.lang.String">
+		<fieldDescription><![CDATA[person/lastname]]></fieldDescription>
+	</field>
+	<field name="firstname" class="java.lang.String">
+		<fieldDescription><![CDATA[person/firstname]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[@name]]></fieldDescription>
+	</field>
+	<group name="categorygroup">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+		<groupHeader>
+			<band height="80">
+				<textField>
+					<reportElement x="0" y="0" width="160" height="40" forecolor="#EB2D2A" uuid="546801df-8644-4887-b1ab-51c1e2a1df08"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="50" uuid="c4a423e0-d933-427f-8f5e-3dfc09764368"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[XML Datasource Test]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="50" width="400" height="30" uuid="38578f32-03e3-4a24-a694-2054aca8b204"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[with subreports]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="217" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="60" height="40" uuid="ac639512-0c89-4ee1-844f-4887d5fdb12c"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="0" width="220" height="40" uuid="085e08ab-4571-44fb-9c88-54827cf230e0"/>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="274" height="40" uuid="44e00d28-25a7-4f06-87f0-b92012430999"/>
+				<textFieldExpression><![CDATA[$F{firstname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="30" uuid="62338350-3a0e-4eaa-9b17-3cf3547e11c0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email Adresses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="100" height="30" uuid="55503c1c-f7ce-4398-b85d-8ca4bbbada0c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hobbies]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="70" width="553" height="50" uuid="03ddec17-d7d5-4e12-93cd-ad0807c5b907">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource('/person/email')]]></dataSourceExpression>
+				<subreportExpression><![CDATA['email.jasper']]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="162" width="554" height="50" uuid="e71c4c4b-d6e3-4b23-a874-430670a78844">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource('/person/hobbies/hobby')]]></dataSourceExpression>
+				<subreportExpression><![CDATA['hobbies.jasper']]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
