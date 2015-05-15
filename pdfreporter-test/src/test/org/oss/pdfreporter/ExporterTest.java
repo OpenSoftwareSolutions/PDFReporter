@@ -367,6 +367,9 @@ public abstract class ExporterTest {
 		else return path;
 	}
 
+	/**
+	 * @return select an expression language used in the reports
+	 */
 	private static Locale chooseExpressionLanguage()
 	{
 		LocaleWrapper[] locales =
@@ -398,7 +401,9 @@ public abstract class ExporterTest {
 		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", locale);
     }
 
-
+	/**
+	 * @return select a language used in the multi language report
+	 */
 	private static Locale chooseLocale()
 	{
 		LocaleWrapper[] locales =
