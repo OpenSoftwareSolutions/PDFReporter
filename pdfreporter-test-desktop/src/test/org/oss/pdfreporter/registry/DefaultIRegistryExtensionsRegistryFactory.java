@@ -50,7 +50,6 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 		}
 	}
 
-	// TODO (20.07.2013, Donat, Open Software Solutions): Find a better place to initialize the factories.
 	// This is a static configuration that will not change. Whereas extension registries and properties can change on a report base and should therefore be discarded for each run.
 	synchronized private void initializeIRegistry() {
 		if (!isInitialized) {
