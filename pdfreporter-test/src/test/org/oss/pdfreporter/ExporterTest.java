@@ -31,7 +31,7 @@ import test.org.oss.pdfreporter.providers.TestProviderInterface;
 public abstract class ExporterTest {
 
 
-	private static final ResourceBundle resourceBundle = newResourceBundle();
+	private static final ResourceBundle resourceBundle = selectExpressionLanguage();
 
 	// DRIVERS for Java
 	private static final String HSQLDB_URLPREFIX = resourceBundle.getString("HSQLDB_URLPREFIX");
@@ -396,7 +396,7 @@ public abstract class ExporterTest {
 		return null;
 	}
 
-	private static ResourceBundle newResourceBundle() {
+	private static ResourceBundle selectExpressionLanguage() {
 		Locale locale = chooseExpressionLanguage();
 		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", locale);
     }
