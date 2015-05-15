@@ -31,7 +31,7 @@ import test.org.oss.pdfreporter.providers.TestProviderInterface;
 public abstract class ExporterTest {
 
 
-	private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test");
+	private static final ResourceBundle resourceBundle = newResourceBundle();
 
 	// DRIVERS for Java
 	private static final String HSQLDB_URLPREFIX = resourceBundle.getString("HSQLDB_URLPREFIX");
@@ -366,6 +366,37 @@ public abstract class ExporterTest {
 		if(testProvider != null) return testProvider.outputPath(path);
 		else return path;
 	}
+
+	private static Locale chooseExpressionLanguage()
+	{
+		LocaleWrapper[] locales =
+			new LocaleWrapper[]
+			{
+				new LocaleWrapper(new Locale("jeval", "JEVAL")),
+				new LocaleWrapper(new Locale("jshuntingyard", "JSHUNTINGYARD"))
+			};
+
+		LocaleWrapper locale =
+			(LocaleWrapper)JOptionPane.showInputDialog(
+				null,
+				"Choose the expression language",
+				"Language",
+				JOptionPane.PLAIN_MESSAGE,
+				null,
+				locales,
+				null
+				);
+
+		if (locale != null)
+			return locale.getLocale();
+
+		return null;
+	}
+
+	private static ResourceBundle newResourceBundle() {
+		Locale locale = chooseExpressionLanguage();
+		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", locale);
+    }
 
 
 	private static Locale chooseLocale()
