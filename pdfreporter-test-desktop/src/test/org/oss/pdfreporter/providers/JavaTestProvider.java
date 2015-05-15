@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.html
  *
  * Contributors:
- *     Open Software Solutions GmbH - initial API and implementation
+ *     Open Software Solutions GmbH
  ******************************************************************************/
 package test.org.oss.pdfreporter.providers;
 
