@@ -8,12 +8,10 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers;
 
 import java.util.ResourceBundle;
 
-import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
-import org.oss.pdfreporter.compilers.IExpressionElement;
 import org.oss.pdfreporter.engine.JRExpressionChunk;
 import org.oss.pdfreporter.engine.JRParameter;
 import org.oss.pdfreporter.engine.JRValueParameter;

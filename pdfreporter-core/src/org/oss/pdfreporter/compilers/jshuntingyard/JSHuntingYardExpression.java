@@ -8,7 +8,7 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.jshuntingyard;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,9 +22,9 @@ import org.oss.pdfreporter.compilers.Expression;
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
 import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IExpressionChunk;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
-import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
 import org.oss.pdfreporter.compilers.jeval.functions.BooleanConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.Conditional;
@@ -46,9 +46,10 @@ import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
 
 
-public class JEvalExpression implements Expression{
+public class JSHuntingYardExpression implements Expression {
 
-	private final static Logger logger = Logger.getLogger(JEvalExpression.class.getName());
+
+	private final static Logger logger = Logger.getLogger(JSHuntingYardExpression.class.getName());
 	private final Map<String,IVariable> variables;
 	private final Map<String,Function> userFunctions;
 	private final Evaluator valueEvaluator;
@@ -56,7 +57,7 @@ public class JEvalExpression implements Expression{
 	private String expression;
 
 	@SuppressWarnings("unchecked")
-	public JEvalExpression() {
+	public JSHuntingYardExpression() {
 		this.variables = new HashMap<String, IVariable>();
 		this.userFunctions = new HashMap<String, Function>();
 		putFunction(new BooleanConverter());
@@ -72,12 +73,9 @@ public class JEvalExpression implements Expression{
 		putFunction(new DisplayName());
 		putFunction(new MessageWithArg());
 		this.valueEvaluator = new Evaluator();
-// TODO (05.09.2013, OSS, Donat) Change to double quoted expression
-//		this.valueEvaluator.setQuoteCharacter(EvaluationConstants.DOUBLE_QUOTE);
 		this.valueEvaluator.setVariableResolver(new ValueResolver());
 		this.valueEvaluator.getFunctions().putAll(userFunctions);
 		this.oldValueEvaluator = new Evaluator();
-//		this.oldValueEvaluator.setQuoteCharacter(EvaluationConstants.DOUBLE_QUOTE);
 		this.oldValueEvaluator.setVariableResolver(new OldValueResolver());
 		this.oldValueEvaluator.getFunctions().putAll(userFunctions);
 	}
@@ -88,8 +86,8 @@ public class JEvalExpression implements Expression{
 	}
 
 
-	public static JEvalExpression newInstance(List<IExpressionChunk> chunks) throws ExpressionParseException {
-		JEvalExpression expression = new JEvalExpression();
+	public static JSHuntingYardExpression newInstance(List<IExpressionChunk> chunks) throws ExpressionParseException {
+		JSHuntingYardExpression expression = new JSHuntingYardExpression();
 		expression.parse(chunks);
 		return expression;
 	}

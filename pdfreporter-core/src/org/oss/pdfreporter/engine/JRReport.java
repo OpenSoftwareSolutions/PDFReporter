@@ -50,7 +50,12 @@ public interface JRReport extends JRDefaultStyleProvider, JRPropertiesHolder, JR
 	 * A constant used to specify that the language used by expressions is JEval.
 	 */
 	public static final String LANGUAGE_JEVAL = "jeval";
-	
+
+	/**
+	 * A constant used to specify that the language used by expressions is JEval.
+	 */
+	public static final String LANGUAGE_JSHUNTINGYARD = "jshuntingyard";
+
 
 	/**
 	 * Gets the report name.
@@ -72,13 +77,13 @@ public interface JRReport extends JRDefaultStyleProvider, JRPropertiesHolder, JR
 	 * @return a value representing one of the print order constants in {@link PrintOrderEnum}
 	 */
 	public PrintOrderEnum getPrintOrderValue();
-	
+
 	/**
 	 * Specifies whether columns will be filled from left to right or from right to left.
 	 * @return a value representing one of the column direction constants in {@link RunDirectionEnum}
 	 */
 	public RunDirectionEnum getColumnDirection();
-	
+
 	/**
 	 *
 	 */

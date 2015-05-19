@@ -8,37 +8,42 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.expressionelements;
 
-import org.oss.pdfreporter.compilers.AbstractExpressionElement;
-import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
-import org.oss.pdfreporter.engine.JRValueParameter;
+import org.oss.pdfreporter.compilers.IDataHolder;
+import org.oss.pdfreporter.compilers.IVariable;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
+import org.oss.pdfreporter.engine.fill.JRFillVariable;
 
 
-public class ExpressionParameter extends AbstractExpressionElement implements IVariable {
+public class ExpressionVariable implements IVariable {
 
 	private final IDataHolder data;
 	private final String name;
 		
-	public ExpressionParameter(IDataHolder data, String name) {
+	public ExpressionVariable(IDataHolder data, String name) {
 		this.data = data;
 		this.name = name;
 	}
 
 	@Override
 	public Object getValue() {
-		return getParameter().getValue();
+		return getVariable().getValue();
 	}
 
-
+	@Override
+	public Object getOldValue() {
+		return getVariable().getOldValue();
+	}
+	
 	@Override
 	public Object getVariableHolder() {
-		return getParameter();
+		return getVariable();
 	}
 
 	@Override
 	public ExpresionType getType() {
-		return ExpresionType.TYPE_PARAMETER;
+		return ExpresionType.TYPE_VARIABLE;
 	}
 
 	@Override
@@ -46,13 +51,13 @@ public class ExpressionParameter extends AbstractExpressionElement implements IV
 		return name;
 	}
 
-	private JRValueParameter getParameter() {
-		return data.getParameter(getName());
+	private JRFillVariable getVariable() {
+		return data.getVariable(getName());
 	}
 
 	@Override
 	public String toString() {
-		return "ExpressionParameter [name=" + name + "]";
+		return "ExpressionVariable [name=" + name + "]";
 	}
-
+	
 }

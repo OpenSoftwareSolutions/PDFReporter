@@ -8,9 +8,11 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.expressionelements;
 
-import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
+import org.oss.pdfreporter.compilers.IDataHolder;
+import org.oss.pdfreporter.compilers.IVariable;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.engine.fill.JRFillField;
 
 

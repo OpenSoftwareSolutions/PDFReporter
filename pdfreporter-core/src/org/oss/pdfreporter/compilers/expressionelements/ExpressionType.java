@@ -4,36 +4,18 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
 
-/**
- * @author donatmuller, 2013, last change 10:09:52 AM
- * 
- */
-public interface IExpressionChunk {
-	/**
-	 * Type of Chunk
-	 */
-	public enum ExpresionType {
-		TYPE_TEXT,
-		TYPE_PARAMETER,
-		TYPE_FIELD,
-		TYPE_VARIABLE,
-		TYPE_RESOURCE
-	}
+package org.oss.pdfreporter.compilers.expressionelements;
 
-	/**
-	 * 
-	 */
-	public ExpresionType getType();
-
-	/**
-	 * 
-	 */
-	public String getText();
-
+public enum ExpressionType {
+		BOOLEAN,
+		INTEGER,
+		LONG,
+		DOUBLE,
+		STRING,
+		DATE
 }

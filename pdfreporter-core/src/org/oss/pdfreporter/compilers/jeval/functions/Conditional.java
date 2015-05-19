@@ -10,7 +10,7 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.jeval.functions;
 
-import org.oss.pdfreporter.compilers.jeval.ResultUtil;
+import org.oss.pdfreporter.compilers.util.ResultUtil;
 import org.oss.pdfreporter.converters.DecimalConverter;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.ArgumentTokenizer;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;

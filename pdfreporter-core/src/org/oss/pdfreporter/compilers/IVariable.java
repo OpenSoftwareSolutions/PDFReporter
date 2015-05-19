@@ -10,12 +10,10 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers;
 
-public abstract class AbstractExpressionElement implements IExpressionElement {
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 
-
-	@Override
-	public Object getOldValue() throws ExpressionEvaluationException {
-		return getValue();
-	}
-
+public interface IVariable extends IExpressionElement {
+	Object getVariableHolder();
+	ExpresionType getType();
+	String getName();
 }

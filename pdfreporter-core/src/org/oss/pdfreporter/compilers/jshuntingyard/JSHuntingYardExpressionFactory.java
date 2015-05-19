@@ -8,7 +8,7 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.jshuntingyard;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,17 +26,17 @@ import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpressionChunk;
 
 
-public class JevalExpressionFactory {
-	private static final Logger logger = Logger.getLogger(JevalExpressionFactory.class.getName());
+public class JSHuntingYardExpressionFactory {
+	private static final Logger logger = Logger.getLogger(JSHuntingYardExpressionFactory.class.getName());
 	private StringBuilder rawExpression;
 	private final IDataHolder dataholder;
 
-	private JevalExpressionFactory(IDataHolder dataholder) {
+	private JSHuntingYardExpressionFactory(IDataHolder dataholder) {
 		this.dataholder = dataholder;
 	}
 
 	public static IExpressionElement buildExpression(IDataHolder dataholder, JRExpressionChunk[] chunks, int expressionId) throws JRException {
-		return new JevalExpressionFactory(dataholder).build(chunks, expressionId);
+		return new JSHuntingYardExpressionFactory(dataholder).build(chunks, expressionId);
 	}
 
 	private IExpressionElement build(JRExpressionChunk[] chunks, int expressionId) throws JRException {
@@ -85,7 +85,7 @@ public class JevalExpressionFactory {
 				}
 			}
 
-			result.setExpression(JEvalExpression.newInstance(expressionBuilder.getChunkList()));
+			result.setExpression(JSHuntingYardExpression.newInstance(expressionBuilder.getChunkList()));
 			logger.finest("Compiled expression " + expressionId + " - " + rawExpression.toString());
 			return result;
 		} catch (ExpressionParseException e) {

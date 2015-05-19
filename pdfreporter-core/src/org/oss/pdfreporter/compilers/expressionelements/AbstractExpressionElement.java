@@ -8,28 +8,17 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.expressionelements;
 
-public class ExpressionParseException extends Exception {
+import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
+import org.oss.pdfreporter.compilers.IExpressionElement;
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
+public abstract class AbstractExpressionElement implements IExpressionElement {
 
-	public ExpressionParseException() {
-		super();
+
+	@Override
+	public Object getOldValue() throws ExpressionEvaluationException {
+		return getValue();
 	}
 
-	public ExpressionParseException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public ExpressionParseException(String message) {
-		super(message);
-	}
-
-	public ExpressionParseException(Throwable cause) {
-		super(cause);
-	}
 }

@@ -8,13 +8,16 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.expressionelements;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
+import org.oss.pdfreporter.compilers.IExpressionChunk;
+import org.oss.pdfreporter.compilers.IVariable;
+import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 
 
 public class ChunkBuilder {

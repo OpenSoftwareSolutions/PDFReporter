@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.compilers.jeval.JEvalCompiler;
+import org.oss.pdfreporter.compilers.jshuntingyard.JSHuntingYardCompiler;
 import org.oss.pdfreporter.crosstabs.JRCrosstab;
 import org.oss.pdfreporter.engine.design.JRCompiler;
 import org.oss.pdfreporter.engine.design.JRValidationFault;
@@ -38,8 +39,8 @@ import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.fill.JREvaluator;
 import org.oss.pdfreporter.engine.util.JRSaver;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
-import org.oss.pdfreporter.progress.ProgressManager;
 import org.oss.pdfreporter.progress.IProgressHandler.ProgressState;
+import org.oss.pdfreporter.progress.ProgressManager;
 
 
 
@@ -47,7 +48,7 @@ import org.oss.pdfreporter.progress.IProgressHandler.ProgressState;
  * Facade class for compiling report designs into the ready-to-fill form
  * and for getting the XML representation of report design objects for
  * storage or network transfer.
- * 
+ *
  * @see org.oss.pdfreporter.engine.design.JasperDesign
  * @see org.oss.pdfreporter.engine.JasperReport
  * @see org.oss.pdfreporter.engine.design.JRCompiler
@@ -63,6 +64,7 @@ public final class JasperCompileManager
 {
 	private final static Logger logger = Logger.getLogger(JasperCompileManager.class.getName());
 	private final static String JEVAL_COMPILER = JEvalCompiler.class.getName();
+	private final static String JSHUNTINGYARD_COMPILER = JSHuntingYardCompiler.class.getName();
 	private JasperReportsContext jasperReportsContext;
 
 
@@ -73,8 +75,8 @@ public final class JasperCompileManager
 	{
 		this.jasperReportsContext = jasperReportsContext;
 	}
-	
-	
+
+
 	/**
 	 *
 	 */
@@ -82,8 +84,8 @@ public final class JasperCompileManager
 	{
 		return new JasperCompileManager(DefaultJasperReportsContext.getInstance());
 	}
-	
-	
+
+
 	/**
 	 *
 	 */
@@ -91,17 +93,17 @@ public final class JasperCompileManager
 	{
 		return new JasperCompileManager(jasperReportsContext);
 	}
-	
-	
+
+
 	/**
 	 * Compiles the XML report design file specified by the parameter.
-	 * The result of this operation is another file that will contain the serialized  
+	 * The result of this operation is another file that will contain the serialized
 	 * {@link org.oss.pdfreporter.engine.JasperReport} object representing the compiled report design,
 	 * having the same name as the report design as declared in the XML plus the <code>*.jasper</code> extension,
 	 * located in the same directory as the XML source file.
-	 * 
+	 *
 	 * @param sourceFileName XML source file name
-	 * @return resulting file name containing a serialized {@link org.oss.pdfreporter.engine.JasperReport} object 
+	 * @return resulting file name containing a serialized {@link org.oss.pdfreporter.engine.JasperReport} object
 	 */
 	public String compileToFile(String sourceFileName) throws JRException
 	{
@@ -113,18 +115,18 @@ public final class JasperCompileManager
 		String destFileName = destFile.toString();
 
 		compileToFile(jasperDesign, destFileName);
-		
+
 		return destFileName;
 	}
 
 
 	/**
-	 * Compiles the XML report design file received as the first parameter, placing the result 
+	 * Compiles the XML report design file received as the first parameter, placing the result
 	 * in the file specified by the second parameter.
-	 * The resulting file will contain a serialized instance of a 
-	 * {@link org.oss.pdfreporter.engine.JasperReport} object representing 
-	 * the compiled report design. 
-	 * 
+	 * The resulting file will contain a serialized instance of a
+	 * {@link org.oss.pdfreporter.engine.JasperReport} object representing
+	 * the compiled report design.
+	 *
 	 * @param sourceFileName XML source file name
 	 * @param destFileName   file name to place the result into
 	 */
@@ -140,11 +142,11 @@ public final class JasperCompileManager
 
 
 	/**
-	 * Compiles the report design object received as the first parameter, placing the result 
+	 * Compiles the report design object received as the first parameter, placing the result
 	 * in the file specified by the second parameter.
-	 * The resulting file will contain a serialized instance of a 
+	 * The resulting file will contain a serialized instance of a
 	 * {@link org.oss.pdfreporter.engine.JasperReport} object representing the compiled report design.
-	 * 
+	 *
 	 * @param jasperDesign source report design object
 	 * @param destFileName file name to place the compiled report design into
 	 */
@@ -160,11 +162,11 @@ public final class JasperCompileManager
 
 
 	/**
-	 * Compiles the XML report design file received as parameter, and returns 
+	 * Compiles the XML report design file received as parameter, and returns
 	 * the compiled report design object.
-	 *  
+	 *
 	 * @param sourceFileName XML source file name
-	 * @return compiled report design object 
+	 * @return compiled report design object
 	 */
 	public  JasperReport compile(String sourceFileName) throws JRException
 	{
@@ -176,9 +178,9 @@ public final class JasperCompileManager
 
 	/**
 	 * Compiles the XML representation of the report design read from the supplied input stream and
-	 * writes the generated compiled report design object to the output stream specified 
+	 * writes the generated compiled report design object to the output stream specified
 	 * by the second parameter.
-	 * 
+	 *
 	 * @param inputStream  XML source input stream
 	 * @param outputStream output stream to write the compiled report design to
 	 */
@@ -195,9 +197,9 @@ public final class JasperCompileManager
 
 	/**
 	 * Compiles the report design object represented by the first parameter and
-	 * writes the generated compiled report design object to the output stream specified 
+	 * writes the generated compiled report design object to the output stream specified
 	 * by the second parameter.
-	 * 
+	 *
 	 * @param jasperDesign source report design object
 	 * @param outputStream output stream to write the compiled report design to
 	 */
@@ -215,9 +217,9 @@ public final class JasperCompileManager
 	/**
 	 * Compiles the serialized report design object read from the supplied input stream and
 	 * returns the generated compiled report design object.
-	 * 
+	 *
 	 * @param inputStream XML source input stream
-	 * @return compiled report design object 
+	 * @return compiled report design object
 	 */
 	public JasperReport compile(InputStream inputStream) throws JRException
 	{
@@ -232,15 +234,15 @@ public final class JasperCompileManager
 	 * returns the generated compiled report design object.
 	 *
 	 * @param jasperDesign source report design object
-	 * @return compiled report design object 
+	 * @return compiled report design object
 	 * @see org.oss.pdfreporter.engine.design.JRCompiler
 	 */
 	public JasperReport compile(JasperDesign jasperDesign) throws JRException
 	{
 		ProgressManager pm = new ProgressManager(ProgressState.COMPILING);
-		try {			
+		try {
 			return getCompiler(jasperDesign).compileReport(jasperDesign);
-		} finally {			
+		} finally {
 			pm.done();
 		}
 
@@ -262,36 +264,36 @@ public final class JasperCompileManager
 
 
 	/**
-	 * 
+	 *
 	 */
 	public JREvaluator getEvaluator(JasperReport jasperReport, JRDataset dataset) throws JRException
 	{
 		JRCompiler compiler = getCompiler(jasperReport);
-		
+
 		return compiler.loadEvaluator(jasperReport, dataset);
 	}
 
 
 	/**
-	 * 
+	 *
 	 */
 	public JREvaluator getEvaluator(JasperReport jasperReport, JRCrosstab crosstab) throws JRException
 	{
 		JRCompiler compiler = getCompiler(jasperReport);
-		
+
 		return compiler.loadEvaluator(jasperReport, crosstab);
 	}
 
 
 	/**
-	 * 
+	 *
 	 */
 	public JREvaluator getEvaluator(JasperReport jasperReport) throws JRException
 	{
 		return getEvaluator(jasperReport, jasperReport.getMainDataset());
 	}
 
-	
+
 	/**
 	 * @see #compileToFile(String)
 	 */
@@ -410,7 +412,7 @@ public final class JasperCompileManager
 	{
 		return getDefaultInstance().getEvaluator(jasperReport);
 	}
-	
+
 
 	/**
 	 * Creates a compiler for compiled reports
@@ -422,29 +424,34 @@ public final class JasperCompileManager
 		if(JEVAL_COMPILER.equals(compilerClassName)) {
 			return new JEvalCompiler(jasperReportsContext);
 		}
+		else if(JSHUNTINGYARD_COMPILER.equals(compilerClassName)) {
+			return new JSHuntingYardCompiler(jasperReportsContext);
+		}
 		throw new JRException("Report compiler '" + compilerClassName + "' not supported.");
 	}
 
-	
+
 
 
 	/**
-	 * Cerates a compiler to compile design reports 
+	 * Cerates a compiler to compile design reports
 	 */
 	private JRCompiler getCompiler(JasperDesign jasperDesign) throws JRException
 	{
 		String language = jasperDesign.getLanguage();
 		if (JRReport.LANGUAGE_JEVAL.equals(language)) {
-			return new JEvalCompiler(jasperReportsContext,false);								
+			return new JEvalCompiler(jasperReportsContext,false);
+		} else if(JRReport.LANGUAGE_JSHUNTINGYARD.equals(language)){
+			return new JSHuntingYardCompiler(jasperReportsContext,false);
 		}
 		else
 		{
 			if (language==null) {
-				throw new JRException("There is no default language set for compiler. You should include a dtd to your jrxml report file.");				
+				throw new JRException("There is no default language set for compiler. You should include a dtd to your jrxml report file.");
 			}
 			throw new JRException("No report compiler set for language : " + language);
 		}
 	}
 
-	
+
 }

@@ -4,24 +4,32 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- *
+ * 
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers;
 
-import org.oss.pdfreporter.compilers.IExpressionElement;
+public class ExpressionParseException extends Exception {
 
-public class SingleChunkTextTypeFactory {
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public static IExpressionElement buildExpression(String text) throws ExpressionParseException {
-		if (NumberConstant.isNumber(text)) {
-			return NumberConstant.parseNumber(text);
-		}
+	public ExpressionParseException() {
+		super();
+	}
 
-		if (TextConstant.isText(text)) {
-			return TextConstant.parseText(text);
-		}
-		return null;
+	public ExpressionParseException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public ExpressionParseException(String message) {
+		super(message);
+	}
+
+	public ExpressionParseException(Throwable cause) {
+		super(cause);
 	}
 }

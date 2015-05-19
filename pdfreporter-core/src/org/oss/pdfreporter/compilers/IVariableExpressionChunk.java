@@ -8,7 +8,8 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers;
+
 
 
 public interface IVariableExpressionChunk extends IExpressionChunk {

@@ -4,18 +4,18 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers;
 
-import org.oss.pdfreporter.engine.JRValueParameter;
-import org.oss.pdfreporter.engine.fill.JRFillField;
-import org.oss.pdfreporter.engine.fill.JRFillVariable;
+public interface Expression {
 
-public interface IDataHolder {
-	JRValueParameter getParameter(String name);
-	JRFillField getField(String name);
-	JRFillVariable getVariable(String name);	
+	String evaluateValue() throws ExpressionEvaluationException;
+
+	String getExpression();
+
+	String evaluateOldValue() throws ExpressionEvaluationException;
+
 }

@@ -8,13 +8,14 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers;
 
-import org.oss.pdfreporter.compilers.IExpressionElement;
-import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
+import org.oss.pdfreporter.engine.JRValueParameter;
+import org.oss.pdfreporter.engine.fill.JRFillField;
+import org.oss.pdfreporter.engine.fill.JRFillVariable;
 
-public interface IVariable extends IExpressionElement {
-	Object getVariableHolder();
-	ExpresionType getType();
-	String getName();
+public interface IDataHolder {
+	JRValueParameter getParameter(String name);
+	JRFillField getField(String name);
+	JRFillVariable getVariable(String name);	
 }

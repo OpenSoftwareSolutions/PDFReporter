@@ -4,36 +4,31 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- *
+ * 
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.jeval;
+package org.oss.pdfreporter.compilers.expressionelements;
 
-import java.util.ResourceBundle;
-
-import org.oss.pdfreporter.compilers.AbstractExpressionElement;
-import org.oss.pdfreporter.compilers.jeval.IExpressionChunk.ExpresionType;
-import org.oss.pdfreporter.engine.JRParameter;
+import org.oss.pdfreporter.compilers.IDataHolder;
+import org.oss.pdfreporter.compilers.IVariable;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.engine.JRValueParameter;
 
 
-public class ExpressionRessource extends AbstractExpressionElement implements IVariable {
+public class ExpressionParameter extends AbstractExpressionElement implements IVariable {
 
 	private final IDataHolder data;
 	private final String name;
-
-
-	public ExpressionRessource(IDataHolder data, String name) {
+		
+	public ExpressionParameter(IDataHolder data, String name) {
 		this.data = data;
 		this.name = name;
 	}
 
 	@Override
 	public Object getValue() {
-		JRValueParameter parameter = getParameter();
-		ResourceBundle resourceBundle = (ResourceBundle) parameter.getValue();
-		return resourceBundle.getString(getName());
+		return getParameter().getValue();
 	}
 
 
@@ -44,7 +39,7 @@ public class ExpressionRessource extends AbstractExpressionElement implements IV
 
 	@Override
 	public ExpresionType getType() {
-		return ExpresionType.TYPE_VARIABLE;
+		return ExpresionType.TYPE_PARAMETER;
 	}
 
 	@Override
@@ -53,12 +48,12 @@ public class ExpressionRessource extends AbstractExpressionElement implements IV
 	}
 
 	private JRValueParameter getParameter() {
-		return data.getParameter(JRParameter.REPORT_RESOURCE_BUNDLE);
+		return data.getParameter(getName());
 	}
 
 	@Override
 	public String toString() {
-		return "ExpressionResource [name=" + name + "]";
+		return "ExpressionParameter [name=" + name + "]";
 	}
 
 }
