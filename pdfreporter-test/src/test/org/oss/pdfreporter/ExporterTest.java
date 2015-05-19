@@ -53,6 +53,8 @@ public abstract class ExporterTest {
 	//JSON
 	private static final String DESIGN_REPORT_JSON_ORDERS = resourceBundle.getString("DESIGN_REPORT_JSON_ORDERS");
 	private static final String DESIGN_REPORT_JSON_CUSTOMERS = resourceBundle.getString("DESIGN_REPORT_JSON_CUSTOMERS");
+	private static final String SUBREPORT_JSON_ORDERS_NAME = resourceBundle.getString("SUBREPORT_JSON_ORDERS_NAME");
+	private static final String SUBREPORT_JSON_ORDERS_LOCATION = resourceBundle.getString("SUBREPORT_JSON_ORDERS_LOCATION");
 
 	private static final String DESIGN_REPORT_IMAGE = resourceBundle.getString("DESIGN_REPORT_IMAGE");
 	private static final String DESIGN_REPORT_SHAPES = resourceBundle.getString("DESIGN_REPORT_SHAPES");
@@ -63,7 +65,11 @@ public abstract class ExporterTest {
 //	private static final String DESIGN_REPORT_JASPER = resourceBundle.getString("DESIGN_REPORT_JASPER");
 	private static final String DESIGN_REPORT_ROTATION = resourceBundle.getString("DESIGN_REPORT_ROTATION");
 	private static final String DESIGN_REPORT_PDFCRYPT = resourceBundle.getString("DESIGN_REPORT_PDFCRYPT");
+
 	private static final String DESIGN_REPORT_MASTER = resourceBundle.getString("DESIGN_REPORT_MASTER");
+	private static final String SUBREPORT_MASTER_NAME = resourceBundle.getString("SUBREPORT_MASTER_NAME");
+	private static final String SUBREPORT_MASTER_LOCATION = resourceBundle.getString("SUBREPORT_MASTER_LOCATION");
+
 	private static final String DESIGN_REPORT_HORIZONTAL = resourceBundle.getString("DESIGN_REPORT_HORIZONTAL");
 	private static final String DESIGN_REPORT_LANDSCAPE = resourceBundle.getString("DESIGN_REPORT_LANDSCAPE");
 	private static final String DESIGN_REPORT_STRETCH = resourceBundle.getString("DESIGN_REPORT_STRETCH");
@@ -151,7 +157,7 @@ public abstract class ExporterTest {
 	@Test
 	public void exportMasterReport() throws Exception {
         getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts")
-        	.addSubreport("ProductsSubreport", "ProductReport.jasper")
+        	.addSubreport(SUBREPORT_MASTER_NAME, SUBREPORT_MASTER_LOCATION)
         	.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
         	.exportPdf();
 	}
@@ -272,7 +278,7 @@ public abstract class ExporterTest {
 	@Test
 	public void exportJsonDataSource() throws Exception {
 		getExporter(DESIGN_REPORT_JSON_CUSTOMERS, "jsondatasource","extra-fonts")
-        	.addSubreport("JsonOrdersReport", "JsonOrdersReport.jasper")
+        	.addSubreport(SUBREPORT_JSON_ORDERS_NAME, SUBREPORT_JSON_ORDERS_LOCATION)
         	.addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
         	.setJsonSource()
         	.exportPdf();

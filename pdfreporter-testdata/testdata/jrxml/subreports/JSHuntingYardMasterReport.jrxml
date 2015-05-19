@@ -81,7 +81,7 @@
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<returnValue subreportVariable="REPORT_COUNT" toVariable="CityAddressCount"/>
-				<subreportExpression class="java.lang.String"><![CDATA["AddressReport.jasper"]]></subreportExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["JSHuntingYardAddressReport.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
