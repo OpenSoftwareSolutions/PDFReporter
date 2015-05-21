@@ -8,40 +8,40 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package org.oss.pdfreporter.compilers.expressionelements;
+package org.oss.pdfreporter.compilers.jeval;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.oss.pdfreporter.compilers.Expression;
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
 import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IExpressionElement;
+import org.oss.pdfreporter.compilers.expressionelements.ExpressionType;
 import org.oss.pdfreporter.compilers.util.ResultUtil;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 
 
-public class ResultCast implements IExpressionElement{
-	private static final Logger logger = Logger.getLogger(ResultCast.class.getName());
+public class JEvalResultCast implements IExpressionElement{
+	private static final Logger logger = Logger.getLogger(JEvalResultCast.class.getName());
 	private static String CAST_MATCH = ".*\\(\\s*\\w+\\s*\\).*";
 	private static Pattern CAST_SPLIT = Pattern.compile("\\w+");
 
 
 	private final ExpressionType type;
-	private Expression expression = null;
+	private JEvalExpression expression = null;
 
-	private ResultCast(ExpressionType type, Expression expression) {
+	private JEvalResultCast(ExpressionType type, JEvalExpression expression) {
 		this.type = type;
 		this.expression = expression;
 	}
 
-	private ResultCast(ExpressionType type) {
+	private JEvalResultCast(ExpressionType type) {
 		this(type,null);
 	}
 
-	public ResultCast() {
+	public JEvalResultCast() {
 		this(ExpressionType.STRING,null);
 	}
 
@@ -57,21 +57,21 @@ public class ResultCast implements IExpressionElement{
 		throw new ExpressionParseException("Pattern: " + CAST_SPLIT + " does not match: " + text);
 	}
 
-	public static ResultCast parseCast(String s) throws ExpressionParseException {
+	public static JEvalResultCast parseCast(String s) throws ExpressionParseException {
 		if (s.matches(CAST_MATCH)) {
 			String cast = extract(CAST_SPLIT, s);
 			if (cast.equalsIgnoreCase("boolean")) {
-				return new ResultCast(ExpressionType.BOOLEAN);
+				return new JEvalResultCast(ExpressionType.BOOLEAN);
 			} else if (cast.equalsIgnoreCase("integer") || cast.equalsIgnoreCase("int")) {
-				return new ResultCast(ExpressionType.INTEGER);
+				return new JEvalResultCast(ExpressionType.INTEGER);
 			} else if (cast.equalsIgnoreCase("double") || cast.equalsIgnoreCase("float")) {
-				return new ResultCast(ExpressionType.DOUBLE);
+				return new JEvalResultCast(ExpressionType.DOUBLE);
 			} else if (cast.equalsIgnoreCase("string")) {
-				return new ResultCast(ExpressionType.STRING);
+				return new JEvalResultCast(ExpressionType.STRING);
 			} else if (cast.equalsIgnoreCase("long")) {
-				return new ResultCast(ExpressionType.LONG);
+				return new JEvalResultCast(ExpressionType.LONG);
 			} else if (cast.equalsIgnoreCase("date")) {
-				return new ResultCast(ExpressionType.DATE);
+				return new JEvalResultCast(ExpressionType.DATE);
 			}
 		}
 		throw new ExpressionParseException("Unsupported cast operator: " + s);
@@ -86,7 +86,7 @@ public class ResultCast implements IExpressionElement{
 	}
 
 
-	public void setExpression(Expression expression) {
+	public void setExpression(JEvalExpression expression) {
 		this.expression = expression;
 	}
 
@@ -112,8 +112,7 @@ public class ResultCast implements IExpressionElement{
 		throw new ExpressionEvaluationException("Unreachable " + type + ", result: " + result);
 	}
 
-	public void assertResultType(String result)
-			throws ExpressionEvaluationException {
+	public void assertResultType(String result) throws ExpressionEvaluationException {
 		boolean isText = ResultUtil.isString(result, EvaluationConstants.SINGLE_QUOTE);
 		if (type==ExpressionType.STRING  && !isText) {
 			throw new ExpressionEvaluationException("Result of type String expected actual value is unquoted: " + result);

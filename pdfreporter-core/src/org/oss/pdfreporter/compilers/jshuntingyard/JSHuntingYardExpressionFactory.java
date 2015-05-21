@@ -21,7 +21,7 @@ import org.oss.pdfreporter.compilers.expressionelements.ExpressionField;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionParameter;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionRessource;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionVariable;
-import org.oss.pdfreporter.compilers.expressionelements.ResultCast;
+import org.oss.pdfreporter.compilers.jeval.JEvalResultCast;
 import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpressionChunk;
 
@@ -40,7 +40,7 @@ public class JSHuntingYardExpressionFactory {
 	}
 
 	private IExpressionElement build(JRExpressionChunk[] chunks, int expressionId) throws JRException {
-		ResultCast result = new ResultCast();
+		JSHuntingYardResultCast result = new JSHuntingYardResultCast();
 		ChunkBuilder expressionBuilder = new ChunkBuilder();
 		rawExpression  = new StringBuilder();
 		try {
@@ -54,9 +54,9 @@ public class JSHuntingYardExpressionFactory {
 				switch (designChunk.getType()) {
 					case JRExpressionChunk.TYPE_TEXT: {
 						rawExpression.append(chunkText);
-						if (ResultCast.isCast(chunkText)) {
-							result = ResultCast.parseCast(chunkText);
-							expressionBuilder.addText(ResultCast.getNext(chunkText));
+						if (JEvalResultCast.isCast(chunkText)) {
+							result = JSHuntingYardResultCast.parseCast(chunkText);
+							expressionBuilder.addText(JSHuntingYardResultCast.getNext(chunkText));
 						} else {
 							expressionBuilder.addText(chunkText);
 						}

@@ -18,13 +18,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.oss.pdfreporter.compilers.Expression;
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
 import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IExpressionChunk;
+import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
-import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
 import org.oss.pdfreporter.compilers.jeval.functions.BooleanConverter;
 import org.oss.pdfreporter.compilers.jeval.functions.Conditional;
@@ -46,7 +45,7 @@ import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
 
 
-public class JEvalExpression implements Expression{
+public class JEvalExpression {
 
 	private final static Logger logger = Logger.getLogger(JEvalExpression.class.getName());
 	private final Map<String,IVariable> variables;
@@ -94,7 +93,7 @@ public class JEvalExpression implements Expression{
 		return expression;
 	}
 
-	public void parse(List<IExpressionChunk> chunks) throws ExpressionParseException  {
+	private void parse(List<IExpressionChunk> chunks) throws ExpressionParseException  {
 		this.expression = buildExpression(chunks);
 		try {
 			valueEvaluator.parse(expression);

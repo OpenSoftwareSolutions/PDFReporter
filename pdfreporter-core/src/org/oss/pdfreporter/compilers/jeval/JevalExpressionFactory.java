@@ -21,7 +21,6 @@ import org.oss.pdfreporter.compilers.expressionelements.ExpressionField;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionParameter;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionRessource;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionVariable;
-import org.oss.pdfreporter.compilers.expressionelements.ResultCast;
 import org.oss.pdfreporter.engine.JRException;
 import org.oss.pdfreporter.engine.JRExpressionChunk;
 
@@ -40,7 +39,7 @@ public class JevalExpressionFactory {
 	}
 
 	private IExpressionElement build(JRExpressionChunk[] chunks, int expressionId) throws JRException {
-		ResultCast result = new ResultCast();
+		JEvalResultCast result = new JEvalResultCast();
 		ChunkBuilder expressionBuilder = new ChunkBuilder();
 		rawExpression  = new StringBuilder();
 		try {
@@ -54,9 +53,9 @@ public class JevalExpressionFactory {
 				switch (designChunk.getType()) {
 					case JRExpressionChunk.TYPE_TEXT: {
 						rawExpression.append(chunkText);
-						if (ResultCast.isCast(chunkText)) {
-							result = ResultCast.parseCast(chunkText);
-							expressionBuilder.addText(ResultCast.getNext(chunkText));
+						if (JEvalResultCast.isCast(chunkText)) {
+							result = JEvalResultCast.parseCast(chunkText);
+							expressionBuilder.addText(JEvalResultCast.getNext(chunkText));
 						} else {
 							expressionBuilder.addText(chunkText);
 						}
