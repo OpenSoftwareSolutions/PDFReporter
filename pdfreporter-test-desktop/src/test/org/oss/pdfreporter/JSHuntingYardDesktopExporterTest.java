@@ -8,23 +8,23 @@
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
-package test.org.oss.pdfreporter.providers;
+package test.org.oss.pdfreporter;
 
-public class JavaTestProvider implements TestProviderInterface{
 
-	@Override
-	public String inputPath(String input) {
-		return "../pdfreporter-testdata/"+input;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import test.org.oss.pdfreporter.providers.DesktopTestProvider;
+
+
+
+public abstract class JSHuntingYardDesktopExporterTest extends ExporterTest{
+
+	public JSHuntingYardDesktopExporterTest() {
+		super(true, new DesktopTestProvider());
 	}
 
-	@Override
-	public String outputPath(String input) {
-		return "../pdfreporter-testdata/"+input;
-	}
-
-	@Override
-	public String databasePath() {
-		return "localhost";
-	}
-
+	public ResourceBundle getExpressionLanguage() {
+		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", new Locale("jshuntingyard", "JSHUNTINGYARD"));
+    }
 }

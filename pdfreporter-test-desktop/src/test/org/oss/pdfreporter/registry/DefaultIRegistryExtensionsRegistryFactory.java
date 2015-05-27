@@ -24,6 +24,8 @@ import org.oss.pdfreporter.image.ImageFactory;
 import org.oss.pdfreporter.json.factory.JsonDataSourceFactory;
 import org.oss.pdfreporter.net.factory.NetFactory;
 import org.oss.pdfreporter.pdf.PdfFactory;
+import org.oss.pdfreporter.registry.ApiRegistry;
+import org.oss.pdfreporter.sql.SQLException;
 import org.oss.pdfreporter.sql.SqlFactory;
 import org.oss.pdfreporter.text.format.factory.DefaultFormatFactory;
 import org.oss.pdfreporter.text.format.factory.SimpleFormatFactory;
@@ -38,7 +40,11 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 	@Override
 	public ExtensionsRegistry createRegistry(String registryId,
 			JRPropertiesMap properties) {
-		initializeIRegistry();
+		try {
+			initializeIRegistry();
+		} catch (SQLException e) {
+			logger.log(Level.WARNING, e.getMessage(), e);
+		}
 		return new NullExtensionsRegistry();
 	}
 
@@ -51,7 +57,7 @@ public class DefaultIRegistryExtensionsRegistryFactory implements ExtensionsRegi
 	}
 
 	// This is a static configuration that will not change. Whereas extension registries and properties can change on a report base and should therefore be discarded for each run.
-	synchronized private void initializeIRegistry() {
+	synchronized private void initializeIRegistry() throws SQLException {
 		if (!isInitialized) {
 			Logger.getLogger("").setLevel(Level.FINEST);
 			XmlParserFactory.registerFactory();

@@ -44,7 +44,7 @@ public class SqlFactory extends AbstractSqlFactory {
 	 * only for desktop testing
 	 */
 	public static void registerFactory() {
-		registerFactory("org.hsqldb.jdbcDriver", "jdbc:hsqldb:hsql:");
+		registerFactory("org.hsqldb.jdbcDriver", "jdbc:hsqldb:hsql://localhost/iva");
 	}
 
 	@Override

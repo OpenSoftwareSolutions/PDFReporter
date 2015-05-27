@@ -11,13 +11,20 @@
 package test.org.oss.pdfreporter;
 
 
-import test.org.oss.pdfreporter.providers.JavaTestProvider;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import test.org.oss.pdfreporter.providers.DesktopTestProvider;
 
 
 
-public class DesktopExporterTest extends ExporterTest{
+public abstract class JEvalDesktopExporterTest extends ExporterTest{
 
-	public DesktopExporterTest() {
-		super(true, new JavaTestProvider());
+	public JEvalDesktopExporterTest() {
+		super(true, new DesktopTestProvider());
 	}
+
+	protected ResourceBundle getExpressionLanguage() {
+		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", new Locale("jeval", "JEVAL"));
+    }
 }

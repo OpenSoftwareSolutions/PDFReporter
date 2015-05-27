@@ -19,9 +19,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import org.junit.Test;
 import org.oss.pdfreporter.PdfReporter;
-import org.oss.pdfreporter.pdf.IDocument;
 import org.oss.pdfreporter.repo.RepositoryManager;
 
 import test.org.oss.pdfreporter.providers.TestProviderInterface;
@@ -31,73 +29,137 @@ import test.org.oss.pdfreporter.providers.TestProviderInterface;
 public abstract class ExporterTest {
 
 
-	private static final ResourceBundle resourceBundle = selectExpressionLanguage();
-
 	// DRIVERS for Java
-	private static final String HSQLDB_URLPREFIX = resourceBundle.getString("HSQLDB_URLPREFIX");
-	private static final String HSQLDB_JDBC_DRIVER = resourceBundle.getString("HSQLDB_JDBC_DRIVER");
+	protected final String HSQLDB_URLPREFIX;
+	protected final String HSQLDB_JDBC_DRIVER;
 
 	// FOLDERS
-	private static final String JRXML_RESOURCE_FOLDER = resourceBundle.getString("JRXML_RESOURCE_FOLDER");
-	private static final String JRXML_REPORT_FOLDER = resourceBundle.getString("JRXML_REPORT_FOLDER");
-	private static final String XML_DATASOURCE_FOLDER = resourceBundle.getString("XML_DATASOURCE_FOLDER");
-	private static final String PDF_OUTPUT_FOLDER = resourceBundle.getString("PDF_OUTPUT_FOLDER");
+	protected final String JRXML_RESOURCE_FOLDER;
+	protected final String JRXML_REPORT_FOLDER;
+	protected final String XML_DATASOURCE_FOLDER;
+	protected final String PDF_OUTPUT_FOLDER;
 
 	// DESIGN REPORTS
-	private static final String DESIGN_REPORT_FONTS = resourceBundle.getString("DESIGN_REPORT_FONTS");
-	private static final String DESIGN_REPORT_SHIPMENTS = resourceBundle.getString("DESIGN_REPORT_SHIPMENTS");
-	private static final String DESIGN_REPORT_PRODUCTS = resourceBundle.getString("DESIGN_REPORT_PRODUCTS");
-	private static final String DESIGN_REPORT_ORDERS = resourceBundle.getString("DESIGN_REPORT_ORDERS");
-	private static final String DESIGN_REPORT_LATE_ORDERS = resourceBundle.getString("DESIGN_REPORT_LATE_ORDERS");
+	protected final String DESIGN_REPORT_FONTS;
+	protected final String DESIGN_REPORT_SHIPMENTS;
+	protected final String DESIGN_REPORT_PRODUCTS;
+	protected final String DESIGN_REPORT_ORDERS;
+	protected final String DESIGN_REPORT_LATE_ORDERS;
 
 	//JSON
-	private static final String DESIGN_REPORT_JSON_ORDERS = resourceBundle.getString("DESIGN_REPORT_JSON_ORDERS");
-	private static final String DESIGN_REPORT_JSON_CUSTOMERS = resourceBundle.getString("DESIGN_REPORT_JSON_CUSTOMERS");
-	private static final String SUBREPORT_JSON_ORDERS_NAME = resourceBundle.getString("SUBREPORT_JSON_ORDERS_NAME");
-	private static final String SUBREPORT_JSON_ORDERS_LOCATION = resourceBundle.getString("SUBREPORT_JSON_ORDERS_LOCATION");
+	protected final String DESIGN_REPORT_JSON_ORDERS;
+	protected final String DESIGN_REPORT_JSON_CUSTOMERS;
+	protected final String SUBREPORT_JSON_ORDERS_NAME;
+	protected final String SUBREPORT_JSON_ORDERS_LOCATION;
 
-	private static final String DESIGN_REPORT_IMAGE = resourceBundle.getString("DESIGN_REPORT_IMAGE");
-	private static final String DESIGN_REPORT_SHAPES = resourceBundle.getString("DESIGN_REPORT_SHAPES");
-	private static final String DESIGN_REPORT_PARAGRAPH = resourceBundle.getString("DESIGN_REPORT_PARAGRAPH");
-	private static final String DESIGN_REPORT_STYLEDTEXT = resourceBundle.getString("DESIGN_REPORT_STYLEDTEXT");
-	private static final String DESIGN_REPORT_I18N = resourceBundle.getString("DESIGN_REPORT_I18N");
-	private static final String DESIGN_REPORT_CDBOOCKLET = resourceBundle.getString("DESIGN_REPORT_CDBOOCKLET");
-//	private static final String DESIGN_REPORT_JASPER = resourceBundle.getString("DESIGN_REPORT_JASPER");
-	private static final String DESIGN_REPORT_ROTATION = resourceBundle.getString("DESIGN_REPORT_ROTATION");
-	private static final String DESIGN_REPORT_PDFCRYPT = resourceBundle.getString("DESIGN_REPORT_PDFCRYPT");
+	protected final String DESIGN_REPORT_IMAGE;
+	protected final String DESIGN_REPORT_SHAPES;
+	protected final String DESIGN_REPORT_PARAGRAPH;
+	protected final String DESIGN_REPORT_STYLEDTEXT;
+	protected final String DESIGN_REPORT_I18N;
+	protected final String DESIGN_REPORT_CDBOOCKLET;
+//	protected final  String DESIGN_REPORT_JASPER;
+	protected final String DESIGN_REPORT_ROTATION;
+	protected final String DESIGN_REPORT_PDFCRYPT;
 
-	private static final String DESIGN_REPORT_MASTER = resourceBundle.getString("DESIGN_REPORT_MASTER");
-	private static final String SUBREPORT_MASTER_NAME = resourceBundle.getString("SUBREPORT_MASTER_NAME");
-	private static final String SUBREPORT_MASTER_LOCATION = resourceBundle.getString("SUBREPORT_MASTER_LOCATION");
+	protected final String DESIGN_REPORT_MASTER;
+	protected final String SUBREPORT_MASTER_NAME;
+	protected final String SUBREPORT_MASTER_LOCATION;
 
-	private static final String DESIGN_REPORT_HORIZONTAL = resourceBundle.getString("DESIGN_REPORT_HORIZONTAL");
-	private static final String DESIGN_REPORT_LANDSCAPE = resourceBundle.getString("DESIGN_REPORT_LANDSCAPE");
-	private static final String DESIGN_REPORT_STRETCH = resourceBundle.getString("DESIGN_REPORT_STRETCH");
-	private static final String DESIGN_REPORT_TABULAR = resourceBundle.getString("DESIGN_REPORT_TABULAR");
+	protected final String DESIGN_REPORT_HORIZONTAL;
+	protected final String DESIGN_REPORT_LANDSCAPE;
+	protected final String DESIGN_REPORT_STRETCH;
+	protected final String DESIGN_REPORT_TABULAR;
 
-	private static final String DESIGN_REPORT_LIST = resourceBundle.getString("DESIGN_REPORT_LIST");
-	private static final String DESIGN_REPORT_HORIZONTALLIST = resourceBundle.getString("DESIGN_REPORT_HORIZONTALLIST");
-//	private static final String DESIGN_REPORT_NOPAGEBREAK = resourceBundle.getString("DESIGN_REPORT_NOPAGEBREAK");
-//	private static final String DESIGN_REPORT_TABLE = resourceBundle.getString("DESIGN_REPORT_TABLE");
-	private static final String DESIGN_REPORT_TEMPLATES = resourceBundle.getString("DESIGN_REPORT_TEMPLATES");
+	protected final String DESIGN_REPORT_LIST;
+	protected final String DESIGN_REPORT_HORIZONTALLIST;
+//	protected final String DESIGN_REPORT_NOPAGEBREAK;
+//	protected final String DESIGN_REPORT_TABLE;
+	protected final String DESIGN_REPORT_TEMPLATES;
 
 	// XML DATA
-	private static final String XML_DATA_CDBOOKLET = resourceBundle.getString("XML_DATA_CDBOOKLET");
-	private static final String XPATH_DATA_CDBOOKLET = resourceBundle.getString("XPATH_DATA_CDBOOKLET");
+	protected final String XML_DATA_CDBOOKLET;
+	protected final String XPATH_DATA_CDBOOKLET;
 
 	// JSON DATA
-	private static final String JSON_DATA_NORTHWIND = resourceBundle.getString("JSON_DATA_NORTHWIND");
+	protected final String JSON_DATA_NORTHWIND;
 
-	private static final String XML_DATA_NORTHWIND = resourceBundle.getString("XML_DATA_NORTHWIND");
-	private static final String XPATH_DATA_NORTHWIND_ORDERS = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS");
-	private static final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL");
+	protected final String XML_DATA_NORTHWIND;
+	protected final String XPATH_DATA_NORTHWIND_ORDERS;
+	protected final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL;
 
-	public static final String SQL_USERNAME = resourceBundle.getString("SQL_USERNAME");
-	public static final String SQL_PASSWORD = resourceBundle.getString("SQL_PASSWORD");
+	public String SQL_USERNAME;
+	public String SQL_PASSWORD;
 
-	private TestProviderInterface testProvider;
+	protected final TestProviderInterface testProvider;
 
 	protected ExporterTest(boolean initJava, TestProviderInterface testProvider) {
+
+		ResourceBundle resourceBundle = getExpressionLanguage();
+
+		// DRIVERS for Java
+		HSQLDB_URLPREFIX = resourceBundle.getString("HSQLDB_URLPREFIX");
+		HSQLDB_JDBC_DRIVER = resourceBundle.getString("HSQLDB_JDBC_DRIVER");
+
+		// FOLDERS
+		JRXML_RESOURCE_FOLDER = resourceBundle.getString("JRXML_RESOURCE_FOLDER");
+		JRXML_REPORT_FOLDER = resourceBundle.getString("JRXML_REPORT_FOLDER");
+		XML_DATASOURCE_FOLDER = resourceBundle.getString("XML_DATASOURCE_FOLDER");
+		PDF_OUTPUT_FOLDER = resourceBundle.getString("PDF_OUTPUT_FOLDER");
+
+		// DESIGN REPORTS
+		DESIGN_REPORT_FONTS = resourceBundle.getString("DESIGN_REPORT_FONTS");
+		DESIGN_REPORT_SHIPMENTS = resourceBundle.getString("DESIGN_REPORT_SHIPMENTS");
+		DESIGN_REPORT_PRODUCTS = resourceBundle.getString("DESIGN_REPORT_PRODUCTS");
+		DESIGN_REPORT_ORDERS = resourceBundle.getString("DESIGN_REPORT_ORDERS");
+		DESIGN_REPORT_LATE_ORDERS = resourceBundle.getString("DESIGN_REPORT_LATE_ORDERS");
+
+		//JSON
+		DESIGN_REPORT_JSON_ORDERS = resourceBundle.getString("DESIGN_REPORT_JSON_ORDERS");
+		DESIGN_REPORT_JSON_CUSTOMERS = resourceBundle.getString("DESIGN_REPORT_JSON_CUSTOMERS");
+		SUBREPORT_JSON_ORDERS_NAME = resourceBundle.getString("SUBREPORT_JSON_ORDERS_NAME");
+		SUBREPORT_JSON_ORDERS_LOCATION = resourceBundle.getString("SUBREPORT_JSON_ORDERS_LOCATION");
+
+		DESIGN_REPORT_IMAGE = resourceBundle.getString("DESIGN_REPORT_IMAGE");
+		DESIGN_REPORT_SHAPES = resourceBundle.getString("DESIGN_REPORT_SHAPES");
+		DESIGN_REPORT_PARAGRAPH = resourceBundle.getString("DESIGN_REPORT_PARAGRAPH");
+		DESIGN_REPORT_STYLEDTEXT = resourceBundle.getString("DESIGN_REPORT_STYLEDTEXT");
+		DESIGN_REPORT_I18N = resourceBundle.getString("DESIGN_REPORT_I18N");
+		DESIGN_REPORT_CDBOOCKLET = resourceBundle.getString("DESIGN_REPORT_CDBOOCKLET");
+//		private  String DESIGN_REPORT_JASPER = resourceBundle.getString("DESIGN_REPORT_JASPER");
+		DESIGN_REPORT_ROTATION = resourceBundle.getString("DESIGN_REPORT_ROTATION");
+		DESIGN_REPORT_PDFCRYPT = resourceBundle.getString("DESIGN_REPORT_PDFCRYPT");
+
+		DESIGN_REPORT_MASTER = resourceBundle.getString("DESIGN_REPORT_MASTER");
+		SUBREPORT_MASTER_NAME = resourceBundle.getString("SUBREPORT_MASTER_NAME");
+		SUBREPORT_MASTER_LOCATION = resourceBundle.getString("SUBREPORT_MASTER_LOCATION");
+
+		DESIGN_REPORT_HORIZONTAL = resourceBundle.getString("DESIGN_REPORT_HORIZONTAL");
+		DESIGN_REPORT_LANDSCAPE = resourceBundle.getString("DESIGN_REPORT_LANDSCAPE");
+		DESIGN_REPORT_STRETCH = resourceBundle.getString("DESIGN_REPORT_STRETCH");
+		DESIGN_REPORT_TABULAR = resourceBundle.getString("DESIGN_REPORT_TABULAR");
+
+		DESIGN_REPORT_LIST = resourceBundle.getString("DESIGN_REPORT_LIST");
+		DESIGN_REPORT_HORIZONTALLIST = resourceBundle.getString("DESIGN_REPORT_HORIZONTALLIST");
+//		DESIGN_REPORT_NOPAGEBREAK = resourceBundle.getString("DESIGN_REPORT_NOPAGEBREAK");
+//		DESIGN_REPORT_TABLE = resourceBundle.getString("DESIGN_REPORT_TABLE");
+		DESIGN_REPORT_TEMPLATES = resourceBundle.getString("DESIGN_REPORT_TEMPLATES");
+
+		// XML DATA
+		XML_DATA_CDBOOKLET = resourceBundle.getString("XML_DATA_CDBOOKLET");
+		XPATH_DATA_CDBOOKLET = resourceBundle.getString("XPATH_DATA_CDBOOKLET");
+
+		// JSON DATA
+		JSON_DATA_NORTHWIND = resourceBundle.getString("JSON_DATA_NORTHWIND");
+
+		XML_DATA_NORTHWIND = resourceBundle.getString("XML_DATA_NORTHWIND");
+		XPATH_DATA_NORTHWIND_ORDERS = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS");
+		XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL");
+
+		SQL_USERNAME = resourceBundle.getString("SQL_USERNAME");
+		SQL_PASSWORD = resourceBundle.getString("SQL_PASSWORD");
+
+
 		this.testProvider = testProvider;
 		new File(outputPath(PDF_OUTPUT_FOLDER)).mkdirs();
 		if (initJava) {
@@ -108,8 +170,9 @@ public abstract class ExporterTest {
 				Class<?> bridgeHandler = Class.forName("org.slf4j.bridge.SLF4JBridgeHandler");
 				bridgeHandler.getMethod("removeHandlersForRootLogger", noArgs).invoke(noInstance, noParams);
 				bridgeHandler.getMethod("install", noArgs).invoke(noInstance, noParams);
-				Class<?> sqlFactory = Class.forName("org.oss.pdfreporter.sql.SqlFactory");
-				sqlFactory.getMethod("registerFactory", new Class<?>[] {String.class,String.class}).invoke(noInstance, new Object[] {HSQLDB_JDBC_DRIVER, HSQLDB_URLPREFIX});
+
+				//Class<?> sqlFactory = Class.forName("org.oss.pdfreporter.sql.SqlFactory");
+				//sqlFactory.getMethod("registerFactory", new Class<?>[] {String.class,String.class}).invoke(noInstance, new Object[] {HSQLDB_JDBC_DRIVER, HSQLDB_URLPREFIX});
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -127,21 +190,6 @@ public abstract class ExporterTest {
 		}
 	}
 
-
-	@Test
-	public void exportFonts() throws Exception {
-		getExporter(DESIGN_REPORT_FONTS, "fonts","extra-fonts")
-			.exportPdf();
-	}
-
-
-	@Test
-	public void exportShippment() throws Exception {
-		getExporter(DESIGN_REPORT_SHIPMENTS, "crosstabs","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
 //	TODO Fix
 //	@Test
 //	public void exportFirstJasper() throws Exception {
@@ -154,154 +202,10 @@ public abstract class ExporterTest {
 //		getExporter("firstjasper","extra-fonts").exportSqlReport(DESIGN_REPORT_JASPER,parameters);
 //	}
 
-	@Test
-	public void exportMasterReport() throws Exception {
-        getExporter(DESIGN_REPORT_MASTER, "subreports", "extra-fonts")
-        	.addSubreport(SUBREPORT_MASTER_NAME, SUBREPORT_MASTER_LOCATION)
-        	.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-        	.exportPdf();
-	}
-
-	@Test
-	public void exportProducts() throws Exception {
-		getExporter(DESIGN_REPORT_PRODUCTS, "crosstabs","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
-// FIXME PDF ERROR generates no pages
+	// FIXME
 	//@Test
-	//public void exportHorizontal() throws Exception {
-		//getExporter("horizontal","extra-fonts").exportSqlReport(DESIGN_REPORT_HORIZONTAL);
-	//}
-
-
-
-	@Test
-	public void exportStretch() throws Exception {
-		getExporter(DESIGN_REPORT_STRETCH, "stretch")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportTabular() throws Exception {
-		getExporter(DESIGN_REPORT_TABULAR, "tabular","extra-fonts")
-			.exportPdf();
-	}
-
-
-	@Test
-	public void exportOrders() throws Exception {
-// TODO reenable xml datasource for iOS on this report
-//		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS);
-		getExporter(DESIGN_REPORT_ORDERS, "crosstabs","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
-	@Test
-	public void exportLateOrder() throws Exception {
-		// TODO reenable xml datasource for iOS on this report
-//		getExporter("crosstabs","extra-fonts").exportReport(DESIGN_REPORT_LATE_ORDERS,XML_DATA_NORTHWIND,XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL);
-		getExporter(DESIGN_REPORT_LATE_ORDERS, "crosstabs","extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
-	@Test
-	public void exportImages() throws Exception {
-		getExporter(DESIGN_REPORT_IMAGE, "images")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportLandscape() throws Exception {
-		getExporter(DESIGN_REPORT_LANDSCAPE, "landscape")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportShapes() throws Exception {
-		getExporter(DESIGN_REPORT_SHAPES, "shapes")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportRotation() throws Exception {
-		getExporter(DESIGN_REPORT_ROTATION, "misc")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportEncrypt() throws Exception {
-		getExporter(DESIGN_REPORT_PDFCRYPT, "misc", null)
-			.addEncryption(true, "jasper", "reports", IDocument.PERMISSION_COPY | IDocument.PERMISSION_PRINT)
-			.exportPdf();
-	}
-
-	@Test
-	public void exportParagraph() throws Exception {
-		getExporter(DESIGN_REPORT_PARAGRAPH, "text","extra-fonts")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportStyledText() throws Exception {
-		getExporter(DESIGN_REPORT_STYLEDTEXT, "text","extra-fonts")
-			.exportPdf();
-	}
-
-	@Test
-	public void exportCDBooklet() throws Exception {
-		getExporter(DESIGN_REPORT_CDBOOCKLET, "cdbooklet","extra-fonts")
-			.setXmlSource(XML_DATA_CDBOOKLET, XPATH_DATA_CDBOOKLET)
-			.exportPdf();
-	}
-
-	/*
-	 * */
-	@Test
-	public void exportI18n() throws Exception {
-		Locale locale = chooseLocale();
-
-		if(locale != null){
-			getExporter(DESIGN_REPORT_I18N, "i18n")
-		    .addFillParameter("number", new Double(1234567 + Math.random()))
-			.newResourceBundle("test.org.oss.pdfreporter.resourcebundle.i18n", locale)
-			.exportPdf();
-		}
-
-	}
-
-	/*
-	 * */
-	@Test
-	public void exportJsonDataSource() throws Exception {
-		getExporter(DESIGN_REPORT_JSON_CUSTOMERS, "jsondatasource","extra-fonts")
-        	.addSubreport(SUBREPORT_JSON_ORDERS_NAME, SUBREPORT_JSON_ORDERS_LOCATION)
-        	.addJSONParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
-        	.setJsonSource()
-        	.exportPdf();
-	}
-
-
-	@Test
-	public void exportHorizontalList() throws Exception {
-		getExporter(DESIGN_REPORT_HORIZONTALLIST, "list", "extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
-	@Test
-	public void exportList() throws Exception {
-		getExporter(DESIGN_REPORT_LIST, "list", "extra-fonts")
-			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
-			.exportPdf();
-	}
-
-	//@Test FIXME
 	//public void exportTemplates() throws Exception {
-		//getExporter("templates").exportReport(DESIGN_REPORT_TEMPLATES);
+		//getExporter(DESIGN_REPORT_TEMPLATES, "templates").exportPdf();
 	//}
 
 ///////////// BEGIN NOT SUPPORTED FEATURES /////////////////
@@ -343,11 +247,11 @@ public abstract class ExporterTest {
 
 ///////////// END NOT SUPPORTED FEATURES /////////////////
 
-	private PdfReporter getExporter(String jrxml, String reportFolder) {
+	protected PdfReporter getExporter(String jrxml, String reportFolder) {
 		return getExporter(jrxml, reportFolder, null);
 	}
 
-	private PdfReporter getExporter(String jrxml, String reportFolder, String extraFolder) {
+	protected PdfReporter getExporter(String jrxml, String reportFolder, String extraFolder) {
 		RepositoryManager repo = RepositoryManager.getInstance();
 		repo.setDefaultResourceFolder(inputPath(JRXML_RESOURCE_FOLDER));
 		repo.setDefaulReportFolder(inputPath(JRXML_REPORT_FOLDER + RepositoryManager.PATH_DELIMITER + reportFolder));
@@ -373,44 +277,13 @@ public abstract class ExporterTest {
 		else return path;
 	}
 
-	/**
-	 * @return select an expression language used in the reports
-	 */
-	private static Locale chooseExpressionLanguage()
-	{
-		LocaleWrapper[] locales =
-			new LocaleWrapper[]
-			{
-				new LocaleWrapper(new Locale("jeval", "JEVAL")),
-				new LocaleWrapper(new Locale("jshuntingyard", "JSHUNTINGYARD"))
-			};
-
-		LocaleWrapper locale =
-			(LocaleWrapper)JOptionPane.showInputDialog(
-				null,
-				"Choose the expression language",
-				"Language",
-				JOptionPane.PLAIN_MESSAGE,
-				null,
-				locales,
-				null
-				);
-
-		if (locale != null)
-			return locale.getLocale();
-
-		return null;
-	}
-
-	private static ResourceBundle selectExpressionLanguage() {
-		Locale locale = chooseExpressionLanguage();
-		return ResourceBundle.getBundle("test.org.oss.pdfreporter.testbundle.test", locale);
-    }
+	protected abstract ResourceBundle getExpressionLanguage();
 
 	/**
+	 * TODO split in a test per langauge
 	 * @return select a language used in the multi language report
 	 */
-	private static Locale chooseLocale()
+	protected static Locale chooseLocale()
 	{
 		LocaleWrapper[] locales =
 			new LocaleWrapper[]
