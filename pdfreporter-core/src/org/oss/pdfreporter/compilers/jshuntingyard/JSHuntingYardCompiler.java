@@ -69,7 +69,6 @@ public class JSHuntingYardCompiler extends JRAbstractCompiler {
 	@Override
 	protected JRCompilationSourceCode generateSourceCode(
 			JRSourceCompileTask sourceTask) throws JRException {
-		// TODO (12.04.2013, Donat, Open Software Solutions): Create a evaluator instance per call and serialize it
 		JSHuntingYardExpressionEvaluator evaluator = new JSHuntingYardExpressionEvaluator();
 		evaluator.initializeWithDefaults(sourceTask);
 		evaluator.parseExpressions(sourceTask);
