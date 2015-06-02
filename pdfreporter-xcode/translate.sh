@@ -17,4 +17,4 @@ j2objc/j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:.
 
 echo
 echo -e "${red}Translating iOS...${nc}"
-j2objc/j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:../pdfreporter-portable/src:../pdfreporter-java/src -d PDFReporter-ios/gen -use-arc `find ../pdfreporter-ios/src -name '*.java'` | grep error
+j2objc/j2objc -classpath ../pdfreporter-core/src:../pdfreporter-extensions/src:../pdfreporter-portable/src:../pdfreporter-java/src:../pdfreporter-java-shared/src:../pdfreporter-java-desktop/src -d PDFReporter-ios/gen -use-arc `find ../pdfreporter-ios/src -name '*.java'` | grep error
