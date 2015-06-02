@@ -32,28 +32,28 @@
 		2EE681B317F16F6100C7C1FE /* XmlParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6819217F16F6000C7C1FE /* XmlParserFactory.m */; };
 		2EE681B417F16F6100C7C1FE /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6819417F16F6100C7C1FE /* XmlParser.m */; };
 		2EE681B517F16F6100C7C1FE /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6819617F16F6100C7C1FE /* ReportExporter.m */; };
+		3D3820E01B1DA04C0059600F /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820B71B1DA04C0059600F /* BeanUtils.m */; };
+		3D3820E11B1DA04C0059600F /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820BA1B1DA04C0059600F /* BeansFactory.m */; };
+		3D3820E21B1DA04C0059600F /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820BD1B1DA04C0059600F /* FontFactory.m */; };
+		3D3820E31B1DA04C0059600F /* FontFactoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820BF1B1DA04C0059600F /* FontFactoryBase.m */; };
+		3D3820E41B1DA04C0059600F /* CharacterBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820C21B1DA04C0059600F /* CharacterBreakIterator.m */; };
+		3D3820E51B1DA04C0059600F /* LineBreakMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820C41B1DA04C0059600F /* LineBreakMeasurer.m */; };
+		3D3820E61B1DA04C0059600F /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820C61B1DA04C0059600F /* TextLayout.m */; };
+		3D3820E71B1DA04C0059600F /* WordBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820C81B1DA04C0059600F /* WordBreakIterator.m */; };
+		3D3820E81B1DA04C0059600F /* AffineTransformMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820CB1B1DA04C0059600F /* AffineTransformMatrix.m */; };
+		3D3820E91B1DA04C0059600F /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820CD1B1DA04C0059600F /* Color.m */; };
+		3D3820EA1B1DA04C0059600F /* Dimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820CF1B1DA04C0059600F /* Dimension.m */; };
+		3D3820EB1B1DA04C0059600F /* GeometryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820D11B1DA04C0059600F /* GeometryFactory.m */; };
+		3D3820EC1B1DA04C0059600F /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820D31B1DA04C0059600F /* Rectangle.m */; };
+		3D3820ED1B1DA04C0059600F /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820D51B1DA04C0059600F /* Stroke.m */; };
+		3D3820EE1B1DA04C0059600F /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820D81B1DA04C0059600F /* ImageFactory.m */; };
+		3D3820EF1B1DA04C0059600F /* NetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820DC1B1DA04C0059600F /* NetFactory.m */; };
+		3D3820F01B1DA04C0059600F /* PdfFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820DF1B1DA04C0059600F /* PdfFactory.m */; };
 		3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */; };
 		3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */; };
 		3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */; };
 		3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DD1A517B230068C812 /* XPathQuery.m */; };
 		3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */; };
-		3D99E6551A93427A00CA13A6 /* BeanUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E62C1A93427A00CA13A6 /* BeanUtils.m */; };
-		3D99E6561A93427A00CA13A6 /* BeansFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E62F1A93427A00CA13A6 /* BeansFactory.m */; };
-		3D99E6571A93427A00CA13A6 /* FontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6321A93427A00CA13A6 /* FontFactory.m */; };
-		3D99E6581A93427A00CA13A6 /* FontFactoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6341A93427A00CA13A6 /* FontFactoryBase.m */; };
-		3D99E6591A93427A00CA13A6 /* CharacterBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6371A93427A00CA13A6 /* CharacterBreakIterator.m */; };
-		3D99E65A1A93427A00CA13A6 /* LineBreakMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6391A93427A00CA13A6 /* LineBreakMeasurer.m */; };
-		3D99E65B1A93427A00CA13A6 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E63B1A93427A00CA13A6 /* TextLayout.m */; };
-		3D99E65C1A93427A00CA13A6 /* WordBreakIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E63D1A93427A00CA13A6 /* WordBreakIterator.m */; };
-		3D99E65D1A93427A00CA13A6 /* AffineTransformMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6401A93427A00CA13A6 /* AffineTransformMatrix.m */; };
-		3D99E65E1A93427A00CA13A6 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6421A93427A00CA13A6 /* Color.m */; };
-		3D99E65F1A93427A00CA13A6 /* Dimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6441A93427A00CA13A6 /* Dimension.m */; };
-		3D99E6601A93427A00CA13A6 /* GeometryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6461A93427A00CA13A6 /* GeometryFactory.m */; };
-		3D99E6611A93427A00CA13A6 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6481A93427A00CA13A6 /* Rectangle.m */; };
-		3D99E6621A93427A00CA13A6 /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E64A1A93427A00CA13A6 /* Stroke.m */; };
-		3D99E6631A93427A00CA13A6 /* ImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E64D1A93427A00CA13A6 /* ImageFactory.m */; };
-		3D99E6641A93427A00CA13A6 /* NetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6511A93427A00CA13A6 /* NetFactory.m */; };
-		3D99E6651A93427A00CA13A6 /* PdfFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99E6541A93427A00CA13A6 /* PdfFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +123,40 @@
 		2EE68FEE17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIRegistryExtensionsRegistryFactory.h; sourceTree = "<group>"; };
 		2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
 		2EFDDA5E17F0856100D4580A /* libJasperReportLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libJasperReportLib.a; path = "../JasperReportLib/build/Debug-iphoneos/libJasperReportLib.a"; sourceTree = "<group>"; };
+		3D3820B61B1DA04C0059600F /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
+		3D3820B71B1DA04C0059600F /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
+		3D3820B91B1DA04C0059600F /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
+		3D3820BA1B1DA04C0059600F /* BeansFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeansFactory.m; sourceTree = "<group>"; };
+		3D3820BC1B1DA04C0059600F /* FontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactory.h; sourceTree = "<group>"; };
+		3D3820BD1B1DA04C0059600F /* FontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactory.m; sourceTree = "<group>"; };
+		3D3820BE1B1DA04C0059600F /* FontFactoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactoryBase.h; sourceTree = "<group>"; };
+		3D3820BF1B1DA04C0059600F /* FontFactoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactoryBase.m; sourceTree = "<group>"; };
+		3D3820C11B1DA04C0059600F /* CharacterBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterBreakIterator.h; sourceTree = "<group>"; };
+		3D3820C21B1DA04C0059600F /* CharacterBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterBreakIterator.m; sourceTree = "<group>"; };
+		3D3820C31B1DA04C0059600F /* LineBreakMeasurer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBreakMeasurer.h; sourceTree = "<group>"; };
+		3D3820C41B1DA04C0059600F /* LineBreakMeasurer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBreakMeasurer.m; sourceTree = "<group>"; };
+		3D3820C51B1DA04C0059600F /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
+		3D3820C61B1DA04C0059600F /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
+		3D3820C71B1DA04C0059600F /* WordBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordBreakIterator.h; sourceTree = "<group>"; };
+		3D3820C81B1DA04C0059600F /* WordBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordBreakIterator.m; sourceTree = "<group>"; };
+		3D3820CA1B1DA04C0059600F /* AffineTransformMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffineTransformMatrix.h; sourceTree = "<group>"; };
+		3D3820CB1B1DA04C0059600F /* AffineTransformMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AffineTransformMatrix.m; sourceTree = "<group>"; };
+		3D3820CC1B1DA04C0059600F /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		3D3820CD1B1DA04C0059600F /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
+		3D3820CE1B1DA04C0059600F /* Dimension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
+		3D3820CF1B1DA04C0059600F /* Dimension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dimension.m; sourceTree = "<group>"; };
+		3D3820D01B1DA04C0059600F /* GeometryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryFactory.h; sourceTree = "<group>"; };
+		3D3820D11B1DA04C0059600F /* GeometryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeometryFactory.m; sourceTree = "<group>"; };
+		3D3820D21B1DA04C0059600F /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		3D3820D31B1DA04C0059600F /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
+		3D3820D41B1DA04C0059600F /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
+		3D3820D51B1DA04C0059600F /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
+		3D3820D71B1DA04C0059600F /* ImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFactory.h; sourceTree = "<group>"; };
+		3D3820D81B1DA04C0059600F /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
+		3D3820DB1B1DA04C0059600F /* NetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetFactory.h; sourceTree = "<group>"; };
+		3D3820DC1B1DA04C0059600F /* NetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetFactory.m; sourceTree = "<group>"; };
+		3D3820DE1B1DA04C0059600F /* PdfFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfFactory.h; sourceTree = "<group>"; };
+		3D3820DF1B1DA04C0059600F /* PdfFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfFactory.m; sourceTree = "<group>"; };
 		3D416DAF1A3F537200FEE6E3 /* XalanXPathExecuterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuterFactory.h; sourceTree = "<group>"; };
 		3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuterFactory.m; sourceTree = "<group>"; };
 		3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuter.h; sourceTree = "<group>"; };
@@ -131,40 +165,6 @@
 		3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomNodeMarshaller.m; sourceTree = "<group>"; };
 		3D83C1DC1A517B230068C812 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		3D83C1DD1A517B230068C812 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
-		3D99E62B1A93427A00CA13A6 /* BeanUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeanUtils.h; sourceTree = "<group>"; };
-		3D99E62C1A93427A00CA13A6 /* BeanUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeanUtils.m; sourceTree = "<group>"; };
-		3D99E62E1A93427A00CA13A6 /* BeansFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansFactory.h; sourceTree = "<group>"; };
-		3D99E62F1A93427A00CA13A6 /* BeansFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeansFactory.m; sourceTree = "<group>"; };
-		3D99E6311A93427A00CA13A6 /* FontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactory.h; sourceTree = "<group>"; };
-		3D99E6321A93427A00CA13A6 /* FontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactory.m; sourceTree = "<group>"; };
-		3D99E6331A93427A00CA13A6 /* FontFactoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFactoryBase.h; sourceTree = "<group>"; };
-		3D99E6341A93427A00CA13A6 /* FontFactoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontFactoryBase.m; sourceTree = "<group>"; };
-		3D99E6361A93427A00CA13A6 /* CharacterBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterBreakIterator.h; sourceTree = "<group>"; };
-		3D99E6371A93427A00CA13A6 /* CharacterBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterBreakIterator.m; sourceTree = "<group>"; };
-		3D99E6381A93427A00CA13A6 /* LineBreakMeasurer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBreakMeasurer.h; sourceTree = "<group>"; };
-		3D99E6391A93427A00CA13A6 /* LineBreakMeasurer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBreakMeasurer.m; sourceTree = "<group>"; };
-		3D99E63A1A93427A00CA13A6 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
-		3D99E63B1A93427A00CA13A6 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
-		3D99E63C1A93427A00CA13A6 /* WordBreakIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordBreakIterator.h; sourceTree = "<group>"; };
-		3D99E63D1A93427A00CA13A6 /* WordBreakIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordBreakIterator.m; sourceTree = "<group>"; };
-		3D99E63F1A93427A00CA13A6 /* AffineTransformMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffineTransformMatrix.h; sourceTree = "<group>"; };
-		3D99E6401A93427A00CA13A6 /* AffineTransformMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AffineTransformMatrix.m; sourceTree = "<group>"; };
-		3D99E6411A93427A00CA13A6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
-		3D99E6421A93427A00CA13A6 /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
-		3D99E6431A93427A00CA13A6 /* Dimension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
-		3D99E6441A93427A00CA13A6 /* Dimension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dimension.m; sourceTree = "<group>"; };
-		3D99E6451A93427A00CA13A6 /* GeometryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometryFactory.h; sourceTree = "<group>"; };
-		3D99E6461A93427A00CA13A6 /* GeometryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeometryFactory.m; sourceTree = "<group>"; };
-		3D99E6471A93427A00CA13A6 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
-		3D99E6481A93427A00CA13A6 /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
-		3D99E6491A93427A00CA13A6 /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
-		3D99E64A1A93427A00CA13A6 /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
-		3D99E64C1A93427A00CA13A6 /* ImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFactory.h; sourceTree = "<group>"; };
-		3D99E64D1A93427A00CA13A6 /* ImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFactory.m; sourceTree = "<group>"; };
-		3D99E6501A93427A00CA13A6 /* NetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetFactory.h; sourceTree = "<group>"; };
-		3D99E6511A93427A00CA13A6 /* NetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetFactory.m; sourceTree = "<group>"; };
-		3D99E6531A93427A00CA13A6 /* PdfFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfFactory.h; sourceTree = "<group>"; };
-		3D99E6541A93427A00CA13A6 /* PdfFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +401,135 @@
 			path = registry;
 			sourceTree = "<group>";
 		};
+		3D3820B21B1DA04C0059600F /* org */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820B31B1DA04C0059600F /* oss */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		3D3820B31B1DA04C0059600F /* oss */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820B41B1DA04C0059600F /* pdfreporter */,
+			);
+			path = oss;
+			sourceTree = "<group>";
+		};
+		3D3820B41B1DA04C0059600F /* pdfreporter */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820B51B1DA04C0059600F /* beans */,
+				3D3820BB1B1DA04C0059600F /* font */,
+				3D3820C91B1DA04C0059600F /* geometry */,
+				3D3820D61B1DA04C0059600F /* image */,
+				3D3820D91B1DA04C0059600F /* net */,
+				3D3820DD1B1DA04C0059600F /* pdf */,
+			);
+			path = pdfreporter;
+			sourceTree = "<group>";
+		};
+		3D3820B51B1DA04C0059600F /* beans */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820B61B1DA04C0059600F /* BeanUtils.h */,
+				3D3820B71B1DA04C0059600F /* BeanUtils.m */,
+				3D3820B81B1DA04C0059600F /* factory */,
+			);
+			path = beans;
+			sourceTree = "<group>";
+		};
+		3D3820B81B1DA04C0059600F /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820B91B1DA04C0059600F /* BeansFactory.h */,
+				3D3820BA1B1DA04C0059600F /* BeansFactory.m */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
+		3D3820BB1B1DA04C0059600F /* font */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820BC1B1DA04C0059600F /* FontFactory.h */,
+				3D3820BD1B1DA04C0059600F /* FontFactory.m */,
+				3D3820BE1B1DA04C0059600F /* FontFactoryBase.h */,
+				3D3820BF1B1DA04C0059600F /* FontFactoryBase.m */,
+				3D3820C01B1DA04C0059600F /* text */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		3D3820C01B1DA04C0059600F /* text */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820C11B1DA04C0059600F /* CharacterBreakIterator.h */,
+				3D3820C21B1DA04C0059600F /* CharacterBreakIterator.m */,
+				3D3820C31B1DA04C0059600F /* LineBreakMeasurer.h */,
+				3D3820C41B1DA04C0059600F /* LineBreakMeasurer.m */,
+				3D3820C51B1DA04C0059600F /* TextLayout.h */,
+				3D3820C61B1DA04C0059600F /* TextLayout.m */,
+				3D3820C71B1DA04C0059600F /* WordBreakIterator.h */,
+				3D3820C81B1DA04C0059600F /* WordBreakIterator.m */,
+			);
+			path = text;
+			sourceTree = "<group>";
+		};
+		3D3820C91B1DA04C0059600F /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820CA1B1DA04C0059600F /* AffineTransformMatrix.h */,
+				3D3820CB1B1DA04C0059600F /* AffineTransformMatrix.m */,
+				3D3820CC1B1DA04C0059600F /* Color.h */,
+				3D3820CD1B1DA04C0059600F /* Color.m */,
+				3D3820CE1B1DA04C0059600F /* Dimension.h */,
+				3D3820CF1B1DA04C0059600F /* Dimension.m */,
+				3D3820D01B1DA04C0059600F /* GeometryFactory.h */,
+				3D3820D11B1DA04C0059600F /* GeometryFactory.m */,
+				3D3820D21B1DA04C0059600F /* Rectangle.h */,
+				3D3820D31B1DA04C0059600F /* Rectangle.m */,
+				3D3820D41B1DA04C0059600F /* Stroke.h */,
+				3D3820D51B1DA04C0059600F /* Stroke.m */,
+			);
+			path = geometry;
+			sourceTree = "<group>";
+		};
+		3D3820D61B1DA04C0059600F /* image */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820D71B1DA04C0059600F /* ImageFactory.h */,
+				3D3820D81B1DA04C0059600F /* ImageFactory.m */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		3D3820D91B1DA04C0059600F /* net */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820DA1B1DA04C0059600F /* factory */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		3D3820DA1B1DA04C0059600F /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820DB1B1DA04C0059600F /* NetFactory.h */,
+				3D3820DC1B1DA04C0059600F /* NetFactory.m */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
+		3D3820DD1B1DA04C0059600F /* pdf */ = {
+			isa = PBXGroup;
+			children = (
+				3D3820DE1B1DA04C0059600F /* PdfFactory.h */,
+				3D3820DF1B1DA04C0059600F /* PdfFactory.m */,
+			);
+			path = pdf;
+			sourceTree = "<group>";
+		};
 		3D416DAC1A3F537200FEE6E3 /* engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,138 +564,9 @@
 		3D99E6261A93427A00CA13A6 /* gen */ = {
 			isa = PBXGroup;
 			children = (
-				3D99E6271A93427A00CA13A6 /* org */,
+				3D3820B21B1DA04C0059600F /* org */,
 			);
 			path = gen;
-			sourceTree = "<group>";
-		};
-		3D99E6271A93427A00CA13A6 /* org */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6281A93427A00CA13A6 /* oss */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		3D99E6281A93427A00CA13A6 /* oss */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6291A93427A00CA13A6 /* pdfreporter */,
-			);
-			path = oss;
-			sourceTree = "<group>";
-		};
-		3D99E6291A93427A00CA13A6 /* pdfreporter */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E62A1A93427A00CA13A6 /* beans */,
-				3D99E6301A93427A00CA13A6 /* font */,
-				3D99E63E1A93427A00CA13A6 /* geometry */,
-				3D99E64B1A93427A00CA13A6 /* image */,
-				3D99E64E1A93427A00CA13A6 /* net */,
-				3D99E6521A93427A00CA13A6 /* pdf */,
-			);
-			path = pdfreporter;
-			sourceTree = "<group>";
-		};
-		3D99E62A1A93427A00CA13A6 /* beans */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E62B1A93427A00CA13A6 /* BeanUtils.h */,
-				3D99E62C1A93427A00CA13A6 /* BeanUtils.m */,
-				3D99E62D1A93427A00CA13A6 /* factory */,
-			);
-			path = beans;
-			sourceTree = "<group>";
-		};
-		3D99E62D1A93427A00CA13A6 /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E62E1A93427A00CA13A6 /* BeansFactory.h */,
-				3D99E62F1A93427A00CA13A6 /* BeansFactory.m */,
-			);
-			path = factory;
-			sourceTree = "<group>";
-		};
-		3D99E6301A93427A00CA13A6 /* font */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6311A93427A00CA13A6 /* FontFactory.h */,
-				3D99E6321A93427A00CA13A6 /* FontFactory.m */,
-				3D99E6331A93427A00CA13A6 /* FontFactoryBase.h */,
-				3D99E6341A93427A00CA13A6 /* FontFactoryBase.m */,
-				3D99E6351A93427A00CA13A6 /* text */,
-			);
-			path = font;
-			sourceTree = "<group>";
-		};
-		3D99E6351A93427A00CA13A6 /* text */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6361A93427A00CA13A6 /* CharacterBreakIterator.h */,
-				3D99E6371A93427A00CA13A6 /* CharacterBreakIterator.m */,
-				3D99E6381A93427A00CA13A6 /* LineBreakMeasurer.h */,
-				3D99E6391A93427A00CA13A6 /* LineBreakMeasurer.m */,
-				3D99E63A1A93427A00CA13A6 /* TextLayout.h */,
-				3D99E63B1A93427A00CA13A6 /* TextLayout.m */,
-				3D99E63C1A93427A00CA13A6 /* WordBreakIterator.h */,
-				3D99E63D1A93427A00CA13A6 /* WordBreakIterator.m */,
-			);
-			path = text;
-			sourceTree = "<group>";
-		};
-		3D99E63E1A93427A00CA13A6 /* geometry */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E63F1A93427A00CA13A6 /* AffineTransformMatrix.h */,
-				3D99E6401A93427A00CA13A6 /* AffineTransformMatrix.m */,
-				3D99E6411A93427A00CA13A6 /* Color.h */,
-				3D99E6421A93427A00CA13A6 /* Color.m */,
-				3D99E6431A93427A00CA13A6 /* Dimension.h */,
-				3D99E6441A93427A00CA13A6 /* Dimension.m */,
-				3D99E6451A93427A00CA13A6 /* GeometryFactory.h */,
-				3D99E6461A93427A00CA13A6 /* GeometryFactory.m */,
-				3D99E6471A93427A00CA13A6 /* Rectangle.h */,
-				3D99E6481A93427A00CA13A6 /* Rectangle.m */,
-				3D99E6491A93427A00CA13A6 /* Stroke.h */,
-				3D99E64A1A93427A00CA13A6 /* Stroke.m */,
-			);
-			path = geometry;
-			sourceTree = "<group>";
-		};
-		3D99E64B1A93427A00CA13A6 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E64C1A93427A00CA13A6 /* ImageFactory.h */,
-				3D99E64D1A93427A00CA13A6 /* ImageFactory.m */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
-		3D99E64E1A93427A00CA13A6 /* net */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E64F1A93427A00CA13A6 /* factory */,
-			);
-			path = net;
-			sourceTree = "<group>";
-		};
-		3D99E64F1A93427A00CA13A6 /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6501A93427A00CA13A6 /* NetFactory.h */,
-				3D99E6511A93427A00CA13A6 /* NetFactory.m */,
-			);
-			path = factory;
-			sourceTree = "<group>";
-		};
-		3D99E6521A93427A00CA13A6 /* pdf */ = {
-			isa = PBXGroup;
-			children = (
-				3D99E6531A93427A00CA13A6 /* PdfFactory.h */,
-				3D99E6541A93427A00CA13A6 /* PdfFactory.m */,
-			);
-			path = pdf;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -620,46 +620,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D99E6601A93427A00CA13A6 /* GeometryFactory.m in Sources */,
 				2EE681A217F16F6100C7C1FE /* Document.m in Sources */,
 				2EE6819A17F16F6100C7C1FE /* Font.m in Sources */,
-				3D99E6561A93427A00CA13A6 /* BeansFactory.m in Sources */,
+				3D3820EF1B1DA04C0059600F /* NetFactory.m in Sources */,
 				3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */,
-				3D99E6621A93427A00CA13A6 /* Stroke.m in Sources */,
 				2EE681AA17F16F6100C7C1FE /* SqlFactory.m in Sources */,
-				3D99E65A1A93427A00CA13A6 /* LineBreakMeasurer.m in Sources */,
+				3D3820EA1B1DA04C0059600F /* Dimension.m in Sources */,
 				2EE681A817F16F6100C7C1FE /* ResultMetaData.m in Sources */,
 				2EE6819C17F16F6100C7C1FE /* FontManager.m in Sources */,
 				2EE6819817F16F6100C7C1FE /* InputStreamMarshaller.m in Sources */,
-				3D99E6631A93427A00CA13A6 /* ImageFactory.m in Sources */,
-				3D99E65C1A93427A00CA13A6 /* WordBreakIterator.m in Sources */,
+				3D3820E41B1DA04C0059600F /* CharacterBreakIterator.m in Sources */,
+				3D3820E81B1DA04C0059600F /* AffineTransformMatrix.m in Sources */,
 				2EE6819B17F16F6100C7C1FE /* FontBox.m in Sources */,
-				3D99E65B1A93427A00CA13A6 /* TextLayout.m in Sources */,
 				2EE681B217F16F6100C7C1FE /* Attributes.m in Sources */,
+				3D3820EE1B1DA04C0059600F /* ImageFactory.m in Sources */,
+				3D3820E51B1DA04C0059600F /* LineBreakMeasurer.m in Sources */,
 				2EE681B517F16F6100C7C1FE /* ReportExporter.m in Sources */,
+				3D3820ED1B1DA04C0059600F /* Stroke.m in Sources */,
 				2EE681B317F16F6100C7C1FE /* XmlParserFactory.m in Sources */,
+				3D3820E71B1DA04C0059600F /* WordBreakIterator.m in Sources */,
 				2EE681B417F16F6100C7C1FE /* XmlParser.m in Sources */,
+				3D3820EB1B1DA04C0059600F /* GeometryFactory.m in Sources */,
 				3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */,
 				2EE681A717F16F6100C7C1FE /* PreparedStatement.m in Sources */,
+				3D3820E91B1DA04C0059600F /* Color.m in Sources */,
 				2EE681A017F16F6100C7C1FE /* ImageManager.m in Sources */,
 				3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */,
+				3D3820E61B1DA04C0059600F /* TextLayout.m in Sources */,
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
-				3D99E65E1A93427A00CA13A6 /* Color.m in Sources */,
 				2EE681A417F16F6100C7C1FE /* Page.m in Sources */,
+				3D3820F01B1DA04C0059600F /* PdfFactory.m in Sources */,
+				3D3820E11B1DA04C0059600F /* BeansFactory.m in Sources */,
 				3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
-				3D99E6641A93427A00CA13A6 /* NetFactory.m in Sources */,
+				3D3820E01B1DA04C0059600F /* BeanUtils.m in Sources */,
+				3D3820EC1B1DA04C0059600F /* Rectangle.m in Sources */,
+				3D3820E31B1DA04C0059600F /* FontFactoryBase.m in Sources */,
 				2EE6819D17F16F6100C7C1FE /* FontMetrics.m in Sources */,
-				3D99E6551A93427A00CA13A6 /* BeanUtils.m in Sources */,
-				3D99E6651A93427A00CA13A6 /* PdfFactory.m in Sources */,
 				2EE681AB17F16F6100C7C1FE /* Sqlite3Box.m in Sources */,
-				3D99E6581A93427A00CA13A6 /* FontFactoryBase.m in Sources */,
-				3D99E6611A93427A00CA13A6 /* Rectangle.m in Sources */,
+				3D3820E21B1DA04C0059600F /* FontFactory.m in Sources */,
 				2EE681A917F16F6100C7C1FE /* ResultSet.m in Sources */,
-				3D99E65D1A93427A00CA13A6 /* AffineTransformMatrix.m in Sources */,
-				3D99E6591A93427A00CA13A6 /* CharacterBreakIterator.m in Sources */,
 				2EE681A617F16F6100C7C1FE /* Connection.m in Sources */,
-				3D99E65F1A93427A00CA13A6 /* Dimension.m in Sources */,
-				3D99E6571A93427A00CA13A6 /* FontFactory.m in Sources */,
 				2EE6819F17F16F6100C7C1FE /* ImageBox.m in Sources */,
 				2EE6819717F16F6100C7C1FE /* CustomJavaUtilLoggingHandler.m in Sources */,
 				3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */,
