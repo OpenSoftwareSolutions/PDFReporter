@@ -45,6 +45,7 @@ public abstract class ExporterTest {
 	protected final String DESIGN_REPORT_PRODUCTS;
 	protected final String DESIGN_REPORT_ORDERS;
 	protected final String DESIGN_REPORT_LATE_ORDERS;
+	protected final String DESIGN_REPORT_CUSTOMERS;
 
 	//JSON
 	protected final String DESIGN_REPORT_JSON_ORDERS;
@@ -87,6 +88,7 @@ public abstract class ExporterTest {
 	protected final String XML_DATA_NORTHWIND;
 	protected final String XPATH_DATA_NORTHWIND_ORDERS;
 	protected final String XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL;
+	protected final String XPATH_DATA_NORTHWIND_CUSTOMERS;
 
 	public String SQL_USERNAME;
 	public String SQL_PASSWORD;
@@ -113,6 +115,7 @@ public abstract class ExporterTest {
 		DESIGN_REPORT_PRODUCTS = resourceBundle.getString("DESIGN_REPORT_PRODUCTS");
 		DESIGN_REPORT_ORDERS = resourceBundle.getString("DESIGN_REPORT_ORDERS");
 		DESIGN_REPORT_LATE_ORDERS = resourceBundle.getString("DESIGN_REPORT_LATE_ORDERS");
+		DESIGN_REPORT_CUSTOMERS = resourceBundle.getString("DESIGN_REPORT_CUSTOMERS");
 
 		//JSON
 		DESIGN_REPORT_JSON_ORDERS = resourceBundle.getString("DESIGN_REPORT_JSON_ORDERS");
@@ -155,6 +158,7 @@ public abstract class ExporterTest {
 		XML_DATA_NORTHWIND = resourceBundle.getString("XML_DATA_NORTHWIND");
 		XPATH_DATA_NORTHWIND_ORDERS = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS");
 		XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL = resourceBundle.getString("XPATH_DATA_NORTHWIND_ORDERS_SHIPPED_NOT_NULL");
+		XPATH_DATA_NORTHWIND_CUSTOMERS = resourceBundle.getString("XPATH_DATA_NORTHWIND_CUSTOMERS");
 
 		SQL_USERNAME = resourceBundle.getString("SQL_USERNAME");
 		SQL_PASSWORD = resourceBundle.getString("SQL_PASSWORD");

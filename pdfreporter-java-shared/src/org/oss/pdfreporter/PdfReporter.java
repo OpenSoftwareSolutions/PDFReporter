@@ -31,6 +31,7 @@ import org.oss.pdfreporter.engine.data.JRXmlDataSource;
 import org.oss.pdfreporter.engine.data.JsonDataSource;
 import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
+import org.oss.pdfreporter.engine.query.JRXPathQueryExecuterFactory;
 import org.oss.pdfreporter.engine.query.JsonQueryExecuterFactory;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.json.IJsonDataSource;
@@ -115,7 +116,7 @@ public class PdfReporter {
 
         return this;
     }
-    
+
     /**
      * Use this in case your JSON datasource is defined as a property (net.sf.jasperreports.json.source)
      *  inside the JRXML file.
@@ -278,13 +279,21 @@ public class PdfReporter {
         return this;
     }
 
+    public PdfReporter addXMLParams(String datePattern, String numberPattern, Locale xmlLocale, Locale country) {
+        mFillParameters.put(JRXPathQueryExecuterFactory.XML_DATE_PATTERN, datePattern);
+        mFillParameters.put(JRXPathQueryExecuterFactory.XML_NUMBER_PATTERN, numberPattern);
+        mFillParameters.put(JRXPathQueryExecuterFactory.XML_LOCALE, xmlLocale);
+        mFillParameters.put(JRParameter.REPORT_LOCALE, country);
+        return this;
+    }
+
     public PdfReporter newResourceBundle(String classPath, Locale locale) {
         mFillParameters.put(JRParameter.REPORT_LOCALE, locale);
         ResourceBundle resourceBundle = ResourceBundle.getBundle(classPath, locale);
         mFillParameters.put(JRParameter.REPORT_RESOURCE_BUNDLE, resourceBundle);
         return this;
     }
-    
+
     public PdfReporter addFillParameter(String key, Object value) {
     	mFillParameters.put(key, value);
     	return this;
