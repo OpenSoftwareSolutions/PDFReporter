@@ -76,15 +76,15 @@ static NSArray *plistList = nil;
 
     if(xml != nil)
     {
-        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray withXml:xml andXPath:xpath];
+        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray withXml:xml andXPath:xpath withParameters:nil withSubreports:nil];
     }
     else if(sqlite3 != nil)
     {
-        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray andSqlite3:sqlite3];
+        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray andSqlite3:sqlite3 withParameters:nil withSubreports:nil];
     }
     else
     {
-        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray];
+        [ReportExporter exportReportToPdf:pdfPath withJrxml:jrxmlPath withResourceFolders:resourceArray withParameters:nil withSubreports:nil];
     }
 }
 
