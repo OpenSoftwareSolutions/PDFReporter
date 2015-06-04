@@ -27,7 +27,7 @@ public class NullValue implements Function {
 	@Override
 	public FunctionResult execute(Evaluator evaluator, String arguments)
 			throws FunctionException {
-		return new FunctionResult(ExpressionConstants.QUOTED_NULL,
+		return new FunctionResult(ExpressionConstants.UNQUOTED_NULL,
 				FunctionConstants.FUNCTION_RESULT_TYPE_STRING);
 	}
 
