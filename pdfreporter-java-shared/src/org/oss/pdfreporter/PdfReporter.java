@@ -33,6 +33,8 @@ import org.oss.pdfreporter.engine.design.JasperDesign;
 import org.oss.pdfreporter.engine.export.JRPdfExporterParameter;
 import org.oss.pdfreporter.engine.query.JRXPathQueryExecuterFactory;
 import org.oss.pdfreporter.engine.query.JsonQueryExecuterFactory;
+import org.oss.pdfreporter.engine.util.JRLoader;
+import org.oss.pdfreporter.engine.util.JRXmlUtils;
 import org.oss.pdfreporter.engine.xml.JRXmlLoader;
 import org.oss.pdfreporter.json.IJsonDataSource;
 import org.oss.pdfreporter.registry.ApiRegistry;
@@ -41,6 +43,7 @@ import org.oss.pdfreporter.repo.RepositoryManager;
 import org.oss.pdfreporter.repo.SubreportUtil;
 import org.oss.pdfreporter.sql.IConnection;
 import org.oss.pdfreporter.sql.factory.ISqlFactory;
+import org.oss.pdfreporter.uses.org.w3c.dom.Document;
 
 
 public class PdfReporter {
@@ -284,6 +287,12 @@ public class PdfReporter {
         mFillParameters.put(JRXPathQueryExecuterFactory.XML_NUMBER_PATTERN, numberPattern);
         mFillParameters.put(JRXPathQueryExecuterFactory.XML_LOCALE, xmlLocale);
         mFillParameters.put(JRParameter.REPORT_LOCALE, country);
+        return this;
+    }
+
+    public PdfReporter addSubReportXMLDocument(String xmlDataFile) throws JRException {
+    	Document document = JRXmlUtils.parse(JRLoader.getLocationInputStream(xmlDataFile));
+        mFillParameters.put(JRXPathQueryExecuterFactory.PARAMETER_XML_DATA_DOCUMENT, document);
         return this;
     }
 

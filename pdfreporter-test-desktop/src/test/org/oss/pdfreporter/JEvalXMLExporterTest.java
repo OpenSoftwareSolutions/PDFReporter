@@ -13,10 +13,6 @@ package test.org.oss.pdfreporter;
 import java.util.Locale;
 
 import org.junit.Test;
-import org.oss.pdfreporter.engine.query.JRXPathQueryExecuterFactory;
-import org.oss.pdfreporter.engine.util.JRLoader;
-import org.oss.pdfreporter.engine.util.JRXmlUtils;
-import org.oss.pdfreporter.uses.org.w3c.dom.Document;
 
 
 public class JEvalXMLExporterTest extends JEvalDesktopExporterTest{
@@ -41,11 +37,10 @@ public class JEvalXMLExporterTest extends JEvalDesktopExporterTest{
 
 	@Test
 	public void exportCostumers() throws Exception {
-		Document document = JRXmlUtils.parse(JRLoader.getLocationInputStream(XML_DATA_NORTHWIND));
 		getExporter(DESIGN_REPORT_CUSTOMERS, "xmldatasource","extra-fonts")
 		.setXmlSource(XML_DATA_NORTHWIND, XPATH_DATA_NORTHWIND_CUSTOMERS)
+		.addSubReportXMLDocument(XML_DATA_NORTHWIND)
 		.addXMLParams("yyyy-MM-dd", "#,##0.##", Locale.ENGLISH, Locale.US)
-		.addFillParameter(JRXPathQueryExecuterFactory.PARAMETER_XML_DATA_DOCUMENT, document)
 		.exportPdf();
 	}
 }
