@@ -1,14 +1,14 @@
 //
-//  TestsLauncher.h
+//  ExportTest.h
 //  PDFReporter-test
 //
-//  Created by Martin Krasnocka on 20/02/15.
+//  Created by Martin Krasnocka on 04/06/15.
 //  Copyright (c) 2015 inloop. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface TestsLauncher : NSObject
+@interface ExportTest : NSObject
 
 + (void)runTests;
 

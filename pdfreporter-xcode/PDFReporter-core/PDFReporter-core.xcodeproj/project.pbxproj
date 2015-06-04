@@ -1008,6 +1008,7 @@
 		3D381D3A1B1DA01D0059600F /* Base64Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3819501B1DA01D0059600F /* Base64Decoder.m */; };
 		3D381D3B1B1DA01D0059600F /* Base64Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3819521B1DA01D0059600F /* Base64Encoder.m */; };
 		3D381D3C1B1DA01D0059600F /* Base64FormatException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3819541B1DA01D0059600F /* Base64FormatException.m */; };
+		3D805F331B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D805F321B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -3026,6 +3027,8 @@
 		3D3819521B1DA01D0059600F /* Base64Encoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Encoder.m; sourceTree = "<group>"; };
 		3D3819531B1DA01D0059600F /* Base64FormatException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64FormatException.h; sourceTree = "<group>"; };
 		3D3819541B1DA01D0059600F /* Base64FormatException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64FormatException.m; sourceTree = "<group>"; };
+		3D805F311B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.h"; sourceTree = "<group>"; };
+		3D805F321B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3044,6 +3047,7 @@
 			isa = PBXGroup;
 			children = (
 				3D99E6661A93429600CA13A6 /* gen */,
+				3D805F301B2098700080F880 /* native */,
 				2EE681C417F1744D00C7C1FE /* PDFReporter-core */,
 				2EE681C117F1744D00C7C1FE /* Frameworks */,
 				2EE681C017F1744D00C7C1FE /* Products */,
@@ -5585,6 +5589,15 @@
 			path = codec;
 			sourceTree = "<group>";
 		};
+		3D805F301B2098700080F880 /* native */ = {
+			isa = PBXGroup;
+			children = (
+				3D805F311B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.h */,
+				3D805F321B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m */,
+			);
+			path = native;
+			sourceTree = "<group>";
+		};
 		3D99E6661A93429600CA13A6 /* gen */ = {
 			isa = PBXGroup;
 			children = (
@@ -6192,6 +6205,7 @@
 				3D381CD21B1DA01D0059600F /* IRectangle.m in Sources */,
 				3D381B431B1DA01D0059600F /* JRCommonGraphicElement.m in Sources */,
 				3D381AF81B1DA01D0059600F /* JRSubreportRunnable.m in Sources */,
+				3D805F331B20989B0080F880 /* OrgOssPdfreporterEngineExportJRPdfExporterParameter+NSCopying.m in Sources */,
 				3D3819C71B1DA01D0059600F /* JRCrosstabCellFactory.m in Sources */,
 				3D381A1B1B1DA01D0059600F /* VirtualizableElementList.m in Sources */,
 				3D381C811B1DA01D0059600F /* JRParameterFactory.m in Sources */,

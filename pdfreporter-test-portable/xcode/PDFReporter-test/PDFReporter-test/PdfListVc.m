@@ -7,7 +7,8 @@
 //
 
 #import "PdfListVc.h"
-#import "TestsLauncher.h"
+#import "ExportTest.h"
+#import "PathHelper.h"
 
 @interface PdfListVc ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -33,7 +34,7 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TestsLauncher runTests];
+        [ExportTest runTests];
         [self reloadTableViewData];
         [_loader stopAnimating];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -44,7 +45,7 @@
 
 - (void)removeGeneratedFiles
 {
-    NSString *documentsDir = [self documentsDirectory];
+    NSString *documentsDir = [PathHelper documentsDirectory];
     NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
     [directoryContents enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
         [[NSFileManager defaultManager] removeItemAtPath:[documentsDir stringByAppendingPathComponent:fileName] error:nil];
@@ -54,7 +55,7 @@
 - (void)reloadTableViewData
 {
     _fileList = [NSMutableArray array];
-    NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self documentsDirectory] error:nil];
+    NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[PathHelper documentsDirectory] error:nil];
     [directoryContents enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
         if ([fileName hasSuffix:@".pdf"]) {
             [_fileList addObject:[fileName stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
@@ -120,16 +121,9 @@
 
 - (NSString *) absolutePathForDocumentWithName:(NSString *)name
 {
-    NSString *basePath = [self documentsDirectory];
+    NSString *basePath = [PathHelper documentsDirectory];
     name = [name stringByAppendingString:@".pdf"];
     return [basePath stringByAppendingPathComponent:name];
-}
-
-- (NSString *) documentsDirectory
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    return basePath;
 }
 
 @end

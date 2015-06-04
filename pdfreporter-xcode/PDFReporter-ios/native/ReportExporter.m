@@ -14,46 +14,86 @@
 #import "org/oss/pdfreporter/engine/JasperFillManager.h"
 #import "org/oss/pdfreporter/engine/JasperCompileManager.h"
 #import "org/oss/pdfreporter/engine/JasperExportManager.h"
+#include "org/oss/pdfreporter/net/IURL.h"
+#import "NSDictionaryMap.h"
+#include "org/oss/pdfreporter/repo/SubreportUtil.h"
 
 static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 @implementation ReportExporter
 
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders
-{
-    [OrgOssPdfreporterRegistryApiRegistry initSession];
-    NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
-        
-    OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];        
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report];
-    
-    [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
-    [OrgOssPdfreporterRegistryApiRegistry dispose];
-}
-
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders andSqlite3:(NSString*)sqlite3
++(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
 {
     [OrgOssPdfreporterRegistryApiRegistry initSession];
     NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
     
     OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report withSqlite3:sqlite3];
+    
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+    
+    if ([[subreports allKeys] count] > 0) {
+        [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+            OrgOssPdfreporterEngineJasperReport *subreport = OrgOssPdfreporterRepoSubreportUtil_loadSubreportWithNSString_(value);
+            [parameterMap putWithId:key withId:subreport];
+        }];
+    }
+    
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report withParameters:parameterMap];
     
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
 }
 
-+(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
++(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders andSqlite3:(NSString*)sqlite3 withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
 {
     [OrgOssPdfreporterRegistryApiRegistry initSession];
     NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
     
     OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report withXml:xmlFile andXPath:xPath];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:sqlite3]) {
+        id<OrgOssPdfreporterNetIURL> sqlUrl = OrgOssPdfreporterRepoFileResourceLoader_getURLWithNSString_(sqlite3);
+            sqlite3 = [sqlUrl getPath];
+    }
+    
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+    
+    if ([[subreports allKeys] count] > 0) {
+        [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+            OrgOssPdfreporterEngineJasperReport *subreport = OrgOssPdfreporterRepoSubreportUtil_loadSubreportWithNSString_(value);
+            [parameterMap putWithId:key withId:subreport];
+        }];
+    }
+    
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report withParameters:parameterMap withSqlite3:sqlite3];
     
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
 }
+
++(void)exportReportToPdf:(NSString*)pdfPath withJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders withXml:(NSString*)xmlFile andXPath:(NSString*)xPath withParameters:(NSDictionary *)parameters withSubreports:(NSDictionary *)subreports
+{
+    [OrgOssPdfreporterRegistryApiRegistry initSession];
+    NSString *jrxmlFile = [ReportExporter setupJrxmlPath:jrxmlPath andResourceFolders:resourceFolders];
+    
+    OrgOssPdfreporterEngineJasperReport *report = [ReportExporter loadReport:jrxmlFile];
+    NSDictionaryMap *parameterMap = [[NSDictionaryMap alloc] initWithDictionary:parameters];
+    
+    if ([[subreports allKeys] count] > 0) {
+        [subreports enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+            OrgOssPdfreporterEngineJasperReport *subreport = OrgOssPdfreporterRepoSubreportUtil_loadSubreportWithNSString_(value);
+            [parameterMap putWithId:key withId:subreport];
+        }];
+    }
+    
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:report withParameters:parameterMap withXml:xmlFile andXPath:xPath];
+    
+    [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
+    [OrgOssPdfreporterRegistryApiRegistry dispose];
+}
+
+
+#pragma mark - phased export
 
 +(void)phaseLoadReportWithJrxml:(NSString*)jrxmlPath withResourceFolders:(NSArray*)resourceFolders
 {
@@ -65,7 +105,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(void)phaseExportReportToPdf:(NSString*)pdfPath
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
@@ -73,7 +113,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(void)phaseExportReportToPdf:(NSString*)pdfPath withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withXml:xmlFile andXPath:xPath];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil withXml:xmlFile andXPath:xPath];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
@@ -81,7 +121,7 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
 
 +(void)phaseExportReportToPdf:(NSString*)pdfPath andSqlite3:(NSString*)sqlite3
 {
-    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withSqlite3:sqlite3];
+    OrgOssPdfreporterEngineJasperPrint *printReport = [ReportExporter fillReport:phaseReport withParameters:nil withSqlite3:sqlite3];
     [OrgOssPdfreporterEngineJasperExportManager exportReportToPdfFileWithOrgOssPdfreporterEngineJasperPrint:printReport withNSString:pdfPath];
     [OrgOssPdfreporterRegistryApiRegistry dispose];
     phaseReport = nil;
@@ -95,26 +135,26 @@ static OrgOssPdfreporterEngineJasperReport *phaseReport = nil;
     return [OrgOssPdfreporterEngineJasperCompileManager compileReportWithOrgOssPdfreporterEngineDesignJasperDesign:design];
 }
 
-+(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report
++(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withParameters:(id<JavaUtilMap>)parameters
 {
-    return [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:nil withOrgOssPdfreporterEngineJRDataSource:[[OrgOssPdfreporterEngineJREmptyDataSource alloc] init]];
+    return [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:parameters withOrgOssPdfreporterEngineJRDataSource:[[OrgOssPdfreporterEngineJREmptyDataSource alloc] init]];
 }
 
-+(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
++(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withParameters:(id<JavaUtilMap>)parameters withXml:(NSString*)xmlFile andXPath:(NSString*)xPath
 {
     JavaIoInputStream *isXmlData = [OrgOssPdfreporterRepoFileResourceLoader getInputStreamWithNSString:xmlFile];
     OrgOssPdfreporterEngineDataJRXmlDataSource *xmlDataSource = [[OrgOssPdfreporterEngineDataJRXmlDataSource alloc] initWithJavaIoInputStream:isXmlData withNSString:xPath];
     [xmlDataSource setDatePatternWithNSString:@"yyyy-MM-dd"];
-    OrgOssPdfreporterEngineJasperPrint *print = [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:nil withOrgOssPdfreporterEngineJRDataSource:xmlDataSource];
+    OrgOssPdfreporterEngineJasperPrint *print = [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:parameters withOrgOssPdfreporterEngineJRDataSource:xmlDataSource];
     [isXmlData close];
     return print;
 }
 
-+(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withSqlite3:(NSString*)sqlite3
++(OrgOssPdfreporterEngineJasperPrint*)fillReport:(OrgOssPdfreporterEngineJasperReport*)report withParameters:(id<JavaUtilMap>)parameters withSqlite3:(NSString*)sqlite3
 {
     id<OrgOssPdfreporterSqlIConnection> sqlDataSource = [[OrgOssPdfreporterRegistryApiRegistry getSqlFactory] newConnectionWithNSString:sqlite3 withNSString:nil withNSString:nil];
     
-    OrgOssPdfreporterEngineJasperPrint *print = [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:nil withOrgOssPdfreporterSqlIConnection:sqlDataSource];
+    OrgOssPdfreporterEngineJasperPrint *print = [OrgOssPdfreporterEngineJasperFillManager fillReportWithOrgOssPdfreporterEngineJasperReport:report withJavaUtilMap:parameters withOrgOssPdfreporterSqlIConnection:sqlDataSource];
     return print;
 }
 

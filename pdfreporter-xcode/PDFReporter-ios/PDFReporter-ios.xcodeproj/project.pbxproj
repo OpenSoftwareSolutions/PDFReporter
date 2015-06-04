@@ -51,6 +51,8 @@
 		3D3820F01B1DA04C0059600F /* PdfFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3820DF1B1DA04C0059600F /* PdfFactory.m */; };
 		3D416DB11A3F537200FEE6E3 /* XalanXPathExecuterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */; };
 		3D416DB41A3F54A600FEE6E3 /* XalanXPathExecuter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */; };
+		3D805EF81B20454D0080F880 /* PDFReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D805EF71B20454D0080F880 /* PDFReporter.m */; };
+		3D805F2F1B2076DE0080F880 /* ReporterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D805F2E1B2076DE0080F880 /* ReporterConfiguration.m */; };
 		3D83C1DB1A516EC20068C812 /* DomNodeMarshaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */; };
 		3D83C1DE1A517B230068C812 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C1DD1A517B230068C812 /* XPathQuery.m */; };
 		3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE68FEF17F1843D00C7C1FE /* DefaultIRegistryExtensionsRegistryFactory.m */; };
@@ -161,6 +163,10 @@
 		3D416DB01A3F537200FEE6E3 /* XalanXPathExecuterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuterFactory.m; sourceTree = "<group>"; };
 		3D416DB21A3F54A600FEE6E3 /* XalanXPathExecuter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XalanXPathExecuter.h; sourceTree = "<group>"; };
 		3D416DB31A3F54A600FEE6E3 /* XalanXPathExecuter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XalanXPathExecuter.m; sourceTree = "<group>"; };
+		3D805EF61B20454D0080F880 /* PDFReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReporter.h; sourceTree = "<group>"; };
+		3D805EF71B20454D0080F880 /* PDFReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFReporter.m; sourceTree = "<group>"; };
+		3D805F2D1B2076DE0080F880 /* ReporterConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReporterConfiguration.h; sourceTree = "<group>"; };
+		3D805F2E1B2076DE0080F880 /* ReporterConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReporterConfiguration.m; sourceTree = "<group>"; };
 		3D83C1D91A516EC20068C812 /* DomNodeMarshaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomNodeMarshaller.h; sourceTree = "<group>"; };
 		3D83C1DA1A516EC20068C812 /* DomNodeMarshaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomNodeMarshaller.m; sourceTree = "<group>"; };
 		3D83C1DC1A517B230068C812 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
@@ -228,6 +234,10 @@
 				2EE6815017F16F6000C7C1FE /* LibXmlReaderParser.m */,
 				2EE6819517F16F6100C7C1FE /* ReportExporter.h */,
 				2EE6819617F16F6100C7C1FE /* ReportExporter.m */,
+				3D805EF61B20454D0080F880 /* PDFReporter.h */,
+				3D805EF71B20454D0080F880 /* PDFReporter.m */,
+				3D805F2D1B2076DE0080F880 /* ReporterConfiguration.h */,
+				3D805F2E1B2076DE0080F880 /* ReporterConfiguration.m */,
 			);
 			path = native;
 			sourceTree = "<group>";
@@ -633,6 +643,7 @@
 				3D3820E81B1DA04C0059600F /* AffineTransformMatrix.m in Sources */,
 				2EE6819B17F16F6100C7C1FE /* FontBox.m in Sources */,
 				2EE681B217F16F6100C7C1FE /* Attributes.m in Sources */,
+				3D805F2F1B2076DE0080F880 /* ReporterConfiguration.m in Sources */,
 				3D3820EE1B1DA04C0059600F /* ImageFactory.m in Sources */,
 				3D3820E51B1DA04C0059600F /* LineBreakMeasurer.m in Sources */,
 				2EE681B517F16F6100C7C1FE /* ReportExporter.m in Sources */,
@@ -649,6 +660,7 @@
 				3D3820E61B1DA04C0059600F /* TextLayout.m in Sources */,
 				2EE6819917F16F6100C7C1FE /* LibXmlReaderParser.m in Sources */,
 				2EE681A417F16F6100C7C1FE /* Page.m in Sources */,
+				3D805EF81B20454D0080F880 /* PDFReporter.m in Sources */,
 				3D3820F01B1DA04C0059600F /* PdfFactory.m in Sources */,
 				3D3820E11B1DA04C0059600F /* BeansFactory.m in Sources */,
 				3D859B031AEA540700D6368D /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,

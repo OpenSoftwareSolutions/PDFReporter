@@ -7,4 +7,4 @@ echo -e "${red}Translating test-portable...${nc}"
 
 echo
 echo -e "${red}Translating test...${nc}"
-../pdfreporter-xcode/j2objc/j2objc  -classpath ../pdfreporter-java/src:../pdfreporter-test-portable/src:../pdfreporter-test/src:../pdfreporter-core/src -d xcode/PDFReporter-test/gen -use-arc `find ../pdfreporter-test/src -name '*.java'` | grep error
+../pdfreporter-xcode/j2objc/j2objc  -classpath ../pdfreporter-java/src:../pdfreporter-test-portable/src:../pdfreporter-test/src:../pdfreporter-core/src:../pdfreporter-java-shared/src:../pdfreporter-java-desktop/src -d xcode/PDFReporter-test/gen -use-arc `find ../pdfreporter-test/src -name '*.java'` | grep error

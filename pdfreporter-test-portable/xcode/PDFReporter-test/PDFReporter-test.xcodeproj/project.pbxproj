@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E102647180BE19C006BC2C8 /* realestate.db in Resources */ = {isa = PBXBuildFile; fileRef = 2E102646180BE19C006BC2C8 /* realestate.db */; };
-		2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */; };
 		2ECE5D2817FAC58D0079A30F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2717FAC58D0079A30F /* Foundation.framework */; };
 		2ECE5D2A17FAC58D0079A30F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */; };
 		2ECE5D2C17FAC58D0079A30F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE5D2B17FAC58D0079A30F /* UIKit.framework */; };
@@ -27,23 +25,15 @@
 		2ECE6DA217FAE43F0079A30F /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA117FAE43F0079A30F /* resource */; };
 		2ECE6DA417FAE45C0079A30F /* testdata in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA317FAE45C0079A30F /* testdata */; };
 		2ECE6DA617FAE4C00079A30F /* libjre_emul.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECE6DA517FAE4C00079A30F /* libjre_emul.a */; };
-		2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE6DA817FAE4EC0079A30F /* IOSExportTestProvider.m */; };
-		2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DAA17FAE9C40079A30F /* northwind.db */; };
-		2ECE6DB717FAEFC70079A30F /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 2ECE6DB617FAEFC70079A30F /* database.db */; };
-		2ED90B1E1817EAD1003E3363 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B071817EAD1003E3363 /* Test.m */; };
-		2ED90B1F1817EAD1003E3363 /* ExporterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B0D1817EAD1003E3363 /* ExporterTest.m */; };
-		2ED90B201817EAD1003E3363 /* PortableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B0F1817EAD1003E3363 /* PortableTest.m */; };
-		2ED90B211817EAD1003E3363 /* AndroidTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B121817EAD1003E3363 /* AndroidTestProvider.m */; };
-		2ED90B221817EAD1003E3363 /* JavaTestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B141817EAD1003E3363 /* JavaTestProvider.m */; };
-		2ED90B231817EAD1003E3363 /* TestProviderInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B161817EAD1003E3363 /* TestProviderInterface.m */; };
-		2ED90B241817EAD1003E3363 /* RealestateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B181817EAD1003E3363 /* RealestateTest.m */; };
-		2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */; };
-		3D0BF29A1AC72C2500C6665D /* ReportExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED90B1D1817EAD1003E3363 /* ReportExporter.m */; };
+		3D805F241B206F5A0080F880 /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 3D805F211B206F5A0080F880 /* database.db */; };
+		3D805F251B206F5A0080F880 /* northwind.db in Resources */ = {isa = PBXBuildFile; fileRef = 3D805F221B206F5A0080F880 /* northwind.db */; };
+		3D805F261B206F5A0080F880 /* realestate.db in Resources */ = {isa = PBXBuildFile; fileRef = 3D805F231B206F5A0080F880 /* realestate.db */; };
+		3D805F291B2071830080F880 /* ExportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D805F281B2071830080F880 /* ExportTest.m */; };
+		3D805F2C1B20723E0080F880 /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D805F2B1B20723E0080F880 /* PathHelper.m */; };
 		3D929EEE1A9219D000039533 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D929EED1A9219D000039533 /* libicucore.dylib */; };
 		3D99F1FC1A93495D00CA13A6 /* datasource in Resources */ = {isa = PBXBuildFile; fileRef = 3D99F1FB1A93495D00CA13A6 /* datasource */; };
 		3D9B0B9A1A972C6E008DCEE8 /* PdfViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */; };
 		3D9B0B9D1A972E6B008DCEE8 /* PdfListVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */; };
-		3D9B0BA01A9735E3008DCEE8 /* TestsLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,9 +110,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E102646180BE19C006BC2C8 /* realestate.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = realestate.db; sourceTree = "<group>"; };
-		2E102648180BE20E006BC2C8 /* IOSRealEstateTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSRealEstateTestProvider.h; sourceTree = "<group>"; };
-		2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSRealEstateTestProvider.m; sourceTree = "<group>"; };
 		2ECE5D2417FAC58D0079A30F /* PDFReporter-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDFReporter-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECE5D2717FAC58D0079A30F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2ECE5D2917FAC58D0079A30F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,35 +133,18 @@
 		2ECE6DA117FAE43F0079A30F /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = "../../../pdfreporter-testdata/resource"; sourceTree = "<group>"; };
 		2ECE6DA317FAE45C0079A30F /* testdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testdata; path = "../../../pdfreporter-testdata/testdata"; sourceTree = "<group>"; };
 		2ECE6DA517FAE4C00079A30F /* libjre_emul.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjre_emul.a; path = "../../../pdfreporter-xcode/j2objc/lib/libjre_emul.a"; sourceTree = "<group>"; };
-		2ECE6DA717FAE4EC0079A30F /* IOSExportTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSExportTestProvider.h; sourceTree = "<group>"; };
-		2ECE6DA817FAE4EC0079A30F /* IOSExportTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSExportTestProvider.m; sourceTree = "<group>"; };
-		2ECE6DAA17FAE9C40079A30F /* northwind.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = northwind.db; sourceTree = "<group>"; };
-		2ECE6DB617FAEFC70079A30F /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
-		2ED90B061817EAD1003E3363 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		2ED90B071817EAD1003E3363 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
-		2ED90B0C1817EAD1003E3363 /* ExporterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExporterTest.h; sourceTree = "<group>"; };
-		2ED90B0D1817EAD1003E3363 /* ExporterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExporterTest.m; sourceTree = "<group>"; };
-		2ED90B0E1817EAD1003E3363 /* PortableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortableTest.h; sourceTree = "<group>"; };
-		2ED90B0F1817EAD1003E3363 /* PortableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortableTest.m; sourceTree = "<group>"; };
-		2ED90B111817EAD1003E3363 /* AndroidTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndroidTestProvider.h; sourceTree = "<group>"; };
-		2ED90B121817EAD1003E3363 /* AndroidTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndroidTestProvider.m; sourceTree = "<group>"; };
-		2ED90B131817EAD1003E3363 /* JavaTestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaTestProvider.h; sourceTree = "<group>"; };
-		2ED90B141817EAD1003E3363 /* JavaTestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaTestProvider.m; sourceTree = "<group>"; };
-		2ED90B151817EAD1003E3363 /* TestProviderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProviderInterface.h; sourceTree = "<group>"; };
-		2ED90B161817EAD1003E3363 /* TestProviderInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProviderInterface.m; sourceTree = "<group>"; };
-		2ED90B171817EAD1003E3363 /* RealestateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealestateTest.h; sourceTree = "<group>"; };
-		2ED90B181817EAD1003E3363 /* RealestateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealestateTest.m; sourceTree = "<group>"; };
-		2ED90B1C1817EAD1003E3363 /* ReportExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportExporter.h; sourceTree = "<group>"; };
-		2ED90B1D1817EAD1003E3363 /* ReportExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportExporter.m; sourceTree = "<group>"; };
-		2ED90B281817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIRegistryExtensionsRegistryFactory.h; sourceTree = "<group>"; };
-		2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIRegistryExtensionsRegistryFactory.m; sourceTree = "<group>"; };
+		3D805F211B206F5A0080F880 /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = database.db; path = "PDFReporter-test/database.db"; sourceTree = "<group>"; };
+		3D805F221B206F5A0080F880 /* northwind.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = northwind.db; path = "PDFReporter-test/northwind.db"; sourceTree = "<group>"; };
+		3D805F231B206F5A0080F880 /* realestate.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = realestate.db; path = "PDFReporter-test/realestate.db"; sourceTree = "<group>"; };
+		3D805F271B2071830080F880 /* ExportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTest.h; sourceTree = "<group>"; };
+		3D805F281B2071830080F880 /* ExportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTest.m; sourceTree = "<group>"; };
+		3D805F2A1B20723E0080F880 /* PathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathHelper.h; sourceTree = "<group>"; };
+		3D805F2B1B20723E0080F880 /* PathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathHelper.m; sourceTree = "<group>"; };
 		3D929EED1A9219D000039533 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3D99F1FB1A93495D00CA13A6 /* datasource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = datasource; path = "../../../pdfreporter-testdata/datasource"; sourceTree = "<group>"; };
 		3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PdfViewer.storyboard; sourceTree = "<group>"; };
 		3D9B0B9B1A972E6B008DCEE8 /* PdfListVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfListVc.h; sourceTree = "<group>"; };
 		3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfListVc.m; sourceTree = "<group>"; };
-		3D9B0B9E1A9735E3008DCEE8 /* TestsLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsLauncher.h; sourceTree = "<group>"; };
-		3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsLauncher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,10 +179,12 @@
 				2ECE5D6217FAC6900079A30F /* PDFReporter-core.xcodeproj */,
 				2ECE5D5C17FAC6860079A30F /* libPng.xcodeproj */,
 				2ECE5D5617FAC66B0079A30F /* libHaru.xcodeproj */,
-				2ED90B031817EAD1003E3363 /* gen */,
 				2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */,
 				2ECE5D2617FAC58D0079A30F /* Frameworks */,
 				2ECE5D2517FAC58D0079A30F /* Products */,
+				3D805F211B206F5A0080F880 /* database.db */,
+				3D805F221B206F5A0080F880 /* northwind.db */,
+				3D805F231B206F5A0080F880 /* realestate.db */,
 				3D99F1FB1A93495D00CA13A6 /* datasource */,
 				2ECE6DA317FAE45C0079A30F /* testdata */,
 				2ECE6DA117FAE43F0079A30F /* resource */,
@@ -246,22 +218,17 @@
 		2ECE5D2D17FAC58D0079A30F /* PDFReporter-test */ = {
 			isa = PBXGroup;
 			children = (
-				2E102646180BE19C006BC2C8 /* realestate.db */,
-				2ECE6DB617FAEFC70079A30F /* database.db */,
-				2ECE6DAA17FAE9C40079A30F /* northwind.db */,
 				2ECE5D3617FAC58D0079A30F /* AppDelegate.h */,
 				2ECE5D3717FAC58D0079A30F /* AppDelegate.m */,
 				3D9B0B9B1A972E6B008DCEE8 /* PdfListVc.h */,
 				3D9B0B9C1A972E6B008DCEE8 /* PdfListVc.m */,
-				3D9B0B9E1A9735E3008DCEE8 /* TestsLauncher.h */,
-				3D9B0B9F1A9735E3008DCEE8 /* TestsLauncher.m */,
 				3D9B0B991A972C6E008DCEE8 /* PdfViewer.storyboard */,
-				2E102648180BE20E006BC2C8 /* IOSRealEstateTestProvider.h */,
-				2E102649180BE20E006BC2C8 /* IOSRealEstateTestProvider.m */,
-				2ECE6DA717FAE4EC0079A30F /* IOSExportTestProvider.h */,
-				2ECE6DA817FAE4EC0079A30F /* IOSExportTestProvider.m */,
-				2ECE5D3917FAC58D0079A30F /* Images.xcassets */,
 				2ECE5D2E17FAC58D0079A30F /* Supporting Files */,
+				2ECE5D3917FAC58D0079A30F /* Images.xcassets */,
+				3D805F271B2071830080F880 /* ExportTest.h */,
+				3D805F281B2071830080F880 /* ExportTest.m */,
+				3D805F2A1B20723E0080F880 /* PathHelper.h */,
+				3D805F2B1B20723E0080F880 /* PathHelper.m */,
 			);
 			path = "PDFReporter-test";
 			sourceTree = "<group>";
@@ -315,95 +282,6 @@
 				2ECE5D7317FAC6A50079A30F /* libPDFReporter-ios.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2ED90B031817EAD1003E3363 /* gen */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B041817EAD1003E3363 /* org */,
-				2ED90B081817EAD1003E3363 /* test */,
-			);
-			path = gen;
-			sourceTree = "<group>";
-		};
-		2ED90B041817EAD1003E3363 /* org */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B051817EAD1003E3363 /* junit */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		2ED90B051817EAD1003E3363 /* junit */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B061817EAD1003E3363 /* Test.h */,
-				2ED90B071817EAD1003E3363 /* Test.m */,
-			);
-			path = junit;
-			sourceTree = "<group>";
-		};
-		2ED90B081817EAD1003E3363 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B091817EAD1003E3363 /* org */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		2ED90B091817EAD1003E3363 /* org */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B0A1817EAD1003E3363 /* oss */,
-			);
-			path = org;
-			sourceTree = "<group>";
-		};
-		2ED90B0A1817EAD1003E3363 /* oss */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B0B1817EAD1003E3363 /* pdfreporter */,
-			);
-			path = oss;
-			sourceTree = "<group>";
-		};
-		2ED90B0B1817EAD1003E3363 /* pdfreporter */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B271817EDD8003E3363 /* registry */,
-				2ED90B0C1817EAD1003E3363 /* ExporterTest.h */,
-				2ED90B0D1817EAD1003E3363 /* ExporterTest.m */,
-				2ED90B0E1817EAD1003E3363 /* PortableTest.h */,
-				2ED90B0F1817EAD1003E3363 /* PortableTest.m */,
-				2ED90B101817EAD1003E3363 /* providers */,
-				2ED90B171817EAD1003E3363 /* RealestateTest.h */,
-				2ED90B181817EAD1003E3363 /* RealestateTest.m */,
-				2ED90B1C1817EAD1003E3363 /* ReportExporter.h */,
-				2ED90B1D1817EAD1003E3363 /* ReportExporter.m */,
-			);
-			path = pdfreporter;
-			sourceTree = "<group>";
-		};
-		2ED90B101817EAD1003E3363 /* providers */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B111817EAD1003E3363 /* AndroidTestProvider.h */,
-				2ED90B121817EAD1003E3363 /* AndroidTestProvider.m */,
-				2ED90B131817EAD1003E3363 /* JavaTestProvider.h */,
-				2ED90B141817EAD1003E3363 /* JavaTestProvider.m */,
-				2ED90B151817EAD1003E3363 /* TestProviderInterface.h */,
-				2ED90B161817EAD1003E3363 /* TestProviderInterface.m */,
-			);
-			path = providers;
-			sourceTree = "<group>";
-		};
-		2ED90B271817EDD8003E3363 /* registry */ = {
-			isa = PBXGroup;
-			children = (
-				2ED90B281817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.h */,
-				2ED90B291817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m */,
-			);
-			path = registry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,15 +400,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E102647180BE19C006BC2C8 /* realestate.db in Resources */,
 				2ECE5D3217FAC58D0079A30F /* InfoPlist.strings in Resources */,
 				3D9B0B9A1A972C6E008DCEE8 /* PdfViewer.storyboard in Resources */,
+				3D805F241B206F5A0080F880 /* database.db in Resources */,
 				2ECE5D3A17FAC58D0079A30F /* Images.xcassets in Resources */,
-				2ECE6DB717FAEFC70079A30F /* database.db in Resources */,
-				2ECE6DAB17FAE9C40079A30F /* northwind.db in Resources */,
 				3D99F1FC1A93495D00CA13A6 /* datasource in Resources */,
+				3D805F251B206F5A0080F880 /* northwind.db in Resources */,
 				2ECE6DA417FAE45C0079A30F /* testdata in Resources */,
 				2ECE6DA217FAE43F0079A30F /* resource in Resources */,
+				3D805F261B206F5A0080F880 /* realestate.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,20 +419,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ED90B1E1817EAD1003E3363 /* Test.m in Sources */,
-				2ECE6DA917FAE4EC0079A30F /* IOSExportTestProvider.m in Sources */,
-				3D9B0BA01A9735E3008DCEE8 /* TestsLauncher.m in Sources */,
-				2E10264A180BE20E006BC2C8 /* IOSRealEstateTestProvider.m in Sources */,
-				2ED90B201817EAD1003E3363 /* PortableTest.m in Sources */,
-				3D0BF29A1AC72C2500C6665D /* ReportExporter.m in Sources */,
-				2ED90B2A1817EDD8003E3363 /* DefaultIRegistryExtensionsRegistryFactory.m in Sources */,
-				2ED90B221817EAD1003E3363 /* JavaTestProvider.m in Sources */,
 				3D9B0B9D1A972E6B008DCEE8 /* PdfListVc.m in Sources */,
-				2ED90B211817EAD1003E3363 /* AndroidTestProvider.m in Sources */,
-				2ED90B241817EAD1003E3363 /* RealestateTest.m in Sources */,
-				2ED90B231817EAD1003E3363 /* TestProviderInterface.m in Sources */,
+				3D805F2C1B20723E0080F880 /* PathHelper.m in Sources */,
+				3D805F291B2071830080F880 /* ExportTest.m in Sources */,
 				2ECE5D3817FAC58D0079A30F /* AppDelegate.m in Sources */,
-				2ED90B1F1817EAD1003E3363 /* ExporterTest.m in Sources */,
 				2ECE5D3417FAC58D0079A30F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
