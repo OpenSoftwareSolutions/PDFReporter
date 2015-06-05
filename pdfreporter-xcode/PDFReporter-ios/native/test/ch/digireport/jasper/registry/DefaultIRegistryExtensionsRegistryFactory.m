@@ -83,7 +83,7 @@ jboolean TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_
 void TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_initializeIRegistry(TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory *self) {
     @synchronized(self) {
         if (!TestOrgOssPdfreporterRegistryDefaultIRegistryExtensionsRegistryFactory_isInitialized_) {
-            [((JavaUtilLoggingLogger *) nil_chk(JavaUtilLoggingLogger_getLoggerWithNSString_(@""))) setLevelWithJavaUtilLoggingLevel:JavaUtilLoggingLevel_get_FINEST_()];
+            [((JavaUtilLoggingLogger *) nil_chk(JavaUtilLoggingLogger_getLoggerWithNSString_(@""))) setLevelWithJavaUtilLoggingLevel:JavaUtilLoggingLevel_get_OFF_()];
             OrgOssPdfreporterXmlParsersFactoryXmlParserFactory_registerFactory();
             OrgOssPdfreporterNetFactoryNetFactory_registerFactory();
             OrgOssPdfreporterTextFormatFactorySimpleFormatFactory_registerFactory();
