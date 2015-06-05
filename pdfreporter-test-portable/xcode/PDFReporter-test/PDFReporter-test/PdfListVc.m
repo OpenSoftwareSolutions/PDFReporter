@@ -3,7 +3,7 @@
 //  PDFReporter-test
 //
 //  Created by Martin Krasnocka on 20/02/15.
-//  Copyright (c) 2015 inloop. All rights reserved.
+//  Copyright (c) 2015 Open Software Solutions GmbH. All rights reserved.
 //
 
 #import "PdfListVc.h"
