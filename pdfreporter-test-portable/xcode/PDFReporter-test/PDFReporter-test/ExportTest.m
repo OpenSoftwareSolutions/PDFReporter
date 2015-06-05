@@ -9,9 +9,6 @@
 #import "ExportTest.h"
 #import "PathHelper.h"
 #import "PDFReporter.h"
-#include "org/oss/pdfreporter/engine/export/JRPdfExporterParameter.h"
-#include "java/lang/Boolean.h"
-#include "java/lang/Integer.h"
 #include "org/oss/pdfreporter/pdf/IDocument.h"
 
 @implementation ExportTest
@@ -28,12 +25,10 @@
     
     // CDBooklet
     [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-        configuration.dataSourceType = DATASOURCE_TYPE_XML;
         configuration.resourceFolders = resourceFolders;
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"CDBooklet.pdf"];
         configuration.jrxmlFileName = @"CDBooklet.jrxml";
-        configuration.dataSourceFileName = @"CDBooklets.xml";
-        configuration.selectExpression = @"/CDBooklets";
+        [configuration setXmlSource:@"CDBooklets.xml" selectExpression:@"/CDBooklets"];
     }];
     
     // Fonts
@@ -45,29 +40,26 @@
 
     // ShipmentsReport
     [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-        configuration.dataSourceType = DATASOURCE_TYPE_SQL;
         configuration.resourceFolders = resourceFolders;
         configuration.jrxmlFileName = @"ShipmentsReport.jrxml";
-        configuration.dataSourceFileName = @"database.db";
+        [configuration setSqlSource:@"database.db"];
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"ShipmentsReport.pdf"];
     }];
     
     // MasterReport
     [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-        configuration.dataSourceType = DATASOURCE_TYPE_SQL;
         configuration.resourceFolders = resourceFolders;
         configuration.jrxmlFileName = @"MasterReport.jrxml";
-        configuration.dataSourceFileName = @"database.db";
+        [configuration setSqlSource:@"database.db"];
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"MasterReport.pdf"];
-        configuration.subreportsDefinition = @{@"ProductsSubreport" : @"ProductReport.jasper"};
+        [configuration addSubreport:@"ProductsSubreport" location:@"ProductReport.jasper"];
     }];
     
     // ProductsReport
     [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-        configuration.dataSourceType = DATASOURCE_TYPE_SQL;
         configuration.resourceFolders = resourceFolders;
         configuration.jrxmlFileName = @"ProductsReport.jrxml";
-        configuration.dataSourceFileName = @"database.db";
+        [configuration setSqlSource:@"database.db"];
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"ProductsReport.pdf"];
     }];
 
@@ -87,20 +79,18 @@
 
     // OrdersReport
     [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-        configuration.dataSourceType = DATASOURCE_TYPE_SQL;
         configuration.resourceFolders = resourceFolders;
         configuration.jrxmlFileName = @"OrdersReport.jrxml";
-        configuration.dataSourceFileName = @"database.db";
+        [configuration setSqlSource:@"database.db"];
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"OrdersReport.pdf"];
     }];
     
 #warning not working
     // LateOrdersReport
 //    [PDFReporter exportReportWithConfigurationBlock:^(ReporterConfiguration *configuration) {
-//        configuration.dataSourceType = DATASOURCE_TYPE_SQL;
 //        configuration.resourceFolders = resourceFolders;
 //        configuration.jrxmlFileName = @"LateOrdersReport.jrxml";
-//        configuration.dataSourceFileName = @"database.db";
+//        [configuration setSqlSource:@"database.db"];
 //        configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"LateOrdersReport.pdf"];
 //    }];
 
@@ -137,22 +127,7 @@
         configuration.resourceFolders = resourceFolders;
         configuration.jrxmlFileName = @"PdfEncryptReport.jrxml";
         configuration.outputPdfFilePath = [documentsDir stringByAppendingPathComponent:@"PdfEncryptReport.pdf"];
-
-        id isEncryptedKey = OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_IS_ENCRYPTED_();
-        id is128BitKey = OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_IS_128_BIT_KEY_();
-        id userPasswordKey = OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_USER_PASSWORD_();
-        id ownerPasswordKey = OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_OWNER_PASSWORD_();
-        id permissionsKey = OrgOssPdfreporterEngineExportJRPdfExporterParameter_get_PERMISSIONS_();
-        
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        [parameters setObject:JavaLangBoolean_get_TRUE__() forKey:isEncryptedKey];
-        [parameters setObject:JavaLangBoolean_get_TRUE__() forKey:is128BitKey];
-        [parameters setObject:@"jasper" forKey:userPasswordKey];
-        [parameters setObject:@"reports" forKey:ownerPasswordKey];
-        
-        id permissions = JavaLangInteger_valueOfWithInt_(OrgOssPdfreporterPdfIDocument_PERMISSION_COPY | OrgOssPdfreporterPdfIDocument_PERMISSION_PRINT);
-        [parameters setObject:permissions forKey:permissionsKey];
-        configuration.parameters = parameters;
+        [configuration addEncryptionIs128bitKey:YES userPassword:@"jasper" ownerPassword:@"reports" permissions:OrgOssPdfreporterPdfIDocument_PERMISSION_COPY | OrgOssPdfreporterPdfIDocument_PERMISSION_PRINT];
     }];
     
     // ParagraphsReport

@@ -13,6 +13,10 @@ typedef void (^ReporterConfigurationBlock)(ReporterConfiguration *configuration)
 
 @interface PDFReporter : NSObject
 
-+ (void)exportReportWithConfigurationBlock:(ReporterConfigurationBlock)configurationBlock;
+/**
+ * Export pdf file using configuration. See ReporterConfiguration for more details.
+ * return - path to the generated pdf file.
+ */
++ (NSString *)exportReportWithConfigurationBlock:(ReporterConfigurationBlock)configurationBlock;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class OrgOssPdfreporterEngineExportJRPdfExporterParameter;
 
 typedef NS_ENUM(NSUInteger, ReporterDataSourceType) {
     DATASOURCE_TYPE_NONE = 0,
@@ -14,30 +15,51 @@ typedef NS_ENUM(NSUInteger, ReporterDataSourceType) {
     DATASOURCE_TYPE_SQL
 };
 
+
 @interface ReporterConfiguration : NSObject
 
-/* DataSource type. Default is DATASOURCE_TYPE_NONE */
-@property (nonatomic) ReporterDataSourceType dataSourceType;
-
-/* Search these folders and all subfolders recursively for resource files (jrxml, datasource, fonts, properties, etc). */
+/** Search these folders and all subfolders recursively for resource files (jrxml, datasource, fonts, properties, etc). */
 @property (nonatomic, strong) NSArray *resourceFolders;
 
-/* File name without path. Path to this file must be provided in resourceFolders property. */
+/** File name without path. Path to this file must be provided in resourceFolders property. */
 @property (nonatomic, strong) NSString *jrxmlFileName;
 
-/* File name without path. Path to this file must be provided in resourceFolders property. */
-@property (nonatomic, strong) NSString *dataSourceFileName;
-
-/* File path to output pdf file. */
+/** File path to output pdf file. */
 @property (nonatomic, strong) NSString *outputPdfFilePath;
 
-/* When using datasource type DATASOURCE_TYPE_XML, XPath selectExpression must be provided. */
-@property (nonatomic, strong) NSString *selectExpression;
 
-/* Reporter parameters. Key must be of a class JRPdfExporterParameter. Value class examples: java.lang.Boolean, java.lang.Integer */
-@property (nonatomic, strong) NSDictionary *parameters;
+/* Readonly properties */
+@property (nonatomic, readonly) ReporterDataSourceType dataSourceType;
+@property (nonatomic, strong, readonly) NSString *dataSourceFileName;
+@property (nonatomic, strong, readonly) NSString *selectExpression;
+@property (nonatomic, strong, readonly) NSDictionary *subreportsDefinition;
+@property (nonatomic, strong, readonly) NSDictionary *exportParameters;
 
-/* Definition for subreports. Example key=@"ProductsSubreport", value=@"ProductReport.jasper"  */
-@property (nonatomic, strong) NSDictionary *subreportsDefinition;
+/**
+ * xmlDataFile - File name without path. Path to this file must be provided in resourceFolders property.
+ * xmlXpath - When using xml datasource, XPath select expression must be provided.
+ */
+- (void)setXmlSource:(NSString *)xmlDataFile selectExpression:(NSString *)xmlXpath;
+
+/**
+ * databasePath - Absolute path to a database file, or file name without path. If only file name is specified, path to this file must be provided in resourceFolders property.
+ */
+- (void)setSqlSource:(NSString *)databasePath;
+
+/**
+ * Add Definition for subreports. Example subreportName=@"ProductsSubreport", location=@"ProductReport.jasper"
+ */
+- (void)addSubreport:(NSString *)subreportName location:(NSString *)location;
+
+/**
+ * Add encryption for output pdf file.
+ */
+- (void)addEncryptionIs128bitKey:(BOOL)is128bitKey userPassword:(NSString *)userPassword ownerPassword:(NSString *)ownerPassword permissions:(int)permissions;
+
+/**
+ * Reporter parameters. Key must be of a class JRPdfExporterParameter. Value class examples: java.lang.Boolean, java.lang.Integer
+ */
+- (void)addExportParameterValue:(id)value forKey:(OrgOssPdfreporterEngineExportJRPdfExporterParameter *)key;
+
 
 @end
