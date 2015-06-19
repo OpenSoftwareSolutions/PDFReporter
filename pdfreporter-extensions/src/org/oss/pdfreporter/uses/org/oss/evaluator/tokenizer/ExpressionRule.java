@@ -35,7 +35,7 @@ public class ExpressionRule {
 		rules.add(new ExpressionRule("COMMA", ","));
 		rules.add(new ExpressionRule("PARENTHESE", "\\(|\\)"));
 		rules.add(new ExpressionRule("OPERATOR", "\\+|-|\\*|/|==|!=|\\^|\\%|\\|\\||<=|>=|<|>|&&|!"));
-		rules.add(new ExpressionRule("VARIABLE", "\\$([a-zA-Z0-9])+"));
+		rules.add(new ExpressionRule("VARIABLE", "\\$([a-zA-Z0-9])+([_])?([a-zA-Z0-9])*"));
 		return rules;
 	}
 }
