@@ -24,7 +24,6 @@ import org.oss.pdfreporter.image.ImageFactory;
 import org.oss.pdfreporter.json.factory.JsonDataSourceFactory;
 import org.oss.pdfreporter.net.factory.NetFactory;
 import org.oss.pdfreporter.pdf.PdfFactory;
-import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.sql.SQLException;
 import org.oss.pdfreporter.sql.SqlFactory;
 import org.oss.pdfreporter.text.format.factory.DefaultFormatFactory;
