@@ -10,7 +10,15 @@
  ******************************************************************************/
 package test.org.oss.pdfreporter;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.Statement;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import test.org.oss.pdfreporter.testdata.DesktopTestdataImporter;
 
 
 public class JSHuntingYardSQLExporterTest extends JSHuntingYardDesktopExporterTest{
@@ -76,5 +84,25 @@ public class JSHuntingYardSQLExporterTest extends JSHuntingYardDesktopExporterTe
 			.setSqlSource(testProvider.databasePath(), SQL_USERNAME, SQL_PASSWORD)
 			.exportPdf();
 	}
+
+	@BeforeClass
+    public static void setup() throws Exception {
+		DesktopTestdataImporter.startHSQLServer();
+		Connection newConnection = DesktopTestdataImporter.newConnection();
+		Statement s = newConnection.createStatement();
+		DesktopTestdataImporter.createTable(s);
+		DesktopTestdataImporter.insertData(s);
+		DesktopTestdataImporter.close(newConnection, s);
+    }
+
+    @AfterClass
+    public static void teardown() throws Exception {
+    	Connection newConnection = DesktopTestdataImporter.newConnection();
+		Statement s = newConnection.createStatement();
+		DesktopTestdataImporter.deleteTable(s);
+		DesktopTestdataImporter.close(newConnection, s);
+		DesktopTestdataImporter.stopHSQLServer();
+		DesktopTestdataImporter.deleteDbFiles(new File("."), DesktopTestdataImporter.IVADB);
+    }
 
 }
