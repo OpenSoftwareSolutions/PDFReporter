@@ -13,11 +13,10 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
 [Milestones](http://sourceforge.net/p/pdfreporter/tickets/)
 
 #Download the PDFReporter
-[Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
-[Jar Files - Desktop ](http://sourceforge.net/projects/pdfreporter/files/Releases/Java/)
-[Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
-[iOS ](http://sourceforge.net/projects/pdfreporter/files/Releases/iOS/)
-
+* [Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
+* [Jar Files - Desktop ](http://sourceforge.net/projects/pdfreporter/files/Releases/Java/)
+* [Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
+* [iOS ](http://sourceforge.net/projects/pdfreporter/files/Releases/iOS/)
 
 ## Using in Maven
 
