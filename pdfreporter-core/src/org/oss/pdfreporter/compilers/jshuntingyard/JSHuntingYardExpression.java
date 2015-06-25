@@ -25,12 +25,10 @@ import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
-import org.oss.pdfreporter.compilers.jeval.functions.MessageWithArg;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.VariableResolver;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.Function;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.function.FunctionException;
 import org.oss.pdfreporter.uses.org.oss.evaluator.Evaluator;
+import org.oss.pdfreporter.uses.org.oss.evaluator.Variable;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 
 
@@ -47,7 +45,7 @@ public class JSHuntingYardExpression {
 	public JSHuntingYardExpression() {
 		this.variables = new HashMap<String, IVariable>();
 		this.userFunctions = new HashMap<String, Function>();
-		putFunction(new MessageWithArg());
+		//putFunction(new MessageWithArg());
 	}
 
 
@@ -56,35 +54,29 @@ public class JSHuntingYardExpression {
 	}
 
 
-	public static JSHuntingYardExpression newInstance(List<IExpressionChunk> chunks) throws ExpressionParseException {
+	public static JSHuntingYardExpression newInstance(List<IExpressionChunk> chunks) throws ExpressionParseException, ExpressionEvaluationException {
 		JSHuntingYardExpression expression = new JSHuntingYardExpression();
 		expression.parse(chunks);
 		return expression;
 	}
 
-	private void parse(List<IExpressionChunk> chunks) throws ExpressionParseException  {
+	private void parse(List<IExpressionChunk> chunks) throws ExpressionParseException, ExpressionEvaluationException  {
 		this.expression = buildExpression(chunks);
+
 		this.newEval = new Evaluator(expression);
+		this.newEval.getFunctions().putAll(this.userFunctions);
+		bindVariables(newEval,variables,false);
+
 		this.oldEval = new Evaluator(expression);
+		this.oldEval.getFunctions().putAll(this.userFunctions);
+		bindVariables(oldEval,variables,true);
 	}
 
 	public String getExpression() {
 		return expression;
 	}
 
-	public IVariable getVariable(String name) {
-		return variables.get(getKey(ExpresionType.TYPE_VARIABLE,name));
-	}
-
-	public IVariable getParameter(String name) {
-		return variables.get(getKey(ExpresionType.TYPE_PARAMETER,name));
-	}
-
-	public IVariable getField(String name) {
-		return variables.get(getKey(ExpresionType.TYPE_FIELD,name));
-	}
-
-	private String buildExpression(List<IExpressionChunk> chunks) {
+	private String buildExpression(List<IExpressionChunk> chunks) throws ExpressionEvaluationException {
 		StringBuffer sb = new StringBuffer();
 		String name;
 		IVariable variable;
@@ -94,9 +86,8 @@ public class JSHuntingYardExpression {
 			case TYPE_PARAMETER:
 			case TYPE_VARIABLE:
 				name = getKey(chunk.getType(),chunk.getText());
-				sb.append("#{");
+				sb.append("$");
 				sb.append(name);
-				sb.append("}");
 				variable = ((IVariableExpressionChunk)chunk).getVariable();
 				variables.put(name, variable);
 				break;
@@ -108,6 +99,7 @@ public class JSHuntingYardExpression {
 		}
 		return sb.toString();
 	}
+
 
 	private String getKey(ExpresionType type, String name) {
 		switch (type.ordinal()) {
@@ -127,7 +119,7 @@ public class JSHuntingYardExpression {
 
 	public Object evaluateValue() throws ExpressionEvaluationException {
 		try {
-			FunctionArgument<?> evaluate = newEval.evaluate();
+			FunctionArgument<?> evaluate = this.newEval.evaluate();
 			return evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
@@ -136,37 +128,74 @@ public class JSHuntingYardExpression {
 
 	public Object evaluateOldValue() throws ExpressionEvaluationException {
 		try {
-			FunctionArgument<?> evaluate = oldEval.evaluate();
+			FunctionArgument<?> evaluate = this.oldEval.evaluate();
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
 		}
 	}
 
-
-	private class ValueResolver implements VariableResolver {
-		@Override
-		public String resolveVariable(String variableName)
-				throws FunctionException {
-			try {
-				return getString(variables.get(variableName).getValue());
-			} catch (ExpressionEvaluationException e) {
-				throw new FunctionException(e);
+	private void bindVariables(Evaluator evaluator, Map<String,IVariable> variables, boolean oldValue) {
+		for (Map.Entry<String,IVariable> entry : variables.entrySet()) {
+			if (oldValue) {
+				evaluator.bindVariable(new OldValue(entry.getKey(),entry.getValue()));
+			} else {
+				evaluator.bindVariable(new NewValue(entry.getKey(),entry.getValue()));
 			}
 		}
 	}
 
-	private class OldValueResolver implements VariableResolver {
+	private static class NewValue implements Variable {
+
+		private final String name;
+		private final IVariable delegate;
+
+		NewValue(String name, IVariable variable){
+			this.name = name;
+			this.delegate = variable;
+		}
 		@Override
-		public String resolveVariable(String variableName)
-				throws FunctionException {
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public Object getValue() {
 			try {
-				return getString(variables.get(variableName).getOldValue());
+				return delegate.getValue();
 			} catch (ExpressionEvaluationException e) {
-				throw new FunctionException(e);
+				throw new RuntimeException(e);
 			}
 		}
+
 	}
+
+	private static class OldValue implements Variable {
+
+		private final String name;
+		private final IVariable delegate;
+
+		OldValue(String name, IVariable variable){
+			this.name = name;
+			this.delegate = variable;
+		}
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public Object getValue() {
+			try {
+				return delegate.getOldValue();
+			} catch (ExpressionEvaluationException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+	}
+
+
 
 	private String getString(Object value) {
 		if (value instanceof Date) {
