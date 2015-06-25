@@ -6,7 +6,7 @@
     <title>PDFReporter by OpenSoftwareSolutions</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -67,13 +67,69 @@ The official webpage from <a href="http://www.pdfreporting.com">PDFReporter</a>.
 
 <p>Follow us on <a href="https://twitter.com/pdfreporter">twitter</a> and take a look at our <a href="www.youtube.com/embed/BxVHHmMXKW0?rel=0">youtube</a> video.</p>
 
-<h3>
-<a id="support-milestones-and-discussions" class="anchor" href="#support-milestones-and-discussions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support, milestones and discussions</h3>
+<h1>
+<a id="webpages--informations" class="anchor" href="#webpages--informations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Webpages &amp; Informations</h1>
 
-<p>Having trouble with the library or any question? Check out the <a href="https://sourceforge.net/p/pdfreporter/tickets/">tickets</a> or the <a href="https://sourceforge.net/p/pdfreporter/discussion/">discussions</a>. We’ll help you as soon as we can.</p>
+<ul>
+<li><a href="http://www.pdfreporting.com">Official Webpage</a></li>
+<li><a href="http://opensoftwaresolutions.github.io/PDFReporter/">Github Page</a></li>
+<li><a href="https://github.com/OpenSoftwareSolutions/PDFReporter/wiki">Wiki Page</a></li>
+<li><a href="http://sourceforge.net/p/pdfreporter/tickets/">Milestones</a></li>
+</ul>
+
+<h1>
+<a id="download-the-pdfreporter" class="anchor" href="#download-the-pdfreporter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the PDFReporter</h1>
+
+<ul>
+<li><a href="https://github.com/OpenSoftwareSolutions/mvn-repo">Our Maven Repository - Desktop / Android</a></li>
+<li><a href="http://sourceforge.net/projects/pdfreporter/files/Releases/Java/">Jar Files - Desktop </a></li>
+<li><a href="http://sourceforge.net/projects/pdfreporter/files/Releases/Android/">Jar Files - Android </a></li>
+<li><a href="http://sourceforge.net/projects/pdfreporter/files/Releases/iOS/">iOS </a></li>
+</ul>
+
+<h2>
+<a id="using-in-maven" class="anchor" href="#using-in-maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using in Maven</h2>
+
+<h3>
+<a id="android" class="anchor" href="#android" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android</h3>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.pdfreporting&lt;/groupId&gt;
+    &lt;artifactId&gt;pdfreporter-android-bundle&lt;/artifactId&gt;
+    &lt;version&gt;1.X.X&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3>
+<a id="java-desktop" class="anchor" href="#java-desktop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java (Desktop)</h3>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.pdfreporting&lt;/groupId&gt;
+    &lt;artifactId&gt;pdfreporter-java-desktop-bundle&lt;/artifactId&gt;
+    &lt;version&gt;1.X.X&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h2>
+<a id="add-our-repository-to-your-pomxml" class="anchor" href="#add-our-repository-to-your-pomxml" aria-hidden="true"><span class="octicon octicon-link"></span></a>add our Repository to your pom.xml</h2>
+
+<pre><code>&lt;repository&gt;
+        &lt;id&gt;OpenSoftwareSolutionsMvn&lt;/id&gt;
+        &lt;name&gt;JSHuntingYard Repo&lt;/name&gt;
+        &lt;url&gt;"https://github.com/OpenSoftwareSolutions/mvn-repo/raw/master/repository/"&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;updatePolicy&gt;always&lt;/updatePolicy&gt;
+        &lt;/snapshots&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;updatePolicy&gt;daily&lt;/updatePolicy&gt;
+        &lt;/releases&gt;
+&lt;/repository&gt;
+</code></pre>
       </section>
       <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
