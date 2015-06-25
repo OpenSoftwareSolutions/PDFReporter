@@ -13,6 +13,7 @@ package org.oss.pdfreporter.compilers.jshuntingyard;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
 import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IDataHolder;
 import org.oss.pdfreporter.compilers.IExpressionElement;
@@ -88,6 +89,9 @@ public class JSHuntingYardExpressionFactory {
 			logger.finest("Compiled expression " + expressionId + " - " + rawExpression.toString());
 			return result;
 		} catch (ExpressionParseException e) {
+			logger.log(Level.SEVERE, "Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
+			throw new JRException("Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
+		} catch (ExpressionEvaluationException e) {
 			logger.log(Level.SEVERE, "Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
 			throw new JRException("Error parsing '" + rawExpression.toString() + "' in JRXML DesignReport.", e);
 		}
