@@ -23,7 +23,7 @@ public class BooleanArgument extends AbstractFunctionArgument<Boolean> implement
 
 	private final Boolean booleanValue;
 
-	BooleanArgument(Boolean booleanValue) {
+	public BooleanArgument(Boolean booleanValue) {
 		this.booleanValue = booleanValue;
 	}
 

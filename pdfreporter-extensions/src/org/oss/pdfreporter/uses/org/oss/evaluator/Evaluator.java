@@ -21,27 +21,51 @@ import java.util.Map;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.ExpressionElement;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.NullArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.VariableArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.parser.ExtendedSHuntingYardParser;
 
 
 public class Evaluator {
 
-	private final Map<String,Variable> variables;
+	private final Map<String,Variable> boundVariables;
+	private final Map<String,Function> functions;
 	private final List<ExpressionElement> expression;
+	private final ExtendedSHuntingYardParser huntingYardParser;
 
 	public Evaluator(String evalExpression){
-		this.variables = new HashMap<String,Variable>();
+		this.boundVariables = new HashMap<String,Variable>();
+		this.functions = new HashMap<String, Function>();
+		this.huntingYardParser = new ExtendedSHuntingYardParser();
 		this.expression = new ExtendedSHuntingYardParser().infixToRPN(evalExpression);
 	}
 
 	public Evaluator(){
-		this.variables = new HashMap<String,Variable>();
+		this.boundVariables = new HashMap<String,Variable>();
+		this.functions = new HashMap<String, Function>();
+		this.huntingYardParser = null;
 		this.expression = null;
 	}
 
+	public void bindVariables(Map<String,Variable> variables) {
+		variables.putAll(variables);
+	}
+
 	public void bindVariable(Variable variable) {
-		variables.put(variable.getName(), variable);
+		boundVariables.put(variable.getName(), variable);
+	}
+
+	public void setFunction(Function function) {
+		this.huntingYardParser.addFunction(function);
+	}
+
+	public void putFunctions() {
+		this.huntingYardParser.addFunctions(this.functions);
+	}
+
+	public Map<String,Function> getFunctions(){
+		return this.functions;
 	}
 
 
@@ -61,8 +85,8 @@ public class Evaluator {
 						args[numArgs -1 - i] = (FunctionArgument<?>) arg;
 						if (arg instanceof VariableArgument) {
 							VariableArgument variable = (VariableArgument) arg;
-							Variable value = variables.get(variable.getName());
-							variable.setValue(value.getValue());
+							Variable boundVariable = boundVariables.get(variable.getName());
+							args[numArgs -1 - i] = replaceVariable(boundVariable.getValue());
 						}
 					} else {
 						throw new IllegalArgumentException("FunctionArgument expected and not " + arg.getClass().getName());
@@ -83,6 +107,26 @@ public class Evaluator {
 			throw new IllegalArgumentException("FunctionArgument expected and not " + element.getClass().getName());
 		}
 	}
+
+	private FunctionArgument<?> replaceVariable(Object value) {
+		if (value instanceof Integer) {
+			return FunctionArgumentFactory.createObject((Integer) value);
+		}
+		if (value instanceof Double) {
+			return FunctionArgumentFactory.createObject((Double) value);
+		}
+		if (value instanceof String) {
+			return FunctionArgumentFactory.createString((String) value);
+		}
+		if (value instanceof Boolean) {
+			return FunctionArgumentFactory.createObject((Boolean) value);
+		}
+		if (value instanceof Object) {
+			return FunctionArgumentFactory.createObject(value);
+		}
+		return new NullArgument();
+	}
+
 
 	public FunctionArgument<?> evaluate() {
 		if(expression == null || expression.isEmpty()){

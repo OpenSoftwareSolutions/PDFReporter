@@ -15,13 +15,21 @@ package org.oss.pdfreporter.uses.org.oss.evaluator.function.impl;
 
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+/**
+ * Argument that is temporary used as placeholder for bound variables<br>
+ * till evaluation. Then the actual type is known and the variable is replaced<br>
+ * by one of the built in types (double, integer, boolean, ...)
+ *
+ * @author magnus
+ */
 @SuppressWarnings("rawtypes")
 public class VariableArgument implements FunctionArgument {
 
 	private final String variableName;
-	private Object value;
 
-	VariableArgument(String variableName) {
+	public VariableArgument(String variableName) {
 		super();
 		this.variableName = variableName;
 	}
@@ -33,35 +41,15 @@ public class VariableArgument implements FunctionArgument {
 
 	@Override
 	public ArgumentType getType() {
-		if (value instanceof Integer) {
-			return ArgumentType.INTEGER;
-		}
-		if (value instanceof Double) {
-			return ArgumentType.DOUBLE;
-		}
-		if (value instanceof String) {
-			return ArgumentType.STRING;
-		}
-		if (value instanceof Object) {
-			return ArgumentType.OBJECT;
-		}
-		if (value instanceof Boolean) {
-			return ArgumentType.BOOLEAN;
-		}
-		return ArgumentType.NULL;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Object getValue() {
-		return value;
-	}
-
-	public void setValue(Object value) {
-		this.value = value;
+		throw new NotImplementedException();
 	}
 
 	public String getName() {
 		return variableName;
 	}
-
 }

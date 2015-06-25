@@ -20,7 +20,7 @@ public class ObjectArgument extends AbstractFunctionArgument<Object>{
 
 	private final Object objectValue;
 
-	protected ObjectArgument(Object objectValue) {
+	ObjectArgument(Object objectValue) {
 		super();
 		this.objectValue = objectValue;
 	}
