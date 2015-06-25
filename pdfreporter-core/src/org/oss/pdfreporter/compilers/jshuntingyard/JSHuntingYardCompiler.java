@@ -67,8 +67,7 @@ public class JSHuntingYardCompiler extends JRAbstractCompiler {
 	}
 
 	@Override
-	protected JRCompilationSourceCode generateSourceCode(
-			JRSourceCompileTask sourceTask) throws JRException {
+	protected JRCompilationSourceCode generateSourceCode(JRSourceCompileTask sourceTask) throws JRException {
 		JSHuntingYardExpressionEvaluator evaluator = new JSHuntingYardExpressionEvaluator();
 		evaluator.initializeWithDefaults(sourceTask);
 		evaluator.parseExpressions(sourceTask);
