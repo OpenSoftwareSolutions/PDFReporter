@@ -15,8 +15,6 @@ package org.oss.pdfreporter.uses.org.oss.evaluator.function.impl;
 
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Argument that is temporary used as placeholder for bound variables<br>
  * till evaluation. Then the actual type is known and the variable is replaced<br>
@@ -41,12 +39,12 @@ public class VariableArgument implements FunctionArgument {
 
 	@Override
 	public ArgumentType getType() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException("The methode getType() is handled by the FunctionArgumentFactory and at this place not implemented.");
 	}
 
 	@Override
 	public Object getValue() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException("The methode getValue() is handled by the FunctionArgumentFactory and at this place not implemented.");
 	}
 
 	public String getName() {
