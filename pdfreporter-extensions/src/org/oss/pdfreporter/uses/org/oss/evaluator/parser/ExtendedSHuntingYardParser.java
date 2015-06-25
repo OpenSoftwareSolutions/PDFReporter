@@ -192,6 +192,10 @@ public class ExtendedSHuntingYardParser {
 		operators.put(function.getName(), function);
 	}
 
+	public void addFunctions(Map<String,Function> operators) {
+		operators.putAll(operators);
+	}
+
 	/**
 	 * Test if a certain is an operator .
 	 * @param token The token to be tested .
