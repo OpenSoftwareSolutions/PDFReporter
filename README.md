@@ -6,12 +6,52 @@ Generally you can use the library as long as your app is open source and publish
 
 If you want to use it commercially please contact sales@pdfreporting.com for further informations. 
 
-# Github Page
-http://opensoftwaresolutions.github.io/PDFReporter/
+# Webpages & Informations
+[Official Webpage](http://www.pdfreporting.com)
+[Github Page](http://opensoftwaresolutions.github.io/PDFReporter/)
+[Wiki Page](https://github.com/OpenSoftwareSolutions/PDFReporter/wiki)
+[Milestones](http://sourceforge.net/p/pdfreporter/tickets/)
 
-# Official Webpage
-http://www.pdfreporting.com
+#Download the PDFReporter
+[Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
+[Jar Files - Desktop ](http://sourceforge.net/projects/pdfreporter/files/Releases/Java/)
+[Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
+[iOS ](http://sourceforge.net/projects/pdfreporter/files/Releases/iOS/)
 
-# Support & Milestones
-Generally most of the issues will be post on wiki https://github.com/OpenSoftwareSolutions/PDFReporter/wiki.
-You also find our milestones at http://sourceforge.net/p/pdfreporter/tickets/.
+
+## Using in Maven
+
+### Android
+
+    <dependency>
+        <groupId>com.pdfreporting</groupId>
+        <artifactId>pdfreporter-android-bundle</artifactId>
+        <version>1.X.X</version>
+    </dependency>
+
+### Java (Desktop)
+
+    <dependency>
+        <groupId>com.pdfreporting</groupId>
+        <artifactId>pdfreporter-java-desktop-bundle</artifactId>
+        <version>1.X.X</version>
+    </dependency>
+
+## add our Repository to your pom.xml
+
+    <repository>
+            <id>OpenSoftwareSolutionsMvn</id>
+            <name>JSHuntingYard Repo</name>
+            <url>"https://github.com/OpenSoftwareSolutions/mvn-repo/raw/master/repository/"</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+    </repository>
+
+
+
