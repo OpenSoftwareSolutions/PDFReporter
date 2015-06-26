@@ -7,10 +7,10 @@ Generally you can use the library as long as your app is open source and publish
 If you want to use it commercially please contact sales@pdfreporting.com for further informations. 
 
 # Webpages & Informations
-[Official Webpage](http://www.pdfreporting.com)
-[Github Page](http://opensoftwaresolutions.github.io/PDFReporter/)
-[Wiki Page](https://github.com/OpenSoftwareSolutions/PDFReporter/wiki)
-[Milestones](http://sourceforge.net/p/pdfreporter/tickets/)
+* [Official Webpage](http://www.pdfreporting.com)
+* [Github Page](http://opensoftwaresolutions.github.io/PDFReporter/)
+* [Wiki Page](https://github.com/OpenSoftwareSolutions/PDFReporter/wiki)
+* [Milestones](http://sourceforge.net/p/pdfreporter/tickets/)
 
 #Download the PDFReporter
 * [Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
@@ -18,6 +18,18 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
 * [Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
 * [iOS ](http://sourceforge.net/projects/pdfreporter/files/Releases/iOS/)
 
+## Using PDFReporter on Windows Applications (experimental)
+There are a few ways of using the library in windows apps.
+We recommand you to bridge the java library with on of the most common C# solutions - also recommended on the web.
+* [jni4net](http://jni4net.com)
+* [ikvm ](http://www.ikvm.net)
+* [Cross platform IDE] (http://www.mono-project.com/download/)
+
+### Bridge your C# class against the API Class 
+* [Wiki on the API ](https://github.com/OpenSoftwareSolutions/PDFReporter/wiki/PDFReporter-API)
+
+    org.oss.pdfreporter.PdfReporter
+    
 ## Using in Maven
 
 ### Android
@@ -51,6 +63,5 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
                 <updatePolicy>daily</updatePolicy>
             </releases>
     </repository>
-
-
-
+    
+    
