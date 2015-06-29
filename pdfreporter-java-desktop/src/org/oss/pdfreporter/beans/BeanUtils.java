@@ -32,7 +32,7 @@ public class BeanUtils implements IBeansUtils {
 					Field field = top.getClass().getDeclaredField(propertyName);
 
 					field.setAccessible(true);
-					Class clazz = field.getType();
+					Class<?> clazz = field.getType();
 					if (clazz == value.getClass()) {
 						field.set(top, value);
 					} else if (clazz==int.class || clazz==Integer.class) {

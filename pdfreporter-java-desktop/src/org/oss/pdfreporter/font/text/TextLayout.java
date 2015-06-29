@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
@@ -16,9 +16,6 @@ import org.oss.pdfreporter.text.Paragraph;
 public class TextLayout implements ITextLayout {
 	public final java.awt.font.TextLayout delegate;
 	private final Paragraph paragraph;
-	private Float ascent = null;
-	private Float descent = null;
-	private Float leading = null;
 
 	TextLayout(java.awt.font.TextLayout delegate, Paragraph text) {
 		if (delegate==null) {
@@ -42,7 +39,7 @@ public class TextLayout implements ITextLayout {
 	public float getVisibleAdvance() {
 		return delegate.getVisibleAdvance();
 	}
-	
+
 	@Override
 	public float getAscent() {
 		return delegate.getAscent();
