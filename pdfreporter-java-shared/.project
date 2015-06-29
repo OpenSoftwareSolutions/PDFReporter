@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>pdfreporter-android</name>
+  <name>pdfreporter-java-shared</name>
   <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>pdfreporter-core</project>
     <project>pdfreporter-extensions</project>
-    <project>pdfreporter-java-shared</project>
-    <project>pdfreporter-portable</project>
   </projects>
   <buildSpec>
     <buildCommand>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>pdfreporter-android</name>
-  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <name>pdfreporter-java-desktop-bundle</name>
+  <comment>The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the PDFReporter Studio where you can visualize your data. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>pdfreporter-core</project>
     <project>pdfreporter-extensions</project>
     <project>pdfreporter-java-shared</project>
-    <project>pdfreporter-portable</project>
+    <project>pdfreporter-java-desktop</project>
   </projects>
-  <buildSpec>
+<buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
     </buildCommand>
