@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>pdfreporter-android-bundle</name>
-  <comment>The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the PDFReporter Studio where you can visualize your data. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>pdfreporter-core</project>
-    <project>pdfreporter-extensions</project>
-    <project>pdfreporter-portable</project>
-    <project>pdfreporter-android</project>
-    <project>pdfreporter-java-shared</project>
-  </projects>
- <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-    <buildCommand>
-      <name>org.eclipse.m2e.core.maven2Builder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.m2e.core.maven2Nature</nature>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
+	<name>pdfreporter-android-bundle</name>
+	<comment>The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the PDFReporter Studio where you can visualize your data. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+		<project>pdfreporter-core</project>
+		<project>pdfreporter-extensions</project>
+		<project>pdfreporter-portable</project>
+		<project>pdfreporter-android</project>
+		<project>pdfreporter-java-shared</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 </projectDescription>
