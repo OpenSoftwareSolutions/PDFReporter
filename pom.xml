@@ -16,6 +16,9 @@
 		</repository>
 	</repositories>
   
+ <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 	
 	 <build>
         <plugins>
@@ -43,8 +46,11 @@
 		<module>pdfreporter-test-portable</module>
 		<module>pdfreporter-android-bundle</module>
 		<module>pdfreporter-java-desktop</module>
+		<module>pdfreporter-java-desktop-bundle</module>
 		<module>pdfreporter-java-shared</module>
 		<module>pdfreporter-test</module>
+		<module>pdfreporter-test-desktop</module>
 		<module>pdfreporter-testdata</module>
+		<module>pdfreporter-android-bundle</module>
     </modules>
 </project>

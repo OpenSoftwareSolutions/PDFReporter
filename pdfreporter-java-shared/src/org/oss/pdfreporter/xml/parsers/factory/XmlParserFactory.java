@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.html
- * 
+ *
  * Contributors:
  *     Open Software Solutions GmbH
  ******************************************************************************/
@@ -16,9 +16,6 @@ import java.io.Reader;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.oss.pdfreporter.engine.DefaultJasperReportsContext;
-import org.oss.pdfreporter.engine.JRPropertiesUtil;
-import org.oss.pdfreporter.engine.JasperReportsContext;
 import org.oss.pdfreporter.registry.IRegistry;
 import org.oss.pdfreporter.xml.parsers.IContentHandler;
 import org.oss.pdfreporter.xml.parsers.IDocumentBuilderFactory;
@@ -27,7 +24,6 @@ import org.oss.pdfreporter.xml.parsers.IXmlParser;
 import org.oss.pdfreporter.xml.parsers.InputSource;
 import org.oss.pdfreporter.xml.parsers.ParserConfigurationException;
 import org.oss.pdfreporter.xml.parsers.XmlParser;
-import org.oss.pdfreporter.xml.parsers.factory.IXmlParserFactory;
 import org.oss.pdfreporter.xml.parsers.util.XmlParserUnmarshaller;
 
 
@@ -35,16 +31,16 @@ import org.oss.pdfreporter.xml.parsers.util.XmlParserUnmarshaller;
  * IXmlParserFactory implementation based on SAXParser and DocumentBuilderFactory from JDK.<br>
  * Implements all features with wrappers.
  * @author donatmuller, 2013, last change 11:28:43 PM
- * 
+ *
  */
 public class XmlParserFactory implements IXmlParserFactory {
-	
+
 	private SAXParserFactory xmlParserFactory= null;
 	private DocumentBuilderFactory documentBuilderFactory = null;
 	private boolean validating = false;
 	private boolean namespaceAware = false;
 	private boolean xincludeAware = false;
-	
+
 	public static void registerFactory() {
 		IRegistry.register(new XmlParserFactory());
 	}
@@ -52,11 +48,11 @@ public class XmlParserFactory implements IXmlParserFactory {
 	protected XmlParserFactory() {
 		// not intended to create
 	}
-	
+
 	protected boolean isXIncludeSupported() {
 		return true;
 	}
-	
+
 	@Override
 	public void setNamespaceAware(boolean aware) {
 		this.namespaceAware = aware;
@@ -86,8 +82,8 @@ public class XmlParserFactory implements IXmlParserFactory {
 	@Override
 	public IInputSource newInputSource(Reader r) {
 		return new InputSource(r);
-	}	
-	
+	}
+
 	@Override
 	public IDocumentBuilderFactory newDocumentBuilderFactory() {
 		return XmlParserUnmarshaller.getDocumentBuilderFactory(getDocumentBuilderFactory());
@@ -101,7 +97,7 @@ public class XmlParserFactory implements IXmlParserFactory {
 			throw new ParserConfigurationException(e);
 		}
 	}
-	
+
     private SAXParserFactory getXmlParserFactory() {
         if (xmlParserFactory == null) {
         	xmlParserFactory = SAXParserFactory.newInstance();
@@ -114,13 +110,13 @@ public class XmlParserFactory implements IXmlParserFactory {
         }
         return (xmlParserFactory);
     }
-    
+
     private DocumentBuilderFactory getDocumentBuilderFactory() {
     	if (documentBuilderFactory==null) {
     		documentBuilderFactory = DocumentBuilderFactory.newInstance();
     		documentBuilderFactory.setNamespaceAware(namespaceAware);
     		if (isXIncludeSupported()) {
-        		documentBuilderFactory.setXIncludeAware(xincludeAware);	
+        		documentBuilderFactory.setXIncludeAware(xincludeAware);
     		}
     		documentBuilderFactory.setValidating(validating);
     	}
