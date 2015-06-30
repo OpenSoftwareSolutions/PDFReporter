@@ -11,24 +11,25 @@
  * limitations under the License.
  *
  */
-package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
+package org.oss.pdfreporter.uses.org.oss.evaluator.operator;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.string.AbstractOperatorAssociativityLeft;
 
-public abstract class AbstractNumericOperatorAssociativityLeftNoArg extends AbstractOperatorAssociativityLeft {
+public abstract class AbstractStringOperatorAssociativityLeftOneStringArg extends AbstractOperatorAssociativityLeft {
 
 
-	public AbstractNumericOperatorAssociativityLeftNoArg(String name, Precedence precendence) {
-		super(name, 0, precendence);
+	public AbstractStringOperatorAssociativityLeftOneStringArg(String name, Precedence precendence) {
+		super(name, 1, precendence);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public FunctionArgument<?> execute(FunctionArgument<?>... args) throws IllegalArgumentException {
 		assertNumArgs(args);
-		return execute();
+		return execute((FunctionArgument<String>)args[0]);
 	}
 
-	abstract protected FunctionArgument<?> execute() throws IllegalArgumentException;
+	abstract protected FunctionArgument<?> execute(FunctionArgument<String> a) throws IllegalArgumentException;
 
 }

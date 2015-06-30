@@ -13,8 +13,10 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The java.lang.String.compareTo() method compares two strings lexicographically.
@@ -25,7 +27,7 @@ import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgument
  * The result is zero if the strings are equal, compareTo returns 0 exactly when the equals(Object) method would return true.
  *
  */
-public class CompareToIgnoreCase extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class CompareToIgnoreCase extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public CompareToIgnoreCase() {
 		super("compareToIgnoreCase", Precedence.USERFUNCTION);
@@ -44,12 +46,10 @@ public class CompareToIgnoreCase extends AbstractStringOperatorAssociativityLeft
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			return FunctionArgumentFactory.createBoolean(stringA.compareToIgnoreCase(stringB));
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			return FunctionArgumentFactory.createBoolean(a.getValue().compareToIgnoreCase(b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only argument string as type are supported and not ", a.getType(), b.getType()));
 

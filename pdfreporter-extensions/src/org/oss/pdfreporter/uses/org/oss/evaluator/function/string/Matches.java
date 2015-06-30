@@ -13,15 +13,17 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The first argument is the source string to find the pattern in. The second argument is the pattern string to locate in the source string.
  * The string arguments must be enclosed in quotes.
  *
  */
-public class Matches extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class Matches extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public Matches() {
 		super("matches", Precedence.USERFUNCTION);
@@ -38,12 +40,10 @@ public class Matches extends AbstractStringOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			return FunctionArgumentFactory.createObject(stringA.matches(stringB));
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			return FunctionArgumentFactory.createObject(a.getValue().matches(b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only argument string as type are supported and not ", a.getType(), b.getType()));
 

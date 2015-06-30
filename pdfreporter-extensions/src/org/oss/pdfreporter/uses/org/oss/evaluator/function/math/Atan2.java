@@ -13,9 +13,10 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.DoubleArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
-import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractNumericOperatorAssociativityLeftTwoArg;
 
 
 /**
@@ -33,7 +34,7 @@ import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractNumericOperat
  * If both arguments are negative infinity, then the result is the double value closest to -3*pi/4.
  * A result must be within 2 ulps of the correctly rounded result. Results must be semi-monotonic.
  */
-public class Atan2 extends AbstractNumericOperatorAssociativityLeftTwoArg {
+public class Atan2 extends AbstractNumericOperatorAssociativityLeftTwoDoubleArg {
 
 	public Atan2() {
 		super("atan2", Precedence.USERFUNCTION);
@@ -45,10 +46,10 @@ public class Atan2 extends AbstractNumericOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.operator.AbstractNumericOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	public FunctionArgument<?> execute(FunctionArgument<?> a, FunctionArgument<?> b) throws IllegalArgumentException {
+	public FunctionArgument<Double> execute(FunctionArgument<Double> a, FunctionArgument<Double> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.DOUBLE && b.getType()==FunctionArgument.ArgumentType.DOUBLE) {
-			return FunctionArgumentFactory.createObject(Math.atan2(getDouble(a), getDouble(b)));
+		if (a instanceof DoubleArgument && b instanceof DoubleArgument) {
+			return FunctionArgumentFactory.createObject(Math.atan2(a.getValue(), b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only double operators supported and not ", a.getType(), b.getType()));
 	}

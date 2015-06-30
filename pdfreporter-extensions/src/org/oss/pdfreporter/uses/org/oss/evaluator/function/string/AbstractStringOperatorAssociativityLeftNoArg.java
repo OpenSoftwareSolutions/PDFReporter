@@ -12,6 +12,7 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 
 public abstract class AbstractStringOperatorAssociativityLeftNoArg extends AbstractOperatorAssociativityLeft {

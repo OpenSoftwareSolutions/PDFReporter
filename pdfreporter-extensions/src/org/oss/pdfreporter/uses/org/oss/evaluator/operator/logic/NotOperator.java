@@ -13,24 +13,19 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.operator.logic;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 
-public class NotOperator extends AbstractLogicOperation {
+public class NotOperator extends AbstractLogicOperatorAssociativityLeftOneArg {
 
 	public NotOperator() {
-		super("!", 1, Precedence.UNARY);
+		super("!", Precedence.UNARY);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public FunctionArgument<Boolean> execute(FunctionArgument<?>... args)
-			throws IllegalArgumentException {
-		assertNumArgs(args);
-		assertBoolean(args);
-		FunctionArgument<Boolean> a = (FunctionArgument<Boolean>) args[0];
-
-		return FunctionArgumentFactory.createObject(!a.getValue());
+	public FunctionArgument<Boolean> execute(FunctionArgument<Boolean> arg) throws IllegalArgumentException {
+		return FunctionArgumentFactory.createObject(!arg.getValue());
 	}
 
 	@Override

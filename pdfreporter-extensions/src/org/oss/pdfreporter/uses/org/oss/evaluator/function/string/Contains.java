@@ -13,14 +13,16 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The java.lang.String.contains() method returns true if and only if this string contains the specified sequence of char values.
  *
  */
-public class Contains extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class Contains extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public Contains() {
 		super("contains", Precedence.USERFUNCTION);
@@ -37,12 +39,10 @@ public class Contains extends AbstractStringOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			return FunctionArgumentFactory.createObject(stringA.contains(stringB));
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			return FunctionArgumentFactory.createObject(a.getValue().contains(b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only argument string as type are supported and not ", a.getType(), b.getType()));
 

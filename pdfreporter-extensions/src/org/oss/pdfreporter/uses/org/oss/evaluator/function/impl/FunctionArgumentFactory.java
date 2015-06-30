@@ -27,6 +27,9 @@ public class FunctionArgumentFactory {
 		if (token.equalsIgnoreCase("false")) {
 			return new BooleanArgument(Boolean.FALSE);
 		}
+		if (token.equalsIgnoreCase("null")) {
+			return new NullArgument();
+		}
 		if (isNumeric(token)) {
 			if (token.indexOf(".")>=0) {
 				return new DoubleArgument(Double.valueOf(token));

@@ -16,15 +16,16 @@ package org.oss.pdfreporter.uses.org.oss.evaluator.operator.date;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
-import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneArg;
+import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneStringArg;
 
 /**
  *returns a formatted "today".
  */
-public class CurrentDate extends AbstractStringOperatorAssociativityLeftOneArg {
+public class CurrentDate extends AbstractStringOperatorAssociativityLeftOneStringArg {
 
 	public CurrentDate() {
 		super("currentDate", Precedence.USERFUNCTION);
@@ -41,14 +42,12 @@ public class CurrentDate extends AbstractStringOperatorAssociativityLeftOneArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftOneArg#execute(org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING) {
-			String format = ((StringArgument)a).getValue();
-			SimpleDateFormat sdf = new SimpleDateFormat(format);
+		if (a instanceof StringArgument) {
+			SimpleDateFormat sdf = new SimpleDateFormat(a.getValue());
 			return FunctionArgumentFactory.createString(sdf.format(new Date()));
 		}
-
 		throw new IllegalArgumentException(String.format("only string as type is supported and not ", a.getType()));
 	}
 

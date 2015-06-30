@@ -16,13 +16,13 @@ package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
-import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneArg;
+import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneStringArg;
 
 /**
  * The java.lang.String.toLowerCase() method converts all of the characters in this String to upper case using the rules of the default locale.
  *
  */
-public class ToLowerCase extends AbstractStringOperatorAssociativityLeftOneArg {
+public class ToLowerCase extends AbstractStringOperatorAssociativityLeftOneStringArg {
 
 	public ToLowerCase() {
 		super("toLowerCase", Precedence.USERFUNCTION);
@@ -39,14 +39,11 @@ public class ToLowerCase extends AbstractStringOperatorAssociativityLeftOneArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftOneArg#execute(org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a)
-			throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING) {
-			String value = ((StringArgument)a).getValue();
-			return FunctionArgumentFactory.createString(value.toLowerCase());
+		if (a instanceof StringArgument) {
+			return FunctionArgumentFactory.createString(a.getValue().toLowerCase());
 		}
-
 		throw new IllegalArgumentException(String.format("only string as type is supported and not ", a.getType()));
 	}
 

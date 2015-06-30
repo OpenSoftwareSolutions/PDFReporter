@@ -13,6 +13,7 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.operator;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 
 public abstract class AbstractNumericOperatorAssociativityLeftTwoArg extends AbstractNumericOperator {

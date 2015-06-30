@@ -13,8 +13,10 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The first argument is the source string and the second argument is the like expression.
@@ -22,7 +24,7 @@ import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgument
  * The test is case insensitive.
  *
  */
-public class Like extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class Like extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public Like() {
 		super("like", Precedence.USERFUNCTION);
@@ -39,17 +41,15 @@ public class Like extends AbstractStringOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			if(!stringB.contains("%")){
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			if(!b.getValue().contains("%")){
 				throw new IllegalArgumentException(String.format("There is no wildcard in the expression of the parameter ", b.getValue()));
 			}
 			// to lower case
-			String lowerCaseA = stringA.toLowerCase();
-			String lowerCaseB = stringB.toLowerCase();
+			String lowerCaseA = a.getValue().toLowerCase();
+			String lowerCaseB = b.getValue().toLowerCase();
 			lowerCaseB = lowerCaseB.replace("%", ".*");
 			return FunctionArgumentFactory.createObject(lowerCaseA.matches(lowerCaseB));
 

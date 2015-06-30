@@ -12,6 +12,7 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.operator.primitive;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.IntegerArgument;

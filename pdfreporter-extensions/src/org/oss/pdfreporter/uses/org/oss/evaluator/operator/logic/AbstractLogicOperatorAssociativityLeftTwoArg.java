@@ -11,24 +11,25 @@
  * limitations under the License.
  *
  */
-package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
+package org.oss.pdfreporter.uses.org.oss.evaluator.operator.logic;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.string.AbstractOperatorAssociativityLeft;
 
-public abstract class AbstractNumericOperatorAssociativityLeftNoArg extends AbstractOperatorAssociativityLeft {
+public abstract class AbstractLogicOperatorAssociativityLeftTwoArg extends AbstractLogicOperation {
 
 
-	public AbstractNumericOperatorAssociativityLeftNoArg(String name, Precedence precendence) {
-		super(name, 0, precendence);
+	public AbstractLogicOperatorAssociativityLeftTwoArg(String name, Precedence precendence) {
+		super(name, 2, precendence);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public FunctionArgument<?> execute(FunctionArgument<?>... args) throws IllegalArgumentException {
 		assertNumArgs(args);
-		return execute();
+		assertBoolean(args);
+		return execute((FunctionArgument<Boolean>)args[0], (FunctionArgument<Boolean>)args[1]);
 	}
 
-	abstract protected FunctionArgument<?> execute() throws IllegalArgumentException;
+	abstract protected FunctionArgument<Boolean> execute(FunctionArgument<Boolean> a, FunctionArgument<Boolean> b) throws IllegalArgumentException;
 
 }

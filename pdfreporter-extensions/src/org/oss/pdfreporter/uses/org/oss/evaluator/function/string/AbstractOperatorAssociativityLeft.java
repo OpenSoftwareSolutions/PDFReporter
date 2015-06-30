@@ -12,6 +12,8 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Associativity;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractNumericOperator;
 
 

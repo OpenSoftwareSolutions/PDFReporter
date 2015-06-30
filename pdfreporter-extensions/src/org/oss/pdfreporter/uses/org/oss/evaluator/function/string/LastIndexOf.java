@@ -13,8 +13,10 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The java.lang.String.lastIndexOf(String str) method Returns the index within this string of the rightmost occurrence of the specified substring.
@@ -22,7 +24,7 @@ import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgument
  * The returned index is the largest value k such that this.startsWith(str, k) is true.
  *
  */
-public class LastIndexOf extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class LastIndexOf extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public LastIndexOf() {
 		super("lastIndexOf", Precedence.USERFUNCTION);
@@ -40,12 +42,10 @@ public class LastIndexOf extends AbstractStringOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			return FunctionArgumentFactory.createObject(stringA.lastIndexOf(stringB));
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			return FunctionArgumentFactory.createObject(a.getValue().lastIndexOf(b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only argument string as type are supported and not ", a.getType(), b.getType()));
 

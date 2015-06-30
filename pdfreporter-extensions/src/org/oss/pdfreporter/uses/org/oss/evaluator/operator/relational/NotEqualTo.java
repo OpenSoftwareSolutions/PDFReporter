@@ -13,6 +13,7 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.operator.relational;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 
@@ -23,8 +24,7 @@ public class NotEqualTo extends AbstractRelationalOperator {
 	}
 
 	@Override
-	protected FunctionArgument<Boolean> execute(Relation relation)
-			throws IllegalArgumentException {
+	protected FunctionArgument<Boolean> execute(Relation relation) throws IllegalArgumentException {
 		return FunctionArgumentFactory.createObject(!(Relation.EQUAL==relation));
 	}
 

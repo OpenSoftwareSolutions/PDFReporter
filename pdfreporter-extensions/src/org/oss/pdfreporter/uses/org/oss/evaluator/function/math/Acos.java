@@ -14,7 +14,9 @@
 
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.DoubleArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 
 /**
@@ -37,8 +39,8 @@ public class Acos extends AbstractNumericOperatorAssociativityLeftOneArg {
 	 * @see org.oss.evaluator.operator.AbstractNumericOperatorAssociativityLeftOneArg#execute(org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a) throws IllegalArgumentException {
-		if (a.getType()==FunctionArgument.ArgumentType.DOUBLE) {
+	protected FunctionArgument<Double> execute(FunctionArgument<Double> a) throws IllegalArgumentException {
+		if (a instanceof DoubleArgument) {
 			return FunctionArgumentFactory.createObject(Math.acos(getDouble(a)));
 		}
 		throw new IllegalArgumentException(String.format("only double operator supported and not ", a.getType()));

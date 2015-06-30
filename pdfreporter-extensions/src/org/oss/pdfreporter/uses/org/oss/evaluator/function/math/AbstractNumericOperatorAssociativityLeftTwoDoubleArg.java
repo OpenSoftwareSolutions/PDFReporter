@@ -12,23 +12,26 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.string.AbstractOperatorAssociativityLeft;
+import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractNumericOperator;
 
-public abstract class AbstractNumericOperatorAssociativityLeftNoArg extends AbstractOperatorAssociativityLeft {
+public abstract class AbstractNumericOperatorAssociativityLeftTwoDoubleArg extends AbstractNumericOperator {
 
 
-	public AbstractNumericOperatorAssociativityLeftNoArg(String name, Precedence precendence) {
-		super(name, 0, precendence);
+	public AbstractNumericOperatorAssociativityLeftTwoDoubleArg(String name, Precedence precendence) {
+		super(name, 2, Function.Associativity.LEFT, precendence);
 	}
 
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public FunctionArgument<?> execute(FunctionArgument<?>... args) throws IllegalArgumentException {
 		assertNumArgs(args);
-		return execute();
+		assertNumeric(args);
+		return execute((FunctionArgument<Double>)args[0], (FunctionArgument<Double>)args[1]);
 	}
 
-	abstract protected FunctionArgument<?> execute() throws IllegalArgumentException;
+	abstract protected FunctionArgument<Double> execute(FunctionArgument<Double> a, FunctionArgument<Double> b) throws IllegalArgumentException;
 
 }

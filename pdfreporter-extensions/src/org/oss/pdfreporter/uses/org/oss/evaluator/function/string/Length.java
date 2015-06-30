@@ -16,9 +16,9 @@ package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
-import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneArg;
+import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractStringOperatorAssociativityLeftOneStringArg;
 
-public class Length extends AbstractStringOperatorAssociativityLeftOneArg {
+public class Length extends AbstractStringOperatorAssociativityLeftOneStringArg {
 
 	public Length() {
 		super("len", Precedence.USERFUNCTION);
@@ -32,12 +32,10 @@ public class Length extends AbstractStringOperatorAssociativityLeftOneArg {
 
 
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a)
-			throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING) {
-			String value = ((StringArgument)a).getValue();
-			return FunctionArgumentFactory.createObject(value.length());
+		if (a instanceof StringArgument) {
+			return FunctionArgumentFactory.createObject(a.getValue().length());
 		}
 
 		throw new IllegalArgumentException(String.format("only string as type is supported and not ", a.getType()));

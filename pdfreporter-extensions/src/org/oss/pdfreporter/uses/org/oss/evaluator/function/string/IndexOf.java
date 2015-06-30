@@ -13,8 +13,10 @@
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.string;
 
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.StringArgument;
 
 /**
  * The java.lang.String.indexOf(int ch) method returns the index within this string of the first occurrence of the specified character.
@@ -22,7 +24,7 @@ import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgument
  * then the index(Unicode code units) of the first such occurrence is returned.
  *
  */
-public class IndexOf extends AbstractStringOperatorAssociativityLeftTwoArg {
+public class IndexOf extends AbstractStringOperatorAssociativityLeftTwoStringArg {
 
 	public IndexOf() {
 		super("indexOf", Precedence.USERFUNCTION);
@@ -39,12 +41,10 @@ public class IndexOf extends AbstractStringOperatorAssociativityLeftTwoArg {
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a,FunctionArgument<?> b) throws IllegalArgumentException {
+	protected FunctionArgument<?> execute(FunctionArgument<String> a,FunctionArgument<String> b) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.STRING && b.getType()==FunctionArgument.ArgumentType.STRING) {
-			String stringA = (String) a.getValue();
-			String stringB = (String) b.getValue();
-			return FunctionArgumentFactory.createObject(stringA.indexOf(stringB));
+		if (a instanceof StringArgument && b instanceof StringArgument) {
+			return FunctionArgumentFactory.createObject(a.getValue().indexOf(b.getValue()));
 		}
 		throw new IllegalArgumentException(String.format("only argument string as type are supported and not ", a.getType(), b.getType()));
 

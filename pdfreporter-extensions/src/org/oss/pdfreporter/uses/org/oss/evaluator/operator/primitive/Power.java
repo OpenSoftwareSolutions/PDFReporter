@@ -12,9 +12,11 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.operator.primitive;
+import java.math.BigInteger;
+
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.IntegerArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.operator.AbstractNumericOperatorAssociativityLeftTwoArg;
 
 public class Power extends AbstractNumericOperatorAssociativityLeftTwoArg {
@@ -28,7 +30,8 @@ public class Power extends AbstractNumericOperatorAssociativityLeftTwoArg {
 	protected FunctionArgument<?> execute(FunctionArgument<?> a,
 			FunctionArgument<?> b) throws IllegalArgumentException {
 		if (a.getType()==FunctionArgument.ArgumentType.INTEGER && b.getType()==FunctionArgument.ArgumentType.INTEGER) {
-			return FunctionArgumentFactory.createObject(((IntegerArgument)a).getValue() ^ ((IntegerArgument)b).getValue());
+			BigInteger bigA = new BigInteger(a.getString());
+			return FunctionArgumentFactory.createObject(bigA.pow(((FunctionArgument<Integer>)b).getValue().intValue()).intValue());
 		}
 		return FunctionArgumentFactory.createObject(Math.pow(getDouble(a), getDouble(b)));
 	}

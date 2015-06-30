@@ -27,7 +27,7 @@ public class VariableArgument implements FunctionArgument {
 
 	private final String variableName;
 
-	public VariableArgument(String variableName) {
+	VariableArgument(String variableName) {
 		super();
 		this.variableName = variableName;
 	}
@@ -50,4 +50,5 @@ public class VariableArgument implements FunctionArgument {
 	public String getName() {
 		return variableName;
 	}
+
 }

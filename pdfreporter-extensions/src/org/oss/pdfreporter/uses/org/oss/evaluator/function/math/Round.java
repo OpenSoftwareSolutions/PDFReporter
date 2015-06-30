@@ -12,10 +12,12 @@
  *
  */
 package org.oss.pdfreporter.uses.org.oss.evaluator.function.math;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function.Precedence;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
+import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.DoubleArgument;
 import org.oss.pdfreporter.uses.org.oss.evaluator.function.impl.FunctionArgumentFactory;
 
-public class Round extends AbstractNumericOperatorAssociativityLeftOneArg {
+public class Round extends AbstractNumericOperatorAssociativityLeftOneArgReturnInt {
 
 	public Round() {
 		super("round", Precedence.USERFUNCTION);
@@ -28,9 +30,9 @@ public class Round extends AbstractNumericOperatorAssociativityLeftOneArg {
 
 
 	@Override
-	protected FunctionArgument<?> execute(FunctionArgument<?> a) throws IllegalArgumentException {
+	protected FunctionArgument<Integer> execute(FunctionArgument<Double> a) throws IllegalArgumentException {
 
-		if (a.getType()==FunctionArgument.ArgumentType.DOUBLE) {
+		if (a instanceof DoubleArgument) {
 			return FunctionArgumentFactory.createObject((int)Math.round(getDouble(a)));
 		}
 
