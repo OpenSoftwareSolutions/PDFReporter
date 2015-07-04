@@ -11,6 +11,8 @@
 package org.oss.pdfreporter.compilers.jshuntingyard;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,11 +27,21 @@ import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.BooleanConverter;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.Conditional;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.CurrentDate;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.DateStringConverter;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.DisplayName;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.DoubleStringConverter;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.IntegerStringConverter;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.IsNull;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.Message;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.TruncateDateTo;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
-import org.oss.pdfreporter.uses.org.oss.evaluator.Evaluator;
-import org.oss.pdfreporter.uses.org.oss.evaluator.Variable;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.Function;
-import org.oss.pdfreporter.uses.org.oss.evaluator.function.FunctionArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.Evaluator;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.Variable;
 
 
 public class JSHuntingYardExpression {
@@ -37,22 +49,10 @@ public class JSHuntingYardExpression {
 
 	private final static Logger logger = Logger.getLogger(JSHuntingYardExpression.class.getName());
 	private final Map<String,IVariable> variables;
-	private final Map<String,Function> userFunctions;
+	private final Collection<FunctionElement> userFunctions;
 	private Evaluator newEval;
 	private Evaluator oldEval;
 	private String expression;
-
-	public JSHuntingYardExpression() {
-		this.variables = new HashMap<String, IVariable>();
-		this.userFunctions = new HashMap<String, Function>();
-		//putFunction(new MessageWithArg());
-	}
-
-
-	private void putFunction(Function function) {
-		userFunctions.put(function.getName(), function);
-	}
-
 
 	public static JSHuntingYardExpression newInstance(List<IExpressionChunk> chunks) throws ExpressionParseException, ExpressionEvaluationException {
 		JSHuntingYardExpression expression = new JSHuntingYardExpression();
@@ -60,15 +60,36 @@ public class JSHuntingYardExpression {
 		return expression;
 	}
 
-	private void parse(List<IExpressionChunk> chunks) throws ExpressionParseException, ExpressionEvaluationException  {
-		this.expression = buildExpression(chunks);
+	public JSHuntingYardExpression() {
+		this.variables = new HashMap<String, IVariable>();
+		this.userFunctions = new ArrayList<FunctionElement>();
+		putFunction(new BooleanConverter());
+		putFunction(new IntegerStringConverter());
+		putFunction(new DoubleStringConverter());
+		putFunction(new DateStringConverter());
+		putFunction(new TruncateDateTo());
+		putFunction(new Conditional());
+		putFunction(new CurrentDate());
+		putFunction(new IsNull());
+		putFunction(new Message());
+		putFunction(new DisplayName());
+	}
 
-		this.newEval = new Evaluator(expression);
-		this.newEval.getFunctions().putAll(this.userFunctions);
+	private void putFunction(FunctionElement function) {
+		userFunctions.add(function);
+	}
+
+	private void parse(List<IExpressionChunk> chunks) throws ExpressionParseException, ExpressionEvaluationException  {
+		expression = buildExpression(chunks);
+
+		newEval = new Evaluator();
+		newEval.addFunctions(userFunctions);
+		newEval.parse(expression);
 		bindVariables(newEval,variables,false);
 
-		this.oldEval = new Evaluator(expression);
-		this.oldEval.getFunctions().putAll(this.userFunctions);
+		oldEval = new Evaluator();
+		oldEval.addFunctions(userFunctions);
+		oldEval.parse(expression);
 		bindVariables(oldEval,variables,true);
 	}
 
@@ -119,7 +140,7 @@ public class JSHuntingYardExpression {
 
 	public Object evaluateValue() throws ExpressionEvaluationException {
 		try {
-			FunctionArgument<?> evaluate = this.newEval.evaluate();
+			FunctionElementArgument<?> evaluate = this.newEval.evaluate();
 			return evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
@@ -128,7 +149,7 @@ public class JSHuntingYardExpression {
 
 	public Object evaluateOldValue() throws ExpressionEvaluationException {
 		try {
-			FunctionArgument<?> evaluate = this.oldEval.evaluate();
+			FunctionElementArgument<?> evaluate = this.oldEval.evaluate();
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
