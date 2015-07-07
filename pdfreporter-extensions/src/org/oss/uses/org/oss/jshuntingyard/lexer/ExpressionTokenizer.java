@@ -21,15 +21,12 @@ import java.util.regex.Pattern;
 
 public class ExpressionTokenizer{
 
-	public ExpressionTokenizer(){
+	private ExpressionTokenizer(){
 		// nothing
 	}
 
-	public static List<ExpressionToken> tokenize(String source){
-		return tokenize(source, ExpressionRule.getJSHuntingYardRules());
-	}
 
-	public static List<ExpressionToken> tokenize(String source, List<ExpressionRule> rules){
+	public static List<ExpressionToken> tokenize(String source){
 		List<ExpressionToken> tokens = new ArrayList<ExpressionToken>();
 		int pos = 0;
 		final int end = source.length();
@@ -37,9 +34,9 @@ public class ExpressionTokenizer{
 		m.useTransparentBounds(true).useAnchoringBounds(false);
 		while (pos < end){
 			m.region(pos, end);
-			for (ExpressionRule r : rules){
-				if (m.usePattern(r.pattern).lookingAt()){
-					tokens.add(new ExpressionToken(r.name, m.start(), m.end(), source));
+			for (TokenType tokenType : TokenType.values()){
+				if (m.usePattern(tokenType.pattern()).lookingAt()){
+					tokens.add(new ExpressionToken(tokenType, m.start(), m.end(), source));
 					pos = m.end()-1;
 					break;
 				}
@@ -49,13 +46,4 @@ public class ExpressionTokenizer{
 		return tokens;
 	}
 
-	public static String [] getTokenAsStringArray(List<ExpressionToken> tokens){
-		String[] result = new String[tokens.size()];
-		int i = 0;
-		for(ExpressionToken token : tokens){
-			result[i] = token.getToken();
-			i++;
-		}
-		return result;
-	}
 }

@@ -19,7 +19,7 @@ public interface FunctionElement extends ExpressionElement {
 	public enum Associativity {LEFT,RIGHT};
 	public enum Precedence {ASSIGNMENT,LOGICAL_OR, LOGICAL_AND, EQULITY, RELATIONAL, ADDITIVE, MULTIPLICATIVE, POWER, UNARY, PARANTHESES, USERFUNCTION};
 
-
+	// TODO remove isUserFunction as it is obsolete for the algorithm the lexer can distinguish operators from functions
 
 	/**
 	 * Associativity LEFT or RIGHT

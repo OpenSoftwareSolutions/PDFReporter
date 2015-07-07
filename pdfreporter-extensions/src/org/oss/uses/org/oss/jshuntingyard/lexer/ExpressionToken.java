@@ -13,32 +13,23 @@
  */
 package org.oss.uses.org.oss.jshuntingyard.lexer;
 
+
 public class ExpressionToken {
 
-	private final String name;
+	private final TokenType type;
 	private final int startPos;
 	private final int endPos;
 	private final String token;
 
-	public ExpressionToken(String name, int startPos, int endPos, String source){
-		this.name = name;
+	public ExpressionToken(TokenType type, int startPos, int endPos, String source){
+		this.type = type;
 		this.startPos = startPos;
 		this.endPos = endPos;
 		this.token = source.substring(startPos, endPos);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-
-	public int getStartPos() {
-		return startPos;
-	}
-
-
-	public int getEndPos() {
-		return endPos;
+	public TokenType getType() {
+		return type;
 	}
 
 
@@ -48,6 +39,6 @@ public class ExpressionToken {
 
 	@Override
 	public String toString(){
-		return String.format("ExpressionToken [%2d, %2d, %s, %s]", startPos, endPos, name, token);
+		return String.format("ExpressionToken [%2d, %2d, %s, %s]", startPos, endPos, type, token);
 	}
 }

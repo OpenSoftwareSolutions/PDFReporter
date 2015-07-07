@@ -104,4 +104,9 @@ public abstract class AbstractFunctionElement implements FunctionElement {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 }

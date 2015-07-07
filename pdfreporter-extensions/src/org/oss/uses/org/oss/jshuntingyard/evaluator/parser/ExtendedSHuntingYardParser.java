@@ -15,6 +15,7 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.parser;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -24,63 +25,9 @@ import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement.Associativity;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.Expression;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.ExpressionElement;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.AndOperator;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.NotOperator;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.OrOperator;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Add;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Divide;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Modulo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Multiply;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Power;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.Subtract;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.EqualTo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.GreaterThan;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.GreaterThanOrEqualTo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.LessThan;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.LessThanOrEqualTo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.NotEqualTo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Abs;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Acos;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Asin;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Atan;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Atan2;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Ceil;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Cos;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Exp;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Floor;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.IEEEremainder;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Log;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Max;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Min;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Random;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Rint;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Round;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Sin;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Sqrt;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Tan;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.ToDegrees;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.ToRadians;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.CharAt;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.CompareTo;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.CompareToIgnoreCase;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Concat;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Contains;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.EndsWith;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Equals;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.EqualsIgnoreCase;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.IndexOf;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.LastIndexOf;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Length;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Like;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Matches;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.NumberFormat;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Replace;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.StartsWith;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.Substring;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.ToLowerCase;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.string.ToUpperCase;
 import org.oss.uses.org.oss.jshuntingyard.lexer.ExpressionToken;
 import org.oss.uses.org.oss.jshuntingyard.lexer.ExpressionTokenizer;
+import org.oss.uses.org.oss.jshuntingyard.lexer.TokenType;
 
 /**
  * Shunting-yard algorithm
@@ -99,69 +46,10 @@ import org.oss.uses.org.oss.jshuntingyard.lexer.ExpressionTokenizer;
 public class ExtendedSHuntingYardParser {
 
 	private final Map<String,FunctionElement> functionElements;
+	
 	public ExtendedSHuntingYardParser() {
-		functionElements = new HashMap<String, FunctionElement>();
-		// Primitiv
-		addFunction(new Add());
-		addFunction(new Subtract());
-		addFunction(new Multiply());
-		addFunction(new Divide());
-		addFunction(new Power());
-		addFunction(new Modulo());
-		// Math
-		addFunction(new Round());
-		addFunction(new Max());
-		addFunction(new Min());
-		addFunction(new Abs());
-		addFunction(new Acos());
-		addFunction(new Cos());
-		addFunction(new Asin());
-		addFunction(new Atan());
-		addFunction(new Atan2());
-		addFunction(new Ceil());
-		addFunction(new Exp());
-		addFunction(new Floor());
-		addFunction(new IEEEremainder());
-		addFunction(new Log());
-		addFunction(new Random());
-		addFunction(new Rint());
-		addFunction(new Sin());
-		addFunction(new Sqrt());
-		addFunction(new Tan());
-		addFunction(new ToDegrees());
-		addFunction(new ToRadians());
-
-		// Relational
-		addFunction(new EqualTo());
-		addFunction(new NotEqualTo());
-		addFunction(new LessThan());
-		addFunction(new GreaterThan());
-		addFunction(new LessThanOrEqualTo());
-		addFunction(new GreaterThanOrEqualTo());
-		// Logic
-		addFunction(new AndOperator());
-		addFunction(new OrOperator());
-		addFunction(new NotOperator());
-		// String
-		addFunction(new Length());
-		addFunction(new Substring());
-		addFunction(new CharAt());
-		addFunction(new CompareTo());
-		addFunction(new CompareToIgnoreCase());
-		addFunction(new Equals());
-		addFunction(new EqualsIgnoreCase());
-		addFunction(new Concat());
-		addFunction(new Contains());
-		addFunction(new EndsWith());
-		addFunction(new StartsWith());
-		addFunction(new Replace());
-		addFunction(new ToUpperCase());
-		addFunction(new ToLowerCase());
-		addFunction(new IndexOf());
-		addFunction(new LastIndexOf());
-		addFunction(new Like());
-		addFunction(new Matches());
-		addFunction(new NumberFormat());
+		this.functionElements = new HashMap<String, FunctionElement>();
+		addFunctions(UserFunctions.get());
 	}
 
 	/**
@@ -182,14 +70,6 @@ public class ExtendedSHuntingYardParser {
 		}
 	}
 
-	/**
-	 * Test if a certain is an operator .
-	 * @param token The token to be tested .
-	 * @return True if token is an operator . Otherwise False .
-	 */
-	private boolean isOperator(String token) {
-		return functionElements.containsKey(token);
-	}
 	/**
 	 * Test if a certain is an function element .
 	 * @param token The token to be tested .
@@ -241,26 +121,31 @@ public class ExtendedSHuntingYardParser {
 
 		//String[] tokens = TokenizerUtil.modifyExpression(expression).split(TokenizerUtil.DELIMITER);
 		List<ExpressionToken> tokens = ExpressionTokenizer.tokenize(expression);
-		return infixToRPN(ExpressionTokenizer.getTokenAsStringArray(tokens));
+		return infixToRPN(tokens.iterator(),false);
 	}
 
-	public Expression infixToRPN(String[] inputTokens) {
+	public Expression infixToRPN(Iterator<ExpressionToken> tokenIterator, boolean stopAtNextCloseBrace) {
 		Expression out = new Expression();
 		Stack<ExpressionElement> stack = new Stack<ExpressionElement>();
 			// For all the input tokens [S1] read the next token [S2]
-			for (int tokenIndex = 0; tokenIndex<inputTokens.length;tokenIndex++) {
-				String token = inputTokens[tokenIndex];
-				if (isOperator(token)) {
-					FunctionElement operator = functionElements.get(token);
-					if (operator.isUserFunction()) {
-						int paramsStart = out.size();
-						tokenIndex = new UserFunctionParser(out).parse(inputTokens,tokenIndex);
-						if (operator.getNumberOfParameters()==-1) {
-							operator = new VarArgFunctionElementWrapper(operator, out.size() - paramsStart);
-						}
-						out.add(operator);
-						continue;
+			while (tokenIterator.hasNext()) {
+				ExpressionToken token = tokenIterator.next();
+				if (token.getType()==TokenType.COMMA) {
+					continue;
+				} else if (token.getType()==TokenType.FUNCTIONNAME) {
+					FunctionElement function = functionElements.get(token.getToken());
+					if (function== null) {
+						throw new IllegalArgumentException("Unknown function: " + token.getToken());
 					}
+					int paramsStart = out.size();
+					out.addAll(infixToRPN(tokenIterator,true));
+					if (function.getNumberOfParameters()==-1) {
+						function = new VarArgFunctionElementWrapper(function, out.size() - paramsStart);
+					}
+					out.add(function);
+					continue;
+				} else if (token.getType()==TokenType.OPERATOR) {
+					FunctionElement operator = functionElements.get(token.getToken());
 					// If token is an operator (x) [S3]
 					while (!stack.empty() && isFunctionElement(stack.peek())) {
 						// [S4]
@@ -275,16 +160,19 @@ public class ExtendedSHuntingYardParser {
 					}
 					// Push the new operator on the stack [S7]
 					stack.push(operator);
-				} else if (token.equals("(")) {
+				} else if (token.getType()==TokenType.OPENBRACE) {
 					stack.push(new LeftParenthese()); 	// [S8]
-				} else if (token.equals(")")) {
+				} else if (token.getType()==TokenType.CLOSEBRACE) {
+					if (stopAtNextCloseBrace) {
+						return out;
+					}
 					// [S9]
 					while (!stack.empty() && !(stack.peek() instanceof LeftParenthese)) {
 						out.add(stack.pop()); // [S10]
 					}
 					stack.pop(); // [S11]
-				} else if (!token.isEmpty()){
-					out.add(FunctionArgumentFactory.createObject(token)); // [S12]
+				} else if (!token.getToken().isEmpty()){
+					out.add(FunctionArgumentFactory.createObject(token.getToken())); // [S12]
 				}
 			}
 			while (!stack.empty()) {

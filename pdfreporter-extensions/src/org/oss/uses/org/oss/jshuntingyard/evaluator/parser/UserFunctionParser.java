@@ -13,43 +13,44 @@
  */
 package org.oss.uses.org.oss.jshuntingyard.evaluator.parser;
 
+import java.util.Iterator;
+
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.Expression;
+import org.oss.uses.org.oss.jshuntingyard.lexer.ExpressionToken;
 
 public class UserFunctionParser {
-
-	private final Expression out;
-
-	UserFunctionParser(Expression out) {
-		this.out = out;
-	}
-
-	public int parse(String[] inputTokens, int tokenIndex) {
-		tokenIndex++; // read over function name
-		if (tokenIndex<inputTokens.length ) {
-			if (inputTokens[tokenIndex].equals("(")) {
+	
+	public static Expression parse(Iterator<ExpressionToken> tokenIterator) {
+		Expression out = new Expression();
+		if (tokenIterator.hasNext()) {
+			ExpressionToken token = tokenIterator.next();
+			if (token.getToken().equals("(")) {
 				boolean colonExpected = false;
-				while (!inputTokens[++tokenIndex].equals(")") && tokenIndex<inputTokens.length ) {
+				while (tokenIterator.hasNext()) {
+					token = tokenIterator.next();
+					if (token.getToken().equals(")")) {
+						break;
+					}
 					if (colonExpected) {
-						if (inputTokens[tokenIndex].equals(",")) {
+						if (token.getToken().equals(",")) {
 							colonExpected=false;
 							continue;
 						}
 						throw new IllegalArgumentException("Missing token ','" );
 					} else {
-						out.add(FunctionArgumentFactory.createObject(inputTokens[tokenIndex]));
+						out.add(FunctionArgumentFactory.createObject(token.getToken()));
 						colonExpected = true;
 					}
 				}
-				if (tokenIndex>=inputTokens.length ) {
+				if (!token.getToken().equals(")")) {
 					throw new IllegalArgumentException("Missing token ')'" );
 				}
 			} else {
-				throw new IllegalArgumentException("Invalid Token '(' expected." + inputTokens[tokenIndex]);
+				throw new IllegalArgumentException("Invalid Token '(' expected and not: " + token.getToken());
 			}
 		}
-		return tokenIndex;
+		return out;
 	}
-
 
 }
