@@ -141,7 +141,8 @@ public class JSHuntingYardExpression {
 	public Object evaluateValue() throws ExpressionEvaluationException {
 		try {
 			FunctionElementArgument<?> evaluate = this.newEval.evaluate();
-			return evaluate.getValue();
+			logger.info("Evaluating exprsseion: '" + expression + "' to: " + evaluate.getValue());
+			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
 		}
@@ -150,6 +151,7 @@ public class JSHuntingYardExpression {
 	public Object evaluateOldValue() throws ExpressionEvaluationException {
 		try {
 			FunctionElementArgument<?> evaluate = this.oldEval.evaluate();
+			logger.info("Evaluating exprsseion: '" + expression + "' to: " + evaluate.getValue());
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);

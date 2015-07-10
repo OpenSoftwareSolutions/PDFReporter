@@ -162,7 +162,9 @@ public class JEvalExpression {
 
 	public String evaluateValue() throws ExpressionEvaluationException {
 		try {
-			return valueEvaluator.evaluate();
+			String value =  valueEvaluator.evaluate();
+			logger.info("Evaluating exprsseion: '" + expression + "' to: " + value);
+			return value;
 		} catch (EvaluationException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
 		}
@@ -170,7 +172,9 @@ public class JEvalExpression {
 
 	public String evaluateOldValue() throws ExpressionEvaluationException {
 		try {
-			return  oldValueEvaluator.evaluate();
+			String value = oldValueEvaluator.evaluate();
+			logger.info("Evaluating exprsseion: '" + expression + "' to: " + value);
+			return value;
 		} catch (EvaluationException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
 		}

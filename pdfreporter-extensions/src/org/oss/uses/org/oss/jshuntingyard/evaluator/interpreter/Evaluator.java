@@ -95,17 +95,17 @@ public class Evaluator {
 					}
 				}
 				FunctionElementArgument<?> result = function.execute(args);
-				if (logger.isLoggable(Level.INFO)) {
-					String message = "Evaluated: " + result.getValue() + "[" + result.getType() + "] " + function.getName() + "(";
-					for (int i=0; i<numArgs; i++) {
-						message += args[i].getValue() + "[" + args[i].getType() + "]";
-						if (i+1 < numArgs) {
-							message += ",";
-						}
-					}
-					message += ")";
-					logger.info(message);
-				}
+//				if (logger.isLoggable(Level.FINEST)) {
+//					String message = "Evaluated: " + result.getValue() + "[" + result.getType() + "] " + function.getName() + "(";
+//					for (int i=0; i<numArgs; i++) {
+//						message += args[i].getValue() + "[" + args[i].getType() + "]";
+//						if (i+1 < numArgs) {
+//							message += ",";
+//						}
+//					}
+//					message += ")";
+//					logger.info(message);
+//				}
 				stack.push(result);
 			} else {
 				throw new IllegalArgumentException("FunctionElementArgument or FunctionElement expected and not " + element.getClass().getName());
