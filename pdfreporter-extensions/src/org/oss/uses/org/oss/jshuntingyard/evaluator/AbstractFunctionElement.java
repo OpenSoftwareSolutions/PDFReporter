@@ -85,6 +85,15 @@ public abstract class AbstractFunctionElement implements FunctionElement {
 		}
 		return true;
 	}
+	
+	protected boolean isOneString(FunctionElementArgument<?>... args) throws IllegalArgumentException {
+		for (FunctionElementArgument<?> arg : args) {
+			if ((arg.getType()==FunctionElementArgument.ArgumentType.STRING)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	protected boolean isInteger(FunctionElementArgument<?>... args) throws IllegalArgumentException {
 		for (FunctionElementArgument<?> arg : args) {

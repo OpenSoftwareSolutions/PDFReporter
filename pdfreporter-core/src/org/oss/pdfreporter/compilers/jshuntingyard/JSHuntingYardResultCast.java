@@ -20,7 +20,6 @@ import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IExpressionElement;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionType;
 import org.oss.pdfreporter.compilers.util.ResultUtil;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 
 
 public class JSHuntingYardResultCast implements IExpressionElement{
@@ -57,6 +56,7 @@ public class JSHuntingYardResultCast implements IExpressionElement{
 		throw new ExpressionParseException("Pattern: " + CAST_SPLIT + " does not match: " + text);
 	}
 
+	// TODO (27.08.2015, Donat, Open Software Solutions): Add case for void / object / null
 	public static JSHuntingYardResultCast parseCast(String s) throws ExpressionParseException {
 		if (s.matches(CAST_MATCH)) {
 			String cast = extract(CAST_SPLIT, s);
@@ -89,20 +89,20 @@ public class JSHuntingYardResultCast implements IExpressionElement{
 	public void setExpression(JSHuntingYardExpression expression) {
 		this.expression = expression;
 	}
-
-	public void assertResultType(String result) throws ExpressionEvaluationException {
-		boolean isText = ResultUtil.isString(result, EvaluationConstants.SINGLE_QUOTE);
-		if (type==ExpressionType.STRING  && !isText) {
-			throw new ExpressionEvaluationException("Result of type String expected actual value is unquoted: " + result);
-		} else if (type!=ExpressionType.STRING  && isText) {
-			throw new ExpressionEvaluationException("Result of type " + type + " expected actual value is quoted: " + result);
+	
+	private Object doCast(Object result) throws ExpressionEvaluationException {
+		if (result == null) {
+			return null;
 		}
+		ResultUtil.assertResultType(type, result);
+		return result;
 	}
+	
 
 	@Override
 	public Object getValue() throws ExpressionEvaluationException {
 		try {
-			return this.expression.evaluateValue();
+			return doCast(this.expression.evaluateValue());
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Error evaluating expression: " + expression.getExpression(), e);
 			throw new ExpressionEvaluationException(e);
@@ -112,7 +112,7 @@ public class JSHuntingYardResultCast implements IExpressionElement{
 	@Override
 	public Object getOldValue() throws ExpressionEvaluationException {
 		try {
-			return this.expression.evaluateOldValue();
+			return doCast(this.expression.evaluateOldValue());
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Error evaluating expression: " + expression.getExpression(), e);
 			throw new ExpressionEvaluationException(e);

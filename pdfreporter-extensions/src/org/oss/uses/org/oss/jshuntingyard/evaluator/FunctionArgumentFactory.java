@@ -13,6 +13,8 @@
  */
 package org.oss.uses.org.oss.jshuntingyard.evaluator;
 
+import java.util.Date;
+
 
 public class FunctionArgumentFactory {
 
@@ -51,6 +53,14 @@ public class FunctionArgumentFactory {
 
 	public static FunctionElementArgument<Double> createObject(Double value) {
 		return new DoubleArgument(value);
+	}
+
+	public static FunctionElementArgument<Long> createObject(Long value) {
+		return new LongArgument(value);
+	}
+
+	public static FunctionElementArgument<Date> createObject(Date value) {
+		return new DateArgument(value);
 	}
 
 	public static FunctionElementArgument<Integer> createObject(Integer value) {

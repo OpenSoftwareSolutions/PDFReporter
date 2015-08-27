@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
@@ -163,7 +164,7 @@ public class JEvalExpression {
 	public String evaluateValue() throws ExpressionEvaluationException {
 		try {
 			String value =  valueEvaluator.evaluate();
-			logger.info("Evaluating exprsseion: '" + expression + "' to: " + value);
+			logger.log(Level.INFO, "Evaluating new exprsseion: {0} to {1} of type: {2}", new Object[] {expression,value,value.startsWith("'") ? "STRING" : "DOUBLE"});
 			return value;
 		} catch (EvaluationException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
@@ -173,7 +174,7 @@ public class JEvalExpression {
 	public String evaluateOldValue() throws ExpressionEvaluationException {
 		try {
 			String value = oldValueEvaluator.evaluate();
-			logger.info("Evaluating exprsseion: '" + expression + "' to: " + value);
+			logger.log(Level.INFO, "Evaluating old exprsseion: {0} to {1} of type: {2}", new Object[] {expression,value,value.startsWith("'") ? "STRING" : "DOUBLE"});
 			return value;
 		} catch (EvaluationException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);

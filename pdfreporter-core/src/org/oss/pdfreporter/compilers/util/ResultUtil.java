@@ -12,7 +12,9 @@ package org.oss.pdfreporter.compilers.util;
 
 import java.util.Date;
 
+import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
+import org.oss.pdfreporter.compilers.expressionelements.ExpressionType;
 import org.oss.pdfreporter.converters.DecimalConverter;
 
 
@@ -58,6 +60,45 @@ public class ResultUtil {
 
 	public static Boolean getBooleanResult(String result) {
 		return ExpressionConstants.EXP_TRUE.equals(result);
+	}
+	
+	public static void assertResultType(ExpressionType expectedType, Object result) throws ExpressionEvaluationException{
+		switch (expectedType) {
+		case DATE:
+			if (!(result instanceof Date)) {
+				throw new ExpressionEvaluationException("Date result expected and not: " + getType(result));
+			}
+			break;
+		case DOUBLE:
+			if (!(result instanceof Double)) {
+				throw new ExpressionEvaluationException("Double result expected and not: " + getType(result));
+			}
+			break;
+		case LONG:
+			if (!(result instanceof Long)) {
+				throw new ExpressionEvaluationException("Long result expected and not: " + getType(result));
+			}
+			break;
+		case INTEGER:
+			if (!(result instanceof Integer)) {
+				throw new ExpressionEvaluationException("Integer result expected and not: " + getType(result));
+			}
+			break;
+		case BOOLEAN:
+			if (!(result instanceof Boolean)) {
+				throw new ExpressionEvaluationException("Boolean result expected and not: " + getType(result));
+			}
+			break;
+		case STRING:
+			if (!(result instanceof String)) {
+				throw new ExpressionEvaluationException("String result expected and not: " + getType(result));
+			}
+			break;
+		}
+	}
+	
+	private static String getType(Object result) {
+		return result == null ? "null" : result.getClass().getSimpleName();
 	}
 
 }

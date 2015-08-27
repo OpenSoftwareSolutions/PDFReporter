@@ -13,10 +13,29 @@
  */
 package org.oss.uses.org.oss.jshuntingyard.evaluator;
 
-import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.ExpressionElement;
+import java.util.Date;
 
-public interface FunctionElementArgument<E> extends ExpressionElement {
-	enum ArgumentType {INTEGER, DOUBLE, LONG, BOOLEAN, STRING, NULL, OBJECT, DATE};
-	ArgumentType getType();
-	E getValue();
+
+public class DateArgument extends AbstractFunctionElementArgument<Date> implements Comparable<DateArgument>{
+
+	private final Date dateValue;
+
+	DateArgument(Date dateValue) {
+		this.dateValue = dateValue;
+	}
+
+	@Override
+	public FunctionElementArgument.ArgumentType getType() {
+		return FunctionElementArgument.ArgumentType.DATE;
+	}
+
+	@Override
+	public Date getValue() {
+		return dateValue;
+	}
+
+	@Override
+	public int compareTo(DateArgument o) {
+		return dateValue.compareTo(o.getValue());
+	}
 }

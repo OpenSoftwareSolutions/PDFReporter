@@ -12,7 +12,7 @@ public abstract class AbstractTwoArgNumericFunctionElement extends AbstractFunct
 	@Override
 	public FunctionElementArgument<?> execute(FunctionElementArgument<?>... args) throws IllegalArgumentException {
 		assertNumArgs(args);
-		if (isNumeric(args) || isString(args)) {
+		if (isNumeric(args) || isOneString(args)) {
 			return execute(args[0],args[1]);
 		}
 		throw new IllegalArgumentException(String.format("Two string operands or two numeric operands are allowed but not ", args[0].getType() + " and " + args[1].getType()));

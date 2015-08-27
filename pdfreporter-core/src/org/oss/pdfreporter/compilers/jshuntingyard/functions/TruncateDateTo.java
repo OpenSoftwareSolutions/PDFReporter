@@ -10,8 +10,6 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.jshuntingyard.functions;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,7 +23,7 @@ import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
  * Truncate date to month or year.
  *
  */
-public class TruncateDateTo extends AbstractTwoArgFunctionElement<String,String,String> {
+public class TruncateDateTo extends AbstractTwoArgFunctionElement<Date,String,Date> {
 
 	private final static String MODE_MONTH = "'M'";
 
@@ -42,16 +40,8 @@ public class TruncateDateTo extends AbstractTwoArgFunctionElement<String,String,
 	 * @see org.oss.evaluator.function.string.AbstractStringOperatorAssociativityLeftTwoArg#execute(org.oss.evaluator.function.FunctionArgument, org.oss.evaluator.function.FunctionArgument)
 	 */
 	@Override
-	protected FunctionElementArgument<String> execute(FunctionElementArgument<String> a, FunctionElementArgument<String> b) throws IllegalArgumentException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date d = null;
-		try {
-			d = dateFormat.parse(b.getValue());
-		} catch (ParseException e) {
-			throw new IllegalArgumentException(e);
-		}
-		
-		Long date = d.getTime();
+	protected FunctionElementArgument<Date> execute(FunctionElementArgument<String> a, FunctionElementArgument<Date> b) throws IllegalArgumentException {
+		Long date = b.getValue().getTime();
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date);
@@ -63,8 +53,7 @@ public class TruncateDateTo extends AbstractTwoArgFunctionElement<String,String,
 			calendar.set(Calendar.MONTH, month);
 		}
 		date = calendar.getTimeInMillis();
-		
-		return FunctionArgumentFactory.createString(date.toString());
+		return FunctionArgumentFactory.createObject(new Date(date));
 	}
 
 }

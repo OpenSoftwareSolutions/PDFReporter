@@ -15,7 +15,6 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.IntegerArgument;
-import org.oss.uses.org.oss.jshuntingyard.evaluator.StringArgument;
 
 public class Add extends AbstractTwoArgNumericFunctionElement {
 
@@ -28,8 +27,8 @@ public class Add extends AbstractTwoArgNumericFunctionElement {
 			FunctionElementArgument<?> b) throws IllegalArgumentException {
 		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
 			return FunctionArgumentFactory.createObject(((IntegerArgument)a).getValue() + ((IntegerArgument)b).getValue());
-		} if (a.getType()==FunctionElementArgument.ArgumentType.STRING) {
-			return FunctionArgumentFactory.createString(((StringArgument)a).getValue() + ((StringArgument)b).getValue());
+		} if (a.getType()==FunctionElementArgument.ArgumentType.STRING || b.getType()==FunctionElementArgument.ArgumentType.STRING) {
+			return FunctionArgumentFactory.createString(a.getValue().toString() + b.getValue().toString()); // TODO: hack what about auto type conversion ?
 		}
 		return FunctionArgumentFactory.createObject(getDouble(a) + getDouble(b));
 	}

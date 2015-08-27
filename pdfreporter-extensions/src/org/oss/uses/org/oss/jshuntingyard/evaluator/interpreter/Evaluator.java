@@ -14,6 +14,7 @@
 package org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -95,17 +96,17 @@ public class Evaluator {
 					}
 				}
 				FunctionElementArgument<?> result = function.execute(args);
-//				if (logger.isLoggable(Level.FINEST)) {
-//					String message = "Evaluated: " + result.getValue() + "[" + result.getType() + "] " + function.getName() + "(";
-//					for (int i=0; i<numArgs; i++) {
-//						message += args[i].getValue() + "[" + args[i].getType() + "]";
-//						if (i+1 < numArgs) {
-//							message += ",";
-//						}
-//					}
-//					message += ")";
-//					logger.info(message);
-//				}
+				if (logger.isLoggable(Level.INFO)) {
+					String message = "Evaluated: " + result.getValue() + "[" + result.getType() + "] " + function.getName() + "(";
+					for (int i=0; i<numArgs; i++) {
+						message += args[i].getValue() + "[" + args[i].getType() + "]";
+						if (i+1 < numArgs) {
+							message += ",";
+						}
+					}
+					message += ")";
+					logger.info(message);
+				}
 				stack.push(result);
 			} else {
 				throw new IllegalArgumentException("FunctionElementArgument or FunctionElement expected and not " + element.getClass().getName());
@@ -130,6 +131,12 @@ public class Evaluator {
 		}
 		if (value instanceof Double) {
 			return FunctionArgumentFactory.createObject((Double) value);
+		}
+		if (value instanceof Long) {
+			return FunctionArgumentFactory.createObject((Long) value);
+		}
+		if (value instanceof Date) {
+			return FunctionArgumentFactory.createObject((Date) value);
 		}
 		if (value instanceof String) {
 			return FunctionArgumentFactory.createString((String) value);

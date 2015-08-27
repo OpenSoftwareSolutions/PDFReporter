@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
@@ -141,7 +142,7 @@ public class JSHuntingYardExpression {
 	public Object evaluateValue() throws ExpressionEvaluationException {
 		try {
 			FunctionElementArgument<?> evaluate = this.newEval.evaluate();
-			logger.info("Evaluating exprsseion: '" + expression + "' to: " + evaluate.getValue());
+			logger.log(Level.INFO, "Evaluating new exprsseion: {0} to {1} of type: {2}", new Object[] {expression,evaluate.getValue(),evaluate.getType()});
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
@@ -151,7 +152,7 @@ public class JSHuntingYardExpression {
 	public Object evaluateOldValue() throws ExpressionEvaluationException {
 		try {
 			FunctionElementArgument<?> evaluate = this.oldEval.evaluate();
-			logger.info("Evaluating exprsseion: '" + expression + "' to: " + evaluate.getValue());
+			logger.log(Level.INFO, "Evaluating old exprsseion: {0} to {1} of type: {2}", new Object[] {expression,evaluate.getValue(),evaluate.getType()});
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
 			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
