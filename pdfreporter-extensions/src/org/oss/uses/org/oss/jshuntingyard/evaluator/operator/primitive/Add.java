@@ -15,6 +15,7 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.IntegerArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument.ArgumentType;
 
 public class Add extends AbstractTwoArgNumericFunctionElement {
 
@@ -24,17 +25,27 @@ public class Add extends AbstractTwoArgNumericFunctionElement {
 
 	@Override
 	protected FunctionElementArgument<?> execute(FunctionElementArgument<?> a,
-			FunctionElementArgument<?> b) throws IllegalArgumentException {
-		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
+			FunctionElementArgument<?> b, ArgumentType evaluatesTo)
+					throws IllegalArgumentException {
+		switch (evaluatesTo) {
+		case STRING:
+			return FunctionArgumentFactory.createString(a.getValue().toString() + b.getValue().toString()); 
+		case INTEGER:
 			return FunctionArgumentFactory.createObject(((IntegerArgument)a).getValue() + ((IntegerArgument)b).getValue());
-		} if (a.getType()==FunctionElementArgument.ArgumentType.STRING || b.getType()==FunctionElementArgument.ArgumentType.STRING) {
-			return FunctionArgumentFactory.createString(a.getValue().toString() + b.getValue().toString()); // TODO: hack what about auto type conversion ?
+		case LONG:
+			return FunctionArgumentFactory.createObject(getLong(a) + getLong(b));
+		case FLOAT:
+			return FunctionArgumentFactory.createObject(getFloat(a) + getFloat(b));
+		case DOUBLE:
+			return FunctionArgumentFactory.createObject(getDouble(a) + getDouble(b));
+		default:
+			throw new IllegalArgumentException("Unsupported add operation for the types " + a.getType() + " and " + b.getType() + " for expected evaluation to " + evaluatesTo);
 		}
-		return FunctionArgumentFactory.createObject(getDouble(a) + getDouble(b));
 	}
 
 	@Override
 	public boolean isUserFunction() {
 		return false;
 	}
+
 }

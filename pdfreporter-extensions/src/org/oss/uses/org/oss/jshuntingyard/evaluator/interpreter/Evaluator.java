@@ -82,6 +82,9 @@ public class Evaluator {
 				int numArgs = function.getNumberOfParameters();
 				FunctionElementArgument<?> args[] = new FunctionElementArgument<?>[numArgs];
 				for (int i=0;i<numArgs;i++) {
+					if (stack.isEmpty()) {
+						throw new IllegalArgumentException("The function: " + function.getName() + " expects " + numArgs + " parameters");
+					}
 					ExpressionElement arg = stack.pop();
 					if (arg instanceof FunctionElementArgument) {
 						int argIndex = numArgs -1 - i;
@@ -129,11 +132,14 @@ public class Evaluator {
 		if (value instanceof Integer) {
 			return FunctionArgumentFactory.createObject((Integer) value);
 		}
-		if (value instanceof Double) {
-			return FunctionArgumentFactory.createObject((Double) value);
-		}
 		if (value instanceof Long) {
 			return FunctionArgumentFactory.createObject((Long) value);
+		}
+		if (value instanceof Float) {
+			return FunctionArgumentFactory.createObject((Float) value);
+		}
+		if (value instanceof Double) {
+			return FunctionArgumentFactory.createObject((Double) value);
 		}
 		if (value instanceof Date) {
 			return FunctionArgumentFactory.createObject((Date) value);

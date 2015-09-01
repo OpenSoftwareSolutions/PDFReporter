@@ -32,6 +32,8 @@ import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.GreaterT
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.LessThan;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.LessThanOrEqualTo;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.relational.NotEqualTo;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.date.ToDate;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.date.ToLocalDate;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Abs;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Acos;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math.Asin;
@@ -138,6 +140,9 @@ public class UserFunctions {
 		functions.add(new Like());
 		functions.add(new Matches());
 		functions.add(new NumberFormat());
+		// Date
+		functions.add(new ToDate());
+		functions.add(new ToLocalDate());
 		return functions;
 	}
 

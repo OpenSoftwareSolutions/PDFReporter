@@ -38,6 +38,7 @@ import org.oss.pdfreporter.compilers.jeval.functions.Message;
 import org.oss.pdfreporter.compilers.jeval.functions.MessageWithArg;
 import org.oss.pdfreporter.compilers.jeval.functions.NullValue;
 import org.oss.pdfreporter.compilers.jeval.functions.TruncateDateTo;
+import org.oss.pdfreporter.compilers.util.ResultUtil;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationException;
 import org.oss.pdfreporter.uses.net.sourceforge.jeval.Evaluator;
@@ -107,7 +108,7 @@ public class JEvalExpression {
 	public String getExpression() {
 		return expression;
 	}
-
+	
 	public IVariable getVariable(String name) {
 		return variables.get(getKey(ExpresionType.TYPE_VARIABLE,name));
 	}
@@ -167,7 +168,7 @@ public class JEvalExpression {
 			logger.log(Level.INFO, "Evaluating new exprsseion: {0} to {1} of type: {2}", new Object[] {expression,value,value.startsWith("'") ? "STRING" : "DOUBLE"});
 			return value;
 		} catch (EvaluationException e) {
-			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
+			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "' with variables: " + ResultUtil.getDump(variables.values()),e);
 		}
 	}
 
@@ -177,7 +178,7 @@ public class JEvalExpression {
 			logger.log(Level.INFO, "Evaluating old exprsseion: {0} to {1} of type: {2}", new Object[] {expression,value,value.startsWith("'") ? "STRING" : "DOUBLE"});
 			return value;
 		} catch (EvaluationException e) {
-			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
+			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "' with variables: " + ResultUtil.getDump(variables.values()),e);
 		}
 	}
 

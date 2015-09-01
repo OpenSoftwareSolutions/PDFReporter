@@ -10,13 +10,10 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.jshuntingyard;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,18 +24,19 @@ import org.oss.pdfreporter.compilers.IExpressionChunk;
 import org.oss.pdfreporter.compilers.IExpressionChunk.ExpresionType;
 import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.IVariableExpressionChunk;
-import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.BooleanConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.Conditional;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.CurrentDate;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.DateStringConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.DisplayName;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.DoubleStringConverter;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.FloatStringConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.IntegerStringConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.IsNull;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.LongStringConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.Message;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.TruncateDateTo;
-import org.oss.pdfreporter.uses.net.sourceforge.jeval.EvaluationConstants;
+import org.oss.pdfreporter.compilers.util.ResultUtil;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.Evaluator;
@@ -66,6 +64,8 @@ public class JSHuntingYardExpression {
 		this.userFunctions = new ArrayList<FunctionElement>();
 		putFunction(new BooleanConverter());
 		putFunction(new IntegerStringConverter());
+		putFunction(new LongStringConverter());
+		putFunction(new FloatStringConverter());
 		putFunction(new DoubleStringConverter());
 		putFunction(new DateStringConverter());
 		putFunction(new TruncateDateTo());
@@ -97,7 +97,7 @@ public class JSHuntingYardExpression {
 	public String getExpression() {
 		return expression;
 	}
-
+	
 	private String buildExpression(List<IExpressionChunk> chunks) throws ExpressionEvaluationException {
 		StringBuffer sb = new StringBuffer();
 		String name;
@@ -145,7 +145,7 @@ public class JSHuntingYardExpression {
 			logger.log(Level.INFO, "Evaluating new exprsseion: {0} to {1} of type: {2}", new Object[] {expression,evaluate.getValue(),evaluate.getType()});
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
-			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
+			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "' with variables: " + ResultUtil.getDump(variables.values()),e);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class JSHuntingYardExpression {
 			logger.log(Level.INFO, "Evaluating old exprsseion: {0} to {1} of type: {2}", new Object[] {expression,evaluate.getValue(),evaluate.getType()});
 			return  evaluate.getValue();
 		} catch (RuntimeException e) {
-			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "'",e);
+			throw new ExpressionEvaluationException("Error while evaluating '" + expression + "' with variables: " + ResultUtil.getDump(variables.values()),e);
 		}
 	}
 
@@ -219,24 +219,4 @@ public class JSHuntingYardExpression {
 
 	}
 
-
-
-	private String getString(Object value) {
-		if (value instanceof Date) {
-			return String.valueOf(((Date)value).getTime());
-		} else if (value == null) {
-			return ExpressionConstants.QUOTED_NULL;
-		} else if (value instanceof String) {
-			return EvaluationConstants.SINGLE_QUOTE + value.toString() + EvaluationConstants.SINGLE_QUOTE;
-		} else if (value instanceof Locale) {
-			return EvaluationConstants.SINGLE_QUOTE + value.toString() + EvaluationConstants.SINGLE_QUOTE;
-		} else if (value instanceof Double){
-			return BigDecimal.valueOf((Double)value).toPlainString();
-		} else if (value instanceof Float){
-			return BigDecimal.valueOf((Float)value).toPlainString();
-		} else {
-			logger.finest("Convert Object to String class: " + value.getClass() + ", toString: " + value.toString());
-			return value.toString();
-		}
-	}
 }

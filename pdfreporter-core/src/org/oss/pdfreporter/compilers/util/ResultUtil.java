@@ -10,9 +10,11 @@
  ******************************************************************************/
 package org.oss.pdfreporter.compilers.util;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.oss.pdfreporter.compilers.ExpressionEvaluationException;
+import org.oss.pdfreporter.compilers.IVariable;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionConstants;
 import org.oss.pdfreporter.compilers.expressionelements.ExpressionType;
 import org.oss.pdfreporter.converters.DecimalConverter;
@@ -101,4 +103,17 @@ public class ResultUtil {
 		return result == null ? "null" : result.getClass().getSimpleName();
 	}
 
+	public static String getDump(Collection<IVariable> variables) throws ExpressionEvaluationException {
+		StringBuffer buf = new StringBuffer();
+		buf.append("{");
+		for (IVariable var : variables) {
+			Object newValue = var.getValue();
+			Object oldValue = var.getOldValue();
+			buf.append(var.getName() + ": " + newValue + " [" + getType(newValue) + "] (" + oldValue + " [" + getType(oldValue) + "])");
+			buf.append(",");
+		}
+		buf.append("}");
+		return buf.toString();
+	}
+	
 }

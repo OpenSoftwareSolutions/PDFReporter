@@ -15,6 +15,7 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.IntegerArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument.ArgumentType;
 
 
 public class Multiply extends AbstractTwoArgNumericFunctionElement {
@@ -23,14 +24,22 @@ public class Multiply extends AbstractTwoArgNumericFunctionElement {
 		super("*", Precedence.MULTIPLICATIVE);
 	}
 
-
 	@Override
 	protected FunctionElementArgument<?> execute(FunctionElementArgument<?> a,
-			FunctionElementArgument<?> b) throws IllegalArgumentException {
-		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
+			FunctionElementArgument<?> b, ArgumentType evaluatesTo)
+					throws IllegalArgumentException {
+		switch (evaluatesTo) {
+		case INTEGER:
 			return FunctionArgumentFactory.createObject(((IntegerArgument)a).getValue() * ((IntegerArgument)b).getValue());
+		case LONG:
+			return FunctionArgumentFactory.createObject(getLong(a) * getLong(b));
+		case FLOAT:
+			return FunctionArgumentFactory.createObject(getFloat(a) * getFloat(b));
+		case DOUBLE:
+			return FunctionArgumentFactory.createObject(getDouble(a) * getDouble(b));
+		default:
+			throw new IllegalArgumentException("Unsupported mutiply operation for the types " + a.getType() + " and " + b.getType() + " for expected evaluation to " + evaluatesTo);
 		}
-		return FunctionArgumentFactory.createObject(getDouble(a) * getDouble(b));
 	}
 
 	@Override

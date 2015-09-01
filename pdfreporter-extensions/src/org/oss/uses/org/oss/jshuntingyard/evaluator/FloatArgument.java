@@ -13,10 +13,27 @@
  */
 package org.oss.uses.org.oss.jshuntingyard.evaluator;
 
-import org.oss.uses.org.oss.jshuntingyard.evaluator.interpreter.ExpressionElement;
 
-public interface FunctionElementArgument<E> extends ExpressionElement {
-	enum ArgumentType {INTEGER, DOUBLE, FLOAT, LONG, BOOLEAN, STRING, NULL, OBJECT, DATE};
-	ArgumentType getType();
-	E getValue();
+public class FloatArgument extends AbstractFunctionElementArgument<Float> implements Comparable<FloatArgument>{
+
+	private final Float floatValue;
+
+	FloatArgument(Float floatValue) {
+		this.floatValue = floatValue;
+	}
+
+	@Override
+	public FunctionElementArgument.ArgumentType getType() {
+		return FunctionElementArgument.ArgumentType.FLOAT;
+	}
+
+	@Override
+	public Float getValue() {
+		return floatValue;
+	}
+
+	@Override
+	public int compareTo(FloatArgument o) {
+		return floatValue.compareTo(o.getValue());
+	}
 }

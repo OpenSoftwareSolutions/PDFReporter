@@ -269,7 +269,7 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="12" width="40" height="12"/>
 							<textElement textAlignment="Right"/>
-							<textFieldExpression class="java.lang.String"><![CDATA[intString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
+							<textFieldExpression class="java.lang.String"><![CDATA[floatString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -286,7 +286,7 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="12" width="40" height="12"/>
 							<textElement textAlignment="Right"/>
-							<textFieldExpression class="java.lang.String"><![CDATA[intString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
+							<textFieldExpression class="java.lang.String"><![CDATA[floatString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -303,7 +303,7 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="12" width="40" height="12"/>
 							<textElement textAlignment="Right"/>
-							<textFieldExpression class="java.lang.String"><![CDATA[intString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
+							<textFieldExpression class="java.lang.String"><![CDATA[floatString($V{FreightSum} / $V{FreightSum_ShipYear_ALL} * 100) + ' %']]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>

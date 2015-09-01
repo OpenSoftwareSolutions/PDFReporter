@@ -16,6 +16,7 @@ import java.math.BigInteger;
 
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument.ArgumentType;
 
 public class Power extends AbstractTwoArgNumericFunctionElement {
 
@@ -23,17 +24,22 @@ public class Power extends AbstractTwoArgNumericFunctionElement {
 		super("^", Precedence.POWER);
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	protected FunctionElementArgument<?> execute(FunctionElementArgument<?> a,
-			FunctionElementArgument<?> b) throws IllegalArgumentException {
-		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
+			FunctionElementArgument<?> b, ArgumentType evaluatesTo)
+					throws IllegalArgumentException {
+		switch (evaluatesTo) {
+		case INTEGER:
 			BigInteger bigA = new BigInteger(a.getString());
 			return FunctionArgumentFactory.createObject(bigA.pow(((FunctionElementArgument<Integer>)b).getValue().intValue()).intValue());
+		case DOUBLE:
+			return FunctionArgumentFactory.createObject(Math.pow(getDouble(a), getDouble(b)));
+		default:
+			throw new IllegalArgumentException("Unsupported power operation for the types " + a.getType() + " and " + b.getType() + " for expected evaluation to " + evaluatesTo);
 		}
-		return FunctionArgumentFactory.createObject(Math.pow(getDouble(a), getDouble(b)));
 	}
+
 
 	@Override
 	public boolean isUserFunction() {

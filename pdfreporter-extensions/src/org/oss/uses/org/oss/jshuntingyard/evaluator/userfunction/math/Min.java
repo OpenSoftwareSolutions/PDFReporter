@@ -16,6 +16,7 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.IntegerArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument.ArgumentType;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.AbstractTwoArgNumericFunctionElement;
 
 public class Min extends AbstractTwoArgNumericFunctionElement {
@@ -24,16 +25,23 @@ public class Min extends AbstractTwoArgNumericFunctionElement {
 		super("min", Precedence.USERFUNCTION);
 	}
 
-
 	@Override
 	protected FunctionElementArgument<?> execute(FunctionElementArgument<?> a,
-			FunctionElementArgument<?> b) throws IllegalArgumentException {
-		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
+			FunctionElementArgument<?> b, ArgumentType evaluatesTo)
+					throws IllegalArgumentException {
+		switch (evaluatesTo) {
+		case INTEGER:
 			return FunctionArgumentFactory.createObject(Math.min(((IntegerArgument)a).getValue(), ((IntegerArgument)b).getValue()));
+		case LONG:
+			return FunctionArgumentFactory.createObject(Math.min(getLong(a) , getLong(b)));
+		case FLOAT:
+			return FunctionArgumentFactory.createObject(Math.min(getFloat(a) , getFloat(b)));
+		case DOUBLE:
+			return FunctionArgumentFactory.createObject(Math.min(getDouble(a) , getDouble(b)));
+		default:
+			throw new IllegalArgumentException("Unsupported min operation for the types " + a.getType() + " and " + b.getType());
 		}
-		return FunctionArgumentFactory.createObject(Math.min(getDouble(a), getDouble(b)));
 	}
-
 
 	@Override
 	public boolean isUserFunction() {

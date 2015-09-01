@@ -15,27 +15,45 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator;
 
 import java.util.Date;
 
+import org.oss.uses.org.oss.jshuntingyard.lexer.ExpressionToken;
+import org.oss.uses.org.oss.jshuntingyard.lexer.TokenType;
+
 
 public class FunctionArgumentFactory {
 
-	public static FunctionElementArgument<?> createObject(String token) {
-		if (token.startsWith("'") && token.endsWith("'")) {
+	public static FunctionElementArgument<?> createObject(ExpressionToken expressionToken) {
+		String token = expressionToken.getToken();
+		TokenType type = expressionToken.getType();
+		if (type == TokenType.SINGLEQUOTED) {
 			return new StringArgument(token.substring(1, token.length() - 1));
 		}
-		if (token.equalsIgnoreCase("true")) {
-			return new BooleanArgument(Boolean.TRUE);
+		if (type == TokenType.BOOLEANVALUE) {
+			return new BooleanArgument(Boolean.valueOf(token));
 		}
-		if (token.equalsIgnoreCase("false")) {
-			return new BooleanArgument(Boolean.FALSE);
-		}
-		if (token.equalsIgnoreCase("null")) {
+		if (type == TokenType.NULL) {
 			return new NullArgument();
 		}
 		if (isNumeric(token)) {
-			if (token.indexOf(".")>=0) {
-				return new DoubleArgument(Double.valueOf(token));
-			} else {
+			switch (type) {
+			case INTEGERNUMBER:
 				return new IntegerArgument(Integer.valueOf(token));
+			case LONGNUMBER:
+				if (token.endsWith("l") || token.endsWith("L")) {
+					return new LongArgument(Long.valueOf(token.substring(0, token.length() - 1)));
+				}
+				return new LongArgument(Long.valueOf(token));
+			case FLOATNUMBER:
+				if (token.endsWith("f") || token.endsWith("F")) {
+					return new FloatArgument(Float.valueOf(token.substring(0, token.length() - 1)));
+				}
+				return new FloatArgument(Float.valueOf(token));
+			case DOUBLENUMBER:
+				if (token.endsWith("d") || token.endsWith("D")) {
+					return new DoubleArgument(Double.valueOf(token.substring(0, token.length() - 1)));
+				}
+				return new DoubleArgument(Double.valueOf(token));
+			default:
+				throw new IllegalArgumentException("Cannot parse number: '" + token + "' of type: " + type);
 			}
 		}
 		if (token.startsWith("$")) {
@@ -53,6 +71,10 @@ public class FunctionArgumentFactory {
 
 	public static FunctionElementArgument<Double> createObject(Double value) {
 		return new DoubleArgument(value);
+	}
+
+	public static FunctionElementArgument<Float> createObject(Float value) {
+		return new FloatArgument(value);
 	}
 
 	public static FunctionElementArgument<Long> createObject(Long value) {
@@ -88,7 +110,7 @@ public class FunctionArgumentFactory {
 
 	public static boolean isNumeric(String str)
 	{
-	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+	  return str.matches("-?\\d+(\\.\\d+)?[dDfFlL]?");  //match a number with optional '-' and decimal.
 	}
 
 	public static FunctionElementArgument<Double> createDouble(String value) {

@@ -2,6 +2,7 @@ package org.oss.uses.org.oss.jshuntingyard.evaluator.userfunction.math;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionArgumentFactory;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.IntegerArgument;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElementArgument.ArgumentType;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.primitive.AbstractTwoArgNumericFunctionElement;
 
 /**
@@ -26,13 +27,21 @@ public class Max extends AbstractTwoArgNumericFunctionElement {
 
 	@Override
 	protected FunctionElementArgument<?> execute(FunctionElementArgument<?> a,
-			FunctionElementArgument<?> b) throws IllegalArgumentException {
-		if (a.getType()==FunctionElementArgument.ArgumentType.INTEGER && b.getType()==FunctionElementArgument.ArgumentType.INTEGER) {
+			FunctionElementArgument<?> b, ArgumentType evaluatesTo)
+					throws IllegalArgumentException {
+		switch (evaluatesTo) {
+		case INTEGER:
 			return FunctionArgumentFactory.createObject(Math.max(((IntegerArgument)a).getValue(), ((IntegerArgument)b).getValue()));
+		case LONG:
+			return FunctionArgumentFactory.createObject(Math.max(getLong(a) , getLong(b)));
+		case FLOAT:
+			return FunctionArgumentFactory.createObject(Math.max(getFloat(a) , getFloat(b)));
+		case DOUBLE:
+			return FunctionArgumentFactory.createObject(Math.max(getDouble(a) , getDouble(b)));
+		default:
+			throw new IllegalArgumentException("Unsupported max operation for the types " + a.getType() + " and " + b.getType());
 		}
-		return FunctionArgumentFactory.createObject(Math.max(getDouble(a), getDouble(b)));
 	}
-
 
 	@Override
 	public boolean isUserFunction() {

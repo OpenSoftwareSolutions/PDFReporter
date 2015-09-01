@@ -121,16 +121,21 @@ public class ExtendedSHuntingYardParser {
 
 		//String[] tokens = TokenizerUtil.modifyExpression(expression).split(TokenizerUtil.DELIMITER);
 		List<ExpressionToken> tokens = ExpressionTokenizer.tokenize(expression);
-		return infixToRPN(tokens.iterator(),false);
+		return infixToRPN(tokens.iterator(),-1);
 	}
 
-	public Expression infixToRPN(Iterator<ExpressionToken> tokenIterator, boolean stopAtNextCloseBrace) {
+	public Expression infixToRPN(Iterator<ExpressionToken> tokenIterator, int closingBraceCountToExit) {
 		Expression out = new Expression();
 		Stack<ExpressionElement> stack = new Stack<ExpressionElement>();
 			// For all the input tokens [S1] read the next token [S2]
 			while (tokenIterator.hasNext()) {
 				ExpressionToken token = tokenIterator.next();
 				if (token.getType()==TokenType.COMMA) {
+					if (closingBraceCountToExit!=-1) { // userfunction mode: empty stack for each parameter
+						while (!stack.empty() && !(stack.peek() instanceof LeftParenthese)) {
+							out.add(stack.pop()); // [S10]
+						}						
+					}
 					continue;
 				} else if (token.getType()==TokenType.FUNCTIONNAME) {
 					FunctionElement function = functionElements.get(token.getToken());
@@ -138,7 +143,7 @@ public class ExtendedSHuntingYardParser {
 						throw new IllegalArgumentException("Unknown function: " + token.getToken());
 					}
 					int paramsStart = out.size();
-					out.addAll(infixToRPN(tokenIterator,true));
+					out.addAll(infixToRPN(tokenIterator,0));
 					if (function.getNumberOfParameters()==-1) {
 						function = new VarArgFunctionElementWrapper(function, out.size() - paramsStart);
 					}
@@ -161,10 +166,21 @@ public class ExtendedSHuntingYardParser {
 					// Push the new operator on the stack [S7]
 					stack.push(operator);
 				} else if (token.getType()==TokenType.OPENBRACE) {
+					if (closingBraceCountToExit!=-1) {
+						closingBraceCountToExit++;
+					}
 					stack.push(new LeftParenthese()); 	// [S8]
 				} else if (token.getType()==TokenType.CLOSEBRACE) {
-					if (stopAtNextCloseBrace) {
-						return out;
+					if (closingBraceCountToExit!=-1) { // userfunction mode: empty stack for last parameter
+						if (closingBraceCountToExit == 1) {
+							while (!stack.empty() && !(stack.peek() instanceof LeftParenthese)) {
+								out.add(stack.pop()); // [S10]
+							}
+							stack.pop(); // [S11]
+							return out;
+						} else {
+							closingBraceCountToExit--;
+						}
 					}
 					// [S9]
 					while (!stack.empty() && !(stack.peek() instanceof LeftParenthese)) {
@@ -172,7 +188,7 @@ public class ExtendedSHuntingYardParser {
 					}
 					stack.pop(); // [S11]
 				} else if (!token.getToken().isEmpty()){
-					out.add(FunctionArgumentFactory.createObject(token.getToken())); // [S12]
+					out.add(FunctionArgumentFactory.createObject(token)); // [S12]
 				}
 			}
 			while (!stack.empty()) {
