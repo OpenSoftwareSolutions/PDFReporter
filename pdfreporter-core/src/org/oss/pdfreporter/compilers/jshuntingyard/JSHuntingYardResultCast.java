@@ -64,8 +64,10 @@ public class JSHuntingYardResultCast implements IExpressionElement{
 				return new JSHuntingYardResultCast(ExpressionType.BOOLEAN);
 			} else if (cast.equalsIgnoreCase("integer") || cast.equalsIgnoreCase("int")) {
 				return new JSHuntingYardResultCast(ExpressionType.INTEGER);
-			} else if (cast.equalsIgnoreCase("double") || cast.equalsIgnoreCase("float")) {
+			} else if (cast.equalsIgnoreCase("double")) {
 				return new JSHuntingYardResultCast(ExpressionType.DOUBLE);
+			} else if (cast.equalsIgnoreCase("float")) {
+				return new JSHuntingYardResultCast(ExpressionType.FLOAT);
 			} else if (cast.equalsIgnoreCase("string")) {
 				return new JSHuntingYardResultCast(ExpressionType.STRING);
 			} else if (cast.equalsIgnoreCase("long")) {
@@ -93,6 +95,9 @@ public class JSHuntingYardResultCast implements IExpressionElement{
 	private Object doCast(Object result) throws ExpressionEvaluationException {
 		if (result == null) {
 			return null;
+		}
+		if (result instanceof Number) {
+			result = ResultUtil.numberCast(type, (Number) result);
 		}
 		ResultUtil.assertResultType(type, result);
 		return result;

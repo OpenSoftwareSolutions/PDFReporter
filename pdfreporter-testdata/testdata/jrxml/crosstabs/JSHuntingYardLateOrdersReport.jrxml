@@ -49,7 +49,7 @@
 		<fieldDescription><![CDATA[ShippedDate]]></fieldDescription>
 	</field>
 	<variable name="DeliveryDelay" class="java.lang.Integer">
-		<variableExpression><![CDATA[(int)ifelse($F{ShippedDate} > $F{RequiredDate},1 + (($F{ShippedDate} - $F{RequiredDate} - 1) / 3600000),null())]]></variableExpression>
+		<variableExpression><![CDATA[(int)ifelse($F{ShippedDate} > $F{RequiredDate},1 + ((toMilliseconds($F{ShippedDate}) - toMilliseconds($F{RequiredDate}) - 1) / 3600000),null())]]></variableExpression>
 	</variable>
 	<title>
 		<band height="40">

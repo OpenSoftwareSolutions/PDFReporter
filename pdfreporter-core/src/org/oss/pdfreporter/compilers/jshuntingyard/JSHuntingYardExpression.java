@@ -35,6 +35,7 @@ import org.oss.pdfreporter.compilers.jshuntingyard.functions.IntegerStringConver
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.IsNull;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.LongStringConverter;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.Message;
+import org.oss.pdfreporter.compilers.jshuntingyard.functions.ToMilliseconds;
 import org.oss.pdfreporter.compilers.jshuntingyard.functions.TruncateDateTo;
 import org.oss.pdfreporter.compilers.util.ResultUtil;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement;
@@ -74,6 +75,7 @@ public class JSHuntingYardExpression {
 		putFunction(new IsNull());
 		putFunction(new Message());
 		putFunction(new DisplayName());
+		putFunction(new ToMilliseconds());
 	}
 
 	private void putFunction(FunctionElement function) {

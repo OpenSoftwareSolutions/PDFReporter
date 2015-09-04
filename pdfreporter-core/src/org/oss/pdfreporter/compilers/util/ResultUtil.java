@@ -76,6 +76,11 @@ public class ResultUtil {
 				throw new ExpressionEvaluationException("Double result expected and not: " + getType(result));
 			}
 			break;
+		case FLOAT:
+			if (!(result instanceof Float)) {
+				throw new ExpressionEvaluationException("Float result expected and not: " + getType(result));
+			}
+			break;
 		case LONG:
 			if (!(result instanceof Long)) {
 				throw new ExpressionEvaluationException("Long result expected and not: " + getType(result));
@@ -97,6 +102,33 @@ public class ResultUtil {
 			}
 			break;
 		}
+	}
+		
+		@SuppressWarnings("incomplete-switch")
+		public static Number numberCast(ExpressionType expectedType, Number result) throws ExpressionEvaluationException{
+			switch (expectedType) {
+			case FLOAT:
+				if (!(result instanceof Float)) {
+					return result.floatValue();
+				}
+				break;
+			case DOUBLE:
+				if (!(result instanceof Double)) {
+					return result.doubleValue();
+				}
+				break;
+			case LONG:
+				if (!(result instanceof Long)) {
+					return result.longValue();
+				}
+				break;
+			case INTEGER:
+				if (!(result instanceof Integer)) {
+					return result.intValue();
+				}
+				break;
+			}
+			return result;
 	}
 	
 	private static String getType(Object result) {

@@ -16,6 +16,7 @@ public enum ExpressionType {
 		INTEGER,
 		LONG,
 		DOUBLE,
+		FLOAT,
 		STRING,
 		DATE
 }
