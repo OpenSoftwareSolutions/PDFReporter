@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.oss.uses.org.oss.jshuntingyard.evaluator.FunctionElement;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.cast.DoubleCast;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.cast.FloatCast;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.cast.IntCast;
+import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.cast.LongCast;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.AndOperator;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.NotOperator;
 import org.oss.uses.org.oss.jshuntingyard.evaluator.operator.logic.OrOperator;
@@ -79,6 +83,11 @@ public class UserFunctions {
 
 	public static Collection<FunctionElement> get() {
 		Collection<FunctionElement>  functions = new ArrayList<FunctionElement>();
+		// Cast
+		functions.add(new IntCast());
+		functions.add(new LongCast());
+		functions.add(new FloatCast());
+		functions.add(new DoubleCast());
 		// Primitiv
 		functions.add(new Add());
 		functions.add(new Subtract());

@@ -104,6 +104,8 @@ public class JEvalResultCast implements IExpressionElement{
 			return ResultUtil.getIntResult(result);
 		case LONG:
 			return ResultUtil.getLongResult(result);
+		case FLOAT:
+			return ResultUtil.getFloatResult(result);
 		case DOUBLE:
 			return ResultUtil.getDoubleResult(result);
 		case DATE:

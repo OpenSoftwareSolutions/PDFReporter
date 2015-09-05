@@ -13,6 +13,7 @@ package org.oss.pdfreporter.compilers.jshuntingyard;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.oss.pdfreporter.compilers.ExpressionParseException;
 import org.oss.pdfreporter.compilers.IDataHolder;
@@ -32,6 +33,7 @@ import org.oss.pdfreporter.engine.fill.JRFillVariable;
 
 
 public class JSHuntingYardExpressionEvaluator extends JREvaluator implements IDataHolder {
+	private final static Logger logger = Logger.getLogger(JSHuntingYardExpressionEvaluator.class.getName());
 	private final Map<String,JRValueParameter> m_parameters = new HashMap<String,JRValueParameter>();
 	private final Map<String,JRFillField> m_fields = new HashMap<String, JRFillField>();
 	private final Map<String,JRFillVariable> m_variables = new HashMap<String, JRFillVariable>();
@@ -124,8 +126,14 @@ public class JSHuntingYardExpressionEvaluator extends JREvaluator implements IDa
 			if (designExpressionChunks != null && designExpressionChunks.length > 0) {
 				if (singleChunk) {
 					IExpressionElement result = SingleChunkExpressionFactory.buildExpression(this, designExpressionChunks[0]);
-					return result==null ? JSHuntingYardExpressionFactory.buildExpression(this, designExpressionChunks, expressionId) : result;
+					if (result==null) {
+						logger.warning("SingleChunk (Textconstant / Variable) expressions should be handled without an expression evaluator: " + designExpressionChunks[0].getText());
+						// TODO (06.09.2015, Donat, Open Software Solutions): Add support to TextConstant class to handle multilined and double quoted text constants
+						return JSHuntingYardExpressionFactory.buildExpression(this, designExpressionChunks, expressionId);
+					}
+					return result;
 				} else {
+					// Warning: A casted single chunk variable expression would lead to apply an expression evaluator with unbound variable
 					return JSHuntingYardExpressionFactory.buildExpression(this, designExpressionChunks, expressionId);
 				}
 			}

@@ -13,9 +13,9 @@ public enum TokenType {
 	INTEGERNUMBER("([+-])?([0-9])+"),
 	SINGLEQUOTED("\'[^\']*+\'"),
 	COMMA(","),
+	OPERATOR("\\+|-|\\*|/|==|!=|\\^|\\%|\\|\\||<=|>=|<|>|&&|!|\\(int\\)|\\(long\\)|\\(float\\)|\\(double\\)"),
 	OPENBRACE("\\("),
 	CLOSEBRACE("\\)"),
-	OPERATOR("\\+|-|\\*|/|==|!=|\\^|\\%|\\|\\||<=|>=|<|>|&&|!"),
 	VARIABLE("\\$([a-zA-Z0-9])+(([_])?([a-zA-Z0-9])*)*");
 
 	private final Pattern pattern;

@@ -191,7 +191,7 @@
 				</rowGroup>
 				<columnGroup name="FreightColumn" height="20" totalPosition="End">
 					<bucket>
-						<bucketExpression class="java.lang.Integer"><![CDATA[(int)floor($F{Freight}) / 100]]></bucketExpression>
+						<bucketExpression class="java.lang.Integer"><![CDATA[(int)floor((double)$F{Freight}) / 100]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
 						<cellContents>
@@ -251,12 +251,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -268,12 +268,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -285,12 +285,12 @@
 						<textField>
 							<reportElement style="Sans_Bold" x="0" y="0" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{OrderCount}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{OrderCount}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
 							<reportElement style="Sans_Bold" x="0" y="10" width="60" height="10"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
-							<textFieldExpression class="java.lang.Integer"><![CDATA[(int)$V{Delay}]]></textFieldExpression>
+							<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Delay}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>

@@ -92,7 +92,8 @@ public class Evaluator {
 						if (arg instanceof VariableArgument) {
 							VariableArgument variable = (VariableArgument) arg;
 							Variable boundVariable = boundVariables.get(variable.getName());
-							args[argIndex] = replaceVariable(boundVariable.getValue());
+							
+							args[argIndex] = replaceVariable(boundVariable);
 						}
 					} else {
 						throw new IllegalArgumentException("FunctionElementArgument expected and not " + arg.getClass().getName());
@@ -128,7 +129,9 @@ public class Evaluator {
 
 	
 	
-	private FunctionElementArgument<?> replaceVariable(Object value) {
+	private FunctionElementArgument<?> replaceVariable(Variable variable) {
+		logger.log(Level.INFO, "replacing variable: {0} (value: {1})", new Object[]{variable.getName(),variable.getValue()});
+		Object value = variable.getValue();
 		if (value instanceof Integer) {
 			return FunctionArgumentFactory.createObject((Integer) value);
 		}

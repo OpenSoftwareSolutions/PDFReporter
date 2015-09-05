@@ -47,6 +47,9 @@ public class ResultUtil {
 	public static Double getDoubleResult(String result) {
 		return DecimalConverter.toDouble(result);
 	}
+	public static Float getFloatResult(String result) {
+		return DecimalConverter.toDouble(result).floatValue();
+	}
 
 	public static Integer getIntResult(String result) {
 		return DecimalConverter.toDouble(result).intValue();
