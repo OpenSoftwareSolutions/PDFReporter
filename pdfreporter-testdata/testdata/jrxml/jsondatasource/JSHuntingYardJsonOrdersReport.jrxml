@@ -61,7 +61,7 @@
 			<textField isStretchWithOverflow="true" pattern="yyyy, MMM dd">
 				<reportElement positionType="Float" x="54" y="2" width="87" height="10"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[(date)$F{OrderDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{OrderDate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="146" y="2" width="108" height="10"/>
@@ -71,7 +71,7 @@
 			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
 				<reportElement positionType="Float" x="259" y="2" width="92" height="10"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[(float)$F{Freight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Freight}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -87,12 +87,12 @@
 				<textField>
 					<reportElement mode="Opaque" x="259" y="0" width="92" height="10" backcolor="#33cccc" style="Sans_Bold"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[(float)$V{TotalFreight}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{TotalFreight}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement mode="Opaque" x="227" y="0" width="27" height="10" backcolor="#33cccc" style="Sans_Bold"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[(int)$V{REPORT_COUNT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
