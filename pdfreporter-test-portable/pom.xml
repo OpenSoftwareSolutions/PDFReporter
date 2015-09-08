@@ -8,7 +8,7 @@
         <version>1.2.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
   </parent>
-  
+
   <dependencies>
 
 	  <dependency>
@@ -16,9 +16,9 @@
 		  <artifactId>pdfreporter-test</artifactId>
 		  <version>${project.version}</version>
 	  </dependency>
-	 
+
    </dependencies>
-   
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -38,6 +38,13 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>
+  		<groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-surefire-plugin</artifactId>
+  		<configuration>
+    		<skipTests>true</skipTests>
+  		</configuration>
+	  </plugin>
     </plugins>
   </build>
 </project>
