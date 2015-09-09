@@ -25,13 +25,13 @@ public class JEvalMultiLanguageExporterTest extends JEvalDesktopExporterTest{
 	 * */
 	@Test
 	public void exportI18n() throws Exception {
-		Locale locale = chooseLocale();
+		//Locale locale = chooseLocale();
 
-		if(locale != null){
+		//if(locale != null){
 			getExporter(DESIGN_REPORT_I18N, "i18n")
 		    .addFillParameter("number", new Double(1234567 + Math.random()))
-			.newResourceBundle("test.org.oss.pdfreporter.resourcebundle.i18n", locale)
+			.newResourceBundle("test.org.oss.pdfreporter.resourcebundle.i18n", Locale.US)
 			.exportPdf();
-		}
+		//}
 	}
 }
