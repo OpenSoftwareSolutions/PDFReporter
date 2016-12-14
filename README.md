@@ -1,5 +1,5 @@
 # PDFReporter
-The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the PDFReporter Studio where you can visualize your data.
+The library is a fork of the popular open source Jasper Reports and supports the common features provided by Jasper Reports, but offline and for mobile apps. The PDFReporter library supports iOS, Java and Android library. For your document and report design you use the [Jaspersoft® Studio](http://community.jaspersoft.com/project/jaspersoft-studio) or [PDFReporter Studio](https://sourceforge.net/projects/pdfreporterstudio/)(experimental) where you can visualize your data.
 
 # Licensing
 Generally you can use the library as long as your app is open source and published on one of the common repositories on the web. The library is a multi project and supports the following licenses, Apache License V2.0, GNU General Public License version 3.0 (GPLv3), GNU Library or Lesser General Public License version 3.0 (LGPLv3)
@@ -12,7 +12,15 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
 * [Wiki Page](https://github.com/OpenSoftwareSolutions/PDFReporter/wiki)
 * [Milestones](http://sourceforge.net/p/pdfreporter/tickets/)
 
-#Download the PDFReporter
+# Repositories
+You find the core library and ios sample app at sourceforge. The android sample on github. The iOS framework of the library and the static c libraries for iOS (libHaru, libPng) are hosted on github as well.
+* [Library (java, android, ios)](https://sourceforge.net/projects/pdfreporter/)
+* [Android sample app (a bit outdated)](https://github.com/OpenSoftwareSolutions/PDFReporter/tree/master/pdfreporter-android-sample)
+* [iOS sample app (static library)](https://github.com/OpenSoftwareSolutions/PDFReporter/tree/master/pdfreporter-xcode/PDFReporter)
+* [PDFReporter Kit (framework)](https://github.com/OpenSoftwareSolutions/PDFReporterKit)
+
+
+# Download the PDFReporter
 * [Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
 * [Jar Files - Desktop ](http://sourceforge.net/projects/pdfreporter/files/Releases/Java/)
 * [Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
