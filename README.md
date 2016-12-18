@@ -19,8 +19,8 @@ You find the core library, android ios sample app at sourceforge. The iOS framew
 * [Maven Repository](https://github.com/OpenSoftwareSolutions/mvn-repo) (use for Android apps)
 
 # Latest updates
-* [PDFReporter Library (branch: android-sample)](https://sourceforge.net/p/pdfreporter/code/ci/android-sample/tree/) android sample 1.3.0-SNAPSHOT
-* [PDFReporter Library 1.3.0-SNAPSHOT]() (pdfreporter-android-bundle on branch android-sample)
+* [PDFReporter Library](https://sourceforge.net/p/pdfreporter/code/ci/android-sample/tree/) android sample 1.3.0-SNAPSHOT
+* [Maven Repository](https://github.com/OpenSoftwareSolutions/mvn-repo/tree/master/repository/com/pdfreporting/pdfreporter-android-bundle/1.3.0-SNAPSHOT) pdfreporter-android-bundle 1.3.0-SNAPSHOT (shorce in branch android-sample)
 * [PDFReporter Kit](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases) Fix for SF ticket #80
 
 
