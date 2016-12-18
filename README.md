@@ -14,17 +14,21 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
 
 # Repositories
 You find the core library and ios sample app at sourceforge. The android sample on github. The iOS framework of the library and the static c libraries for iOS (libHaru, libPng) are hosted on github as well.
-* [Library (java, android, ios)](https://sourceforge.net/projects/pdfreporter/)
-* [Android sample app (a bit outdated)](https://github.com/OpenSoftwareSolutions/PDFReporter/tree/master/pdfreporter-android-sample)
-* [iOS sample app (static library)](https://github.com/OpenSoftwareSolutions/PDFReporter/tree/master/pdfreporter-xcode/PDFReporter)
+* [PDFReporter Library (java, android & sample, ios & sample static lib)](https://sourceforge.net/projects/pdfreporter/)
 * [PDFReporter Kit (framework)](https://github.com/OpenSoftwareSolutions/PDFReporterKit)
+* [Maven Repository](https://github.com/OpenSoftwareSolutions/mvn-repo) (use for Android apps)
+
+# Latest updates
+* [PDFReporter Library (branch: android-sample)](https://sourceforge.net/p/pdfreporter/code/ci/android-sample/tree/) android sample 1.3.0-SNAPSHOT
+* [PDFReporter Library 1.3.0-SNAPSHOT]() (pdfreporter-android-bundle on branch android-sample)
+* [PDFReporter Kit](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases) Fix for SF ticket #80
 
 
 # Download the PDFReporter
 * [Our Maven Repository - Desktop / Android](https://github.com/OpenSoftwareSolutions/mvn-repo)
 * [Jar Files - Desktop ](http://sourceforge.net/projects/pdfreporter/files/Releases/Java/)
 * [Jar Files - Android ](http://sourceforge.net/projects/pdfreporter/files/Releases/Android/)
-* [iOS ](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases)
+* [iOS ](https://github.com/OpenSoftwareSolutions/PDFReporterKit/releases) (use for iOS apps)
 
 ## Using PDFReporter on Windows Applications (experimental)
 There are a few ways of using the library in windows apps.
