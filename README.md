@@ -15,7 +15,7 @@ If you want to use it commercially please contact sales@pdfreporting.com for fur
 # Repositories
 You find the core library, android ios sample app at sourceforge. The iOS framework of the library and the static c libraries for iOS (libHaru, libPng) are hosted on github.
 * [PDFReporter Library (java, android & sample, ios & sample static lib)](https://sourceforge.net/projects/pdfreporter/)
-* [PDFReporter Kit (framework)](https://github.com/OpenSoftwareSolutions/PDFReporterKit)
+* [PDFReporter Kit (framework)](https://github.com/OpenSoftwareSolutions/PDFReporterKit) (Use for iOS apps)
 * [Maven Repository](https://github.com/OpenSoftwareSolutions/mvn-repo) (use for Android apps)
 
 # Latest updates
