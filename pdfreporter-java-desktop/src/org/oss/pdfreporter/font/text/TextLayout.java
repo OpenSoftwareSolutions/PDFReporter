@@ -79,4 +79,10 @@ public class TextLayout implements ITextLayout {
 				+ getParagraph().getText() + "']";
 	}
 
+	@Override
+	public float getAvailableWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

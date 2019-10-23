@@ -71,10 +71,11 @@ import org.oss.pdfreporter.engine.type.RenderableTypeEnum;
 import org.oss.pdfreporter.engine.type.RotationEnum;
 import org.oss.pdfreporter.engine.util.JRPdfaIccProfileNotFoundException;
 import org.oss.pdfreporter.engine.util.JRStyledText;
-import org.oss.pdfreporter.font.IFontManager;
 import org.oss.pdfreporter.font.IFont.FontDecoration;
 import org.oss.pdfreporter.font.IFont.FontStyle;
+import org.oss.pdfreporter.font.IFontManager;
 import org.oss.pdfreporter.font.factory.IFontFactory;
+import org.oss.pdfreporter.font.text.ITextLayout;
 import org.oss.pdfreporter.font.text.TextAttribute;
 import org.oss.pdfreporter.geometry.IAffineTransformMatrix;
 import org.oss.pdfreporter.geometry.IColor;
@@ -84,13 +85,13 @@ import org.oss.pdfreporter.geometry.factory.IGeometryFactory.Rotate90;
 import org.oss.pdfreporter.image.IImage;
 import org.oss.pdfreporter.pdf.DocumentException;
 import org.oss.pdfreporter.pdf.IDocument;
-import org.oss.pdfreporter.pdf.IEncryption;
-import org.oss.pdfreporter.pdf.IPage;
-import org.oss.pdfreporter.pdf.ParagraphRenderer;
 import org.oss.pdfreporter.pdf.IDocument.ConformanceLevel;
 import org.oss.pdfreporter.pdf.IDocument.PageOrientation;
+import org.oss.pdfreporter.pdf.IEncryption;
+import org.oss.pdfreporter.pdf.IPage;
 import org.oss.pdfreporter.pdf.IPage.LineCap;
 import org.oss.pdfreporter.pdf.IPage.ScaleMode;
+import org.oss.pdfreporter.pdf.ParagraphRenderer;
 import org.oss.pdfreporter.registry.ApiRegistry;
 import org.oss.pdfreporter.text.HorizontalAlignment;
 import org.oss.pdfreporter.text.IPositionedLine;
@@ -1909,12 +1910,16 @@ public class JRPdfExporter extends JRAbstractExporter
 		return fontManager.getModifiedFont(pdfFont, font.getFontSize() * fontSizeScale, decoration);
     }
     
-	static void drawParagraph(IPage aPdfPage, Paragraph paragraph, float llx, float lly, float urx, float ury, float leading, HorizontalAlignment alignment) {
+    static void drawParagraph(IPage aPdfPage, Paragraph paragraph, float llx, float lly, float urx, float ury, float leading, HorizontalAlignment alignment) {
+    	drawParagraph(aPdfPage, paragraph, llx, lly, urx, ury, leading, null, alignment);
+    }
+    
+	static void drawParagraph(IPage aPdfPage, Paragraph paragraph, float llx, float lly, float urx, float ury, float leading, ITextLayout textLayout, HorizontalAlignment alignment) {
 		logger.finest("drawParagraph('" + paragraph.getText() + "', " + llx + ", " + lly + ", " + urx + ", " + ury + ", " + leading + ", " + alignment); 
 		logger.finest("Pos(x=" + (int)llx + ", y=" + (int)lly + ", width=" + (int)(urx - llx) + ", height=" +  (int)(lly - ury)); 
 		float verticalAlignmentHack = paragraph.getFirstParagraphText().getFont().getSize(); 
 		IRectangle rect = ApiRegistry.getGeometryFactory().newRectangle((int)llx, (int)(lly - verticalAlignmentHack), (int)(urx - llx), (int)(lly - ury));
-		ParagraphRenderer renderer = new ParagraphRenderer(paragraph, alignment, rect);
+		ParagraphRenderer renderer = new ParagraphRenderer(paragraph, alignment, rect, textLayout);
 		renderer.render(aPdfPage, true);
 	}
 
