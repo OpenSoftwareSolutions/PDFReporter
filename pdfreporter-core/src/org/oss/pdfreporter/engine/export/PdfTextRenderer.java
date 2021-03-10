@@ -27,6 +27,7 @@ import org.oss.pdfreporter.engine.DefaultJasperReportsContext;
 import org.oss.pdfreporter.engine.JRPropertiesUtil;
 import org.oss.pdfreporter.engine.JasperReportsContext;
 import org.oss.pdfreporter.engine.util.JRStyledText;
+import org.oss.pdfreporter.font.text.ITextLayout;
 
 
 /**
@@ -74,6 +75,7 @@ public class PdfTextRenderer extends AbstractPdfTextRenderer
 		TabSegment segment = segments.get(segmentIndex);
 		
 		float advance = segment.layout.getAdvance();
+		ITextLayout textLayout = segment.layout;
 		
 		JRPdfExporter.drawParagraph(pdfPage,
 			pdfExporter.getParagraph(segment.as, segment.text, text),
@@ -94,6 +96,7 @@ public class PdfTextRenderer extends AbstractPdfTextRenderer
 				-400//+ lineHeight//FIXMETAB
 				- drawPosY,
 			0,//text.getLineSpacingFactor(),// * text.getFont().getSize(),
+			textLayout,
 			horizontalAlignment
 			);
 

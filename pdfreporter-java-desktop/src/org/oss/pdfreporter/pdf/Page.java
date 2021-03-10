@@ -255,5 +255,9 @@ public class Page implements IPage {
 		delegate.setCharacterSpacing(spacing);
 		
 	}
+	@Override
+	public void setTextRise(float rise) {
+		delegate.setTextRise(rise);
+	}
 
 }

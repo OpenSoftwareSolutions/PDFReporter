@@ -250,4 +250,6 @@ public interface IPage {
      */
     void drawCropped(IImage image, float xoffset, float yoffset, float x, float y, float width, float height) throws DocumentException;
     
+    void setTextRise(float rise);
+    
 }

@@ -23,6 +23,7 @@ public class TextLayout implements ITextLayout {
 	private Float ascent = null;
 	private Float descent = null;
 	private Float leading = null;
+	private float availableWidth = 0f;
 	
 	TextLayout(Paragraph paragraph, int characterCount) {
 		this.paragraph = paragraph;
@@ -31,6 +32,7 @@ public class TextLayout implements ITextLayout {
 	
 	@Override
 	public ITextLayout getJustifiedLayout(float justificationWidth) {
+		this.availableWidth = justificationWidth;
 		return this;
 	}
 
@@ -122,6 +124,11 @@ public class TextLayout implements ITextLayout {
 			begin--;
 		}
 		return text.substring(begin, text.length());
+	}
+
+	@Override
+	public float getAvailableWidth() {
+		return availableWidth;
 	}
 
 
